@@ -12,9 +12,9 @@ This is our entry for the Godot Wild Jam #17! More to come soon!
 * https://animerrill.itch.io
 * ethan@animerrill.com
 
-### Benjimin King
+### Benjamin King
 
-* ...
+* https://benjaminking-91.itch.io
 
 ### Aang's Real Name lol
 
