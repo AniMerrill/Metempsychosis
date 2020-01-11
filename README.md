@@ -22,7 +22,8 @@ This is our entry for the Godot Wild Jam #17! More to come soon!
 
 ### Ereborn
 
-* ...
+* https://ereborn.itch.io
+* [YouTube](https://www.youtube.com/channel/UCnMgmSbZaoT5KPVanu11vnQ) 
 
 ## External Resources
 
