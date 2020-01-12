@@ -1,5 +1,8 @@
 extends Navigation2D
 
+" Will need a NavigationPolygonInstance as child node "
+
+
 onready var _player = $"../player"
 
 var target_position = Vector2()

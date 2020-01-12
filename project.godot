@@ -18,23 +18,20 @@ _global_script_class_icons={
 "WATTest": ""
 }
 
-[WAT]
-
-Test_Directory="res://tests"
-
 [application]
 
 config/name="Godot Wild Jam 17"
 config/icon="res://icon.png"
 
-[autoload]
+[input]
 
-GameState="*res://game_state.gd"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "WAT", "mixing-desk" )
+click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"
