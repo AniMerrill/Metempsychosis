@@ -23,6 +23,23 @@ _global_script_class_icons={
 config/name="Godot Wild Jam 17"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "mixing-desk" )
+
+[importer_defaults]
+
+wav={
+"compress/mode": 0,
+"edit/loop": false,
+"edit/normalize": false,
+"edit/trim": true,
+"force/8_bit": false,
+"force/max_rate": false,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
+
 [input]
 
 click={

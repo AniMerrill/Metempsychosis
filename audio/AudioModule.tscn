@@ -17,33 +17,46 @@ __meta__ = {
 }
 
 [node name="Exploration" parent="MixingDeskMusic" instance=ExtResource( 4 )]
+transition_beats = 1.0
+transition_type = "Bar"
 
 [node name="GuardOnWatch" parent="MixingDeskMusic" instance=ExtResource( 5 )]
+tempo = 80
+transition_beats = 4.0
+transition_type = "Bar"
 
 [node name="GameOver" parent="MixingDeskMusic" instance=ExtResource( 6 )]
+tempo = 100
+bars = 7
+beats_in_bar = 4
+transition_beats = 4.0
+transition_type = "Bar"
 
 [node name="Buttons" type="Node" parent="."]
 
 [node name="Button" type="Button" parent="Buttons"]
-margin_left = 223.446
-margin_top = 59.0434
-margin_right = 235.446
-margin_bottom = 79.0434
+margin_left = 40.0
+margin_top = 60.0
+margin_right = 121.0
+margin_bottom = 145.0
+text = "GameOver"
 
 [node name="Button2" type="Button" parent="Buttons"]
-margin_left = 182.787
-margin_top = 57.2757
-margin_right = 194.787
-margin_bottom = 77.2757
+margin_left = 140.0
+margin_top = 60.0
+margin_right = 216.0
+margin_bottom = 145.0
+text = "Guard"
 
 [node name="Button3" type="Button" parent="Buttons"]
-margin_left = 150.26
-margin_top = 55.5079
-margin_right = 162.26
-margin_bottom = 75.5079
-[connection signal="button_down" from="Buttons/Button" to="." method="_on_Button_button_down"]
-[connection signal="button_down" from="Buttons/Button2" to="." method="_on_Button2_button_down"]
-[connection signal="button_down" from="Buttons/Button3" to="." method="_on_Button3_button_down"]
+margin_left = 240.0
+margin_top = 60.0
+margin_right = 316.0
+margin_bottom = 145.0
+text = "No Guard"
+[connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
 
 [editable path="MixingDeskMusic/Exploration"]
 

@@ -10,17 +10,18 @@ func _ready():
 	mdm.play("Exploration")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		mdm.queue_bar_transition("GuardOnWatch")
+		print("queue guard")
 
+func _on_Button_pressed():
+	mdm.queue_beat_transition("GuardOnWatch")
+	print("queue guard")
 
-func _on_Button_button_down():
-	pass
-
-
-func _on_Button2_button_down():
+func _on_Button2_pressed():
 	pass # Replace with function body.
 
 
-func _on_Button3_button_down():
+func _on_Button3_pressed():
 	pass # Replace with function body.
