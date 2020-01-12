@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://await_turn.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://CurrentPlayer.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="AwaitTurn" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Frame" type="ColorRect" parent="."]
+margin_left = 320.0
+margin_right = 744.0
+margin_bottom = 600.0
+color = Color( 0.231373, 0.290196, 0.32549, 1 )
+
+[node name="Title" type="Label" parent="Frame"]
+self_modulate = Color( 0.658824, 0.658824, 0.658824, 1 )
+margin_left = 50.0
+margin_top = 20.0
+margin_right = 369.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 3 )
+text = "Awaiting Turn"
+align = 1
+autowrap = true
+
+[node name="IntroTextBG" type="ColorRect" parent="Frame"]
+margin_left = 40.0
+margin_top = 90.0
+margin_right = 384.0
+margin_bottom = 150.0
+color = Color( 0.137255, 0.172549, 0.192157, 1 )
+
+[node name="Label" type="Label" parent="Frame/IntroTextBG"]
+margin_left = 13.0
+margin_top = 11.0
+margin_right = 332.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 1 )
+text = "Share the following continuation code with the other player:"
+autowrap = true
+
+[node name="OutputCodeBG" type="ColorRect" parent="Frame"]
+margin_left = 40.0
+margin_top = 160.0
+margin_right = 384.0
+margin_bottom = 220.0
+color = Color( 0.321569, 0.454902, 0.52549, 1 )
+
+[node name="OutputCode" type="Label" parent="Frame/OutputCodeBG"]
+margin_left = 13.0
+margin_top = 11.0
+margin_right = 332.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 2 )
+text = "ABCD"
+align = 1
+autowrap = true
+
+[node name="InfoTextBG" type="ColorRect" parent="Frame"]
+margin_left = 40.0
+margin_top = 240.0
+margin_right = 384.0
+margin_bottom = 348.0
+color = Color( 0.137255, 0.172549, 0.192157, 1 )
+
+[node name="Label" type="Label" parent="Frame/InfoTextBG"]
+margin_left = 13.0
+margin_top = 11.0
+margin_right = 332.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 1 )
+text = "Wait for the other player to complete their turn. Upon completion, they should send you a \"continuation code\". Copy that code down here and click the button to continue."
+autowrap = true
+
+[node name="InputCode" type="LineEdit" parent="Frame"]
+margin_left = 40.0
+margin_top = 370.0
+margin_right = 384.0
+margin_bottom = 430.0
+custom_fonts/font = SubResource( 4 )
+align = 1
+max_length = 20
+placeholder_text = "continuation code"
+placeholder_alpha = 0.3
+
+[node name="Continue" type="Button" parent="Frame"]
+margin_left = 40.0
+margin_top = 440.0
+margin_right = 384.0
+margin_bottom = 490.0
+text = "Continue"
+
+[node name="TestingBG" type="ColorRect" parent="Frame"]
+margin_left = 40.0
+margin_top = 510.0
+margin_right = 384.0
+margin_bottom = 590.0
+color = Color( 0.137255, 0.172549, 0.192157, 1 )
+
+[node name="Label" type="Label" parent="Frame/TestingBG"]
+self_modulate = Color( 0.65098, 0.65098, 0.65098, 1 )
+margin_left = 13.0
+margin_top = 10.0
+margin_right = 332.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 1 )
+text = "TESTING ONLY. Enter codes in these order to simulate partner:
+ACBD / 004A / ...."
+autowrap = true
+
+[node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
+position = Vector2( 20, 14 )
+[connection signal="text_entered" from="Frame/InputCode" to="." method="_on_InputCode_text_entered"]
+[connection signal="pressed" from="Frame/Continue" to="." method="_on_Continue_pressed"]
