@@ -91,6 +91,8 @@ func set_last_output_code(code : String) -> void:
 	_save_local_data()
 
 
+const save_file = 'user://save_game_state.save'
+
 # Save data local to the player.
 func _save_local_data():
 	var save_dict = {
@@ -98,7 +100,7 @@ func _save_local_data():
 		"my_last_output_code": _my_last_output_code,
 	}
 	var save_game = File.new()
-	save_game.open("user://save_game_state.save", File.WRITE)
+	save_game.open(save_file, File.WRITE)
 	save_game.store_line(to_json(save_dict))
 	save_game.close()
 
@@ -106,9 +108,9 @@ func _save_local_data():
 # Load data local to the player.
 func _load_local_data():
 	var save_game = File.new()
-	if not save_game.file_exists("user://savegame.save"):
+	if not save_game.file_exists(save_file):
 		return # No save yet to load.
-	save_game.open("user://savegame.save", File.READ)
+	save_game.open(save_file, File.READ)
 	var saved_data = parse_json(save_game.get_line())
 	_my_player = saved_data["my_player"]
 	_my_last_output_code = saved_data["my_last_output_code"]
@@ -156,11 +158,13 @@ func serialize() -> String:
 
 
 # Overwrites the current state with the provided serialized state.
-func deserialize(serialized_state : String) -> void:
-	assert(serialized_state.is_valid_hex_number())
+func deserialize(serialized_state : String) -> bool:
+	if not serialized_state.is_valid_hex_number():
+		return false
 	var state_value := ('0x' + serialized_state).hex_to_int()
 	clear_state()
 	var highest_enum = _get_highest_enum()
 	for enum_value in range(highest_enum):
 		if state_value & (1 << enum_value):
 			set_state(enum_value, true)
+	return true
