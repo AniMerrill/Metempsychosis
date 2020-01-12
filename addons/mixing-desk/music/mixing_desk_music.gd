@@ -70,7 +70,8 @@ func init_song(track):
 	var root = song._get_core()
 	current_song_num = track
 	current_song = songs[track]._get_core()
-	current_song.get_child(0).connect("finished", self, "_core_finished")
+	if not current_song.get_child(0).is_connected("finished", self, "_core_finished"):
+		current_song.get_child(0).connect("finished", self, "_core_finished")
 	repeats= 0
 	for i in root.get_children():
 		if song.fading_out:

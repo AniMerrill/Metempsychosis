@@ -65,7 +65,6 @@ margin_right = 80.0
 margin_bottom = 184.0
 text = "something"
 script = ExtResource( 7 )
-[connection signal="end" from="MixingDeskMusic" to="." method="_on_MixingDeskMusic_end"]
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
