@@ -27,6 +27,10 @@ Test_Directory="res://tests"
 config/name="Godot Wild Jam 17"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameState="*res://game_state.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "WAT", "mixing-desk" )
