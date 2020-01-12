@@ -15,13 +15,20 @@ func _process(delta):
 		mdm.queue_bar_transition("GuardOnWatch")
 		print("queue guard")
 
+
+#guard appears
 func _on_Button_pressed():
-	mdm.queue_beat_transition("GuardOnWatch")
+	mdm.queue_bar_transition("GuardOnWatch")
 	print("queue guard")
 
+#Game over 
 func _on_Button2_pressed():
-	pass # Replace with function body.
+	mdm.queue_bar_transition("GameOver")
+	print("queue game over")
 
 
+#Back to main loop
 func _on_Button3_pressed():
-	pass # Replace with function body.
+	mdm.queue_bar_transition("Exploration")
+	print("queue exploration")
+
