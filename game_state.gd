@@ -13,6 +13,9 @@ the players by whichever communication method they like.
 This module is auto-loaded as GameState. All state querying and manipulation
 must be done through this module.
 
+Additionally, this module ensures that the game preserves whether the player
+is playing as player A or B (also when the game is closed in-between).
+
 TODO(ereborn): Add simple XOR encryption to avoid obvious tweaking of the
   exported state.
 TODO(ereborn): Add one char serving as integrity check.
@@ -42,15 +45,74 @@ enum STATE {
 	}
 
 
+# Representing the two players.
+enum PLAYER {
+		INVALID_PLAYER = 0,  # No player selected yet.
+		PLAYER_A = 1,
+		PLAYER_B = 2,
+	}
+
+
 # The current state of the game.
 # Enums listed here are "true", all others are "false".
 var state := []
 
 
-# Whether the current player of the game is player A or B.
-#
-# TODO(ereborn): Expose API.
-var i_am_player_a := true
+# The player controlled in this game.
+var _my_player : int = PLAYER.INVALID_PLAYER
+
+
+# The most recent code to be communicated to the other player.
+var _my_last_output_code := '(no code)'
+
+
+# Get the current player.
+func current_player() -> int:
+	if _my_player == PLAYER.INVALID_PLAYER:
+		_load_local_data()
+	return _my_player
+
+
+# Set the current player.
+func set_current_player(player : int) -> void:
+	_my_player = player
+	_save_local_data()
+
+
+# Get the most recent code that has to be communicated to the other player.
+func last_output_code() -> String:
+	_load_local_data()
+	return _my_last_output_code
+
+
+# Set the most recent code to be communicated.
+func set_last_output_code(code : String) -> void:
+	_my_last_output_code = code
+	_save_local_data()
+
+
+# Save data local to the player.
+func _save_local_data():
+	var save_dict = {
+		"my_player" : _my_player,
+		"my_last_output_code": _my_last_output_code,
+	}
+	var save_game = File.new()
+	save_game.open("user://save_game_state.save", File.WRITE)
+	save_game.store_line(to_json(save_dict))
+	save_game.close()
+
+
+# Load data local to the player.
+func _load_local_data():
+	var save_game = File.new()
+	if not save_game.file_exists("user://savegame.save"):
+		return # No save yet to load.
+	save_game.open("user://savegame.save", File.READ)
+	var saved_data = parse_json(save_game.get_line())
+	_my_player = saved_data["my_player"]
+	_my_last_output_code = saved_data["my_last_output_code"]
+	save_game.close()
 
 
 # Returns true if the requested enum is true in the current state, false
