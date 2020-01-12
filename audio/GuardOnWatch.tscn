@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=1]
+[ext_resource path="res://addons/mixing-desk/music/icons/song_icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
+[ext_resource path="res://addons/mixing-desk/music/icons/core_cont_icon.png" type="Texture" id=4]
+[ext_resource path="res://audio/audio_assets/guard_on_watch.wav" type="AudioStream" id=5]
+
+[node name="GuardOnWatch" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+bars = 8
+beats_in_bar = 4
+
+[node name="GuardCont" type="Node" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Guard" type="AudioStreamPlayer" parent="GuardCont"]
+stream = ExtResource( 5 )

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=1]
+[ext_resource path="res://addons/mixing-desk/music/icons/song_icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
+[ext_resource path="res://addons/mixing-desk/music/icons/core_cont_icon.png" type="Texture" id=4]
+[ext_resource path="res://audio/audio_assets/exploration.wav" type="AudioStream" id=5]
+
+[node name="Exploration" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+tempo = 80
+bars = 12
+beats_in_bar = 4
+
+[node name="ExploreCont" type="Node" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="Explore" type="AudioStreamPlayer" parent="ExploreCont"]
+stream = ExtResource( 5 )

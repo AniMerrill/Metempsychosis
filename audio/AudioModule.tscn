@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://audio/AudioModule.gd" type="Script" id=1]
+[ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
+[ext_resource path="res://addons/mixing-desk/music/mdm_icon.png" type="Texture" id=3]
+[ext_resource path="res://audio/Exploration.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/GuardOnWatch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/GameOver.tscn" type="PackedScene" id=6]
+
+[node name="AudioModule" type="Node"]
+script = ExtResource( 1 )
+
+[node name="MixingDeskMusic" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="Exploration" parent="MixingDeskMusic" instance=ExtResource( 4 )]
+
+[node name="GuardOnWatch" parent="MixingDeskMusic" instance=ExtResource( 5 )]
+
+[node name="GameOver" parent="MixingDeskMusic" instance=ExtResource( 6 )]
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button" type="Button" parent="Buttons"]
+margin_left = 223.446
+margin_top = 59.0434
+margin_right = 235.446
+margin_bottom = 79.0434
+
+[node name="Button2" type="Button" parent="Buttons"]
+margin_left = 182.787
+margin_top = 57.2757
+margin_right = 194.787
+margin_bottom = 77.2757
+
+[node name="Button3" type="Button" parent="Buttons"]
+margin_left = 150.26
+margin_top = 55.5079
+margin_right = 162.26
+margin_bottom = 75.5079
+[connection signal="button_down" from="Buttons/Button" to="." method="_on_Button_button_down"]
+[connection signal="button_down" from="Buttons/Button2" to="." method="_on_Button2_button_down"]
+[connection signal="button_down" from="Buttons/Button3" to="." method="_on_Button3_button_down"]
+
+[editable path="MixingDeskMusic/Exploration"]
+
+[editable path="MixingDeskMusic/GuardOnWatch"]
+
+[editable path="MixingDeskMusic/GameOver"]
