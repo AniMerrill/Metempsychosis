@@ -17,6 +17,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 play_mode = 1
+autoplay = NodePath("Exploration")
 
 [node name="Exploration" parent="MixingDeskMusic" instance=ExtResource( 4 )]
 transition_beats = 1.0
