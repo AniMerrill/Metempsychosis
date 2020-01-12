@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://map.tscn" type="PackedScene" id=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 542, 251, 922, 471, -24, 509, 454, 285, 810, 51, 498, 151, 390, 249, 88, 49 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 0, 5 ), PoolIntArray( 6, 3, 2 ), PoolIntArray( 6, 2, 7, 5 ), PoolIntArray( 7, 4, 5 ) ]
+outlines = [ PoolVector2Array( 88, 49, 810, 51, 922, 471, -24, 509 ), PoolVector2Array( 390, 249, 498, 151, 542, 251, 454, 285 ) ]
+
+[node name="the_test_world" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 466, 204 )
+
+[node name="map" parent="." instance=ExtResource( 2 )]
+position = Vector2( 14, 20 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="map"]
+position = Vector2( 40, -8 )
+navpoly = SubResource( 1 )
