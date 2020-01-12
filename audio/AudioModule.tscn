@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://audio/AudioModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://audio/Exploration.tscn" type="PackedScene" id=4]
 [ext_resource path="res://audio/GuardOnWatch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://audio/GameOver.tscn" type="PackedScene" id=6]
+[ext_resource path="res://audio/Label.gd" type="Script" id=7]
 
 [node name="AudioModule" type="Node"]
 script = ExtResource( 1 )
@@ -55,6 +56,15 @@ margin_top = 60.0
 margin_right = 316.0
 margin_bottom = 145.0
 text = "No Guard"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 170.0
+margin_right = 80.0
+margin_bottom = 184.0
+text = "something"
+script = ExtResource( 7 )
+[connection signal="end" from="MixingDeskMusic" to="." method="_on_MixingDeskMusic_end"]
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
