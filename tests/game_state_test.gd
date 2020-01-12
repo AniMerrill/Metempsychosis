@@ -17,7 +17,7 @@ func pre():
 
 # Runs after each test.
 func post():
-    game_state.free()
+	game_state.free()
 
 func test_get_state_default_false():
 	describe('get_state: All enums are false by default')
