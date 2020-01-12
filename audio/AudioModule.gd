@@ -1,4 +1,7 @@
 extends Node
+#To do
+#	- Edit audio files for smoother transitions
+#
 
 onready var mdm = $MixingDeskMusic
 var current_song = "none"
@@ -26,6 +29,7 @@ func _on_Button_pressed():
 	print("queue guard")
 
 #Game over 
+#use queue_sequence() to loop smth once, then proceed to next song
 func _on_Button2_pressed():
 	mdm.queue_sequence(["GameOver", "Exploration"], "beat", "loop")
 	current_song = "Exploration"

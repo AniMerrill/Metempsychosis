@@ -23,8 +23,8 @@ func _ready():
 		sig_node.connect(auto_signal, self, "_transition", [transition_type])
 	var busnum = AudioServer.get_bus_index(bus)
 	if busnum == -1:
-		var new_bus = AudioServer.add_bus(AudioServer.bus_count)
-		AudioServer.set_bus_name(AudioServer.bus_count - 1, bus)
+		var new_bus = AudioServer.add_bus(AudioServer.get_bus_count())
+		AudioServer.set_bus_name(AudioServer.get_bus_count() - 1, bus)
 		if bus != "Music":
 			AudioServer.set_bus_send(AudioServer.get_bus_index(bus),"Music")
 	for i in get_children():
