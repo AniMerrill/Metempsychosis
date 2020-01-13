@@ -10,4 +10,4 @@ func _on_Player2Start_pressed():
 	_start_game()
 
 func _start_game() -> void:
-	SceneTransition.change_scene('AwaitTurn.tscn', 'Testing', 1.0)
+	SceneTransition.change_scene('menus/AwaitTurn.tscn', 'Testing', 1.0)
