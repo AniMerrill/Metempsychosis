@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://graphics/tests/PlayerTest.gd" type="Script" id=1]
+[ext_resource path="res://graphics/player_a/PlayerARig.tscn" type="PackedScene" id=2]
+
+[node name="RigTest" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 242.004, 203.34 )
+script = ExtResource( 1 )
+
+[node name="PlayerARig" parent="Player" instance=ExtResource( 2 )]
