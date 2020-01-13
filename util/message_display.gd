@@ -34,7 +34,7 @@ func display(messages) -> void:
 
 # Replace all {TextA|TextB} substrings with either TextA or TextB depending on
 # which player is currently playing.
-func format_player_values(text : String):
+func format_player_values(text : String) -> String:
 	var regex = RegEx.new()
 	regex.compile("\\{([^|]*)\\|([^}]*)\\}")
 	for result in regex.search_all(text):
@@ -48,7 +48,7 @@ func format_player_values(text : String):
 		text = text.replace(result.get_string(), new_value)
 	return text
 
-func _next_message():
+func _next_message() -> void:
 	if current_index >= current_messages.size():
 		container.visible = false
 		emit_signal("messages_finished")
