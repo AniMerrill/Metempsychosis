@@ -29,7 +29,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameState="*res://game_state.gd"
+GameState="*res://util/game_state.gd"
 SceneTransition="*res://util/SceneTransition.tscn"
 MessageDisplay="*res://util/MessageDisplay.tscn"
 

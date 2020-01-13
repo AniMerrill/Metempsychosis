@@ -13,7 +13,7 @@ func title():
 # Runs before each test.
 func pre():
 	# Make sure we always start with a fresh state.
-	game_state = load('res://game_state.gd').new()
+	game_state = load('res://util/game_state.gd').new()
 
 # Runs after each test.
 func post():
