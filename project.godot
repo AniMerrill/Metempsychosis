@@ -30,7 +30,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameState="*res://game_state.gd"
-SceneTransition="*res://SceneTransition.tscn"
+SceneTransition="*res://util/SceneTransition.tscn"
 
 [editor_plugins]
 
