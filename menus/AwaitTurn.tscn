@@ -4,16 +4,14 @@
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=3]
 
-
-
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -41,7 +39,7 @@ margin_left = 50.0
 margin_top = 20.0
 margin_right = 369.0
 margin_bottom = 61.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Awaiting Turn"
 align = 1
 autowrap = true
@@ -58,7 +56,7 @@ margin_left = 13.0
 margin_top = 11.0
 margin_right = 332.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Share the following continuation code with the other player:"
 autowrap = true
 
@@ -74,7 +72,7 @@ margin_left = 13.0
 margin_top = 11.0
 margin_right = 332.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "ABCD"
 align = 1
 autowrap = true
@@ -91,7 +89,7 @@ margin_left = 13.0
 margin_top = 11.0
 margin_right = 332.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Wait for the other player to complete their turn. Upon completion, they should send you a \"continuation code\". Copy that code down here and click the button to continue."
 autowrap = true
 
@@ -126,9 +124,9 @@ margin_left = 13.0
 margin_top = 10.0
 margin_right = 332.0
 margin_bottom = 73.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "TESTING ONLY. Enter codes in these order to simulate partner:
-ACBD / 004A / ...."
+(todo)"
 autowrap = true
 
 [node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
