@@ -4,7 +4,7 @@ extends Node2D
 ## walking
 ## facing_front
 ## facing_right
-## look_target.global_position # probably need to change this
+## look_position
 
 # And then these for costume pieces
 ## current_tool
@@ -20,6 +20,8 @@ var speed := 100
 var look_position := Vector2.ZERO
 
 func _ready():
+	rig.look_position = Vector2(200,200)
+	
 	var ignore
 	
 	ignore = $CanvasLayer/VBoxContainer/HBoxContainer/Button.connect(
@@ -104,7 +106,8 @@ func _process(delta):
 			rig.facing_front = false
 	
 	position += velocity * delta
-	rig.look_target.global_position = look_position
+	
+	#rig.look_position = look_position
 
 func set_tool(new_tool : int) -> void:
 	rig.current_tool = new_tool

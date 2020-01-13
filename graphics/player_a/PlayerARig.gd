@@ -40,6 +40,8 @@ onready var anim_tree = $AnimationTree
 onready var eye := $Eye
 onready var look_target := $LookTarget
 
+var look_position := Vector2.ZERO
+
 var eye_sprite_pos := Vector2(-7, -41)
 var eye_center := Vector2(0, -41)
 var eye_radius := 2.0
@@ -227,6 +229,8 @@ func set_anim_states() -> void:
 			$Arm/Tool.frame = 3
 
 func set_eye_position() -> void:
+	look_target.global_position = look_position
+	
 	var eye_limit = Vector2.RIGHT.rotated(
 			Vector2.RIGHT.angle_to(look_target.position)
 			)
