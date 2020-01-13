@@ -31,6 +31,7 @@ config/icon="res://icon.png"
 
 GameState="*res://game_state.gd"
 SceneTransition="*res://util/SceneTransition.tscn"
+MessageDisplay="*res://util/MessageDisplay.tscn"
 
 [editor_plugins]
 
