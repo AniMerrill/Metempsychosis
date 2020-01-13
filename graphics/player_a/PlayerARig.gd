@@ -40,6 +40,7 @@ onready var anim_tree = $AnimationTree
 onready var eye := $Eye
 onready var look_target := $LookTarget
 
+var eye_sprite_pos := Vector2(-7, -41)
 var eye_center := Vector2(0, -41)
 var eye_radius := 2.0
 
@@ -58,10 +59,9 @@ func _ready() -> void:
 	$Timer.connect("timeout", self, "blink_timer")
 	anim_tree.active = true
 
+# warning-ignore:unused_argument
 func _process(delta : float) -> void:
-	
-	
-	pass
+	set_eye_position()
 
 func set_facing_front(value : bool) -> void:
 	facing_front = value
@@ -129,31 +129,11 @@ func set_anim_states() -> void:
 		
 		match current_hair:
 			HAIR.DOWN:
+				$Hair.visible = true
 				$Hair.frame = 12
 			HAIR.PONYTAIL:
+				$Hair.visible = true
 				$Hair.frame = 14
-		
-		match current_hat:
-			HAT.NONE:
-				$Hat.visible = false
-			HAT.BOWLER:
-				$Hat.visible = true
-				$Hat.frame = 18
-				
-				$Hair.visible = true
-				$Face.visible = true
-			HAT.FEZ:
-				$Hat.visible = true
-				$Hat.frame = 20
-				
-				$Hair.visible = true
-				$Face.visible = true
-			HAT.HELMET:
-				$Hat.visible = true
-				$Hat.frame = 22
-				
-				$Hair.visible = false
-				$Face.visible = false
 		
 		match current_face:
 			FACE.NONE:
@@ -164,6 +144,22 @@ func set_anim_states() -> void:
 			FACE.MOUSTACHE:
 				$Face.visible = true
 				$Face.frame = 26
+		
+		match current_hat:
+			HAT.NONE:
+				$Hat.visible = false
+			HAT.BOWLER:
+				$Hat.visible = true
+				$Hat.frame = 18
+			HAT.FEZ:
+				$Hat.visible = true
+				$Hat.frame = 20
+			HAT.HELMET:
+				$Hat.visible = true
+				$Hat.frame = 22
+				
+				$Hair.visible = false
+				$Face.visible = false
 	else:
 		if walking:
 			body_anim.travel("back_body_walk")
@@ -182,31 +178,11 @@ func set_anim_states() -> void:
 		
 		match current_hair:
 			HAIR.DOWN:
+				$Hair.visible = true
 				$Hair.frame = 13
 			HAIR.PONYTAIL:
+				$Hair.visible = true
 				$Hair.frame = 15
-		
-		match current_hat:
-			HAT.NONE:
-				$Hat.visible = false
-			HAT.BOWLER:
-				$Hat.visible = true
-				$Hat.frame = 19
-				
-				$Hair.visible = true
-				$Face.visible = true
-			HAT.FEZ:
-				$Hat.visible = true
-				$Hat.frame = 21
-				
-				$Hair.visible = true
-				$Face.visible = true
-			HAT.HELMET:
-				$Hat.visible = true
-				$Hat.frame = 23
-				
-				$Hair.visible = false
-				$Face.visible = false
 		
 		match current_face:
 			FACE.NONE:
@@ -217,6 +193,22 @@ func set_anim_states() -> void:
 			FACE.MOUSTACHE:
 				$Face.visible = true
 				$Face.frame = 27
+		
+		match current_hat:
+			HAT.NONE:
+				$Hat.visible = false
+			HAT.BOWLER:
+				$Hat.visible = true
+				$Hat.frame = 19
+			HAT.FEZ:
+				$Hat.visible = true
+				$Hat.frame = 21
+			HAT.HELMET:
+				$Hat.visible = true
+				$Hat.frame = 23
+				
+				$Hair.visible = false
+				$Face.visible = false
 	
 	match current_tool:
 		TOOL.NONE, TOOL.DEBUG:
@@ -227,9 +219,53 @@ func set_anim_states() -> void:
 		TOOL.SCREWDRIVER:
 			$Arm/Tool.visible = true
 			$Arm/Tool.frame = 1
-		TOOL.PAINTBRUSH:
+		TOOL.PISTOL:
 			$Arm/Tool.visible = true
 			$Arm/Tool.frame = 2
+		TOOL.PAINTBRUSH:
+			$Arm/Tool.visible = true
+			$Arm/Tool.frame = 3
+
+func set_eye_position() -> void:
+	var eye_limit = Vector2.RIGHT.rotated(
+			Vector2.RIGHT.angle_to(look_target.position)
+			)
+	
+	var anim_offset = $Eyelid.position - eye_sprite_pos
+	
+	var clamp_x = eye_center.x
+	var clamp_y = eye_center.y
+	
+	if look_target.position.x >= 0:
+		clamp_x = clamp(
+				look_target.position.x, 
+				eye_center.x, 
+				(eye_radius * eye_limit.x) + eye_center.x
+				)
+	else:
+		clamp_x = clamp(
+				look_target.position.x, 
+				(eye_radius * eye_limit.x) + eye_center.x,
+				eye_center.x
+				)
+	
+	if look_target.position.y >= 0:
+		clamp_y = clamp(
+				look_target.position.y, 
+				eye_center.y, 
+				(eye_radius * eye_limit.y) + eye_center.y
+				)
+	else:
+		clamp_y = clamp(
+				look_target.position.y, 
+				(eye_radius * eye_limit.y) + eye_center.y,
+				eye_center.y
+				)
+	
+	eye.position = Vector2(
+			eye_sprite_pos.x + (clamp_x - eye_center.x) + anim_offset.x,
+			eye_sprite_pos.y + (clamp_y - eye_center.y) + anim_offset.y
+			)
 
 func blink_timer() -> void:
 	anim_tree["parameters/Blink/active"] = true
