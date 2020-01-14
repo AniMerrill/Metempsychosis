@@ -75,9 +75,13 @@ onready var north_wall_no_door = preload("res://graphics/room/back_wall_no_door.
 onready var north_wall_door = preload("res://graphics/room/back_wall_door.png")
 
 # EAST, NORTH, WEST, SOUTH
-var doors := [null, null, null, null]
+var doors := [null, null, null, null] setget _set_doors
 
 func _ready() -> void:
+	initialize_room()
+
+func _set_doors(value) -> void:
+	doors = value
 	initialize_room()
 
 # This was just a test to see if it was possible, this scene can be reused

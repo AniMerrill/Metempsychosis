@@ -1,0 +1,34 @@
+{
+	"room_a_000": {
+			"east": {
+				"default_locked": true,
+				"target": "room_a_001",
+			},
+			"objects": [
+					"sleeping_pod_left",
+					"info_table",
+				],
+		},
+	"room_a_001": {
+			"west": {
+				"default_locked": false,
+				"target": "room_a_000",
+			},
+		},
+	
+	"room_b_000": {
+			"west": {
+				"default_locked": true,
+				"target": "room_b_001",
+			},
+			"objects": [
+					"sleeping_pod_right",
+					"info_table",
+				],
+		},
+	"room_b_001": {
+			"east": {
+				"target": "room_b_000",
+			},
+		},
+}

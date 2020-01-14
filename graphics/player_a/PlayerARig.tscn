@@ -757,13 +757,14 @@ nodes/Body/position = Vector2( -20, 220 )
 nodes/ZIndex/node = SubResource( 67 )
 nodes/ZIndex/position = Vector2( 0, 360 )
 nodes/output/position = Vector2( 880, 520 )
-node_connections = [ "output", 0, "Add2 3", "Blink", 0, "Animation 4", "Blink", 1, "Animation 3", "Add2", 0, "Body", "Add2", 1, "ZIndex", "ZIndex", 0, "Animation 2", "ZIndex", 1, "Animation", "Add2 2", 0, "Add2", "Add2 2", 1, "Arm", "Add2 3", 0, "Add2 2", "Add2 3", 1, "Blink" ]
+node_connections = [ "output", 0, "Add2 3", "Blink", 0, "Animation 4", "Blink", 1, "Animation 3", "Add2 2", 0, "Add2", "Add2 2", 1, "Arm", "Add2 3", 0, "Add2 2", "Add2 3", 1, "Blink", "Add2", 0, "Body", "Add2", 1, "ZIndex", "ZIndex", 0, "Animation 2", "ZIndex", 1, "Animation" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=69]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=70]
 
 [node name="PlayerARig" type="Node2D"]
+position = Vector2( 0, -53 )
 script = ExtResource( 1 )
 
 [node name="Arm" type="Sprite" parent="."]
@@ -831,6 +832,7 @@ frame = 24
 [node name="LookTarget" type="Position2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="LookTarget"]
+visible = false
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 6 )
 
