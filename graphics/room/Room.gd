@@ -22,6 +22,8 @@ class Door:
 	
 	var processing := false
 	
+	signal action_finished
+	
 	func _init(_locked : bool) -> void:
 		locked = _locked
 	
@@ -57,19 +59,24 @@ class Door:
 		if anim_name == "Opened_Warning" || anim_name == "Locked_Warning":
 			if locked:
 				light_anim.play("Locked")
+				opened = false
 			else:
 				light_anim.play("Opened")
 			
 			if opened:
 				door_anim.play("Open")
-			else:
+			elif not locked:
 				door_anim.play_backwards("Open")
 				sprite.visible = true
+			else:
+				processing = false
+				emit_signal("action_finished")
 		elif anim_name == "Open":
 			if opened:
 				sprite.visible = false
 			
 			processing = false
+			emit_signal("action_finished")
 
 onready var north_wall_no_door = preload("res://graphics/room/back_wall_no_door.png")
 onready var north_wall_door = preload("res://graphics/room/back_wall_door.png")

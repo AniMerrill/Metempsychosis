@@ -42,18 +42,10 @@ onready var navigation_maps := $NavigationMaps
 onready var current_map := $CurrentMap
 onready var map_objects := $Objects
 onready var room := $Room
+onready var door_areas = $Doors
 
 const map_file = "res://data/map_data_json.txt"
-const current_room_name = "room_a_000"  # TODO(ereborn): Get as argument.
 var current_room_data
-
-
-func _input(event):
-	if event.is_action_pressed("click"):
-		var path = current_map.get_simple_path(player.position, event.position)
-		if path.size() > 0:
-			player.path = path
-
 
 func _ready():
 	visible = false
@@ -71,9 +63,9 @@ func _load_current_room():
 	map_fp.open(map_file, File.READ)
 	var map_data = parse_json(map_fp.get_as_text())
 	map_fp.close()
-	if not map_data.has(current_room_name):
-		printerr("ERROR: No map data available for room " + current_room_name)
-	current_room_data = map_data[current_room_name]
+	if not map_data.has(GameState.current_room):
+		printerr("ERROR: No map data available for room " + GameState.current_room)
+	current_room_data = map_data[GameState.current_room]
 
 
 func _prepare_room_objects():
@@ -87,12 +79,12 @@ func _prepare_room_objects():
 
 func _set_current_map():
 	var room_map
-	if not navigation_maps.has_node(current_room_name):
-		printerr("WARNING: No navigation map available for room " + current_room_name)
+	if not navigation_maps.has_node(GameState.current_room):
+		printerr("WARNING: No navigation map available for room " + GameState.current_room)
 		printerr("WARNING: Using default map")
 		room_map = navigation_maps.get_node("__example_map__MAKE_UNIQUE")
 	else:
-		room_map = navigation_maps.get_node(current_room_name)
+		room_map = navigation_maps.get_node(GameState.current_room)
 	var room_map_poly = room_map.get_node("NavigationPolygonInstance").navpoly
 	current_map.navpoly_add(room_map_poly, Transform2D.IDENTITY)
 
@@ -100,15 +92,78 @@ func _set_current_map():
 func _install_doors():
 	var doors = []
 	for direction in ["east", "north", "west", "south"]:
+		var door_area = door_areas.get_node(direction)
 		if not current_room_data.has(direction):
 			doors.append(null)
+			door_area.visible = false
 			continue
 		var door_data = current_room_data[direction]
 		var locked = door_data.has("default_locked") and door_data["default_locked"]
 		doors.append(room.Door.new(locked))
+		door_area.visible = true
+		var area = door_area.get_node("Area2D")
+		area.connect("mouse_entered", self, "_on_mouse_entered", [door_area])
+		area.connect("mouse_exited", self, "_on_mouse_exited")
+		
 	room.doors = doors
+	room.initialize_room()
 
+
+var _current_hovered_node = null
+
+func _on_mouse_entered(node):
+	_current_hovered_node = node
+
+func _on_mouse_exited():
+	_current_hovered_node = null
 
 func _process(delta):
 	# Trick to make player walk in front of and behind objects.
 	player.z_index = player.position.y
+
+func _input(event):
+	if event.is_action_pressed("click"):
+		if _current_hovered_node == null:
+			_walk_to(event.position)
+		else:
+			_handle_object_click(_current_hovered_node)
+
+# Set to true to prevent player from interacting.
+var interaction_is_frozen = false
+func _walk_to(target_position):
+	if interaction_is_frozen:
+		return
+	var path = current_map.get_simple_path(player.position, target_position)
+	if path.size() > 0:
+		player.path = path
+
+
+func _handle_object_click(node):
+	match node.name:
+		"east":
+			_handle_door_click(room.EAST)
+		"north":
+			_handle_door_click(room.NORTH)
+		"west":
+			_handle_door_click(room.WEST)
+		"south":
+			_handle_door_click(room.SOUTH)
+
+const exit_door_pos = [Vector2(435, 270), Vector2(0,0), Vector2(42,270), Vector2(0,0)]
+
+const direction_names = ["east", "north", "west", "south"]
+
+func _handle_door_click(direction):
+	var door = room.doors[direction]
+	if door.opened and not interaction_is_frozen:
+		_walk_to(exit_door_pos[direction])
+		interaction_is_frozen = true
+		yield(player, "position_reached")
+		GameState.current_room = current_room_data[direction_names[direction]]["target"]
+		SceneTransition.change_scene('entities/GenericRoom.tscn')
+	else:
+		door.opened = true
+		interaction_is_frozen = true
+		yield(door, "action_finished")
+		interaction_is_frozen = false
+

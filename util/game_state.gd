@@ -66,6 +66,9 @@ var _my_player : int = PLAYER.INVALID_PLAYER
 var _my_last_output_code := '(no code)'
 
 
+# Current room the player is in. Volatile state.
+var current_room := 'room_a_000'
+
 # Get the current player.
 func current_player() -> int:
 	if _my_player == PLAYER.INVALID_PLAYER:

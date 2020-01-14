@@ -1,8 +1,11 @@
 {
 	"room_a_000": {
 			"east": {
-				"default_locked": true,
 				"target": "room_a_001",
+			},
+			"north": {
+				"default_locked": true,
+				"target": "does_not_exist",
 			},
 			"objects": [
 					"sleeping_pod_left",
@@ -10,9 +13,18 @@
 				],
 		},
 	"room_a_001": {
+			"east": {
+				"default_locked": true,
+				"target": "room_a_002",
+			},
 			"west": {
-				"default_locked": false,
 				"target": "room_a_000",
+			},
+		},
+	"room_a_002": {
+			"east": {
+				"default_locked": false,
+				"target": "room_a_001",
 			},
 		},
 	
