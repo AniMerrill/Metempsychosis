@@ -17,10 +17,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		mdm.queue_bar_transition("GuardOnWatch")
-		print("queue guard")
-		
+		play_sfx("sdf")
 
+
+#play sfx
+func play_sfx(sound):
+	$SFX/Machine.play()
+
+#buttons for debug
 
 #guard appears
 func _on_Button_pressed():
