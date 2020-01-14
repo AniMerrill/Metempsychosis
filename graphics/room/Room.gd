@@ -1,3 +1,4 @@
+tool
 extends Node2D
 
 # Please give door data in this order

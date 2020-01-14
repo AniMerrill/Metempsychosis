@@ -1,121 +1,35 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://entities/generic_room.gd" type="Script" id=1]
 [ext_resource path="res://graphics/room/Room.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 
-[sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 95.7287, 194.643, 380.727, 193.577, 441.343, 358.352, 41.3462, 359.848 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 41.3462, 359.848, 441.343, 358.352, 380.727, 193.577, 95.7287, 194.643 ) ]
-
-[sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( 181.027, 274.325, 306.026, 273.857, 441.343, 358.352, 41.3462, 359.848, 121.649, 301.352, 380.727, 193.577, 305.952, 253.857, 121.261, 197.666, 180.952, 254.325, 60.9063, 301.192 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 2, 1, 6 ), PoolIntArray( 7, 5, 6, 8 ), PoolIntArray( 4, 7, 8, 0 ), PoolIntArray( 3, 9, 4 ) ]
-outlines = [ PoolVector2Array( 41.3462, 359.848, 441.343, 358.352, 380.727, 193.577, 121.261, 197.666, 121.649, 301.352, 60.9063, 301.192 ), PoolVector2Array( 180.952, 254.325, 181.027, 274.325, 306.026, 273.857, 305.952, 253.857 ) ]
-
-[node name="DungeonA" type="Node2D"]
+[node name="GenericRoom" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Room" parent="." instance=ExtResource( 2 )]
 
-[node name="Doors" type="Node2D" parent="."]
+[node name="DoorAreas" type="Node2D" parent="."]
 
-[node name="east" type="Node2D" parent="Doors"]
+[node name="East" type="Area2D" parent="DoorAreas"]
 
-[node name="Area2D" type="Area2D" parent="Doors/east"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Doors/east/Area2D"]
-polygon = PoolVector2Array( 420, 240, 420, 90, 450, 160, 450, 320 )
-
-[node name="north" type="Node2D" parent="Doors"]
-
-[node name="Area2D" type="Area2D" parent="Doors/north"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Doors/north/Area2D"]
-polygon = PoolVector2Array( 200, 180, 200, 20, 270, 20, 270, 180 )
-
-[node name="west" type="Node2D" parent="Doors"]
-
-[node name="Area2D" type="Area2D" parent="Doors/west"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Doors/west/Area2D"]
-polygon = PoolVector2Array( 33.1404, 297.949, 33.1404, 161.043, 54.9364, 102.467, 54.2552, 243.119 )
-
-[node name="south" type="Node2D" parent="Doors"]
-
-[node name="Area2D" type="Area2D" parent="Doors/south"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Doors/south/Area2D"]
-position = Vector2( -220, 189.5 )
-polygon = PoolVector2Array( 420, 170.5, 420, 90, 490, 90.5, 490, 170.5 )
-
-[node name="Objects" type="Node2D" parent="."]
-
-[node name="sleeping_pod_left" type="Node2D" parent="Objects"]
-editor/display_folded = true
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorAreas/East"]
 visible = false
-position = Vector2( 66.7159, 224.508 )
+polygon = PoolVector2Array( 425.358, 246.915, 423.961, 98.1689, 446.308, 153.338, 446.308, 309.067 )
 
-[node name="ColorRect" type="ColorRect" parent="Objects/sleeping_pod_left"]
-margin_left = -30.0
-margin_top = -70.0
-margin_right = 30.0
-margin_bottom = 70.0
-mouse_filter = 2
+[node name="North" type="Area2D" parent="DoorAreas"]
 
-[node name="Label" type="Label" parent="Objects/sleeping_pod_left"]
-self_modulate = Color( 0, 0, 0, 1 )
-margin_left = -22.7159
-margin_top = -64.508
-margin_right = 24.2841
-margin_bottom = -50.508
-text = "My pod"
-
-[node name="info_table" type="Node2D" parent="Objects"]
-editor/display_folded = true
-position = Vector2( 240, 265 )
-
-[node name="ColorRect2" type="ColorRect" parent="Objects/info_table"]
-margin_left = -45.0
-margin_top = -44.8
-margin_right = 47.0
-margin_bottom = -14.8
-mouse_filter = 2
-color = Color( 0.658824, 0.623529, 0.0705882, 1 )
-
-[node name="ColorRect3" type="ColorRect" parent="Objects/info_table"]
-margin_left = -35.0
-margin_top = -44.8
-margin_right = -19.0
-margin_bottom = 10.2
-mouse_filter = 2
-color = Color( 0.658824, 0.623529, 0.0705882, 1 )
-
-[node name="ColorRect4" type="ColorRect" parent="Objects/info_table"]
-margin_left = 20.0
-margin_top = -44.8
-margin_right = 36.0
-margin_bottom = 10.2
-mouse_filter = 2
-color = Color( 0.658824, 0.623529, 0.0705882, 1 )
-
-[node name="NavigationMaps" type="Node2D" parent="."]
-
-[node name="__example_map__MAKE_UNIQUE" type="Navigation2D" parent="NavigationMaps"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorAreas/North"]
 visible = false
+polygon = PoolVector2Array( 199.096, 183.366, 198.398, 24.8433, 271.025, 26.24, 273.12, 184.065 )
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavigationMaps/__example_map__MAKE_UNIQUE"]
-rotation = 0.0037401
-navpoly = SubResource( 1 )
+[node name="West" type="Area2D" parent="DoorAreas"]
 
-[node name="room_a_000" type="Navigation2D" parent="NavigationMaps"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorAreas/West"]
+visible = false
+polygon = PoolVector2Array( 32.193, 309.766, 32.193, 161.019, 54.5399, 103.057, 55.9365, 246.915 )
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavigationMaps/room_a_000"]
-rotation = 0.0037401
-navpoly = SubResource( 2 )
+[node name="South" type="Area2D" parent="DoorAreas"]
 
-[node name="CurrentMap" type="Navigation2D" parent="."]
-
-[node name="ControllablePlayer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 275.2 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorAreas/South"]
+visible = false
+polygon = PoolVector2Array( 198.398, 360.046, 197.699, 279.737, 271.723, 281.134, 273.12, 359.348 )
