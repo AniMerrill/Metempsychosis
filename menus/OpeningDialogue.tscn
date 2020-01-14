@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 
 [node name="Background" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 480.0
+margin_bottom = 360.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )

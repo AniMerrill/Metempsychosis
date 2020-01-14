@@ -2,7 +2,6 @@
 
 [ext_resource path="res://util/scene_transition.gd" type="Script" id=1]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
 tracks/0/type = "value"
@@ -50,15 +49,14 @@ layer = 10
 script = ExtResource( 1 )
 
 [node name="Black" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 480.0
+margin_bottom = 360.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="TransitionText" type="Label" parent="."]
-visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 480.0
+margin_bottom = 360.0
 text = "Transition Text"
 align = 1
 valign = 1
