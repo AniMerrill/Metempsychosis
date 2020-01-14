@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/gameplay_demo.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 2 )
+
+[node name="GameplayDemo" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 480.0
+margin_bottom = 360.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Frame" type="ColorRect" parent="."]
+margin_left = 30.0
+margin_right = 454.0
+margin_bottom = 360.0
+color = Color( 0.231373, 0.290196, 0.32549, 1 )
+
+[node name="Title" type="Label" parent="Frame"]
+self_modulate = Color( 0.658824, 0.658824, 0.658824, 1 )
+margin_left = 50.0
+margin_top = 40.0
+margin_right = 369.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 1 )
+text = "Demo"
+align = 1
+autowrap = true
+
+[node name="IntroTextBG" type="ColorRect" parent="Frame"]
+margin_left = 40.0
+margin_top = 90.0
+margin_right = 384.0
+margin_bottom = 215.0
+color = Color( 0.137255, 0.172549, 0.192157, 1 )
+
+[node name="Label" type="Label" parent="Frame/IntroTextBG"]
+margin_left = 13.0
+margin_top = 11.0
+margin_right = 332.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 2 )
+text = "Choose as which player to play. If this is the first start of the game, start as player A and use the code \"000\".
+
+Otherwise, change to the other player (i.e. *not* the one shown in the top left corner) and use the code obtained at the end of the last turn."
+autowrap = true
+
+[node name="PlayerA" type="Button" parent="Frame"]
+margin_left = 40.0
+margin_top = 260.0
+margin_right = 190.0
+margin_bottom = 315.0
+text = "Player A"
+
+[node name="PlayerB" type="Button" parent="Frame"]
+margin_left = 235.0
+margin_top = 260.0
+margin_right = 385.0
+margin_bottom = 315.0
+text = "Player B"
+
+[node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
+position = Vector2( 40, 10 )
+[connection signal="pressed" from="Frame/PlayerA" to="." method="_on_PlayerA_pressed"]
+[connection signal="pressed" from="Frame/PlayerB" to="." method="_on_PlayerB_pressed"]

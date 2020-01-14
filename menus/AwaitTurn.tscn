@@ -13,11 +13,11 @@ size = 12
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 32
+size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 32
+size = 24
 font_data = ExtResource( 2 )
 
 [node name="AwaitTurn" type="Node2D"]
@@ -31,15 +31,15 @@ color = Color( 0, 0, 0, 1 )
 [node name="Frame" type="ColorRect" parent="."]
 margin_left = 30.0
 margin_right = 454.0
-margin_bottom = 370.0
+margin_bottom = 360.0
 color = Color( 0.231373, 0.290196, 0.32549, 1 )
 
 [node name="Title" type="Label" parent="Frame"]
 self_modulate = Color( 0.658824, 0.658824, 0.658824, 1 )
 margin_left = 50.0
-margin_top = 10.0
+margin_top = 40.0
 margin_right = 369.0
-margin_bottom = 39.0
+margin_bottom = 69.0
 custom_fonts/font = SubResource( 1 )
 text = "Awaiting Turn"
 align = 1
@@ -47,42 +47,40 @@ autowrap = true
 
 [node name="IntroTextBG" type="ColorRect" parent="Frame"]
 margin_left = 40.0
-margin_top = 40.0
+margin_top = 80.0
 margin_right = 384.0
-margin_bottom = 90.0
+margin_bottom = 120.0
 color = Color( 0.137255, 0.172549, 0.192157, 1 )
 
 [node name="Label" type="Label" parent="Frame/IntroTextBG"]
 margin_left = 13.0
 margin_top = 11.0
-margin_right = 332.0
-margin_bottom = 44.0
+margin_right = 344.0
+margin_bottom = 30.0
 custom_fonts/font = SubResource( 2 )
 text = "Share the following continuation code with the other player:"
 autowrap = true
 
 [node name="OutputCodeBG" type="ColorRect" parent="Frame"]
 margin_left = 40.0
-margin_top = 100.0
+margin_top = 120.0
 margin_right = 384.0
 margin_bottom = 160.0
 color = Color( 0.321569, 0.454902, 0.52549, 1 )
 
-[node name="OutputCode" type="Label" parent="Frame/OutputCodeBG"]
-margin_left = 13.0
-margin_top = 11.0
-margin_right = 332.0
-margin_bottom = 52.0
+[node name="OutputCode" type="LineEdit" parent="Frame/OutputCodeBG"]
+margin_right = 344.0
+margin_bottom = 40.0
 custom_fonts/font = SubResource( 3 )
 text = "ABCD"
 align = 1
-autowrap = true
+editable = false
 
 [node name="InfoTextBG" type="ColorRect" parent="Frame"]
 margin_left = 40.0
-margin_top = 170.0
+margin_top = 181.0
 margin_right = 384.0
-margin_bottom = 240.0
+margin_bottom = 251.0
 color = Color( 0.137255, 0.172549, 0.192157, 1 )
 
 [node name="Label" type="Label" parent="Frame/InfoTextBG"]
@@ -96,9 +94,9 @@ autowrap = true
 
 [node name="InputCode" type="LineEdit" parent="Frame"]
 margin_left = 40.0
-margin_top = 250.0
+margin_top = 251.0
 margin_right = 384.0
-margin_bottom = 310.0
+margin_bottom = 291.0
 custom_fonts/font = SubResource( 4 )
 align = 1
 max_length = 20
@@ -106,13 +104,21 @@ placeholder_text = "continuation code"
 placeholder_alpha = 0.3
 
 [node name="Continue" type="Button" parent="Frame"]
-margin_left = 40.0
-margin_top = 320.0
-margin_right = 384.0
+margin_left = 260.0
+margin_top = 310.0
+margin_right = 380.0
 margin_bottom = 350.0
 text = "Continue"
 
+[node name="ChangePlayer" type="Button" parent="Frame"]
+margin_left = 40.0
+margin_top = 310.0
+margin_right = 240.0
+margin_bottom = 350.0
+text = "(DEMO only): Change Player"
+
 [node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 20, 14 )
+position = Vector2( 40, 10 )
 [connection signal="text_entered" from="Frame/InputCode" to="." method="_on_InputCode_text_entered"]
 [connection signal="pressed" from="Frame/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Frame/ChangePlayer" to="." method="_on_ChangePlayer_pressed"]

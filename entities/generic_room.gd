@@ -121,8 +121,10 @@ func _on_mouse_exited() -> void:
 
 func _input(event):
 	if event.is_action_pressed("click"):
+		if GameState.interaction_is_frozen:
+			return
 		if _current_hovered_node == null:
-			_walk_to(event.position)
+			player_walk_to(event.position)
 		else:
 			_handle_object_click(_current_hovered_node)
 
@@ -147,7 +149,7 @@ const direction_names = ["east", "north", "west", "south"]
 func _handle_door_click(direction):
 	var door = room.doors[direction]
 	if door.opened and not GameState.interaction_is_frozen:
-		_walk_to(exit_door_pos[direction])
+		player_walk_to(exit_door_pos[direction])
 		GameState.interaction_is_frozen = true
 		yield(player, "position_reached")
 		var target_scene = 'rooms/' + door_targets[direction] + '.tscn'
@@ -159,7 +161,7 @@ func _handle_door_click(direction):
 		yield(door, "action_finished")
 		GameState.interaction_is_frozen = false
 
-func _walk_to(target_position):
+func player_walk_to(target_position):
 	if GameState.interaction_is_frozen:
 		return
 	var path = room_map.get_simple_path(player.position, target_position)

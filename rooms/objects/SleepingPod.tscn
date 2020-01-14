@@ -1,0 +1,28 @@
+[gd_scene format=2]
+
+[node name="Pod" type="Node2D"]
+editor/display_folded = true
+position = Vector2( 71, 270 )
+z_index = 270
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -36.081, -85.0068, 33.919, -85.0068, 33.919, 44.9932, -36.081, 44.9932 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -36.0
+margin_top = -85.0
+margin_right = 34.0
+margin_bottom = 45.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = -26.0
+margin_top = -75.0
+margin_right = 28.0
+margin_bottom = -44.0
+text = "Sleeping
+Pod"
+align = 1

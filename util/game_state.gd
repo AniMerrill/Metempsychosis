@@ -28,10 +28,11 @@ extends Node
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 enum STATE {
-		# NOTE: Example values for now.
+		POD_ROOMS_UNLOCKED = 0
+		# NOTE: Example values below.
 		
 		# Store whether each player has read the introduction text.
-		A_SEEN_INTRODUCTION = 0,
+		A_SEEN_INTRODUCTION = 8,
 		B_SEEN_INTRODUCTION = 1,
 		
 		# Store each player's progress through the game.
@@ -41,7 +42,7 @@ enum STATE {
 		B_DISABLED_TURRET = 5,
 		
 		# Common / player-independent progress.
-		GUARD_ROBOT_BROKEN = 60,  # Added higher value for test purposes.
+		GUARD_ROBOT_BROKEN = 10,  # Added higher value for test purposes.
 	}
 
 
@@ -156,7 +157,7 @@ func serialize() -> String:
 	for enum_value in range(highest_enum):
 		if get_state(enum_value):
 			byte_value += 1 << enum_value
-	var format := '%0' + str(ceil(highest_enum / 4)) + 'X'
+	var format := '%0' + str(ceil(highest_enum / 4.0)) + 'X'
 	return format % byte_value
 
 
