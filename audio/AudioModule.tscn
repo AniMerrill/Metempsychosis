@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://audio/AudioModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://audio/audio_assets/ambience/scifi_glit_fx_007.wav" type="AudioStream" id=11]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/polysound.gd" type="Script" id=12]
 [ext_resource path="res://audio/audio_assets/ambience/machine_004.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/audio_assets/objects/door_slide_up.wav" type="AudioStream" id=14]
 
 [node name="AudioModule" type="Node"]
 script = ExtResource( 1 )
@@ -99,9 +100,20 @@ __meta__ = {
 "_editor_icon": ExtResource( 10 )
 }
 
-[node name="Machine" type="AudioStreamPlayer" parent="SFX/Machine"]
+[node name="MachineSound" type="AudioStreamPlayer" parent="SFX/Machine"]
 stream = ExtResource( 13 )
 volume_db = -16.66
+
+[node name="DoorSlideUp" type="Node" parent="SFX"]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+
+[node name="DoorUpSound" type="AudioStreamPlayer" parent="SFX/DoorSlideUp"]
+stream = ExtResource( 14 )
+volume_db = -8.582
+pitch_scale = 0.8
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]

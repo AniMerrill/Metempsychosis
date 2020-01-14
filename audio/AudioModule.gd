@@ -4,6 +4,9 @@ extends Node
 #
 
 onready var mdm = $MixingDeskMusic
+
+onready var sfx = $SFX
+
 var current_song = "none"
 
 # Called when the node enters the scene tree for the first time.

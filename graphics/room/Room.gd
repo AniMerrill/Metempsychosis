@@ -66,6 +66,10 @@ class Door:
 			
 			if opened:
 				door_anim.play("Open")
+				
+				#!!invalid syntax
+				#AudioModule.sfx.DoorSlideUp.play()
+			
 			elif not locked:
 				door_anim.play_backwards("Open")
 				sprite.visible = true
