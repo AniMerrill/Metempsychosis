@@ -78,18 +78,34 @@ editable = false
 
 [node name="InfoTextBG" type="ColorRect" parent="Frame"]
 margin_left = 40.0
-margin_top = 181.0
+margin_top = 166.0
 margin_right = 384.0
-margin_bottom = 251.0
+margin_bottom = 227.0
 color = Color( 0.137255, 0.172549, 0.192157, 1 )
 
 [node name="Label" type="Label" parent="Frame/InfoTextBG"]
 margin_left = 13.0
-margin_top = 11.0
+margin_top = 3.5
 margin_right = 332.0
-margin_bottom = 52.0
+margin_bottom = 54.5
 custom_fonts/font = SubResource( 2 )
 text = "Wait for the other player to complete their turn. Upon completion, they should send you a \"continuation code\". Copy that code down here and click the button to continue."
+autowrap = true
+
+[node name="ErrorTextBG" type="ColorRect" parent="Frame"]
+margin_left = 40.0
+margin_top = 230.0
+margin_right = 384.0
+margin_bottom = 247.0
+color = Color( 0.545098, 0.027451, 0.231373, 1 )
+
+[node name="Label" type="Label" parent="Frame/ErrorTextBG"]
+margin_right = 344.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 2 )
+text = "ERROR:"
+align = 1
+valign = 1
 autowrap = true
 
 [node name="InputCode" type="LineEdit" parent="Frame"]

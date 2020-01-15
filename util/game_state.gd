@@ -28,18 +28,10 @@ extends Node
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 enum STATE {
-		POD_ROOMS_UNLOCKED = 0
+		POD_ROOMS_UNLOCKED = 0,
+		CODE_CREATED_BY_PLAYER_A = 1,
+		
 		# NOTE: Example values below.
-		
-		# Store whether each player has read the introduction text.
-		A_SEEN_INTRODUCTION = 8,
-		B_SEEN_INTRODUCTION = 1,
-		
-		# Store each player's progress through the game.
-		A_PRISON_DOOR_OPEN = 2,
-		B_PRISON_DOOR_OPEN = 3,
-		A_HAS_YELLOW_KEY = 4,
-		B_DISABLED_TURRET = 5,
 		
 		# Common / player-independent progress.
 		GUARD_ROBOT_BROKEN = 10,  # Added higher value for test purposes.
@@ -148,10 +140,9 @@ func _get_highest_enum():
 
 
 # Serializes the state to a hexadecimal string.
-#
-# TODO(ereborn): Figure out whether the encoding should look different when
-# called as player A from when called as player B.
 func serialize() -> String:
+	set_state(STATE.CODE_CREATED_BY_PLAYER_A, current_player() == PLAYER.PLAYER_A)
+	
 	var highest_enum = _get_highest_enum()
 	var byte_value : int = 0
 	for enum_value in range(highest_enum):
@@ -162,13 +153,24 @@ func serialize() -> String:
 
 
 # Overwrites the current state with the provided serialized state.
-func deserialize(serialized_state : String) -> bool:
+enum ERROR_CODE {
+		OK = 0,
+		INVALID_ENCODING = 1,
+		OTHER_PLAYER_CODE = 2,
+	}
+
+func deserialize(serialized_state : String) -> int:
 	if not serialized_state.is_valid_hex_number():
-		return false
+		return ERROR_CODE.INVALID_ENCODING
 	var state_value := ('0x' + serialized_state).hex_to_int()
 	clear_state()
 	var highest_enum = _get_highest_enum()
 	for enum_value in range(highest_enum):
 		if state_value & (1 << enum_value):
 			set_state(enum_value, true)
-	return true
+	
+	var code_by_a = get_state(STATE.CODE_CREATED_BY_PLAYER_A)
+	var player_is_a = current_player() == PLAYER.PLAYER_A
+	if code_by_a == player_is_a:
+		return ERROR_CODE.OTHER_PLAYER_CODE
+	return ERROR_CODE.OK
