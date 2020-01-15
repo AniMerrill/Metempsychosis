@@ -32,7 +32,8 @@ config/icon="res://icon.png"
 GameState="*res://util/game_state.gd"
 SceneTransition="*res://util/SceneTransition.tscn"
 MessageDisplay="*res://util/MessageDisplay.tscn"
-AudioModule="*res://audio/AudioModule.tscn"
+MusicModule="*res://audio/MusicModule.tscn"
+SoundModule="*res://audio/SoundModule.tscn"
 
 [display]
 
