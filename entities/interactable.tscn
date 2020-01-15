@@ -11,10 +11,10 @@ margin_bottom = 40.0
 expand = true
 
 [node name="TextureRect" type="TextureRect" parent="detector"]
-margin_right = 64.0
-margin_bottom = 64.0
-rect_scale = Vector2( 2, 2 )
+margin_right = 20.0
+margin_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 0
 expand = true
 [connection signal="gui_input" from="detector" to="." method="_on_detector_gui_input"]
-[connection signal="mouse_entered" from="detector" to="." method="_on_detector_mouse_entered"]
 [connection signal="mouse_exited" from="detector/TextureRect" to="." method="_on_TextureRect_mouse_exited"]
