@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://graphics/popup/terminal/terminal_main.png" type="Texture" id=1]
-[ext_resource path="res://graphics/popup/terminal/TerminalBase.gd" type="Script" id=2]
-[ext_resource path="res://graphics/popup/terminal/terminal_screen.png" type="Texture" id=3]
+[ext_resource path="res://graphics/popup/terminal/terminal_screen.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Flicker"
@@ -24,8 +23,8 @@ tracks/0/keys = {
 [node name="TerminalBase" type="TextureRect"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 1 )
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -36,7 +35,7 @@ margin_left = 76.0
 margin_top = 38.0
 margin_right = 321.0
 margin_bottom = 200.0
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }

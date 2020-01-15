@@ -10,6 +10,8 @@ export var code_length : int = 6
 var code : String = ""
 var blink : bool = false
 
+var parent_menu = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# warning-ignore:unused_variable
@@ -59,7 +61,9 @@ func ok_pressed() -> void:
 		set_code_text()
 
 func x_pressed() -> void:
-	print("x")
+	if parent_menu != null:
+		visible = false
+		parent_menu.set_visibility(true)
 
 func set_blink() -> void:
 	blink = !blink

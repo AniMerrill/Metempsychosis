@@ -1,19 +1,21 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://graphics/popup/terminal/screens/TerminalMenu.gd" type="Script" id=1]
 [ext_resource path="res://graphics/popup/terminal/buttons/down_button.png" type="Texture" id=2]
 [ext_resource path="res://graphics/popup/terminal/buttons/down_button_hover.png" type="Texture" id=3]
 [ext_resource path="res://graphics/popup/terminal/buttons/up_button.png" type="Texture" id=4]
 [ext_resource path="res://graphics/popup/terminal/buttons/up_button_hover.png" type="Texture" id=5]
-[ext_resource path="res://fonts/RobotoMono-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://graphics/popup/terminal/buttons/x_button.png" type="Texture" id=6]
+[ext_resource path="res://graphics/popup/terminal/buttons/x_button_hover.png" type="Texture" id=7]
+[ext_resource path="res://fonts/RobotoMono-Regular.ttf" type="DynamicFontData" id=8]
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="DynamicFont" id=3]
 size = 10
-font_data = ExtResource( 6 )
+font_data = ExtResource( 8 )
 
 [node name="TerminalMenu" type="Control"]
 anchor_right = 1.0
@@ -27,6 +29,7 @@ margin_left = 203.0
 margin_top = 122.0
 margin_right = 244.0
 margin_bottom = 163.0
+mouse_filter = 1
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 3 )
@@ -35,22 +38,32 @@ texture_hover = ExtResource( 3 )
 margin_left = 203.0
 margin_right = 244.0
 margin_bottom = 41.0
+mouse_filter = 1
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
 
-[node name="Options" type="VBoxContainer" parent="."]
+[node name="X" type="TextureButton" parent="."]
+margin_left = 203.0
+margin_top = 60.0
+margin_right = 244.0
+margin_bottom = 101.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+editor/display_folded = true
 margin_right = 178.0
 margin_bottom = 160.0
 
-[node name="Button0" type="Button" parent="Options"]
-margin_right = 198.0
+[node name="Button0" type="Button" parent="Buttons"]
+margin_right = 192.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
@@ -58,16 +71,16 @@ custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
 text = "> 0123456789012345678901234567"
 flat = true
+align = 0
 
-[node name="Button1" type="Button" parent="Options"]
+[node name="Button1" type="Button" parent="Buttons"]
 margin_top = 32.0
-margin_right = 198.0
+margin_right = 192.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
@@ -75,16 +88,16 @@ custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
 text = "> 0123456789012345678901234567"
 flat = true
+align = 0
 
-[node name="Button2" type="Button" parent="Options"]
+[node name="Button2" type="Button" parent="Buttons"]
 margin_top = 64.0
-margin_right = 198.0
+margin_right = 192.0
 margin_bottom = 92.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
@@ -92,16 +105,16 @@ custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
 text = "> 0123456789012345678901234567"
 flat = true
+align = 0
 
-[node name="Button3" type="Button" parent="Options"]
+[node name="Button3" type="Button" parent="Buttons"]
 margin_top = 96.0
-margin_right = 198.0
+margin_right = 192.0
 margin_bottom = 124.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
@@ -109,16 +122,16 @@ custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
 text = "> 0123456789012345678901234567"
 flat = true
+align = 0
 
-[node name="Button4" type="Button" parent="Options"]
+[node name="Button4" type="Button" parent="Buttons"]
 margin_top = 128.0
-margin_right = 198.0
-margin_bottom = 160.0
+margin_right = 192.0
+margin_bottom = 156.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
@@ -126,3 +139,9 @@ custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
 text = "> 0123456789012345678901234567"
 flat = true
+align = 0
+
+[node name="Options" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
