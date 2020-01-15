@@ -190,6 +190,23 @@ tracks/3/keys = {
 "update": 1,
 "values": [ Vector2( -7, -41 ), Vector2( -7, -43 ), Vector2( -7, -44 ), Vector2( -7, -42 ), Vector2( -7, -41 ), Vector2( -7, -43 ), Vector2( -7, -44 ), Vector2( -7, -42 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.24, 0.56 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+}, {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.1
@@ -515,6 +532,23 @@ tracks/5/keys = {
 "update": 1,
 "values": [ Vector2( -7, -41 ), Vector2( -7, -43 ), Vector2( -7, -44 ), Vector2( -7, -42 ), Vector2( -7, -41 ), Vector2( -7, -43 ), Vector2( -7, -44 ), Vector2( -7, -42 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.24, 0.56 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+}, {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
 
 [sub_resource type="Animation" id=16]
 length = 0.1
@@ -757,7 +791,7 @@ nodes/Body/position = Vector2( -20, 220 )
 nodes/ZIndex/node = SubResource( 67 )
 nodes/ZIndex/position = Vector2( 0, 360 )
 nodes/output/position = Vector2( 880, 520 )
-node_connections = [ "output", 0, "Add2 3", "Blink", 0, "Animation 4", "Blink", 1, "Animation 3", "Add2 2", 0, "Add2", "Add2 2", 1, "Arm", "Add2 3", 0, "Add2 2", "Add2 3", 1, "Blink", "Add2", 0, "Body", "Add2", 1, "ZIndex", "ZIndex", 0, "Animation 2", "ZIndex", 1, "Animation" ]
+node_connections = [ "output", 0, "Add2 3", "Add2 3", 0, "Add2 2", "Add2 3", 1, "Blink", "Add2", 0, "Body", "Add2", 1, "ZIndex", "Add2 2", 0, "Add2", "Add2 2", 1, "Arm", "ZIndex", 0, "Animation 2", "ZIndex", 1, "Animation", "Blink", 0, "Animation 4", "Blink", 1, "Animation 3" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=69]
 
@@ -784,6 +818,7 @@ hframes = 5
 texture = ExtResource( 4 )
 vframes = 2
 hframes = 9
+frame = 17
 
 [node name="Eye" type="Sprite" parent="."]
 position = Vector2( -7, -41 )
@@ -793,21 +828,21 @@ hframes = 6
 frame = 1
 
 [node name="Eyelid" type="Sprite" parent="."]
-position = Vector2( -7, -41 )
+position = Vector2( -7, -44 )
 texture = ExtResource( 5 )
 vframes = 5
 hframes = 6
 frame = 5
 
 [node name="Mouth" type="Sprite" parent="."]
-position = Vector2( -7, -41 )
+position = Vector2( -7, -44 )
 texture = ExtResource( 5 )
 vframes = 5
 hframes = 6
 frame = 6
 
 [node name="Hair" type="Sprite" parent="."]
-position = Vector2( -7, -41 )
+position = Vector2( -7, -42 )
 texture = ExtResource( 5 )
 vframes = 5
 hframes = 6
@@ -815,7 +850,7 @@ frame = 12
 
 [node name="Hat" type="Sprite" parent="."]
 visible = false
-position = Vector2( -7, -41 )
+position = Vector2( -7, -42 )
 texture = ExtResource( 5 )
 vframes = 5
 hframes = 6
@@ -823,7 +858,7 @@ frame = 18
 
 [node name="Face" type="Sprite" parent="."]
 visible = false
-position = Vector2( -7, -41 )
+position = Vector2( -7, -42 )
 texture = ExtResource( 5 )
 vframes = 5
 hframes = 6
