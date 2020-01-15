@@ -34,7 +34,7 @@ enum STATE {
 		# NOTE: Example values below.
 		
 		# Common / player-independent progress.
-		GUARD_ROBOT_BROKEN = 10,  # Added higher value for test purposes.
+		GUARD_ROBOT_BROKEN = 20,  # Added higher value for test purposes.
 	}
 
 
@@ -138,39 +138,173 @@ func _get_highest_enum():
 	enum_values.sort()
 	return enum_values[-1]
 
+func pbd(txt, bytes):
+	print(txt + ' ', bytes.size(), ' ', _bytes_to_string(bytes))
+	
+
 
 # Serializes the state to a hexadecimal string.
 func serialize() -> String:
+	randomize()
 	set_state(STATE.CODE_CREATED_BY_PLAYER_A, current_player() == PLAYER.PLAYER_A)
-	
-	var highest_enum = _get_highest_enum()
-	var byte_value : int = 0
-	for enum_value in range(highest_enum):
-		if get_state(enum_value):
-			byte_value += 1 << enum_value
-	var format := '%0' + str(ceil(highest_enum / 4.0)) + 'X'
-	return format % byte_value
+	var bytes = _state_as_bytes()	
+	bytes = _add_integrity_check(bytes)
+	bytes = _add_player_xor(bytes)
+	bytes = _add_rot_noise(bytes)
+	bytes = _add_shift_noise(bytes)
+	return _bytes_to_string(bytes)
 
 
-# Overwrites the current state with the provided serialized state.
 enum ERROR_CODE {
 		OK = 0,
 		INVALID_ENCODING = 1,
 		OTHER_PLAYER_CODE = 2,
 	}
 
+
+# Overwrites the current state with the provided serialized state.
 func deserialize(serialized_state : String) -> int:
-	if not serialized_state.is_valid_hex_number():
+	var bytes = _string_to_bytes(serialized_state)
+	if bytes.size() < 2:
 		return ERROR_CODE.INVALID_ENCODING
-	var state_value := ('0x' + serialized_state).hex_to_int()
-	clear_state()
-	var highest_enum = _get_highest_enum()
-	for enum_value in range(highest_enum):
-		if state_value & (1 << enum_value):
-			set_state(enum_value, true)
-	
+	bytes = _remove_shift_noise(bytes)
+	if bytes.size() < 2:
+		return ERROR_CODE.INVALID_ENCODING
+	bytes = _remove_rot_noise(bytes)
+	if bytes.size() < 2:
+		return ERROR_CODE.INVALID_ENCODING
+	bytes = _remove_player_xor(bytes)
+	if bytes.size() < 2:
+		return ERROR_CODE.INVALID_ENCODING
+	if not _check_integrity_byte(bytes):
+		return ERROR_CODE.INVALID_ENCODING
+	bytes = _remove_integrity_byte(bytes)
+	_bytes_to_state(bytes)
+
 	var code_by_a = get_state(STATE.CODE_CREATED_BY_PLAYER_A)
 	var player_is_a = current_player() == PLAYER.PLAYER_A
 	if code_by_a == player_is_a:
 		return ERROR_CODE.OTHER_PLAYER_CODE
+
 	return ERROR_CODE.OK
+
+
+
+func _state_as_bytes() -> PoolByteArray:
+	var bytes = PoolByteArray([])
+	var highest_enum = _get_highest_enum()
+	var byte : int = 0
+	for enum_value in range(8 * int(ceil(highest_enum / 8.0))):
+		if get_state(enum_value):
+			byte += 1 << (enum_value % 8)
+		if (enum_value + 1) % 8 == 0:
+			bytes.append(byte)
+			byte = 0
+	return bytes
+
+
+func _bytes_to_state(bytes : PoolByteArray) -> void:
+	clear_state()
+	var highest_enum = _get_highest_enum()
+	for byte_i in range(bytes.size()):
+		var byte = bytes[byte_i]
+		for i in range(8):
+			var enum_index = byte_i * 8 + i
+			if enum_index > highest_enum:
+				return
+			if byte & (1 << i):
+				set_state(enum_index, true)
+
+
+func _compute_integrity_byte(bytes : PoolByteArray) -> int:
+	var check_byte : int = 0
+	for byte in bytes:
+		check_byte = check_byte ^ byte
+	return check_byte
+
+
+func _add_integrity_check(bytes : PoolByteArray) -> PoolByteArray:
+	bytes.append(_compute_integrity_byte(bytes))
+	return bytes
+
+
+func _drop_last_byte(bytes : PoolByteArray) -> PoolByteArray:
+	return bytes.subarray(0, bytes.size() - 2)
+
+func _check_integrity_byte(bytes : PoolByteArray) -> bool:
+	var check_byte = _compute_integrity_byte(_drop_last_byte(bytes))
+	return check_byte == bytes[-1]
+
+
+func _remove_integrity_byte(bytes : PoolByteArray) -> PoolByteArray:
+	return bytes.subarray(0, bytes.size() - 2)
+
+
+const xor_a = "VerySuperSecretCodeThatIsLongEnoughToEncryptSomethingWith"
+const xor_b = "AnotherButVeryDifferentSecretCodeThatWeUseToEncryptStuff"
+
+func _add_player_xor(bytes : PoolByteArray) -> PoolByteArray:
+	var xor_text = xor_a if current_player() == PLAYER.PLAYER_A else xor_b
+	var xor_bytes = xor_text.to_ascii()
+	for i in range(bytes.size()):
+		bytes[i] = bytes[i] ^ xor_bytes[i % xor_bytes.size()]
+	var xor_token = (randi() * 2) % 254  # Random even value between [0, 254].
+	if current_player() == PLAYER.PLAYER_B:
+		xor_token += 1  # Make the value odd.
+	bytes.append(xor_token)
+	return bytes
+
+
+func _remove_player_xor(bytes : PoolByteArray) -> PoolByteArray:
+	var xor_byte = bytes[-1]
+	var xor_text = xor_a if xor_byte % 2 == 0 else xor_b
+	var xor_bytes = xor_text.to_ascii()
+	var remainder = _drop_last_byte(bytes)
+	for i in range(remainder.size()):
+		remainder[i] = remainder[i] ^ xor_bytes[i % xor_bytes.size()]
+	return remainder
+
+
+func _add_rot_noise(bytes : PoolByteArray) -> PoolByteArray:
+	var random_rot = randi() % 255
+	for i in range(bytes.size()):
+		bytes[i] = bytes[i] ^ random_rot
+	bytes.append(random_rot)
+	return bytes
+
+
+func _remove_rot_noise(bytes : PoolByteArray) -> PoolByteArray:
+	var random_rot = bytes[-1]
+	var result = PoolByteArray()
+	for i in range(bytes.size() - 1):
+		result.append(bytes[i] ^ random_rot)
+	return result
+
+
+func _add_shift_noise(bytes : PoolByteArray) -> PoolByteArray:
+	var random_shift = randi() % bytes.size()
+	var shifted_bytes = PoolByteArray()
+	for i in range(bytes.size()):
+		shifted_bytes.append(bytes[(i + random_shift) % bytes.size()])
+	shifted_bytes.append(random_shift)
+	return shifted_bytes
+
+
+func _remove_shift_noise(bytes : PoolByteArray) -> PoolByteArray:
+	var random_shift = bytes[-1]
+	var remainder = _drop_last_byte(bytes)
+	var shifted_bytes = PoolByteArray()
+	shifted_bytes.append_array(remainder)
+	var nbytes = remainder.size()
+	for i in range(nbytes):
+		shifted_bytes[i] = remainder[(i - random_shift) % nbytes]
+	return shifted_bytes
+
+
+func _bytes_to_string(bytes : PoolByteArray) -> String:
+	return Marshalls.raw_to_base64(bytes)
+
+
+func _string_to_bytes(string : String) -> PoolByteArray:
+	return Marshalls.base64_to_raw(string)
+

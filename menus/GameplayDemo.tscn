@@ -50,7 +50,7 @@ margin_top = 11.0
 margin_right = 332.0
 margin_bottom = 44.0
 custom_fonts/font = SubResource( 2 )
-text = "Choose as which player to play. If this is the first start of the game, start as player A and use the code \"000\".
+text = "Choose as which player to play. If this is the first start of the game, start as player A and use the code below.
 
 Otherwise, change to the other player (i.e. *not* the one shown in the top left corner) and use the code obtained at the end of the last turn."
 autowrap = true
@@ -68,6 +68,15 @@ margin_top = 260.0
 margin_right = 385.0
 margin_bottom = 315.0
 text = "Player B"
+
+[node name="LineEdit" type="LineEdit" parent="Frame"]
+margin_left = 125.0
+margin_top = 220.0
+margin_right = 310.0
+margin_bottom = 244.0
+text = "pvm4l5aNBA=="
+align = 1
+editable = false
 
 [node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 40, 10 )
