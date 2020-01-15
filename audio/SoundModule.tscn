@@ -65,12 +65,13 @@ __meta__ = {
 stream = ExtResource( 9 )
 bus = "SFX"
 
-[node name="Footstep12" type="AudioStreamPlayer" parent="Footsteps"]
+[node name="Footstep2" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 10 )
 bus = "SFX"
 
 [node name="Footstep3" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 11 )
+volume_db = -3.534
 bus = "SFX"
 
 [node name="Footstep4" type="AudioStreamPlayer" parent="Footsteps"]
@@ -79,4 +80,6 @@ bus = "SFX"
 
 [node name="Footstep5" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 13 )
+volume_db = 7.093
+pitch_scale = 0.9
 bus = "SFX"
