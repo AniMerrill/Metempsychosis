@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://entities/interactable.gd" type="Script" id=1]
+
+[node name="interactable" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="detector" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="detector"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_scale = Vector2( 2, 2 )
+expand = true
+[connection signal="gui_input" from="detector" to="." method="_on_detector_gui_input"]
+[connection signal="mouse_entered" from="detector" to="." method="_on_detector_mouse_entered"]
+[connection signal="mouse_exited" from="detector/TextureRect" to="." method="_on_TextureRect_mouse_exited"]
