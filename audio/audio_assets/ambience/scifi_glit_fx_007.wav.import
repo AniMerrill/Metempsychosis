@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/scifi_glit_fx_007.wav-52b0bddd5bdc5a478bc7333ddb70df72.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/ambience/scifi_glit_fx_007.wav"
+dest_files=[ "res://.import/scifi_glit_fx_007.wav-52b0bddd5bdc5a478bc7333ddb70df72.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
