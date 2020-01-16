@@ -20,7 +20,6 @@ position = Vector2( 130.589, 274.447 )
 z_index = 274
 
 [node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
-editor/display_folded = true
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
 navpoly = SubResource( 1 )

@@ -13,7 +13,7 @@
 size = 10
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
@@ -47,7 +47,7 @@ margin_left = 14.0
 margin_top = 40.0
 margin_right = 234.0
 margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0.72549, 1, 0.211765, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]______[/center]"
@@ -59,13 +59,11 @@ __meta__ = {
 }
 
 [node name="Button1" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_top = 83.4676
 margin_right = 41.0
 margin_bottom = 124.468
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -79,20 +77,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "1"
 flat = true
 
 [node name="Button2" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 41.0
 margin_top = 83.0
 margin_right = 82.0
 margin_bottom = 124.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -107,20 +103,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "2"
 flat = true
 
 [node name="Button3" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 82.0
 margin_top = 83.0
 margin_right = 123.0
 margin_bottom = 124.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -135,20 +129,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "3"
 flat = true
 
 [node name="Button4" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 123.0
 margin_top = 83.0
 margin_right = 164.0
 margin_bottom = 124.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -162,20 +154,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "4"
 flat = true
 
 [node name="Button5" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 164.0
 margin_top = 83.0
 margin_right = 205.0
 margin_bottom = 124.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -190,19 +180,17 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "5"
 flat = true
 
 [node name="Button6" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_top = 123.0
 margin_right = 41.0
 margin_bottom = 164.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -217,20 +205,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "6"
 flat = true
 
 [node name="Button7" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 41.0
 margin_top = 123.0
 margin_right = 82.0
 margin_bottom = 164.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -244,20 +230,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "7"
 flat = true
 
 [node name="Button8" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 82.0
 margin_top = 123.0
 margin_right = 123.0
 margin_bottom = 164.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -272,20 +256,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "8"
 flat = true
 
 [node name="Button9" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 123.0
 margin_top = 123.0
 margin_right = 164.0
 margin_bottom = 164.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -300,20 +282,18 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "9"
 flat = true
 
 [node name="Button0" type="TextureButton" parent="."]
-editor/display_folded = true
 margin_left = 164.0
 margin_top = 123.0
 margin_right = 205.0
 margin_bottom = 164.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -328,7 +308,7 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
-custom_colors/font_color_hover = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
 custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
 text = "0"
 flat = true
@@ -340,7 +320,6 @@ margin_right = 246.0
 margin_bottom = 124.935
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
-texture_hover = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -353,7 +332,6 @@ margin_right = 246.0
 margin_bottom = 164.468
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
-texture_hover = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

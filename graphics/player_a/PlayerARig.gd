@@ -56,10 +56,16 @@ var current_hair : int = HAIR.PONYTAIL setget set_hair
 var current_hat : int = HAT.NONE setget set_hat
 var current_face : int = FACE.NONE setget set_face
 
+var ready_finished : bool = false
+
 func _ready() -> void:
 # warning-ignore:return_value_discarded
 	$Timer.connect("timeout", self, "blink_timer")
 	anim_tree.active = true
+	
+	set_anim_states()
+	
+	ready_finished = true
 
 # warning-ignore:unused_argument
 func _process(delta : float) -> void:
@@ -114,20 +120,21 @@ func set_anim_states() -> void:
 	var arm_anim = anim_tree["parameters/Arm/playback"]
 	
 	if facing_front:
-		if walking:
-			body_anim.travel("front_body_walk")
-			
-			if current_tool == TOOL.NONE:
-				arm_anim.travel("front_arm_walk")
+		if ready_finished:
+			if walking:
+				body_anim.travel("front_body_walk")
+				
+				if current_tool == TOOL.NONE:
+					arm_anim.travel("front_arm_walk")
+				else:
+					arm_anim.travel("front_arm_walk_tool")
 			else:
-				arm_anim.travel("front_arm_walk_tool")
-		else:
-			body_anim.travel("front_body_idle")
-			
-			if current_tool == TOOL.NONE:
-				arm_anim.travel("front_arm_idle")
-			else:
-				arm_anim.travel("front_arm_idle_tool")
+				body_anim.travel("front_body_idle")
+				
+				if current_tool == TOOL.NONE:
+					arm_anim.travel("front_arm_idle")
+				else:
+					arm_anim.travel("front_arm_idle_tool")
 		
 		match current_hair:
 			HAIR.DOWN:
@@ -163,20 +170,21 @@ func set_anim_states() -> void:
 				$Hair.visible = false
 				$Face.visible = false
 	else:
-		if walking:
-			body_anim.travel("back_body_walk")
-			
-			if current_tool == TOOL.NONE:
-				arm_anim.travel("back_arm_walk")
+		if ready_finished:
+			if walking:
+				body_anim.travel("back_body_walk")
+				
+				if current_tool == TOOL.NONE:
+					arm_anim.travel("back_arm_walk")
+				else:
+					arm_anim.travel("back_arm_walk_tool")
 			else:
-				arm_anim.travel("back_arm_walk_tool")
-		else:
-			body_anim.travel("back_body_idle")
-			
-			if current_tool == TOOL.NONE:
-				arm_anim.travel("back_arm_idle")
-			else:
-				arm_anim.travel("back_arm_idle_tool")
+				body_anim.travel("back_body_idle")
+				
+				if current_tool == TOOL.NONE:
+					arm_anim.travel("back_arm_idle")
+				else:
+					arm_anim.travel("back_arm_idle_tool")
 		
 		match current_hair:
 			HAIR.DOWN:

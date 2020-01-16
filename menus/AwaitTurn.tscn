@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/await_turn.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=3]
+[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -75,6 +76,7 @@ custom_fonts/font = SubResource( 3 )
 text = "ABCD"
 align = 1
 editable = false
+script = ExtResource( 3 )
 
 [node name="InfoTextBG" type="ColorRect" parent="Frame"]
 margin_left = 40.0
@@ -118,6 +120,8 @@ align = 1
 max_length = 20
 placeholder_text = "continuation code"
 placeholder_alpha = 0.3
+script = ExtResource( 3 )
+instruction = "Please enter your continuation code:"
 
 [node name="Continue" type="Button" parent="Frame"]
 margin_left = 260.0
@@ -133,7 +137,7 @@ margin_right = 240.0
 margin_bottom = 350.0
 text = "(DEMO only): Change Player"
 
-[node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
+[node name="CurrentPlayer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 10 )
 [connection signal="text_entered" from="Frame/InputCode" to="." method="_on_InputCode_text_entered"]
 [connection signal="pressed" from="Frame/Continue" to="." method="_on_Continue_pressed"]

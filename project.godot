@@ -35,6 +35,7 @@ SceneTransition="*res://util/SceneTransition.tscn"
 MessageDisplay="*res://util/MessageDisplay.tscn"
 MusicModule="*res://audio/MusicModule.tscn"
 SoundModule="*res://audio/SoundModule.tscn"
+JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 
 [display]
 
