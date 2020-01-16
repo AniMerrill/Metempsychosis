@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/guard_bass_1.wav-4f7c11705b8badcc7e235fb0b4d4f484.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/main_theme/guard_bass_1.wav"
+dest_files=[ "res://.import/guard_bass_1.wav-4f7c11705b8badcc7e235fb0b4d4f484.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

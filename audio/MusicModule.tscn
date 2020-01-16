@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://audio/MusicModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/music/mdm_icon.png" type="Texture" id=3]
 [ext_resource path="res://audio/Exploration.tscn" type="PackedScene" id=4]
-[ext_resource path="res://audio/GuardOnWatch.tscn" type="PackedScene" id=5]
-[ext_resource path="res://audio/GameOver.tscn" type="PackedScene" id=6]
-[ext_resource path="res://audio/Label.gd" type="Script" id=7]
-[ext_resource path="res://audio/SoundModule.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/LevelTheme.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/Label.gd" type="Script" id=6]
+[ext_resource path="res://audio/SoundModule.tscn" type="PackedScene" id=7]
 
 [node name="MusicModule" type="Node"]
 script = ExtResource( 1 )
@@ -17,26 +16,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-play_mode = 1
-autoplay = NodePath("../../MusicModule/MixingDeskMusic/Exploration")
 
 [node name="Exploration" parent="MixingDeskMusic" instance=ExtResource( 4 )]
-transition_beats = 1.0
-transition_type = "Bar"
 
-[node name="GuardOnWatch" parent="MixingDeskMusic" instance=ExtResource( 5 )]
-tempo = 80
-transition_beats = 4.0
-transition_type = "Bar"
-
-[node name="GameOver" parent="MixingDeskMusic" instance=ExtResource( 6 )]
-tempo = 100
-bars = 7
-beats_in_bar = 4
-transition_beats = 4.0
-transition_type = "Bar"
+[node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 5 )]
 
 [node name="Buttons" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Button" type="Button" parent="Buttons"]
 visible = false
@@ -69,15 +55,9 @@ margin_top = 170.0
 margin_right = 80.0
 margin_bottom = 184.0
 text = "something"
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
-[node name="SFX" parent="." instance=ExtResource( 8 )]
+[node name="SFX" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
-
-[editable path="MixingDeskMusic/Exploration"]
-
-[editable path="MixingDeskMusic/GuardOnWatch"]
-
-[editable path="MixingDeskMusic/GameOver"]

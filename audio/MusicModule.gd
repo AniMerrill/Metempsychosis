@@ -16,6 +16,10 @@ func _ready():
 	#start with explore
 	mdm.play("Exploration")
 	current_song = "Exploration"
+	
+	#electronic theme
+	mdm.init_song("LevelTheme")
+	mdm.play("LevelTheme")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

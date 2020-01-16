@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explore_pad_1.wav-5e4baf1132f6a7e622e6748b8fb60233.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/main_theme/explore_pad_1.wav"
+dest_files=[ "res://.import/explore_pad_1.wav-5e4baf1132f6a7e622e6748b8fb60233.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,70 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=1]
+[ext_resource path="res://addons/mixing-desk/music/icons/song_icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
+[ext_resource path="res://addons/mixing-desk/music/icons/core_cont_icon.png" type="Texture" id=4]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_arp_1.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_arp_2.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_lead_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_lead_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_lead_3.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_lead_4.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/audio_assets/main_theme/explore_pad_1.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/audio_assets/main_theme/guard_arp_1.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/audio_assets/main_theme/guard_bass_1.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/audio_assets/main_theme/guard_noise.wav" type="AudioStream" id=14]
+[ext_resource path="res://audio/audio_assets/main_theme/pad_1.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/audio_assets/main_theme/pad_2.wav" type="AudioStream" id=16]
+
+[node name="LevelTheme" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+tempo = 80
+bars = 41
+beats_in_bar = 4
+transition_beats = 1.0
+
+[node name="CoreContainer" type="Node" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="explore_arp_1" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 5 )
+
+[node name="explore_arp_2" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 6 )
+
+[node name="explore_lead_1" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 7 )
+
+[node name="explore_lead_2" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 8 )
+
+[node name="explore_lead_3" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 9 )
+
+[node name="explore_lead_4" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 10 )
+
+[node name="explore_pad_1" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 11 )
+
+[node name="guard_arp_1" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 12 )
+
+[node name="guard_bass_1" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 13 )
+
+[node name="guard_noise" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 14 )
+
+[node name="pad_1" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 15 )
+
+[node name="pad_2" type="AudioStreamPlayer" parent="CoreContainer"]
+stream = ExtResource( 16 )

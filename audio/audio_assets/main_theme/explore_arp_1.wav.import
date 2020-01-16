@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explore_arp_1.wav-9a3978a10323868343a4c64431ebb047.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/main_theme/explore_arp_1.wav"
+dest_files=[ "res://.import/explore_arp_1.wav-9a3978a10323868343a4c64431ebb047.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
