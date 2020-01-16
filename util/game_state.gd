@@ -27,16 +27,44 @@ extends Node
 #
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
+#
+## NEXT_TAG: 22
 enum STATE {
-		POD_ROOMS_UNLOCKED = 0,
-		CODE_CREATED_BY_PLAYER_A = 1,
+		CODE_CREATED_BY_PLAYER_A = 0,
+		
+		## Puzzle 1: Opening.
+		POD_ROOMS_UNLOCKED = 1,
+		
+		## Puzzle 5: Mutual exclusive doors puzzle.
 		PLAYER_A_IN_XOR_POD = 2,
 		XOR_ROOM_SWITCHED = 3,
 		
-		# NOTE: Example values below.
+		## Key locations. If none are true, they are in their starting place.
+		## Each group should be mutually exclusive.
+		## We are using 3 bits where we only need 2 per key. Oh well.
+		KEY_A_1_POS_A = 4,
+		KEY_A_1_POS_B = 5,
+		KEY_A_1_POS_BOX = 6,
 		
-		# Common / player-independent progress.
-		TEST_VALUE = 20,  # Added higher value for test purposes.
+		KEY_A_2_POS_A = 7,
+		KEY_A_2_POS_B = 8,
+		KEY_A_2_POS_BOX = 9,
+		
+		KEY_A_3_POS_A = 10,
+		KEY_A_3_POS_B = 11,
+		KEY_A_3_POS_BOX = 12,
+		
+		KEY_B_1_POS_A = 13,
+		KEY_B_1_POS_B = 14,
+		KEY_B_1_POS_BOX = 15,
+		
+		KEY_B_2_POS_A = 16,
+		KEY_B_2_POS_B = 17,
+		KEY_B_2_POS_BOX = 18,
+		
+		KEY_B_3_POS_A = 19,
+		KEY_B_3_POS_B = 20,
+		KEY_B_3_POS_BOX = 21,
 	}
 
 

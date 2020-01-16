@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="Dropbox" type="Node2D"]
+z_index = 280
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -30.0
+margin_top = -20.0
+margin_right = 35.0
+margin_bottom = 10.0
+mouse_filter = 2
+color = Color( 0.25098, 0.670588, 0.662745, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -25.0
+margin_top = -5.0
+margin_right = 29.0
+margin_bottom = 9.0
+text = "Dropbox"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -30, -20, -30, 10, 35, 10, 35, -20 )

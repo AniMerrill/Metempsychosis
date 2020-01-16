@@ -37,9 +37,9 @@ transition_beats = 4.0
 transition_type = "Bar"
 
 [node name="Buttons" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Button" type="Button" parent="Buttons"]
+visible = false
 margin_left = 40.0
 margin_top = 60.0
 margin_right = 121.0
@@ -47,6 +47,7 @@ margin_bottom = 145.0
 text = "Guard"
 
 [node name="Button2" type="Button" parent="Buttons"]
+visible = false
 margin_left = 140.0
 margin_top = 60.0
 margin_right = 216.0
@@ -54,6 +55,7 @@ margin_bottom = 145.0
 text = "Game Over"
 
 [node name="Button3" type="Button" parent="Buttons"]
+visible = false
 margin_left = 240.0
 margin_top = 60.0
 margin_right = 316.0
@@ -61,6 +63,7 @@ margin_bottom = 145.0
 text = "No Guard"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = 40.0
 margin_top = 170.0
 margin_right = 80.0
