@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/gameplay_demo.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=3]
+[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -77,8 +78,9 @@ margin_bottom = 244.0
 text = "pvm4l5aNBA=="
 align = 1
 editable = false
+script = ExtResource( 3 )
 
-[node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
+[node name="CurrentPlayer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 10 )
 [connection signal="pressed" from="Frame/PlayerA" to="." method="_on_PlayerA_pressed"]
 [connection signal="pressed" from="Frame/PlayerB" to="." method="_on_PlayerB_pressed"]

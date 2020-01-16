@@ -51,7 +51,6 @@ margin_right = 437.0
 margin_bottom = 120.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 5 )
 texture_click_mask = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true

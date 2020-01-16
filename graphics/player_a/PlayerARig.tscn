@@ -791,7 +791,7 @@ nodes/Body/position = Vector2( -20, 220 )
 nodes/ZIndex/node = SubResource( 67 )
 nodes/ZIndex/position = Vector2( 0, 360 )
 nodes/output/position = Vector2( 880, 520 )
-node_connections = [ "output", 0, "Add2 3", "Add2 2", 0, "Add2", "Add2 2", 1, "Arm", "ZIndex", 0, "Animation 2", "ZIndex", 1, "Animation", "Add2 3", 0, "Add2 2", "Add2 3", 1, "Blink", "Add2", 0, "Body", "Add2", 1, "ZIndex", "Blink", 0, "Animation 4", "Blink", 1, "Animation 3" ]
+node_connections = [ "output", 0, "Add2 3", "Add2", 0, "Body", "Add2", 1, "ZIndex", "Add2 2", 0, "Add2", "Add2 2", 1, "Arm", "Add2 3", 0, "Add2 2", "Add2 3", 1, "Blink", "Blink", 0, "Animation 4", "Blink", 1, "Animation 3", "ZIndex", 0, "Animation 2", "ZIndex", 1, "Animation" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=69]
 

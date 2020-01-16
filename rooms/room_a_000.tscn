@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://rooms/room_a_000.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/SleepingPod.tscn" type="PackedScene" id=4]
 [ext_resource path="res://rooms/objects/CodePad.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 340, 290, 435, 360, 45, 360, 125, 325, 385, 195, 340, 275, 95, 195, 200, 275, 125, 255, 75, 255, 200, 290, 55.7749, 324.443 )
@@ -59,6 +60,8 @@ margin_bottom = 58.8995
 align = 1
 max_length = 4
 placeholder_text = "0000"
+script = ExtResource( 6 )
+instruction = "Enter unlock code:"
 
 [node name="EnterCodeButton" type="Button" parent="CodePadPopup"]
 margin_left = 255.0
