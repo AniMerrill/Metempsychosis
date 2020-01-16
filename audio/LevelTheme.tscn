@@ -11,11 +11,11 @@
 [ext_resource path="res://audio/audio_assets/main_theme/explore_lead_3.wav" type="AudioStream" id=9]
 [ext_resource path="res://audio/audio_assets/main_theme/explore_lead_4.wav" type="AudioStream" id=10]
 [ext_resource path="res://audio/audio_assets/main_theme/explore_pad_1.wav" type="AudioStream" id=11]
-[ext_resource path="res://audio/audio_assets/main_theme/guard_arp_1.wav" type="AudioStream" id=12]
-[ext_resource path="res://audio/audio_assets/main_theme/guard_bass_1.wav" type="AudioStream" id=13]
-[ext_resource path="res://audio/audio_assets/main_theme/guard_noise.wav" type="AudioStream" id=14]
-[ext_resource path="res://audio/audio_assets/main_theme/pad_1.wav" type="AudioStream" id=15]
-[ext_resource path="res://audio/audio_assets/main_theme/pad_2.wav" type="AudioStream" id=16]
+[ext_resource path="res://audio/audio_assets/main_theme/pad_1.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/audio_assets/main_theme/pad_2.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/audio_assets/main_theme/guard_arp_1.wav" type="AudioStream" id=14]
+[ext_resource path="res://audio/audio_assets/main_theme/guard_bass_1.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/audio_assets/main_theme/guard_noise.wav" type="AudioStream" id=16]
 
 [node name="LevelTheme" type="Node"]
 script = ExtResource( 1 )
@@ -54,17 +54,17 @@ stream = ExtResource( 10 )
 [node name="explore_pad_1" type="AudioStreamPlayer" parent="CoreContainer"]
 stream = ExtResource( 11 )
 
-[node name="guard_arp_1" type="AudioStreamPlayer" parent="CoreContainer"]
+[node name="pad_1" type="AudioStreamPlayer" parent="CoreContainer"]
 stream = ExtResource( 12 )
 
-[node name="guard_bass_1" type="AudioStreamPlayer" parent="CoreContainer"]
+[node name="pad_2" type="AudioStreamPlayer" parent="CoreContainer"]
 stream = ExtResource( 13 )
 
-[node name="guard_noise" type="AudioStreamPlayer" parent="CoreContainer"]
+[node name="guard_arp_1" type="AudioStreamPlayer" parent="CoreContainer"]
 stream = ExtResource( 14 )
 
-[node name="pad_1" type="AudioStreamPlayer" parent="CoreContainer"]
+[node name="guard_bass_1" type="AudioStreamPlayer" parent="CoreContainer"]
 stream = ExtResource( 15 )
 
-[node name="pad_2" type="AudioStreamPlayer" parent="CoreContainer"]
+[node name="guard_noise" type="AudioStreamPlayer" parent="CoreContainer"]
 stream = ExtResource( 16 )

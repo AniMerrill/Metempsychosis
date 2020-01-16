@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://audio/MusicModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/music/mdm_icon.png" type="Texture" id=3]
-[ext_resource path="res://audio/Exploration.tscn" type="PackedScene" id=4]
-[ext_resource path="res://audio/LevelTheme.tscn" type="PackedScene" id=5]
-[ext_resource path="res://audio/Label.gd" type="Script" id=6]
-[ext_resource path="res://audio/SoundModule.tscn" type="PackedScene" id=7]
+[ext_resource path="res://audio/LevelTheme.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/Label.gd" type="Script" id=5]
+[ext_resource path="res://audio/SoundModule.tscn" type="PackedScene" id=6]
 
 [node name="MusicModule" type="Node"]
 script = ExtResource( 1 )
@@ -17,9 +16,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
-[node name="Exploration" parent="MixingDeskMusic" instance=ExtResource( 4 )]
-
-[node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 5 )]
+[node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 4 )]
 
 [node name="Buttons" type="Node" parent="."]
 editor/display_folded = true
@@ -55,9 +52,9 @@ margin_top = 170.0
 margin_right = 80.0
 margin_bottom = 184.0
 text = "something"
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 
-[node name="SFX" parent="." instance=ExtResource( 7 )]
+[node name="SFX" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
