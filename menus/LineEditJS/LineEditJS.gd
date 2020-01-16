@@ -10,7 +10,7 @@ export var instruction : String = ""
 # Essentially if it is being played on desktop, it behaves no differently than
 # a normal LineEdit node
 func _ready():
-	if $"/root/JavaScriptMobile".javascript: # and $"/root/JavaScriptMobile".mobile:
+	if $"/root/JavaScriptMobile".javascript and $"/root/JavaScriptMobile".mobile:
 		if editable:
 			# warning-ignore:return_value_discarded
 			connect("focus_entered", self, "js_text_entry")
