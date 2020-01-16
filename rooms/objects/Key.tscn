@@ -1,0 +1,50 @@
+[gd_scene format=2]
+
+[node name="Key" type="Node2D"]
+z_index = 280
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PoolVector2Array( -10.199, -12.486, -12.0342, 25.2369, -0.207565, 25.2369, 10.1917, -6.57265, 9.37608, -12.6899 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -10.0
+margin_top = -13.0
+margin_right = -3.0
+margin_bottom = 20.0
+mouse_filter = 2
+color = Color( 0.811765, 0.894118, 0.0980392, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+margin_left = -12.0
+margin_top = 16.0
+margin_right = -1.0
+margin_bottom = 25.0
+mouse_filter = 2
+color = Color( 0.811765, 0.894118, 0.0980392, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = -5.0
+mouse_filter = 2
+color = Color( 0.811765, 0.894118, 0.0980392, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+margin_left = -9.20391
+margin_top = -3.20391
+margin_right = 1.79609
+margin_bottom = 1.79609
+mouse_filter = 2
+color = Color( 0.811765, 0.894118, 0.0980392, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+margin_left = -9.0
+margin_top = 4.0
+margin_right = 5.0
+margin_bottom = 9.0
+mouse_filter = 2
+color = Color( 0.811765, 0.894118, 0.0980392, 1 )

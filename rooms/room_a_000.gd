@@ -28,6 +28,7 @@ func _on_object_clicked(node):
 			room.player_walk_to(pod.position)
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
+			GameState.set_state(GameState.STATE.PLAYER_A_IN_XOR_POD, false)
 			var code = GameState.serialize()
 			GameState.set_last_output_code(code)
 			SceneTransition.change_scene('menus/AwaitTurn.tscn')

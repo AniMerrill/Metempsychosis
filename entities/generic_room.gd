@@ -66,7 +66,8 @@ func _set_south_door_target(value : String) -> void:
 func _ready():
 	if not room:
 		return
-	GameState.interaction_is_frozen = false
+	if GameState:
+		GameState.interaction_is_frozen = false
 	_update_doors()
 	refresh_objects()
 

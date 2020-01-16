@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://rooms/room_a_xor_puzzle.gd" type="Script" id=1]
+[ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://rooms/objects/SleepingPod.tscn" type="PackedScene" id=4]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 435, 360, 45, 360, 95, 195, 187.923, 218.283, 291.975, 218.982, 291.975, 197.333, 385, 195, 187.224, 195.936 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 0 ), PoolIntArray( 2, 7, 3 ), PoolIntArray( 0, 3, 4 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 187.224, 195.936, 187.923, 218.283, 291.975, 218.982, 291.975, 197.333, 385, 195, 435, 360 ) ]
+
+[node name="room_a_xor_puzzle" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="GenericRoom" parent="." instance=ExtResource( 2 )]
+east_door = 4
+east_target = "room_a_xor_end"
+north_door = 1
+north_target = ""
+west_door = 3
+west_target = "room_a_xor_start"
+south_door = 1
+south_target = ""
+
+[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
+position = Vector2( 130.589, 274.447 )
+z_index = 274
+
+[node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Objects" type="Node2D" parent="GenericRoom"]
+
+[node name="Pod" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
+position = Vector2( 241.395, 167.344 )
