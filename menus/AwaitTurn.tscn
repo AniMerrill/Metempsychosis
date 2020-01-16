@@ -124,7 +124,7 @@ script = ExtResource( 3 )
 instruction = "Please enter your continuation code:"
 
 [node name="Continue" type="Button" parent="Frame"]
-margin_left = 260.0
+margin_left = 270.0
 margin_top = 310.0
 margin_right = 380.0
 margin_bottom = 350.0
@@ -133,12 +133,20 @@ text = "Continue"
 [node name="ChangePlayer" type="Button" parent="Frame"]
 margin_left = 40.0
 margin_top = 310.0
-margin_right = 240.0
+margin_right = 150.0
 margin_bottom = 350.0
-text = "(DEMO only): Change Player"
+text = "Change Player"
+
+[node name="StateEdit" type="Button" parent="Frame"]
+margin_left = 160.0
+margin_top = 310.0
+margin_right = 261.0
+margin_bottom = 350.0
+text = "State Editor"
 
 [node name="CurrentPlayer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 10 )
 [connection signal="text_entered" from="Frame/InputCode" to="." method="_on_InputCode_text_entered"]
 [connection signal="pressed" from="Frame/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Frame/ChangePlayer" to="." method="_on_ChangePlayer_pressed"]
+[connection signal="pressed" from="Frame/StateEdit" to="." method="_on_StateEdit_pressed"]

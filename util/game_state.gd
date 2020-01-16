@@ -30,11 +30,13 @@ extends Node
 enum STATE {
 		POD_ROOMS_UNLOCKED = 0,
 		CODE_CREATED_BY_PLAYER_A = 1,
+		PLAYER_A_IN_XOR_POD = 2,
+		XOR_ROOM_SWITCHED = 3,
 		
 		# NOTE: Example values below.
 		
 		# Common / player-independent progress.
-		GUARD_ROBOT_BROKEN = 20,  # Added higher value for test purposes.
+		TEST_VALUE = 20,  # Added higher value for test purposes.
 	}
 
 
@@ -60,7 +62,7 @@ var _my_last_output_code := '(no code)'
 
 
 # Whether the player can start a new interaction or not. Volatile state.
-var interaction_is_frozen = false
+var interaction_is_frozen := false
 
 # Get the current player.
 func current_player() -> int:
