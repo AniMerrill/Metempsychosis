@@ -1,4 +1,13 @@
-[gd_resource type="AudioBusLayout" format=2]
+[gd_resource type="AudioBusLayout" load_steps=2 format=2]
+
+[sub_resource type="AudioEffectEQ" id=1]
+resource_name = "EQ"
+band_db/32_hz = -7.2
+band_db/100_hz = -8.7
+band_db/320_hz = -12.4
+band_db/1000_hz = -11.1
+band_db/3200_hz = -39.0
+band_db/10000_hz = -54.3
 
 [resource]
 bus/1/name = "Music"
@@ -13,3 +22,11 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = "Master"
+bus/3/name = "Footsteps"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = "SFX"
+bus/3/effect/0/effect = SubResource( 1 )
+bus/3/effect/0/enabled = true

@@ -14,12 +14,15 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
+play_mode = 4
 
 [node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 4 )]
+transition_beats = 2.0
 
 [node name="Buttons" type="Node" parent="."]
 
 [node name="Button" type="Button" parent="Buttons"]
+visible = false
 margin_left = 40.0
 margin_top = 60.0
 margin_right = 121.0
@@ -27,6 +30,7 @@ margin_bottom = 145.0
 text = "Guard"
 
 [node name="Button2" type="Button" parent="Buttons"]
+visible = false
 margin_left = 140.0
 margin_top = 60.0
 margin_right = 216.0
@@ -34,6 +38,7 @@ margin_bottom = 145.0
 text = "Game Over"
 
 [node name="Button3" type="Button" parent="Buttons"]
+visible = false
 margin_left = 240.0
 margin_top = 60.0
 margin_right = 316.0
