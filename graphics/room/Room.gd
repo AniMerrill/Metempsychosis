@@ -206,3 +206,6 @@ func initialize_room() -> void:
 					$SouthDoorFrame.visible = false
 					$SouthDoor.visible = false
 					$SouthDoorLight.visible = false
+
+func set_final_door_east():
+	$EastDoor.texture = load("res://graphics/room/blue_side_door.png")
