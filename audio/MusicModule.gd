@@ -58,20 +58,18 @@ func _on_Button3_pressed():
 func _fadein_above_layer(song:String, track:int, last_track:int):
 	for i in range(last_track, track + 1):
 		mdm.fade_in(song, i)
-		print(i)
 		
 #fade out above track up until last_track
 func _fadeout_above_layer(song:String, track:int, last_track:int):
 	for i in range(last_track, track + 1):
 		mdm.fade_out(song, i)
-		print(i)
+		
 #fade in below track up until last_track
 func _fadein_below_layer(song:String, track:int, last_track:int):
 	for i in range(track, last_track + 1):
 		mdm.fade_in(song, i)
-		print(i)
+		
 #fade out below track up until last_track
 func _fadeout_below_layer(song:String, track:int, last_track:int):
 	for i in range(track, last_track + 1):
 		mdm.fade_out(song, i)
-		print(i)

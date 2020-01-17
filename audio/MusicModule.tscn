@@ -16,8 +16,10 @@ __meta__ = {
 }
 
 [node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 4 )]
+transition_beats = 2.0
 
 [node name="Buttons" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Button" type="Button" parent="Buttons"]
 margin_left = 40.0
