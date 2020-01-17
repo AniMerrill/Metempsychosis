@@ -16,9 +16,7 @@ script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 3
-east_target = "room_b_000"
-west_door = 3
-west_target = "room_b_xor_switch"
+east_target = "room_b_first_key"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -32,7 +30,7 @@ navpoly = SubResource( 1 )
 [node name="Objects" type="Node2D" parent="GenericRoom"]
 
 [node name="Dropbox" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-position = Vector2( 245, 135 )
+position = Vector2( 35, 172.796 )
 
 [node name="ExchangePopup" parent="." instance=ExtResource( 5 )]
 visible = false

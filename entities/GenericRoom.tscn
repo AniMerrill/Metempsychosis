@@ -38,6 +38,7 @@ polygon = PoolVector2Array( 32.193, 309.766, 32.193, 161.019, 54.5399, 103.057, 
 [node name="South" type="Area2D" parent="DoorAreas"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorAreas/South"]
+visible = false
 polygon = PoolVector2Array( 198.398, 360.046, 197.699, 279.737, 271.723, 281.134, 273.12, 359.348 )
 
 [node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
