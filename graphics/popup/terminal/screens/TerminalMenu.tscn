@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://graphics/popup/terminal/screens/TerminalMenu.gd" type="Script" id=1]
 [ext_resource path="res://graphics/popup/terminal/buttons/down_button.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://graphics/popup/terminal/buttons/x_button.png" type="Texture" id=6]
 [ext_resource path="res://graphics/popup/terminal/buttons/x_button_hover.png" type="Texture" id=7]
 [ext_resource path="res://fonts/RobotoMono-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+font_data = ExtResource( 8 )
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -49,12 +53,32 @@ margin_bottom = 101.0
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 7 )
 
-[node name="Buttons" type="VBoxContainer" parent="."]
-editor/display_folded = true
-margin_right = 178.0
-margin_bottom = 160.0
+[node name="MainDisplay" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Button0" type="Button" parent="Buttons"]
+[node name="Title" type="Label" parent="MainDisplay"]
+margin_right = 192.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+text = "TITLE"
+align = 1
+valign = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MainDisplay"]
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button0" type="Button" parent="MainDisplay/Buttons"]
 margin_right = 192.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
@@ -70,7 +94,7 @@ text = "> 0123456789012345678901234567"
 flat = true
 align = 0
 
-[node name="Button1" type="Button" parent="Buttons"]
+[node name="Button1" type="Button" parent="MainDisplay/Buttons"]
 margin_top = 32.0
 margin_right = 192.0
 margin_bottom = 60.0
@@ -87,7 +111,7 @@ text = "> 0123456789012345678901234567"
 flat = true
 align = 0
 
-[node name="Button2" type="Button" parent="Buttons"]
+[node name="Button2" type="Button" parent="MainDisplay/Buttons"]
 margin_top = 64.0
 margin_right = 192.0
 margin_bottom = 92.0
@@ -104,7 +128,7 @@ text = "> 0123456789012345678901234567"
 flat = true
 align = 0
 
-[node name="Button3" type="Button" parent="Buttons"]
+[node name="Button3" type="Button" parent="MainDisplay/Buttons"]
 margin_top = 96.0
 margin_right = 192.0
 margin_bottom = 124.0
@@ -121,7 +145,7 @@ text = "> 0123456789012345678901234567"
 flat = true
 align = 0
 
-[node name="Button4" type="Button" parent="Buttons"]
+[node name="Button4" type="Button" parent="MainDisplay/Buttons"]
 margin_top = 128.0
 margin_right = 192.0
 margin_bottom = 156.0
