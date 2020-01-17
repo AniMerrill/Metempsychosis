@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/door_open_warning.wav-7b31b8d7849f4cc17345fa4b7fbb067f.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/objects/door_open_warning.wav"
+dest_files=[ "res://.import/door_open_warning.wav-7b31b8d7849f4cc17345fa4b7fbb067f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
