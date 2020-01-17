@@ -27,15 +27,15 @@ margin_left = 40.0
 margin_top = 60.0
 margin_right = 121.0
 margin_bottom = 145.0
-text = "Guard"
+text = "Puzzle"
 
 [node name="Button2" type="Button" parent="Buttons"]
 visible = false
 margin_left = 140.0
 margin_top = 60.0
-margin_right = 216.0
+margin_right = 225.0
 margin_bottom = 145.0
-text = "Game Over"
+text = "Guard"
 
 [node name="Button3" type="Button" parent="Buttons"]
 visible = false
@@ -43,10 +43,9 @@ margin_left = 240.0
 margin_top = 60.0
 margin_right = 316.0
 margin_bottom = 145.0
-text = "No Guard"
+text = "Explore"
 
 [node name="Label" type="Label" parent="."]
-visible = false
 margin_left = 40.0
 margin_top = 170.0
 margin_right = 80.0

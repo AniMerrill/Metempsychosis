@@ -7,6 +7,8 @@ onready var mdm = $MixingDeskMusic
 
 var current_song = "none"
 
+var state = "init"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#inititialise all the songs
@@ -31,7 +33,8 @@ func _on_Button_pressed():
 #	mdm.queue_bar_transition("GuardOnWatch")
 #	current_song = "GuardOnWatch"
 #	print("queue guard")
-	mdm.toggle_fade("LevelTheme", 9)
+#	mdm.toggle_fade("LevelTheme", 9)
+	_on_music_state_changed("puzzle")
 
 #Game over 
 #use queue_sequence() to loop smth once, then proceed to next song
@@ -39,18 +42,45 @@ func _on_Button2_pressed():
 #	mdm.queue_sequence(["GameOver", "Exploration"], "beat", "loop")
 #	current_song = "Exploration"
 #	print("queue game over")
-	_fadein_above_layer("LevelTheme", 6, 0)
-	
-	_fadeout_below_layer("LevelTheme", 9, 11)
+#	_fadein_above_layer("LevelTheme", 6, 0)
+#
+#	_fadeout_below_layer("LevelTheme", 9, 11)
+	_on_music_state_changed("guard")
 
 #Back to main loop
 func _on_Button3_pressed():
 #	mdm.queue_bar_transition("Exploration")
 #	current_song = "Exploration"
 #	print("queue exploration")
+#	_fadein_below_layer("LevelTheme", 9, 11) 
+#
+#	_fadeout_above_layer("LevelTheme", 6, 0)
+	_on_music_state_changed("explore")
+	
+func _on_music_state_changed(state:String):
+	if state == "puzzle":
+		_turn_on_filter()
+	elif state == "guard":
+		_fade_guard_layers()
+	elif state == "explore":
+		_fade_explore_layers()
+
+func _turn_on_filter():
+	_fadein_above_layer("LevelTheme", 6, 0)
+	current_song = "puzzle"
+	
+func _fade_guard_layers():
 	_fadein_below_layer("LevelTheme", 9, 11) 
 	
 	_fadeout_above_layer("LevelTheme", 6, 0)
+	
+	current_song = "guard"
+	
+func _fade_explore_layers():
+	_fadeout_above_layer("LevelTheme", 6, 0)
+	_fadeout_below_layer("LevelTheme",9, 11)
+	
+	current_song = "explore"
 
 #custom functions
 #fade functions. Requires song name (node name), min, and max. Range is inclusive
