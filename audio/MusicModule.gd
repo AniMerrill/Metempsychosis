@@ -34,7 +34,7 @@ func _on_Button_pressed():
 #	current_song = "GuardOnWatch"
 #	print("queue guard")
 #	mdm.toggle_fade("LevelTheme", 9)
-	_on_music_state_changed("puzzle")
+	state_changed("puzzle")
 
 #Game over 
 #use queue_sequence() to loop smth once, then proceed to next song
@@ -45,7 +45,7 @@ func _on_Button2_pressed():
 #	_fadein_above_layer("LevelTheme", 6, 0)
 #
 #	_fadeout_below_layer("LevelTheme", 9, 11)
-	_on_music_state_changed("guard")
+	state_changed("guard")
 
 #Back to main loop
 func _on_Button3_pressed():
@@ -55,9 +55,9 @@ func _on_Button3_pressed():
 #	_fadein_below_layer("LevelTheme", 9, 11) 
 #
 #	_fadeout_above_layer("LevelTheme", 6, 0)
-	_on_music_state_changed("explore")
+	state_changed("explore")
 	
-func _on_music_state_changed(state:String):
+func state_changed(state:String):
 	if state == "puzzle":
 		_turn_on_filter()
 	elif state == "guard":

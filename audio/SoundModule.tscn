@@ -135,3 +135,13 @@ __meta__ = {
 [node name="DoorWarningSound" type="AudioStreamPlayer" parent="DoorOpenWarning"]
 stream = ExtResource( 14 )
 bus = "Doors"
+
+[node name="DoorWarningSound2" type="AudioStreamPlayer" parent="DoorOpenWarning"]
+stream = ExtResource( 14 )
+pitch_scale = 1.1
+bus = "Doors"
+
+[node name="DoorWarningSound3" type="AudioStreamPlayer" parent="DoorOpenWarning"]
+stream = ExtResource( 14 )
+pitch_scale = 0.9
+bus = "Doors"
