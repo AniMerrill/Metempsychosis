@@ -55,6 +55,18 @@ __meta__ = {
 stream = ExtResource( 7 )
 volume_db = -8.582
 pitch_scale = 0.8
+bus = "Doors"
+
+[node name="DoorUpSound2" type="AudioStreamPlayer" parent="DoorSlideUp"]
+stream = ExtResource( 7 )
+volume_db = -8.582
+pitch_scale = 0.9
+bus = "Doors"
+
+[node name="DoorUpSound3" type="AudioStreamPlayer" parent="DoorSlideUp"]
+stream = ExtResource( 7 )
+volume_db = -8.582
+bus = "Doors"
 
 [node name="Footsteps" type="Node" parent="."]
 script = ExtResource( 8 )
