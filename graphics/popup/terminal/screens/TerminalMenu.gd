@@ -1,12 +1,40 @@
 extends Control
 
+###############################################################################
+
+# HOW TO USE TERMINALS
+
+## Create new scene with res://graphics/popup/TerminalBase as the root node
+## Instance whatever screen you want under the ScreenContents node
+## If you want to use a menu for the "root" of the terminal, instance this scene
+## 		and make sure "Editable Children" is enabled from the scene viewer
+## Add whatever option screens you want under the Options node. The name for
+## 		each option is now literally the name of the node.
+
+## If you want your terminal to have a submenu underneath the main menu (i.e
+## 		the "Email" option leads to a menu with all the emails) then simply
+## 		instance another TerminalMenu under the Options node and toggle the
+## 		`submenu` variable to make sure it has an X button to return to the main
+## 		menu.
+
+# NOTE FOR MAKING SCREENS
+
+# Please include the following variable and function to make them compatible
+# with this menu setup. Also, preferably, add some kind of an X button that
+# connects to `x_pressed()` as well
+var parent_menu = null
+
+func x_pressed() -> void:
+	if parent_menu != null:
+		visible = false
+		parent_menu.set_visibility(true)
+
+###############################################################################
+
 export var submenu : bool = false
-export (PoolStringArray) var option_names : PoolStringArray = []
 
 var page := 0
 var pages_enabled := false
-
-var parent_menu = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,16 +49,10 @@ func _ready():
 	ignore = $Buttons/Button3.connect("pressed", self, "option_pressed", [3])
 	ignore = $Buttons/Button4.connect("pressed", self, "option_pressed", [4])
 	
-	# TODO: Really need to find a way to make this congruent no matter what,
-	# the solution I have now is really kind of a hack.
-	if option_names.size() != $Options.get_child_count():
-		print("TerminalMenu.gd : The amount of names does not match the amount of options.")
-		print(name)
-	
 	for child in $Options.get_children():
 		child.visible = false
 	
-	if option_names.size() > $Buttons.get_child_count():
+	if $Options.get_child_count() > $Buttons.get_child_count():
 		pages_enabled = true
 	
 	set_buttons()
@@ -41,18 +63,18 @@ func _process(delta):
 	
 	for button in $Buttons.get_children():
 		if button.visible && button.is_hovered():
-			button.text = "> " + option_names[current_index]
+			button.text = "> " + $Options.get_child(current_index).name
 		else:
-			button.text = "  " + option_names[current_index]
+			button.text = "  " + $Options.get_child(current_index).name
 		
 		current_index += 1
 		
-		if current_index > option_names.size() - 1:
+		if current_index > $Options.get_child_count() - 1:
 			break
 
 func down_pressed() -> void:
 	if pages_enabled:
-		if (page + 1) * $Buttons.get_child_count() > option_names.size():
+		if (page + 1) * $Buttons.get_child_count() > $Options.get_child_count():
 			return 
 		
 		page += 1
@@ -67,11 +89,6 @@ func up_pressed() -> void:
 		page -= 1
 	
 	set_buttons()
-	
-func x_pressed() -> void:
-	if parent_menu != null:
-		visible = false
-		parent_menu.set_visibility(true)
 
 func option_pressed(value : int) -> void:
 	var program = $Options.get_child((page * $Buttons.get_child_count()) + value)
@@ -88,8 +105,8 @@ func set_buttons() -> void:
 		button.visible = false
 	
 	for i in range($Buttons.get_child_count()):
-		if i + current_index < option_names.size():
-			get_node("Buttons/Button" + str(i)).text = "  " + option_names[i + current_index]
+		if i + current_index < $Options.get_child_count():
+			get_node("Buttons/Button" + str(i)).text = "  " + $Options.get_child(i + current_index).name
 			get_node("Buttons/Button" + str(i)).visible = true
 	
 	if pages_enabled:
@@ -98,7 +115,7 @@ func set_buttons() -> void:
 		else:
 			$Up.visible = true
 		
-		if (page + 1) * $Buttons.get_child_count() > option_names.size():
+		if (page + 1) * $Buttons.get_child_count() > $Options.get_child_count():
 			$Down.visible = false
 		else:
 			$Down.visible = true
