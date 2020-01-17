@@ -167,10 +167,13 @@ const direction_names = ["east", "north", "west", "south"]
 
 func _handle_door_click(direction):
 	var door = room.doors[direction]
+	print(door.opened, door.locked)
 	if door.opened and not door.locked:
 		player_walk_to(exit_door_pos[direction])
 		GameState.interaction_is_frozen = true
 		yield(player, "position_reached")
+		if door.processing:
+			yield(door, "action_finished")
 		player.path = [exit_door_pos[direction], exit_room_pos[direction]]
 		var target_scene = 'rooms/' + door_targets[direction] + '.tscn'
 		GameState.entering_from_direction = (direction + 2) % 4  # Yay.

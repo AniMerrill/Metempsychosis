@@ -61,6 +61,10 @@ enum STATE {
 		KEY_B_3_POS_A = 19,
 		KEY_B_3_POS_B = 20,
 		KEY_B_3_POS_BOX = 21,
+		
+		## Colours of the wind.
+		
+		WIND_PUZZLE_SOLVED = 22,
 	}
 
 
