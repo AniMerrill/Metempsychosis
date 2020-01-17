@@ -25,13 +25,16 @@ class Door:
 	
 	signal action_finished
 	
-	func _init(_locked : bool) -> void:
+	func _init(_locked : bool, _opened : bool = false) -> void:
 		locked = _locked
+		opened = _opened
 	
 	func initialize_nodes(_door_anim, _light_anim, _sprite) -> void:
 		door_anim = _door_anim
 		light_anim = _light_anim
 		sprite = _sprite
+		if opened:
+			door_anim.play("DoorOpened")
 		
 		# warning-ignore:return_value_discarded
 		door_anim.connect("animation_finished", self, "anim_finished")
@@ -134,6 +137,7 @@ func initialize_room() -> void:
 						doors[i].light_anim.play("Opened")
 				NORTH:
 					$NorthWall.texture = north_wall_door
+					$NorthWallTop.visible = true
 					
 					$NorthDoor.visible = true
 					$NorthDoorLight.visible = true
@@ -192,6 +196,7 @@ func initialize_room() -> void:
 					$EastDoorLight.visible = false
 				NORTH:
 					$NorthWall.texture = north_wall_no_door
+					$NorthWallTop.visible = false
 					
 					$NorthDoor.visible = false
 					$NorthDoorLight.visible = false
