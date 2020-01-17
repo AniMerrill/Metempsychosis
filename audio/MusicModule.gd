@@ -52,15 +52,8 @@ func _on_Button3_pressed():
 	
 	_fadeout_above_layer("LevelTheme", 6, 0)
 
-func _fadein_range(song:String, track:int, last_track:int):
-	for i in range(track, last_track + 1):
-		mdm.fade_in(song, i)
-
-func _fadeout_range(song:String, track:int, last_track:int):
-	for i in range(track, last_track + 1):
-		mdm.fade_out(song, i)
-		
 #custom functions
+#fade functions. Requires song name (node name), min, and max. Range is inclusive
 #fade in above track up until last_track
 func _fadein_above_layer(song:String, track:int, last_track:int):
 	for i in range(last_track, track + 1):
