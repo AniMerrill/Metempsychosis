@@ -188,3 +188,6 @@ func player_walk_to(target_position):
 
 func set_final_door_east():
 	room.set_final_door_east()
+	
+func set_final_door_west():
+	room.set_final_door_west()

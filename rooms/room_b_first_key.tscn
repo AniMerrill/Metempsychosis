@@ -8,13 +8,15 @@ vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
-[node name="final_room" type="Node2D"]
+[node name="room_b_first_key" type="Node2D"]
 
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
-east_door = 4
-east_target = "room_b_final_door"
-west_door = 4
-west_target = "room_a_final_door"
+east_door = 3
+east_target = "room_b_000"
+north_door = 3
+north_target = "room_b_final_door"
+west_door = 3
+west_target = "room_b_dropbox"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )

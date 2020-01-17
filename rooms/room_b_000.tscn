@@ -16,7 +16,7 @@ script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 west_door = 4
-west_target = "room_b_dropbox"
+west_target = "room_b_first_key"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
