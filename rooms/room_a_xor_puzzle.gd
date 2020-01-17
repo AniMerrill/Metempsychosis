@@ -6,8 +6,8 @@ onready var player = $GenericRoom/ControllablePlayer
 
 func _ready():
 	if GameState.get_state(GameState.STATE.XOR_ROOM_SWITCHED):
-		room.east_door = room.DOOR_STATUS.CLOSED_DOOR
-		room.west_door = room.DOOR_STATUS.LOCKED_DOOR
+		room.north_door = room.DOOR_STATUS.CLOSED_DOOR
+		room.south_door = room.DOOR_STATUS.LOCKED_DOOR
 	room.connect("object_clicked", self, "_on_object_clicked")
 
 func _on_object_clicked(node):
