@@ -66,6 +66,15 @@ func _set_south_door_target(value : String) -> void:
 
 func _set_final_door(direction : int):
 	pass
+	
+	
+
+# Just before exiting
+const exit_door_pos = [Vector2(435, 270), Vector2(240, 180), Vector2(42, 270), Vector2(230, 340)]
+# Outside the room
+const exit_room_pos = [Vector2(500, 270), Vector2(240, 120), Vector2(-42, 270), Vector2(230, 400)]
+# Just after entering
+const enter_door_pos = [Vector2(405, 275), Vector2(240, 210), Vector2(72, 275), Vector2(230, 310)]
 
 func _ready():
 	if not room:
@@ -75,6 +84,8 @@ func _ready():
 	_update_doors()
 	refresh_objects()
 	current_name_label.text = self.get_parent().name if self.get_parent() else "----"
+	player.position = exit_door_pos[GameState.entering_from_direction]
+	player.path = [exit_door_pos[GameState.entering_from_direction], enter_door_pos[GameState.entering_from_direction]]
 	
 
 func _update_doors():
@@ -88,7 +99,9 @@ func _update_doors():
 		if status == DOOR_STATUS.NO_DOOR:
 			doors.append(null)
 		else:
-			doors.append(room.Door.new(status == DOOR_STATUS.LOCKED_DOOR))
+			var opened = GameState.entering_from_direction == door_index
+			var locked = status == DOOR_STATUS.LOCKED_DOOR
+			doors.append(room.Door.new(locked, opened))
 			var area = door_areas.get_child(door_index)
 			if not area.is_connected("mouse_entered", self, "_on_mouse_entered"):
 				area.connect("mouse_entered", self, "_on_mouse_entered", [area])
@@ -149,8 +162,6 @@ func _handle_object_click(node):
 		_:
 			emit_signal("object_clicked", node)
 
-const exit_door_pos = [Vector2(435, 270), Vector2(240, 180), Vector2(42,270), Vector2(230, 340)]
-
 const direction_names = ["east", "north", "west", "south"]
 
 func _handle_door_click(direction):
@@ -159,9 +170,10 @@ func _handle_door_click(direction):
 		player_walk_to(exit_door_pos[direction])
 		GameState.interaction_is_frozen = true
 		yield(player, "position_reached")
+		player.path = [exit_door_pos[direction], exit_room_pos[direction]]
 		var target_scene = 'rooms/' + door_targets[direction] + '.tscn'
-		print(target_scene)
-		SceneTransition.change_scene(target_scene)
+		GameState.entering_from_direction = (direction + 2) % 4  # Yay.
+		SceneTransition.change_scene_fast(target_scene)
 	else:
 		door.opened = true
 

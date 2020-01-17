@@ -15,10 +15,6 @@ must be done through this module.
 
 Additionally, this module ensures that the game preserves whether the player
 is playing as player A or B (also when the game is closed in-between).
-
-TODO(ereborn): Add simple XOR encryption to avoid obvious tweaking of the
-  exported state.
-TODO(ereborn): Add one char serving as integrity check.
 """
 extends Node
 
@@ -89,8 +85,14 @@ var _my_player : int = PLAYER.INVALID_PLAYER
 var _my_last_output_code := '(no code)'
 
 
-# Whether the player can start a new interaction or not. Volatile state.
+## Volatile states:
+
+# Whether the player can start a new interaction or not.
 var interaction_is_frozen := false
+
+# From which direction the player enters the room.
+var entering_from_direction : int = 0
+
 
 # Get the current player.
 func current_player() -> int:

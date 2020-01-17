@@ -1,15 +1,33 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://graphics/room/Room.gd" type="Script" id=1]
 [ext_resource path="res://graphics/room/floor.png" type="Texture" id=2]
 [ext_resource path="res://graphics/room/back_door.png" type="Texture" id=3]
-[ext_resource path="res://graphics/room/back_wall_door.png" type="Texture" id=4]
-[ext_resource path="res://graphics/room/door_light.png" type="Texture" id=5]
-[ext_resource path="res://graphics/room/side_wall_door_b.png" type="Texture" id=6]
-[ext_resource path="res://graphics/room/side_door.png" type="Texture" id=7]
-[ext_resource path="res://graphics/room/side_wall_door_a.png" type="Texture" id=8]
-[ext_resource path="res://graphics/room/side_wall_no_door.png" type="Texture" id=9]
-[ext_resource path="res://graphics/room/front_door_frame.png" type="Texture" id=10]
+[ext_resource path="res://graphics/room/back_wall_no_door.png" type="Texture" id=4]
+[ext_resource path="res://graphics/room/back_wall_door_top.png" type="Texture" id=5]
+[ext_resource path="res://graphics/room/door_light.png" type="Texture" id=6]
+[ext_resource path="res://graphics/room/side_wall_door_b.png" type="Texture" id=7]
+[ext_resource path="res://graphics/room/side_door.png" type="Texture" id=8]
+[ext_resource path="res://graphics/room/side_wall_door_a.png" type="Texture" id=9]
+[ext_resource path="res://graphics/room/side_wall_no_door.png" type="Texture" id=10]
+[ext_resource path="res://graphics/room/front_door_frame.png" type="Texture" id=11]
+
+[sub_resource type="Animation" id=21]
+resource_name = "DoorOpened"
+length = 0.05
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Open"
@@ -28,146 +46,10 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Locked"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 2 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "Locked_Warning"
-length = 0.85
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "Opened"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 6, 5 ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "Opened_Warning"
-length = 0.85
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "Locked"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 2 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "Locked_Warning"
-length = 0.85
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "Opened"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 6, 5 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "Opened_Warning"
-length = 0.85
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
-}
-
 [sub_resource type="Animation" id=2]
-resource_name = "Open"
-length = 0.4
-step = 0.04
+resource_name = "Locked"
+length = 1.2
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -175,14 +57,149 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+"values": [ 1, 2, 3, 2 ]
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "Open"
+resource_name = "Locked_Warning"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Opened"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Opened_Warning"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Locked"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Locked_Warning"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Opened"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Opened_Warning"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "DoorOpened"
+length = 0.1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=10]
 length = 0.4
 step = 0.04
 tracks/0/type = "value"
@@ -198,7 +215,40 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=23]
+resource_name = "DoorOpened"
+length = 0.1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.4
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=12]
 resource_name = "Locked"
 length = 1.2
 loop = true
@@ -213,26 +263,26 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Locked_Warning"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
 }
 
 [sub_resource type="Animation" id=14]
-resource_name = "Locked_Warning"
-length = 0.85
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
-}
-
-[sub_resource type="Animation" id=15]
 resource_name = "Opened"
 length = 1.2
 loop = true
@@ -249,7 +299,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 5 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=15]
 resource_name = "Opened_Warning"
 length = 0.85
 step = 0.05
@@ -266,7 +316,7 @@ tracks/0/keys = {
 "values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=16]
 resource_name = "Locked"
 length = 1.2
 loop = true
@@ -283,7 +333,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 2 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=17]
 resource_name = "Locked_Warning"
 length = 0.85
 step = 0.05
@@ -300,7 +350,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=18]
 resource_name = "Opened"
 length = 1.2
 loop = true
@@ -317,7 +367,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 5 ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=19]
 resource_name = "Opened_Warning"
 length = 0.85
 step = 0.05
@@ -334,8 +384,24 @@ tracks/0/keys = {
 "values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Open"
+[sub_resource type="Animation" id=24]
+resource_name = "DoorOpened"
+length = 0.1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=20]
 length = 0.4
 step = 0.04
 tracks/0/type = "value"
@@ -367,6 +433,7 @@ __meta__ = {
 
 [node name="NorthDoor" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 236, 106 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -376,6 +443,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NorthDoor"]
+anims/DoorOpened = SubResource( 21 )
 anims/Open = SubResource( 1 )
 
 [node name="NorthWall" type="Sprite" parent="."]
@@ -385,24 +453,36 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="NorthWallTop" type="Sprite" parent="."]
+visible = false
+position = Vector2( 240, 95 )
+z_index = 1000
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="NorthDoorLight" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 295, 23 )
-texture = ExtResource( 5 )
+z_index = 1000
+texture = ExtResource( 6 )
 hframes = 7
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NorthDoorLight"]
-anims/Locked = SubResource( 5 )
-anims/Locked_Warning = SubResource( 6 )
-anims/Opened = SubResource( 7 )
-anims/Opened_Warning = SubResource( 8 )
+anims/Locked = SubResource( 2 )
+anims/Locked_Warning = SubResource( 3 )
+anims/Opened = SubResource( 4 )
+anims/Opened_Warning = SubResource( 5 )
 
 [node name="WestWallDoorB" type="Sprite" parent="."]
+visible = false
 position = Vector2( 44, 0 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
@@ -410,22 +490,24 @@ __meta__ = {
 
 [node name="WestDoorLight" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 66, 88 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 hframes = 7
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WestDoorLight"]
-anims/Locked = SubResource( 9 )
-anims/Locked_Warning = SubResource( 10 )
-anims/Opened = SubResource( 11 )
-anims/Opened_Warning = SubResource( 12 )
+anims/Locked = SubResource( 6 )
+anims/Locked_Warning = SubResource( 7 )
+anims/Opened = SubResource( 8 )
+anims/Opened_Warning = SubResource( 9 )
 
 [node name="EastWallDoorB" type="Sprite" parent="."]
+visible = false
 position = Vector2( 400, 0 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 centered = false
 flip_h = true
 __meta__ = {
@@ -434,20 +516,23 @@ __meta__ = {
 
 [node name="WestDoor" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 44, 205 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 hframes = 10
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WestDoor"]
-anims/Open = SubResource( 2 )
+anims/DoorOpened = SubResource( 22 )
+anims/Open = SubResource( 10 )
 
 [node name="EastDoor" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 436, 205 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 flip_h = true
 hframes = 10
 __meta__ = {
@@ -455,18 +540,23 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EastDoor"]
-anims/Open = SubResource( 3 )
+anims/DoorOpened = SubResource( 23 )
+anims/Open = SubResource( 11 )
 
 [node name="WestWallDoorA" type="Sprite" parent="."]
-texture = ExtResource( 8 )
+visible = false
+z_index = 1000
+texture = ExtResource( 9 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="EastWallDoorA" type="Sprite" parent="."]
+visible = false
 position = Vector2( 436, 0 )
-texture = ExtResource( 8 )
+z_index = 1000
+texture = ExtResource( 9 )
 centered = false
 flip_h = true
 __meta__ = {
@@ -475,31 +565,31 @@ __meta__ = {
 
 [node name="EastDoorLight" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 463, 166 )
-texture = ExtResource( 5 )
+z_index = 1001
+texture = ExtResource( 6 )
 hframes = 7
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EastDoorLight"]
-anims/Locked = SubResource( 13 )
-anims/Locked_Warning = SubResource( 14 )
-anims/Opened = SubResource( 15 )
-anims/Opened_Warning = SubResource( 16 )
+anims/Locked = SubResource( 12 )
+anims/Locked_Warning = SubResource( 13 )
+anims/Opened = SubResource( 14 )
+anims/Opened_Warning = SubResource( 15 )
 
 [node name="WestWallNoDoor" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 centered = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="EastWallNoDoor" type="Sprite" parent="."]
-visible = false
 position = Vector2( 400, 0 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 centered = false
 flip_h = true
 __meta__ = {
@@ -508,24 +598,28 @@ __meta__ = {
 
 [node name="SouthDoorLight" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 174, 275 )
-texture = ExtResource( 5 )
+z_index = 1000
+texture = ExtResource( 6 )
 hframes = 7
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SouthDoorLight"]
-anims/Locked = SubResource( 17 )
-anims/Locked_Warning = SubResource( 18 )
-anims/Opened = SubResource( 19 )
-anims/Opened_Warning = SubResource( 20 )
+anims/Locked = SubResource( 16 )
+anims/Locked_Warning = SubResource( 17 )
+anims/Opened = SubResource( 18 )
+anims/Opened_Warning = SubResource( 19 )
 
 [node name="SouthDoor" type="Sprite" parent="."]
 editor/display_folded = true
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 236, 361 )
+z_index = 1000
 texture = ExtResource( 3 )
 flip_h = true
 hframes = 10
@@ -534,12 +628,15 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SouthDoor"]
-anims/Open = SubResource( 4 )
+anims/DoorOpened = SubResource( 24 )
+anims/Open = SubResource( 20 )
 
 [node name="SouthDoorFrame" type="Sprite" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 235, 322 )
-texture = ExtResource( 10 )
+z_index = 1000
+texture = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
