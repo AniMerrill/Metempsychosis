@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://audio/SFX.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/scatter_cont.gd" type="Script" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://audio/audio_assets/ambience/machine_004.wav" type="AudioStream" id=6]
 [ext_resource path="res://audio/audio_assets/objects/door_slide_up.wav" type="AudioStream" id=7]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=8]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep-001.wav" type="AudioStream" id=9]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep-002.wav" type="AudioStream" id=10]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep-003.wav" type="AudioStream" id=11]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep-004.wav" type="AudioStream" id=12]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep-005.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/audio_assets/footsteps/footsep_1.ogg" type="AudioStream" id=9]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_2.ogg" type="AudioStream" id=10]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_3.ogg" type="AudioStream" id=11]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_4.ogg" type="AudioStream" id=12]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_5.ogg" type="AudioStream" id=13]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_6.ogg" type="AudioStream" id=14]
 
 [node name="SFX" type="Node"]
 script = ExtResource( 1 )
@@ -63,23 +64,32 @@ __meta__ = {
 
 [node name="Footstep1" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 9 )
+volume_db = 3.03
 bus = "SFX"
 
 [node name="Footstep2" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 10 )
+volume_db = 2.939
 bus = "SFX"
 
 [node name="Footstep3" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 11 )
-volume_db = -3.534
+volume_db = 4.039
 bus = "SFX"
 
 [node name="Footstep4" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 12 )
+volume_db = 5.553
 bus = "SFX"
 
 [node name="Footstep5" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource( 13 )
-volume_db = 7.093
+volume_db = -0.11
+pitch_scale = 0.9
+bus = "SFX"
+
+[node name="Footstep6" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource( 14 )
+volume_db = 10.122
 pitch_scale = 0.9
 bus = "SFX"
