@@ -6,6 +6,7 @@ onready var door_areas = $DoorAreas
 onready var player := $ControllablePlayer
 onready var room_map := $Navigation2D
 onready var map_objects := $Objects
+onready var current_name_label = $CurrentRoom/Label
 
 signal object_clicked(node)
 
@@ -73,6 +74,8 @@ func _ready():
 		GameState.interaction_is_frozen = false
 	_update_doors()
 	refresh_objects()
+	current_name_label.text = self.get_parent().name if self.get_parent() else "----"
+	
 
 func _update_doors():
 	if not room:
@@ -146,7 +149,7 @@ func _handle_object_click(node):
 		_:
 			emit_signal("object_clicked", node)
 
-const exit_door_pos = [Vector2(435, 270), Vector2(0,0), Vector2(42,270), Vector2(0,0)]
+const exit_door_pos = [Vector2(435, 270), Vector2(240, 180), Vector2(42,270), Vector2(230, 340)]
 
 const direction_names = ["east", "north", "west", "south"]
 
@@ -168,3 +171,7 @@ func player_walk_to(target_position):
 	var path = room_map.get_simple_path(player.position, target_position)
 	if path.size() > 0:
 		player.path = path
+
+
+func set_final_door_east():
+	room.set_final_door_east()
