@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/guard_noise.ogg-a68e44fdf042378dcd7b84795f3cfeb6.oggstr"
+
+[deps]
+
+source_file="res://audio/audio_assets/main_theme/guard_noise.ogg"
+dest_files=[ "res://.import/guard_noise.ogg-a68e44fdf042378dcd7b84795f3cfeb6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

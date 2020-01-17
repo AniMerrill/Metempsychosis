@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/explore_lead_2.ogg-7933fb035d5c6f38a71dfe833c31f9f7.oggstr"
+
+[deps]
+
+source_file="res://audio/audio_assets/main_theme/explore_lead_2.ogg"
+dest_files=[ "res://.import/explore_lead_2.ogg-7933fb035d5c6f38a71dfe833c31f9f7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
