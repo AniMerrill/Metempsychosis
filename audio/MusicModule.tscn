@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-play_mode = 4
+play_mode = 1
 
 [node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 4 )]
 transition_beats = 2.0
