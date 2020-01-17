@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://menus/puzzle_base.gd" type="Script" id=1]
+
+
+[node name="puzzle_base" type="Control"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="north" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -24.8
+margin_top = 37.34
+margin_right = 29.2
+margin_bottom = 138.34
+
+[node name="south" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -27.0
+margin_top = -147.33
+margin_right = 27.0
+margin_bottom = -46.33
+
+[node name="west" type="ColorRect" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 189.16
+margin_top = -29.6
+margin_right = 243.16
+margin_bottom = 71.4
+rect_rotation = 90.0
+
+[node name="east" type="ColorRect" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 400.88
+margin_top = -29.6
+margin_right = 454.88
+margin_bottom = 71.4
+rect_rotation = 90.0
