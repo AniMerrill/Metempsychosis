@@ -46,11 +46,14 @@ class Door:
 		
 		if locked:
 			light_anim.play("Locked")
+			
 		else:
 			light_anim.play("Opened")
+			
 	
 	func set_opened(value : bool) -> void:
 		if !processing:
+			SoundModule.play_sfx("DoorOpenWarning")
 			opened = value
 			processing = true
 			
@@ -76,6 +79,9 @@ class Door:
 			
 			elif not locked:
 				door_anim.play_backwards("Open")
+				
+				SoundModule.play_sfx("DoorSlideDown")
+				
 				sprite.visible = true
 			else:
 				processing = false

@@ -1,19 +1,19 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://audio/SFX.gd" type="Script" id=1]
+[ext_resource path="res://audio/SoundModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/scatter_cont.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/sound/snd_icon.png" type="Texture" id=3]
 [ext_resource path="res://audio/audio_assets/ambience/scifi_glit_fx_007.wav" type="AudioStream" id=4]
-[ext_resource path="res://addons/mixing-desk/sound/nonspatial/polysound.gd" type="Script" id=5]
-[ext_resource path="res://audio/audio_assets/ambience/machine_004.wav" type="AudioStream" id=6]
-[ext_resource path="res://audio/audio_assets/objects/door_slide_up.wav" type="AudioStream" id=7]
-[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=8]
-[ext_resource path="res://audio/audio_assets/footsteps/footsep_1.ogg" type="AudioStream" id=9]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep_2.ogg" type="AudioStream" id=10]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep_3.ogg" type="AudioStream" id=11]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep_4.ogg" type="AudioStream" id=12]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep_5.ogg" type="AudioStream" id=13]
-[ext_resource path="res://audio/audio_assets/footsteps/footstep_6.ogg" type="AudioStream" id=14]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=5]
+[ext_resource path="res://audio/audio_assets/objects/door_slide_up.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/audio_assets/objects/door_slide_down.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/audio_assets/footsteps/footsep_1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_2.ogg" type="AudioStream" id=9]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_3.ogg" type="AudioStream" id=10]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_4.ogg" type="AudioStream" id=11]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_5.ogg" type="AudioStream" id=12]
+[ext_resource path="res://audio/audio_assets/footsteps/footstep_6.ogg" type="AudioStream" id=13]
+[ext_resource path="res://audio/audio_assets/objects/door_open_warning.wav" type="AudioStream" id=14]
 
 [node name="SFX" type="Node"]
 script = ExtResource( 1 )
@@ -35,77 +35,103 @@ timeout = 12.91
 stream = ExtResource( 4 )
 volume_db = -26.518
 
-[node name="Machine" type="Node" parent="."]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-
-[node name="MachineSound" type="AudioStreamPlayer" parent="Machine"]
-stream = ExtResource( 6 )
-volume_db = -16.66
-
 [node name="DoorSlideUp" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="DoorUpSound" type="AudioStreamPlayer" parent="DoorSlideUp"]
-stream = ExtResource( 7 )
+stream = ExtResource( 6 )
 volume_db = -8.582
 pitch_scale = 0.8
 bus = "Doors"
 
 [node name="DoorUpSound2" type="AudioStreamPlayer" parent="DoorSlideUp"]
-stream = ExtResource( 7 )
+stream = ExtResource( 6 )
 volume_db = -8.582
 pitch_scale = 0.9
 bus = "Doors"
 
 [node name="DoorUpSound3" type="AudioStreamPlayer" parent="DoorSlideUp"]
+stream = ExtResource( 6 )
+volume_db = -8.582
+bus = "Doors"
+
+[node name="DoorSlideDown" type="Node" parent="."]
+editor/display_folded = true
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="DoorDownSound" type="AudioStreamPlayer" parent="DoorSlideDown"]
+stream = ExtResource( 7 )
+volume_db = -8.582
+pitch_scale = 0.8
+bus = "Doors"
+
+[node name="DoorDownSound2" type="AudioStreamPlayer" parent="DoorSlideDown"]
+stream = ExtResource( 7 )
+volume_db = -8.582
+pitch_scale = 0.9
+bus = "Doors"
+
+[node name="DoorDownSound3" type="AudioStreamPlayer" parent="DoorSlideDown"]
 stream = ExtResource( 7 )
 volume_db = -8.582
 bus = "Doors"
 
 [node name="Footsteps" type="Node" parent="."]
-script = ExtResource( 8 )
+editor/display_folded = true
+script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="Footstep1" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource( 9 )
+stream = ExtResource( 8 )
 volume_db = 12.893
 pitch_scale = 1.1
 bus = "Footsteps"
 
 [node name="Footstep2" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource( 10 )
+stream = ExtResource( 9 )
 volume_db = 7.988
 pitch_scale = 1.1
 bus = "Footsteps"
 
 [node name="Footstep3" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource( 11 )
+stream = ExtResource( 10 )
 volume_db = 7.573
 pitch_scale = 1.1
 bus = "Footsteps"
 
 [node name="Footstep4" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource( 12 )
+stream = ExtResource( 11 )
 volume_db = 12.116
 pitch_scale = 1.1
 bus = "Footsteps"
 
 [node name="Footstep5" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 volume_db = 9.482
 pitch_scale = 1.1
 bus = "Footsteps"
 
 [node name="Footstep6" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource( 14 )
+stream = ExtResource( 13 )
 volume_db = 13.151
 pitch_scale = 1.1
 bus = "Footsteps"
+
+[node name="DoorOpenWarning" type="Node" parent="."]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="DoorWarningSound" type="AudioStreamPlayer" parent="DoorOpenWarning"]
+stream = ExtResource( 14 )
+bus = "Doors"
