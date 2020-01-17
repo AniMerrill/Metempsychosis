@@ -20,7 +20,8 @@ func _ready():
 	#electronic theme
 	mdm.init_song("LevelTheme")
 	mdm.play("LevelTheme")
-	mdm.mute_below_layer("LevelTheme", 8)
+	# NOTE: I had to comment this out to run the game, AniMerrill
+	#mdm.mute_below_layer("LevelTheme", 8)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

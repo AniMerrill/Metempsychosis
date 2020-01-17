@@ -12,7 +12,11 @@ extends Node2D
 ## current_hair
 ## current_hat
 ## current_face
-onready var rig := $PlayerARig
+#onready var rig := $PlayerRig
+
+export var Player_A : bool = true
+
+var rig
 
 var velocity := Vector2.ZERO
 var speed := 100
@@ -20,6 +24,13 @@ var speed := 100
 var look_position := Vector2.ZERO
 
 func _ready():
+	if Player_A:
+		rig = load("res://graphics/player_a/PlayerARig.tscn").instance()
+	else:
+		rig = load("res://graphics/player_b/PlayerBRig.tscn").instance()
+	
+	add_child(rig)
+	
 	rig.look_position = Vector2(200,200)
 	
 	var ignore
@@ -107,7 +118,7 @@ func _process(delta):
 	
 	position += velocity * delta
 	
-	#rig.look_position = look_position
+	rig.look_position = look_position
 
 func set_tool(new_tool : int) -> void:
 	rig.current_tool = new_tool
