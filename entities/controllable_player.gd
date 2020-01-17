@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var rig = $PlayerARig
+var rig
 
 var path : PoolVector2Array setget set_path
 var move_speed := 200
@@ -11,6 +11,8 @@ signal position_reached
 
 func _ready():
 	set_process(false)
+	rig = $PlayerARig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerBRig
+	rig.visible = true
 
 func set_path(value : PoolVector2Array) -> void:
 	path = value
