@@ -63,6 +63,9 @@ func _set_south_door_target(value : String) -> void:
 	south_target = value
 	door_targets[3] = value
 
+func _set_final_door(direction : int):
+	pass
+
 func _ready():
 	if not room:
 		return
@@ -149,7 +152,7 @@ const direction_names = ["east", "north", "west", "south"]
 
 func _handle_door_click(direction):
 	var door = room.doors[direction]
-	if door.opened and not GameState.interaction_is_frozen:
+	if door.opened and not door.locked:
 		player_walk_to(exit_door_pos[direction])
 		GameState.interaction_is_frozen = true
 		yield(player, "position_reached")
@@ -158,9 +161,6 @@ func _handle_door_click(direction):
 		SceneTransition.change_scene(target_scene)
 	else:
 		door.opened = true
-		GameState.interaction_is_frozen = true
-		yield(door, "action_finished")
-		GameState.interaction_is_frozen = false
 
 func player_walk_to(target_position):
 	if GameState.interaction_is_frozen:
