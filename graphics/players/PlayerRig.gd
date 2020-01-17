@@ -90,6 +90,9 @@ func set_facing_right(value : bool) -> void:
 		scale.x = -1
 
 func set_walking(value : bool) -> void:
+	if walking and not value:
+		play_footstep()
+	
 	walking = value
 	
 	set_anim_states()

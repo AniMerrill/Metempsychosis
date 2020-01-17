@@ -24,7 +24,7 @@ Test_Directory="res://tests"
 
 [application]
 
-config/name="Godot Wild Jam 17"
+config/name="Metempsychosis"
 run/main_scene="res://menus/GameplayDemo.tscn"
 config/icon="res://icon.png"
 
@@ -42,8 +42,6 @@ RoomUtil="*res://rooms/room_util.gd"
 
 window/size/width=480
 window/size/height=360
-window/size/test_width=480
-window/size/test_height=360
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
