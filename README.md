@@ -16,9 +16,10 @@ This is our entry for the Godot Wild Jam #17! More to come soon!
 
 * https://benjaminking-91.itch.io
 
-### Aang's Real Name lol
+### Thijs Engel
 
-* ...
+* http://www.thijsengel.com/
+* https://thijsengel.itch.io
 
 ### Ereborn
 
