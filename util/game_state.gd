@@ -91,7 +91,8 @@ var _my_last_output_code := '(no code)'
 var interaction_is_frozen := false
 
 # From which direction the player enters the room.
-var entering_from_direction : int = 0
+# Negative number leaves the player alone.
+var entering_from_direction : int = -1
 
 
 # Get the current player.

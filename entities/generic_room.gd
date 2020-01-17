@@ -84,8 +84,9 @@ func _ready():
 	_update_doors()
 	refresh_objects()
 	current_name_label.text = self.get_parent().name if self.get_parent() else "----"
-	player.position = exit_door_pos[GameState.entering_from_direction]
-	player.path = [exit_door_pos[GameState.entering_from_direction], enter_door_pos[GameState.entering_from_direction]]
+	if GameState.entering_from_direction >= 0:
+		player.position = exit_door_pos[GameState.entering_from_direction]
+		player.path = [exit_door_pos[GameState.entering_from_direction], enter_door_pos[GameState.entering_from_direction]]
 	
 
 func _update_doors():
