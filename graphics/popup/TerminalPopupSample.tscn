@@ -13,6 +13,7 @@
 [node name="Emails" parent="Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="0" instance=ExtResource( 2 )]
 editor/display_folded = true
 visible = false
+title = "[Emails]"
 submenu = true
 
 [node name="LoremIpsum" parent="Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options/Emails/Options" index="0" instance=ExtResource( 3 )]
@@ -50,6 +51,7 @@ submenu = true
 [node name="Logs" parent="Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="1" instance=ExtResource( 2 )]
 editor/display_folded = true
 visible = false
+title = "[Logs]"
 submenu = true
 
 [node name="LoremIpsum" parent="Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options/Logs/Options" index="0" instance=ExtResource( 3 )]

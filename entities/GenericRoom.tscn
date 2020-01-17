@@ -32,8 +32,17 @@ polygon = PoolVector2Array( 32.193, 309.766, 32.193, 161.019, 54.5399, 103.057, 
 [node name="South" type="Area2D" parent="DoorAreas"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorAreas/South"]
-visible = false
 polygon = PoolVector2Array( 198.398, 360.046, 197.699, 279.737, 271.723, 281.134, 273.12, 359.348 )
 
 [node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 171.791, 4.88837 )
+
+[node name="CurrentRoom" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="CurrentRoom"]
+margin_left = 171.791
+margin_top = 25.1402
+margin_right = 287.791
+margin_bottom = 39.1402
+text = "Current Room: ----"
+align = 1
