@@ -40,25 +40,45 @@ func _on_Button2_pressed():
 #	current_song = "Exploration"
 #	print("queue game over")
 	_fadein_above_layer("LevelTheme", 6, 0)
+	
+	_fadeout_below_layer("LevelTheme", 9, 11)
 
 #Back to main loop
 func _on_Button3_pressed():
 #	mdm.queue_bar_transition("Exploration")
 #	current_song = "Exploration"
 #	print("queue exploration")
-	_fadein_below_layer("LevelTheme", 9, 2) 
+	_fadein_below_layer("LevelTheme", 9, 11) 
 	
-	print("sfddsf")
-	mdm.get_node("LevelTheme").get_child_count()
+	_fadeout_above_layer("LevelTheme", 6, 0)
 
-
-#custom functions
-#fade below track up until last_track
-func _fadein_below_layer(song:String, track:int, last_track:int):
-	for i in range(track + last_track):
+func _fadein_range(song:String, track:int, last_track:int):
+	for i in range(track, last_track + 1):
 		mdm.fade_in(song, i)
+
+func _fadeout_range(song:String, track:int, last_track:int):
+	for i in range(track, last_track + 1):
+		mdm.fade_out(song, i)
 		
-#fade above layer x
+#custom functions
+#fade in above track up until last_track
 func _fadein_above_layer(song:String, track:int, last_track:int):
-	for i in range(last_track + track):
+	for i in range(last_track, track + 1):
 		mdm.fade_in(song, i)
+		print(i)
+		
+#fade out above track up until last_track
+func _fadeout_above_layer(song:String, track:int, last_track:int):
+	for i in range(last_track, track + 1):
+		mdm.fade_out(song, i)
+		print(i)
+#fade in below track up until last_track
+func _fadein_below_layer(song:String, track:int, last_track:int):
+	for i in range(track, last_track + 1):
+		mdm.fade_in(song, i)
+		print(i)
+#fade out below track up until last_track
+func _fadeout_below_layer(song:String, track:int, last_track:int):
+	for i in range(track, last_track + 1):
+		mdm.fade_out(song, i)
+		print(i)
