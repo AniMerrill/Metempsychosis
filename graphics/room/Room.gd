@@ -66,12 +66,13 @@ class Door:
 				opened = false
 			else:
 				light_anim.play("Opened")
-			
+				SoundModule.play_sfx("DoorSlideUp")
+				
 			if opened:
 				door_anim.play("Open")
 				
-				#!!invalid syntax
-				#AudioModule.sfx.DoorSlideUp.play()
+				
+				SoundModule.play_sfx("DoorSlideUp")
 			
 			elif not locked:
 				door_anim.play_backwards("Open")
@@ -214,3 +215,7 @@ func initialize_room() -> void:
 
 func set_final_door_east():
 	$EastDoor.texture = load("res://graphics/room/blue_side_door.png")
+	
+
+func play_sound_door_open() -> void:
+	SoundModule.play_sfx("DoorSlideUp")

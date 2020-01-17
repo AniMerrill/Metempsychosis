@@ -286,4 +286,4 @@ func blink_timer() -> void:
 	anim_tree["parameters/Blink/active"] = true
 
 func play_footstep() -> void:
-	$"/root/SoundModule".play_sfx("Footsteps")
+	SoundModule.play_sfx("Footsteps")
