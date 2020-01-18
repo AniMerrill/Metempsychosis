@@ -5,6 +5,10 @@ extends Node
 
 onready var mdm = $MixingDeskMusic
 
+onready var FilterTween = $FilterTween
+
+onready var LPF = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+
 var current_song = "none"
 
 var state = "init"
@@ -21,6 +25,8 @@ func _ready():
 	mdm.init_song("LevelTheme")
 	mdm.start_alone("LevelTheme", 8)
 	mdm.toggle_mute("LevelTheme", 7)
+	
+	#init tween
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -67,6 +73,7 @@ func state_changed(state:String):
 
 func _turn_on_filter():
 	_fadein_above_layer("LevelTheme", 6, 0)
+	_interpolate_filter_cutoff(null, 300, 1.5)
 	current_song = "puzzle"
 	
 func _fade_guard_layers():
@@ -79,6 +86,8 @@ func _fade_guard_layers():
 func _fade_explore_layers():
 	_fadeout_above_layer("LevelTheme", 6, 0)
 	_fadeout_below_layer("LevelTheme",9, 11)
+	
+	_interpolate_filter_cutoff(null, 20000, 1.5)
 	
 	current_song = "explore"
 
@@ -103,3 +112,7 @@ func _fadein_below_layer(song:String, track:int, last_track:int):
 func _fadeout_below_layer(song:String, track:int, last_track:int):
 	for i in range(track, last_track + 1):
 		mdm.fade_out(song, i)
+
+func _interpolate_filter_cutoff(start_value, target_value:float, transition_time:float):
+	FilterTween.interpolate_property(LPF, "cutoff_hz", start_value, target_value, transition_time, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	FilterTween.start()
