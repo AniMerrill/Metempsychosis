@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/guard_layers.ogg-8ee7572761af12971167ca19e58b09d1.oggstr"
+
+[deps]
+
+source_file="res://audio/audio_assets/main_theme/guard_layers.ogg"
+dest_files=[ "res://.import/guard_layers.ogg-8ee7572761af12971167ca19e58b09d1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

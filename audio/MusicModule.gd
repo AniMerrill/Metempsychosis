@@ -25,15 +25,14 @@ func _ready():
 	
 	#electronic theme
 	mdm.init_song("LevelTheme")
-	mdm.start_alone("LevelTheme", 8)
-	mdm.toggle_mute("LevelTheme", 7)
+	mdm.start_alone("LevelTheme", 1)
 	
 	#init tween
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
+	
 #buttons for debug
 
 #guard appears
@@ -67,21 +66,25 @@ func _on_Button3_pressed():
 	
 func state_changed(state:String):
 	if state == "puzzle":
-		_fadein_above_layer("LevelTheme", 6, 0)
-		_interpolate_filter_cutoff(null, 300, 1.5)
+		_interpolate_filter_cutoff(null, 1000, 1.5)
 		current_state = "puzzle"
+		print("Music state: " + current_state)
 		
 	elif state == "guard":
-		_fadein_below_layer("LevelTheme", 9, 11) 
-		_fadeout_above_layer("LevelTheme", 6, 0)
+		#fades in the guard layer
+		mdm.fade_in("LevelTheme", 2)
+		mdm.fade_out("LevelTheme", 0)
+		_interpolate_filter_cutoff(null, 20000, 1.5)
 		current_state = "guard"
+		print("Music state: " + current_state)
 		
 	elif state == "explore":
-		#fades out everything except bass pad
-		_fadeout_above_layer("LevelTheme", 6, 0)
-		_fadeout_below_layer("LevelTheme",9, 11)
+		#fades in explore layer
+		mdm.fade_in("LevelTheme", 0)
+		mdm.fade_out("LevelTheme", 2)
 		_interpolate_filter_cutoff(null, 20000, 1.5)
 		current_state = "explore"
+		print("Music state: " + current_state)
 
 #custom functions
 #fade functions. Requires song name (node name), min, and max. Range is inclusive
