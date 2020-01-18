@@ -11,7 +11,8 @@ var blink : bool = false
 
 var parent_menu = null
 
-signal solved
+signal solved()
+signal number_pressed(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +42,7 @@ func _ready():
 	$Code.bbcode_text += "[/center]"
 
 func number_pressed(value : int) -> void:
+	emit_signal("number_pressed", value)
 	if code.length() < code_length:
 		code = str(value) + code
 		blink = false
@@ -65,6 +67,9 @@ func x_pressed() -> void:
 	if parent_menu != null:
 		visible = false
 		parent_menu.set_visibility(true)
+	else:
+		code = ""
+		set_code_text()
 
 func set_blink() -> void:
 	blink = !blink

@@ -34,16 +34,20 @@ navpoly = SubResource( 1 )
 
 [node name="Jungle" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 135, 85 )
+biome = "jungle"
 
 [node name="Sky" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-position = Vector2( 241.757, 85 )
+position = Vector2( 350.631, 84.5367 )
 biome = "sky"
 
 [node name="Sea" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-position = Vector2( 350, 85 )
+position = Vector2( 242.843, 84.8002 )
 biome = "sea"
 
 [node name="Popup" parent="." instance=ExtResource( 5 )]
+
+[node name="Popup" parent="Popup" index="0"]
+visible = false
 
 [node name="JunglePopup" type="TextureRect" parent="Popup/Popup/Content" index="0"]
 margin_right = 40.0
