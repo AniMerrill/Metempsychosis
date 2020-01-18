@@ -35,6 +35,7 @@ navpoly = SubResource( 1 )
 
 [node name="Pod" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 120, 300 )
+for_player_b = false
 
 [node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
 position = Vector2( 334, 195 )
