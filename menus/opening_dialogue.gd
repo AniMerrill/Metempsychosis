@@ -3,25 +3,18 @@ extends Node2D
 func _ready():
 	
 	var messages = [
-"""Incoming alert. The following species has been annihilated: {Human|Martian}.
-
-(Click or tap to continue.)""",
-
-"""Activating Second Chance module for species: {humans|martians}.""",
-
-"""Determining perpetrator responsible for species annihilations.
-...
-Determined: the {Martian|Human} species.""",
-
-"""Determining {human|martian} weakness that caused annihilations.
-...
-Determined: {Failure to communicate|Failure to communicate}.""",
-
+"""Incoming alert. The following species has been annihilated: {Plutonian|Neptonian}.""",
+"""Activating Second Chance module for species: {Plutonians|Neptonians}.""",
+"""Determining perpetrator responsible for species annihilations.""",
+"""Determined: the {Neptonian|Plutonian} species.""",
+"""Determining {Plutonian|Neptonian} weakness that caused annihilations.""",
+"""Determined: {Failure to communicate|Failure to communicate}.""",
 """Releasing Second Chance representative {#1|#2}."""
 		]
 	MessageDisplay.display(convert_messages(messages))
 	yield(MessageDisplay, "messages_finished")
-	SceneTransition.change_scene('menus/AwaitTurn.tscn', 'Second Chance Release Chambers', 2.0)
+	GameState.has_seen_introduction = true
+	RoomUtil.load_first_room()
 
 func convert_messages(messages):
 	var result = []

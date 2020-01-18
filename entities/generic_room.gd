@@ -129,14 +129,13 @@ func _process(delta):
 
 var _is_object_click = false
 func _on_input_event(a, event, c, node):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and not GameState.interaction_is_frozen:
 		_is_object_click = true
 		_handle_object_click(node)
 
 
 func _unhandled_input(event):
-	yield(get_tree(), "idle_frame")
-#	yield(get_tree().create_timer(0.01), "timeout")
+	yield(get_tree(), "idle_frame")  ## To update _is_object_click if needed.
 	if _is_object_click:
 		_is_object_click = false
 		return

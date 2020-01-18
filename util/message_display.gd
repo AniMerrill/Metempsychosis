@@ -15,9 +15,9 @@ NOTE: The symbols '{', '|' and '}' can exclusively be used for this purpose.
 extends CanvasLayer
 
 onready var container = $Container
-onready var avatar_sprite = $Container/MessageBox/AvatarContainer/Sprite
-onready var avatar_label = $Container/MessageBox/AvatarContainer/LabelBG/AvatarLabel
-onready var message_label = $Container/MessageBox/MessageContainer/MessageLabel
+onready var avatar_sprite = $Container/Overlay/AvatarBG/Sprite
+onready var avatar_label = $Container/Overlay/AvatarLabel
+onready var message_label = $Container/Overlay/MessageContainer/MessageLabel
 
 signal messages_finished
 

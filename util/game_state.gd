@@ -105,6 +105,9 @@ var interaction_is_frozen := false
 # Negative number leaves the player alone.
 var entering_from_direction : int = -1
 
+var has_seen_introduction := false
+var has_seen_in_room_intro := false
+
 
 # Get the current player.
 func current_player() -> int:

@@ -1,22 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=1]
-[ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rooms/room_a_biome_panel.gd" type="Script" id=1]
+[ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://rooms/objects/Terminal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/Popup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/popup/terminal/TerminalBase.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/popup/terminal/screens/NumpadScreen.tscn" type="PackedScene" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
+vertices = PoolVector2Array( 385, 215, 435, 360, 45, 360, 310, 215, 95, 195, 307.07, 195 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 307.07, 195, 310, 215, 385, 215, 435, 360 ) ]
 
 [node name="room_a_biome_panel" type="Node2D"]
+script = ExtResource( 1 )
 
-[node name="GenericRoom" parent="." instance=ExtResource( 1 )]
-north_door = 3
+[node name="GenericRoom" parent="." instance=ExtResource( 2 )]
+north_door = 4
 north_target = "room_a_biome_key"
 south_door = 3
 south_target = "room_a_002"
 
-[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
+[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
 z_index = 274
 
@@ -26,3 +32,18 @@ z_index = 274
 navpoly = SubResource( 1 )
 
 [node name="Objects" type="Node2D" parent="GenericRoom"]
+
+[node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
+position = Vector2( 340, 200 )
+
+[node name="Popup" parent="." instance=ExtResource( 5 )]
+
+[node name="TerminalBase" parent="Popup/Popup/Content" index="0" instance=ExtResource( 6 )]
+
+[node name="NumpadScreen" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 7 )]
+solution = "451"
+code_length = 3
+
+[editable path="Popup"]
+
+[editable path="Popup/Popup/Content/TerminalBase"]
