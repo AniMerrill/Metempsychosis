@@ -26,13 +26,19 @@ func _on_object_clicked(node):
 			GameState.interaction_is_frozen = false
 			MusicModule.state_changed("puzzle")
 		"Pod":
-			room.player_walk_to(pod.position)
-			GameState.interaction_is_frozen = true
-			yield(player, "position_reached")
-			GameState.set_state(GameState.STATE.PLAYER_A_IN_XOR_POD, false)
-			var code = GameState.serialize()
-			GameState.set_last_output_code(code)
-			SceneTransition.change_scene('menus/AwaitTurn.tscn')
+			Prompt.prompt("Go to sleep and end turn?", "Yes", "No")
+			Prompt.connect("responded", self, "_on_end_turn_responded")
+
+func _on_end_turn_responded(response):
+	Prompt.disconnect("responded", self, "_on_end_turn_responded")
+	if response:
+		room.player_walk_to(pod.position)
+		GameState.interaction_is_frozen = true
+		yield(player, "position_reached")
+		GameState.set_state(GameState.STATE.PLAYER_A_IN_XOR_POD, false)
+		var code = GameState.serialize()
+		GameState.set_last_output_code(code)
+		SceneTransition.change_scene('menus/AwaitTurn.tscn')
 
 func _on_solved():
 	GameState.set_state(GameState.STATE.POD_ROOMS_UNLOCKED, true)
