@@ -179,6 +179,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle0"]
 stream = ExtResource( 17 )
+bus = "SFX"
 
 [node name="SoundPuzzle1" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -189,6 +190,8 @@ autoplay = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle1"]
 stream = ExtResource( 18 )
+volume_db = 5.049
+bus = "SFX"
 
 [node name="SoundPuzzle2" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -199,6 +202,7 @@ autoplay = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle2"]
 stream = ExtResource( 19 )
+bus = "SFX"
 
 [node name="SoundPuzzle3" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -208,6 +212,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle3"]
 stream = ExtResource( 20 )
+bus = "SFX"
 
 [node name="SoundPuzzle4" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -217,6 +222,8 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle4"]
 stream = ExtResource( 21 )
+volume_db = 11.107
+bus = "SFX"
 
 [node name="SoundPuzzle5" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -226,6 +233,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle5"]
 stream = ExtResource( 22 )
+bus = "SFX"
 
 [node name="SoundPuzzle6" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -235,6 +243,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle6"]
 stream = ExtResource( 23 )
+bus = "SFX"
 
 [node name="SoundPuzzle7" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -244,6 +253,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle7"]
 stream = ExtResource( 24 )
+bus = "SFX"
 
 [node name="SoundPuzzle8" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -253,3 +263,15 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle8"]
 stream = ExtResource( 25 )
+bus = "SFX"
+
+[node name="SoundPuzzle9" type="Node" parent="."]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle9"]
+stream = ExtResource( 4 )
+volume_db = -32.065
+bus = "SFX"

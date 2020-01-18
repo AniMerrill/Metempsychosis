@@ -18,5 +18,7 @@ func _process(delta):
 		
 
 func play_sfx(sfxname:String):
-  if has_node(sfxname):
-     get_node(sfxname).play()
+	if has_node(sfxname):
+		get_node(sfxname).play()
+	else:
+		print("sound effect doesn't exist")

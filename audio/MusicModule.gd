@@ -39,7 +39,7 @@ func state_changed(state:String):
 		mdm.fade_out("LevelTheme", 0)
 		mdm.fade_out("LevelTheme", 2)
 	elif state == "puzzle":
-		_interpolate_filter_cutoff(null, 1000, 1.5)
+		_interpolate_filter_cutoff(null, 800, 1.5)
 		current_state = "puzzle"
 		print("Music state: " + current_state)
 		
