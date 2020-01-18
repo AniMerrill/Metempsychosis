@@ -37,6 +37,7 @@ MusicModule="*res://audio/MusicModule.tscn"
 SoundModule="*res://audio/SoundModule.tscn"
 JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 RoomUtil="*res://rooms/room_util.gd"
+Prompt="*res://menus/Prompt.tscn"
 
 [display]
 
