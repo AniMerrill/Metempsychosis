@@ -15,6 +15,7 @@ position = Vector2( 0, -29 )
 polygon = PoolVector2Array( -20, -30, -25, 30, 20, 30, 20, -35 )
 
 [node name="chair_open" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -29 )
 texture = ExtResource( 2 )
 

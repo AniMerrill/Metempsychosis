@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chair0000.png-1aa5a7ef42ec4fd401a6d499febeb958.stex"
+path="res://.import/data0001.png-1cb3e6dcc062406626d5e7a353b02964.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/room/objects/chair0000.png"
-dest_files=[ "res://.import/chair0000.png-1aa5a7ef42ec4fd401a6d499febeb958.stex" ]
+source_file="res://graphics/room/finale_room/data0001.png"
+dest_files=[ "res://.import/data0001.png-1cb3e6dcc062406626d5e7a353b02964.stex" ]
 
 [params]
 

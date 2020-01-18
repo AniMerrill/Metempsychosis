@@ -16,6 +16,7 @@ color = Color( 0.152941, 0.152941, 0.152941, 1 )
 [node name="Room" parent="." instance=ExtResource( 2 )]
 
 [node name="DoorAreas" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="East" type="Area2D" parent="DoorAreas"]
 
