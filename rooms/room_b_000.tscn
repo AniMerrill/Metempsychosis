@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://rooms/room_b_000.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/Table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://rooms/objects/SleepingPod.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/Popup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/popup/table_popup_bg.png" type="Texture" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 355, 240, 350, 310, 325, 295, 325, 275, 421.151, 314.299, 435, 360, 45, 360, 175, 295, 95, 195, 175, 275, 385, 195, 390, 240 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 1 ), PoolIntArray( 2, 1, 6, 7 ), PoolIntArray( 7, 6, 8, 9 ), PoolIntArray( 3, 9, 8, 10, 0 ), PoolIntArray( 0, 10, 11 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 390, 240, 355, 240, 350, 310, 421.151, 314.299, 435, 360 ), PoolVector2Array( 175, 275, 175, 295, 325, 295, 325, 275 ) ]
+vertices = PoolVector2Array( 385, 195, 395, 240, 300, 245, 275, 235, 270, 225, 420.273, 311.402, 435, 360, 45, 360, 315, 310, 210, 270, 150, 250, 95, 195, 150, 230, 170, 220, 215, 205 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 3, 2, 8, 7, 9 ), PoolIntArray( 10, 9, 7 ), PoolIntArray( 10, 7, 11, 12 ), PoolIntArray( 13, 12, 11 ), PoolIntArray( 14, 13, 11 ), PoolIntArray( 14, 11, 0 ), PoolIntArray( 14, 0, 4 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 395, 240, 300, 245, 315, 310, 420.273, 311.402, 435, 360 ), PoolVector2Array( 150, 230, 150, 250, 210, 270, 275, 235, 270, 225, 215, 205, 170, 220 ) ]
 
-[node name="empty_room" type="Node2D"]
+[node name="room_b_000" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
@@ -19,8 +21,8 @@ west_door = 4
 west_target = "room_b_first_key"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
-position = Vector2( 130.589, 274.447 )
-z_index = 274
+position = Vector2( 230, 260 )
+z_index = 260
 
 [node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
 
@@ -30,16 +32,17 @@ navpoly = SubResource( 1 )
 [node name="Objects" type="Node2D" parent="GenericRoom"]
 
 [node name="Table" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-position = Vector2( 255, 280 )
+position = Vector2( 197, 245 )
 
 [node name="Pod" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
-position = Vector2( 405, 260 )
+position = Vector2( 395, 300 )
+for_player_b = true
 
-[node name="Popup" type="Node2D" parent="."]
+[node name="Popup" parent="." instance=ExtResource( 6 )]
 
-[node name="Label" type="Label" parent="Popup"]
-margin_left = 155.0
-margin_top = 95.0
-margin_right = 233.0
-margin_bottom = 109.0
-text = "It says 3456"
+[node name="TextureRect" type="TextureRect" parent="Popup/Popup/Content" index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+
+[editable path="Popup"]

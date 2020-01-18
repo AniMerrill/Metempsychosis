@@ -39,14 +39,14 @@ position = Vector2( 110, 200 )
 
 [node name="Chair" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
 position = Vector2( 365, 200 )
+open = false
 
 [node name="Popup" parent="." instance=ExtResource( 6 )]
-visible = false
 
-[node name="TerminalBase" parent="Popup/Content" index="0" instance=ExtResource( 7 )]
+[node name="TerminalBase" parent="Popup/Popup/Content" index="0" instance=ExtResource( 7 )]
 
-[node name="puzzle_base" parent="Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 8 )]
+[node name="puzzle_base" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 8 )]
 
 [editable path="Popup"]
 
-[editable path="Popup/Content/TerminalBase"]
+[editable path="Popup/Popup/Content/TerminalBase"]

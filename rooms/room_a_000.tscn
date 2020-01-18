@@ -1,16 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://rooms/room_a_000.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/SleepingPod.tscn" type="PackedScene" id=4]
-[ext_resource path="res://rooms/objects/CodePad.tscn" type="PackedScene" id=5]
-[ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=6]
+[ext_resource path="res://rooms/objects/Terminal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/Popup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/popup/terminal/TerminalBase.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/popup/terminal/screens/NumpadScreen.tscn" type="PackedScene" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 340, 290, 435, 360, 45, 360, 125, 325, 385, 195, 340, 275, 95, 195, 200, 275, 125, 255, 75, 255, 200, 290, 55.7749, 324.443 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 0, 5 ), PoolIntArray( 6, 4, 5, 7, 8 ), PoolIntArray( 8, 9, 6 ), PoolIntArray( 3, 8, 7, 10 ), PoolIntArray( 2, 11, 3 ), PoolIntArray( 0, 3, 10 ) ]
-outlines = [ PoolVector2Array( 45, 360, 55.7749, 324.443, 125, 325, 125, 255, 75, 255, 95, 195, 385, 195, 435, 360 ), PoolVector2Array( 200, 275, 200, 290, 340, 290, 340, 275 ) ]
+vertices = PoolVector2Array( 165, 235, 80, 235, 95, 195, 300, 195, 315, 210, 435, 360, 45, 360, 60, 305, 160, 315, 385, 195, 365, 205 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 5, 8, 10 ), PoolIntArray( 4, 10, 8, 0 ) ]
+outlines = [ PoolVector2Array( 45, 360, 60, 305, 160, 315, 165, 235, 80, 235, 95, 195, 300, 195, 315, 210, 365, 205, 385, 195, 435, 360 ) ]
 
 [node name="room_a_000" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,62 +22,32 @@ east_door = 4
 east_target = "room_a_001"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
-position = Vector2( 130.589, 274.447 )
-z_index = 274
+position = Vector2( 287.791, 295 )
+z_index = 295
 
 [node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
-editor/display_folded = true
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
+position = Vector2( 5, 0 )
 navpoly = SubResource( 1 )
 
 [node name="Objects" type="Node2D" parent="GenericRoom"]
 
 [node name="Pod" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
+position = Vector2( 120, 300 )
 
-[node name="CodePad" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
-position = Vector2( 350, 108 )
+[node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
+position = Vector2( 334, 195 )
 
-[node name="Popup" type="Label" parent="."]
-margin_left = 98.589
-margin_top = 110.0
-margin_right = 162.589
-margin_bottom = 124.0
-text = "Text here."
+[node name="Popup" parent="." instance=ExtResource( 6 )]
 
-[node name="CodePadPopup" type="Node2D" parent="."]
+[node name="Popup" parent="Popup" index="0"]
+visible = false
 
-[node name="Label" type="Label" parent="CodePadPopup"]
-margin_left = 197.0
-margin_top = 15.0
-margin_right = 390.0
-margin_bottom = 29.0
-text = "Unlock all pod room doors:"
+[node name="TerminalBase" parent="Popup/Popup/Content" index="0" instance=ExtResource( 7 )]
 
-[node name="Code" type="LineEdit" parent="CodePadPopup"]
-margin_left = 255.0
-margin_top = 34.8995
-margin_right = 335.0
-margin_bottom = 58.8995
-align = 1
-max_length = 4
-placeholder_text = "0000"
-script = ExtResource( 6 )
-instruction = "Enter unlock code:"
+[node name="NumpadScreen" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 8 )]
 
-[node name="EnterCodeButton" type="Button" parent="CodePadPopup"]
-margin_left = 255.0
-margin_top = 65.0
-margin_right = 280.0
-margin_bottom = 85.0
-text = "Enter"
+[editable path="Popup"]
 
-[node name="CancelCodeButton" type="Button" parent="CodePadPopup"]
-margin_left = 305.0
-margin_top = 65.0
-margin_right = 335.0
-margin_bottom = 85.0
-text = "X"
-[connection signal="text_entered" from="CodePadPopup/Code" to="." method="_on_Code_text_entered"]
-[connection signal="pressed" from="CodePadPopup/EnterCodeButton" to="." method="_on_EnterCodeButton_pressed"]
-[connection signal="pressed" from="CodePadPopup/CancelCodeButton" to="." method="_on_CancelCodeButton_pressed"]
+[editable path="Popup/Popup/Content/TerminalBase"]

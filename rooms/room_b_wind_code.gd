@@ -2,8 +2,8 @@ extends Node2D
 
 onready var room = $GenericRoom
 onready var player = $GenericRoom/ControllablePlayer
-onready var popup = $Popup
-onready var wind_puzzle = $Popup/Content/TerminalBase/Screen/ScreenContents/puzzle_base
+onready var popup = $Popup/Popup
+onready var wind_puzzle = $Popup/Popup/Content/TerminalBase/Screen/ScreenContents/puzzle_base
 onready var chair = $GenericRoom/Objects/Chair
 
 func _ready():

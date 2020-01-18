@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var room = $GenericRoom
-onready var popup = $Popup/Label
+onready var popup = $Popup/Popup
 onready var table = $GenericRoom/Objects/Table
 onready var pod = $GenericRoom/Objects/Pod
 onready var player = $GenericRoom/ControllablePlayer
@@ -19,13 +19,8 @@ func _on_object_clicked(node):
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
 			GameState.interaction_is_frozen = false
-			popup.text = "It says 3456"
 			popup.visible = true
-			yield(get_tree().create_timer(2.5), "timeout")
-			popup.visible = false
 		"Pod":
-			popup.text = "Going to sleep. Surrending control."
-			popup.visible = true
 			room.player_walk_to(pod.position)
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
