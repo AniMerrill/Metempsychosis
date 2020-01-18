@@ -14,6 +14,7 @@ func _ready():
 	room.connect("object_clicked", self, "_on_object_clicked")
 	numpad.solution = "123456"
 	numpad.connect("solved", self, "_on_solved")
+	popup.connect("closed", self, "_on_terminal_closed")
 
 func _on_object_clicked(node):
 	match node.name:
@@ -23,6 +24,7 @@ func _on_object_clicked(node):
 			yield(player, "position_reached")
 			popup.visible = true
 			GameState.interaction_is_frozen = false
+			MusicModule.state_changed("puzzle")
 		"Pod":
 			room.player_walk_to(pod.position)
 			GameState.interaction_is_frozen = true
@@ -35,3 +37,6 @@ func _on_object_clicked(node):
 func _on_solved():
 	GameState.set_state(GameState.STATE.POD_ROOMS_UNLOCKED, true)
 	room.east_door = room.DOOR_STATUS.CLOSED_DOOR
+
+func _on_terminal_closed():
+	MusicModule.state_changed("explore")
