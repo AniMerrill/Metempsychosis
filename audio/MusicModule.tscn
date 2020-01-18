@@ -43,6 +43,13 @@ margin_right = 316.0
 margin_bottom = 145.0
 text = "Explore"
 
+[node name="Button4" type="Button" parent="Buttons"]
+margin_left = 345.0
+margin_top = 61.5
+margin_right = 421.0
+margin_bottom = 146.5
+text = "Menu"
+
 [node name="FilterTween" type="Tween" parent="."]
 
 [node name="Label" type="Label" parent="."]
@@ -52,3 +59,4 @@ script = ExtResource( 5 )
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="Buttons/Button4" to="." method="_on_Button4_pressed"]

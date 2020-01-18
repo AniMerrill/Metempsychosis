@@ -64,8 +64,14 @@ func _on_Button3_pressed():
 #	_fadeout_above_layer("LevelTheme", 6, 0)
 	state_changed("explore")
 	
+func _on_Button4_pressed():
+	state_changed("menu")
+	
 func state_changed(state:String):
-	if state == "puzzle":
+	if state == "menu": 
+		mdm.fade_out("LevelTheme", 0)
+		mdm.fade_out("LevelTheme", 2)
+	elif state == "puzzle":
 		_interpolate_filter_cutoff(null, 1000, 1.5)
 		current_state = "puzzle"
 		print("Music state: " + current_state)
@@ -111,3 +117,5 @@ func _fadeout_below_layer(song:String, track:int, last_track:int):
 func _interpolate_filter_cutoff(start_value, target_value:float, transition_time:float):
 	FilterTween.interpolate_property(LPF, "cutoff_hz", start_value, target_value, transition_time, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	FilterTween.start()
+
+
