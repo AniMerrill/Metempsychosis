@@ -14,6 +14,16 @@ outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 north_door = 3
 north_target = "room_b_009"
 
+[node name="Floor" type="Node2D" parent="GenericRoom"]
+
+[node name="Label" type="Label" parent="GenericRoom/Floor"]
+margin_left = 145.0
+margin_top = 285.0
+margin_right = 340.0
+margin_bottom = 316.0
+text = "You notice the glaring absense
+of a puzzle in this room."
+
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )
 z_index = 274
