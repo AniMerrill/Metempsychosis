@@ -11,7 +11,9 @@ onready var LPF = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"),
 
 var current_song = "none"
 
-var state = "init"
+var state = "explore"
+
+var current_state = "explore"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,31 +67,21 @@ func _on_Button3_pressed():
 	
 func state_changed(state:String):
 	if state == "puzzle":
-		_turn_on_filter()
+		_fadein_above_layer("LevelTheme", 6, 0)
+		_interpolate_filter_cutoff(null, 300, 1.5)
+		current_state = "puzzle"
+		
 	elif state == "guard":
-		_fade_guard_layers()
+		_fadein_below_layer("LevelTheme", 9, 11) 
+		_fadeout_above_layer("LevelTheme", 6, 0)
+		current_state = "guard"
+		
 	elif state == "explore":
-		_fade_explore_layers()
-
-func _turn_on_filter():
-	_fadein_above_layer("LevelTheme", 6, 0)
-	_interpolate_filter_cutoff(null, 300, 1.5)
-	current_song = "puzzle"
-	
-func _fade_guard_layers():
-	_fadein_below_layer("LevelTheme", 9, 11) 
-	
-	_fadeout_above_layer("LevelTheme", 6, 0)
-	
-	current_song = "guard"
-	
-func _fade_explore_layers():
-	_fadeout_above_layer("LevelTheme", 6, 0)
-	_fadeout_below_layer("LevelTheme",9, 11)
-	
-	_interpolate_filter_cutoff(null, 20000, 1.5)
-	
-	current_song = "explore"
+		#fades out everything except bass pad
+		_fadeout_above_layer("LevelTheme", 6, 0)
+		_fadeout_below_layer("LevelTheme",9, 11)
+		_interpolate_filter_cutoff(null, 20000, 1.5)
+		current_state = "explore"
 
 #custom functions
 #fade functions. Requires song name (node name), min, and max. Range is inclusive

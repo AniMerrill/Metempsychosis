@@ -1,4 +1,7 @@
 extends Node
+""" 
+DONT FORGET
+SoundPuzzle0 and SoundPuzzle 8 still need their sound"""
 
 #sound module
 #call $SFX.play(sfxname:String) to play the sound. String name is the node name.
