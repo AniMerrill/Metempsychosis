@@ -11,8 +11,8 @@ onready var sea_popup = $Popup/Popup/Content/SeaPopup
 onready var jungle_popup = $Popup/Popup/Content/JunglePopup
 
 func _ready():
+	MusicModule.state_changed("puzzle")
 	room.connect("object_clicked", self, "_on_object_clicked")
-	popup.connect("closed", self, "_on_popup_closed")
 
 func _on_object_clicked(node):
 	match node.name:
@@ -24,7 +24,6 @@ func _on_object_clicked(node):
 			sea_popup.visible = false
 			jungle_popup.visible = true
 			popup.visible = true
-			MusicModule.state_changed("puzzle")
 			GameState.interaction_is_frozen = false
 
 		"Sky":
@@ -35,7 +34,6 @@ func _on_object_clicked(node):
 			sea_popup.visible = false
 			jungle_popup.visible = false
 			popup.visible = true
-			MusicModule.state_changed("puzzle")
 			GameState.interaction_is_frozen = false
 
 		"Sea":
@@ -46,8 +44,4 @@ func _on_object_clicked(node):
 			sea_popup.visible = true
 			jungle_popup.visible = false
 			popup.visible = true
-			MusicModule.state_changed("puzzle")
 			GameState.interaction_is_frozen = false
-
-func _on_popup_closed():
-	MusicModule.state_changed("explore")

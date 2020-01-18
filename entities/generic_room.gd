@@ -77,6 +77,8 @@ func _ready():
 		return
 	if GameState:
 		GameState.interaction_is_frozen = false
+	if MusicModule:
+		MusicModule.state_changed("exploring")
 	_update_doors()
 	refresh_objects()
 	current_name_label.text = self.get_parent().name if self.get_parent() else "----"
