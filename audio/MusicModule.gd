@@ -32,6 +32,64 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+	
+func state_changed(state:String):
+	if state == "menu": 
+		mdm.fade_out("LevelTheme", 0)
+		mdm.fade_out("LevelTheme", 2)
+	elif state == "puzzle":
+		_interpolate_filter_cutoff(null, 1000, 1.5)
+		current_state = "puzzle"
+		print("Music state: " + current_state)
+		
+	elif state == "guard":
+		#fades in the guard layer
+		mdm.fade_in("LevelTheme", 2)
+		mdm.fade_out("LevelTheme", 0)
+		_interpolate_filter_cutoff(null, 20000, 1.5)
+		current_state = "guard"
+		print("Music state: " + current_state)
+		
+	elif state == "explore":
+		#fades in explore layer
+		mdm.fade_in("LevelTheme", 0)
+		mdm.fade_out("LevelTheme", 2)
+		_interpolate_filter_cutoff(null, 20000, 1.5)
+		current_state = "explore"
+		print("Music state: " + current_state)
+	elif state == "final":
+		#few options
+		#fade in guard layers for bass drum effect
+		#just the base layer
+		mdm.fade_in("LevelTheme", 2)
+		_interpolate_filter_cutoff(null, 140, 6)
+
+#custom functions
+#fade functions. Requires song name (node name), min, and max. Range is inclusive
+#fade in above track up until last_track
+func _fadein_above_layer(song:String, track:int, last_track:int):
+	for i in range(last_track, track + 1):
+		mdm.fade_in(song, i)
+		
+#fade out above track up until last_track
+func _fadeout_above_layer(song:String, track:int, last_track:int):
+	for i in range(last_track, track + 1):
+		mdm.fade_out(song, i)
+		
+#fade in below track up until last_track
+func _fadein_below_layer(song:String, track:int, last_track:int):
+	for i in range(track, last_track + 1):
+		mdm.fade_in(song, i)
+		
+#fade out below track up until last_track
+func _fadeout_below_layer(song:String, track:int, last_track:int):
+	for i in range(track, last_track + 1):
+		mdm.fade_out(song, i)
+
+func _interpolate_filter_cutoff(start_value, target_value:float, transition_time:float):
+	FilterTween.interpolate_property(LPF, "cutoff_hz", start_value, target_value, transition_time, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	FilterTween.start()
 	
 #buttons for debug
 
@@ -67,55 +125,6 @@ func _on_Button3_pressed():
 func _on_Button4_pressed():
 	state_changed("menu")
 	
-func state_changed(state:String):
-	if state == "menu": 
-		mdm.fade_out("LevelTheme", 0)
-		mdm.fade_out("LevelTheme", 2)
-	elif state == "puzzle":
-		_interpolate_filter_cutoff(null, 1000, 1.5)
-		current_state = "puzzle"
-		print("Music state: " + current_state)
-		
-	elif state == "guard":
-		#fades in the guard layer
-		mdm.fade_in("LevelTheme", 2)
-		mdm.fade_out("LevelTheme", 0)
-		_interpolate_filter_cutoff(null, 20000, 1.5)
-		current_state = "guard"
-		print("Music state: " + current_state)
-		
-	elif state == "explore":
-		#fades in explore layer
-		mdm.fade_in("LevelTheme", 0)
-		mdm.fade_out("LevelTheme", 2)
-		_interpolate_filter_cutoff(null, 20000, 1.5)
-		current_state = "explore"
-		print("Music state: " + current_state)
-
-#custom functions
-#fade functions. Requires song name (node name), min, and max. Range is inclusive
-#fade in above track up until last_track
-func _fadein_above_layer(song:String, track:int, last_track:int):
-	for i in range(last_track, track + 1):
-		mdm.fade_in(song, i)
-		
-#fade out above track up until last_track
-func _fadeout_above_layer(song:String, track:int, last_track:int):
-	for i in range(last_track, track + 1):
-		mdm.fade_out(song, i)
-		
-#fade in below track up until last_track
-func _fadein_below_layer(song:String, track:int, last_track:int):
-	for i in range(track, last_track + 1):
-		mdm.fade_in(song, i)
-		
-#fade out below track up until last_track
-func _fadeout_below_layer(song:String, track:int, last_track:int):
-	for i in range(track, last_track + 1):
-		mdm.fade_out(song, i)
-
-func _interpolate_filter_cutoff(start_value, target_value:float, transition_time:float):
-	FilterTween.interpolate_property(LPF, "cutoff_hz", start_value, target_value, transition_time, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
-	FilterTween.start()
-
+func _on_Button5_pressed():
+	state_changed("final")
 
