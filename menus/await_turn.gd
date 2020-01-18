@@ -1,9 +1,9 @@
 extends Node2D
 
-onready var output_code = $Frame/OutputCodeBG/OutputCode
-onready var input_code = $Frame/InputCode
-onready var error_layer = $Frame/ErrorTextBG
-onready var error_label = $Frame/ErrorTextBG/Label
+onready var output_code = $OutputCodeBG/OutputCode
+onready var input_code = $InputCode
+onready var error_layer = $ErrorTextBG
+onready var error_label = $ErrorTextBG/Label
 
 func _ready():
 	error_layer.visible = false
