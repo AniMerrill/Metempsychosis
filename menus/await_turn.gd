@@ -1,13 +1,18 @@
 extends Node2D
 
-onready var output_code = $OutputCodeBG/OutputCode
-onready var input_code = $InputCode
+onready var output_code = $OutputArea/OutputCode
+onready var input_code = $InputArea/InputCode
 onready var error_layer = $ErrorTextBG
 onready var error_label = $ErrorTextBG/Label
+onready var output_area = $OutputArea
+onready var first_time_area = $FirstTimeArea
 
 func _ready():
 	error_layer.visible = false
 	output_code.text = GameState.last_output_code()
+	if output_code.text == "(no code)":
+		first_time_area.visible = true
+		output_area.visible = false
 
 func _on_InputCode_text_entered(code : String):
 	var result = GameState.deserialize(code)
@@ -36,3 +41,9 @@ func _on_ChangePlayer_pressed():
 
 func _on_StateEdit_pressed():
 	SceneTransition.change_scene_direct('menus/GameplayDemo.tscn')
+
+func _on_BackButton_pressed():
+	SceneTransition.change_scene("menus/MainMenu.tscn")
+
+func _on_Customise_pressed():
+	SceneTransition.change_scene("menus/CustomizePlayer.tscn")

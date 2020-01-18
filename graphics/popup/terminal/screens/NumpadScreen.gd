@@ -3,7 +3,6 @@ extends Control
 # NOTE: Screens can pretty comfortably fit inside a 240x160 area, although some
 # minor bleed over the edges probably just helps the effect.
 
-export var puzzle_solve_signal : String = ""
 export var solution : String = ""
 export var code_length : int = 6
 
@@ -11,6 +10,8 @@ var code : String = ""
 var blink : bool = false
 
 var parent_menu = null
+
+signal solved
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +54,7 @@ func number_pressed(value : int) -> void:
 func ok_pressed() -> void:
 	if solution == code:
 		$Message.text = "Congrats, you are a WinRAR."
-		# TODO: Signal for puzzle completion
+		emit_signal("solved")
 	else:
 		# TODO: Insert error noise
 		$Message.text = "Incorrect Passcode! Please try again:"

@@ -53,6 +53,7 @@ margin_top = 290.0
 margin_right = 416.0
 margin_bottom = 310.0
 text = "Start new game"
+[connection signal="pressed" from="MenuBase/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="PlayerB" to="." method="_on_PlayerB_pressed"]
 [connection signal="pressed" from="PlayerA" to="." method="_on_PlayerA_pressed"]
 
