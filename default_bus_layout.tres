@@ -2,6 +2,8 @@
 
 [sub_resource type="AudioEffectLowPassFilter" id=1]
 resource_name = "LowPassFilter"
+cutoff_hz = 5000.0
+db = 1
 
 [sub_resource type="AudioEffectEQ" id=2]
 resource_name = "EQ"

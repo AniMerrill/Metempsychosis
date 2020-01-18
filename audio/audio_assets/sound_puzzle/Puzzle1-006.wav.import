@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Puzzle1-006.wav-c51f2fcbddce7d1cb6b93858c43da056.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/sound_puzzle/Puzzle1-006.wav"
+dest_files=[ "res://.import/Puzzle1-006.wav-c51f2fcbddce7d1cb6b93858c43da056.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

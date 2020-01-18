@@ -5,9 +5,15 @@ extends Node
 
 onready var mdm = $MixingDeskMusic
 
+onready var FilterTween = $FilterTween
+
+onready var LPF = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 0)
+
 var current_song = "none"
 
-var state = "init"
+var state = "explore"
+
+var current_state = "explore"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +27,8 @@ func _ready():
 	mdm.init_song("LevelTheme")
 	mdm.start_alone("LevelTheme", 8)
 	mdm.toggle_mute("LevelTheme", 7)
+	
+	#init tween
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -59,28 +67,21 @@ func _on_Button3_pressed():
 	
 func state_changed(state:String):
 	if state == "puzzle":
-		_turn_on_filter()
+		_fadein_above_layer("LevelTheme", 6, 0)
+		_interpolate_filter_cutoff(null, 300, 1.5)
+		current_state = "puzzle"
+		
 	elif state == "guard":
-		_fade_guard_layers()
+		_fadein_below_layer("LevelTheme", 9, 11) 
+		_fadeout_above_layer("LevelTheme", 6, 0)
+		current_state = "guard"
+		
 	elif state == "explore":
-		_fade_explore_layers()
-
-func _turn_on_filter():
-	_fadein_above_layer("LevelTheme", 6, 0)
-	current_song = "puzzle"
-	
-func _fade_guard_layers():
-	_fadein_below_layer("LevelTheme", 9, 11) 
-	
-	_fadeout_above_layer("LevelTheme", 6, 0)
-	
-	current_song = "guard"
-	
-func _fade_explore_layers():
-	_fadeout_above_layer("LevelTheme", 6, 0)
-	_fadeout_below_layer("LevelTheme",9, 11)
-	
-	current_song = "explore"
+		#fades out everything except bass pad
+		_fadeout_above_layer("LevelTheme", 6, 0)
+		_fadeout_below_layer("LevelTheme",9, 11)
+		_interpolate_filter_cutoff(null, 20000, 1.5)
+		current_state = "explore"
 
 #custom functions
 #fade functions. Requires song name (node name), min, and max. Range is inclusive
@@ -103,3 +104,7 @@ func _fadein_below_layer(song:String, track:int, last_track:int):
 func _fadeout_below_layer(song:String, track:int, last_track:int):
 	for i in range(track, last_track + 1):
 		mdm.fade_out(song, i)
+
+func _interpolate_filter_cutoff(start_value, target_value:float, transition_time:float):
+	FilterTween.interpolate_property(LPF, "cutoff_hz", start_value, target_value, transition_time, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	FilterTween.start()
