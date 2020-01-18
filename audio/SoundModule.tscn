@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://audio/SoundModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/scatter_cont.gd" type="Script" id=2]
@@ -17,13 +17,6 @@
 [ext_resource path="res://audio/audio_assets/footsteps/footstep_6.wav" type="AudioStream" id=15]
 [ext_resource path="res://audio/audio_assets/objects/door_open_warning.wav" type="AudioStream" id=16]
 [ext_resource path="res://audio/audio_assets/footsteps/footsep_1.ogg" type="AudioStream" id=17]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-001.wav" type="AudioStream" id=18]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-002.wav" type="AudioStream" id=19]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-003.wav" type="AudioStream" id=20]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-004.wav" type="AudioStream" id=21]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-005.wav" type="AudioStream" id=22]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-006.wav" type="AudioStream" id=23]
-[ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle1-007.wav" type="AudioStream" id=24]
 
 [node name="SFX" type="Node"]
 script = ExtResource( 1 )
@@ -106,6 +99,7 @@ volume_db = -8.582
 bus = "Doors"
 
 [node name="Footsteps" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -171,6 +165,7 @@ bus = "Doors"
 [node name="SoundPuzzle" type="Node" parent="."]
 
 [node name="SoundPuzzle0" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -180,6 +175,7 @@ __meta__ = {
 stream = ExtResource( 17 )
 
 [node name="SoundPuzzle1" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -187,64 +183,64 @@ __meta__ = {
 autoplay = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle1"]
-stream = ExtResource( 18 )
 
 [node name="SoundPuzzle2" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 autoplay = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle2"]
-stream = ExtResource( 19 )
-
 [node name="SoundPuzzle3" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle3"]
-stream = ExtResource( 20 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="SoundPuzzle3"]
 
 [node name="SoundPuzzle4" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle4"]
-stream = ExtResource( 21 )
 
 [node name="SoundPuzzle5" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle5"]
-stream = ExtResource( 22 )
 
 [node name="SoundPuzzle6" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle6"]
-stream = ExtResource( 23 )
 
 [node name="SoundPuzzle7" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle7"]
-stream = ExtResource( 24 )
 
 [node name="SoundPuzzle8" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
