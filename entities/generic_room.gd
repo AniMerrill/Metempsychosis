@@ -167,7 +167,6 @@ const direction_names = ["east", "north", "west", "south"]
 
 func _handle_door_click(direction):
 	var door = room.doors[direction]
-	print(door.opened, door.locked)
 	if door.opened and not door.locked:
 		player_walk_to(exit_door_pos[direction])
 		GameState.interaction_is_frozen = true
