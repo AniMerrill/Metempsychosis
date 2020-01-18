@@ -12,6 +12,10 @@ func _ready():
 		room.west_door = room.DOOR_STATUS.CLOSED_DOOR
 	room.connect("object_clicked", self, "_on_object_clicked")
 	popup.connect("closed", self, "_on_popup_closed")
+	if not GameState.has_seen_in_room_intro:
+		GameState.interaction_is_frozen = true
+		yield(get_tree().create_timer(4.0), "timeout")
+		RoomUtil.wake_up_dialog()
 
 func _on_object_clicked(node):
 	match node.name:

@@ -15,6 +15,11 @@ func _ready():
 	numpad.solution = "123456"
 	numpad.connect("solved", self, "_on_solved")
 	popup.connect("closed", self, "_on_terminal_closed")
+	if not GameState.has_seen_in_room_intro:
+		GameState.interaction_is_frozen = true
+		yield(get_tree().create_timer(4.0), "timeout")
+		RoomUtil.wake_up_dialog()
+
 
 func _on_object_clicked(node):
 	match node.name:
