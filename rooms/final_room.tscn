@@ -16,7 +16,7 @@ vertices = PoolVector2Array( 400.789, 249.036, 435, 360, 45, 360, 355.619, 248.3
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 3, 2, 6 ), PoolIntArray( 6, 2, 7 ) ]
 outlines = [ PoolVector2Array( 45, 360, 77.7984, 252.473, 128.021, 247.217, 214.129, 225.835, 261.127, 225.835, 355.619, 248.319, 400.789, 249.036, 435, 360 ) ]
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Node2D
 
 func _ready():
@@ -24,8 +24,7 @@ func _ready():
 
 "
 
-[sub_resource type="Animation" id=2]
-resource_name = "flicker"
+[sub_resource type="Animation" id=3]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -41,25 +40,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "data"
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 0.840896 ),
-"update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "data"
+[sub_resource type="Animation" id=4]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -92,8 +73,23 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ), ExtResource( 9 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "data"
+[sub_resource type="Animation" id=6]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 0.840896 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -126,8 +122,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ), ExtResource( 9 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "data"
+[sub_resource type="Animation" id=9]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -143,7 +138,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ), ExtResource( 9 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 resource_name = "BlinkLights"
 length = 0.4
 loop = true
@@ -162,8 +157,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Activate"
+[sub_resource type="Animation" id=11]
 length = 5.6
 step = 0.05
 tracks/0/type = "method"
@@ -315,7 +309,6 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="GenericRoom/Objects/TheMachine"]
-editor/display_folded = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GenericRoom/Objects/TheMachine/Area2D"]
 polygon = PoolVector2Array( -157.532, 26.5726, -155.478, -249.093, 165.874, -249.606, 173.574, 28.1126, 90.9261, 16.8191, 22.1382, -1.66129, -24.576, -0.121277, -102.604, 24.0059 )
@@ -326,9 +319,8 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="EffectsOverlay" type="Node2D" parent="."]
-editor/display_folded = true
 z_index = 4000
-script = SubResource( 9 )
+script = SubResource( 2 )
 
 [node name="Block" type="ColorRect" parent="EffectsOverlay"]
 modulate = Color( 0, 0, 0, 0.784314 )
@@ -344,7 +336,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Gradient"]
 autoplay = "flicker"
-anims/flicker = SubResource( 2 )
+anims/flicker = SubResource( 3 )
 
 [node name="Terminals" type="Node2D" parent="EffectsOverlay"]
 editor/display_folded = true
@@ -356,7 +348,7 @@ position = Vector2( 148.179, 55.6479 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal"]
-anims/data = SubResource( 3 )
+anims/data = SubResource( 4 )
 
 [node name="Terminal6" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
@@ -366,7 +358,7 @@ rotation = 0.0388358
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal6"]
-anims/data = SubResource( 6 )
+anims/data = SubResource( 5 )
 
 [node name="Terminal4" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
@@ -376,7 +368,7 @@ rotation = -0.0571928
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal4"]
-anims/data = SubResource( 5 )
+anims/data = SubResource( 6 )
 
 [node name="Terminal2" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
@@ -386,7 +378,7 @@ rotation = -0.044212
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal2"]
-anims/data = SubResource( 4 )
+anims/data = SubResource( 7 )
 
 [node name="Terminal3" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
@@ -406,7 +398,7 @@ rotation = 0.0951845
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal5"]
-anims/data = SubResource( 7 )
+anims/data = SubResource( 9 )
 
 [node name="Lights" type="Node2D" parent="EffectsOverlay"]
 editor/display_folded = true
@@ -489,8 +481,8 @@ texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Lights"]
 autoplay = "BlinkLights"
-anims/BlinkLights = SubResource( 11 )
+anims/BlinkLights = SubResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay"]
-anims/Activate = SubResource( 10 )
+anims/Activate = SubResource( 11 )
 anims/Deactivate = SubResource( 12 )

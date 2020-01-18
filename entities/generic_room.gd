@@ -64,10 +64,6 @@ func _set_south_door_target(value : String) -> void:
 	south_target = value
 	door_targets[3] = value
 
-func _set_final_door(direction : int):
-	pass
-	
-	
 
 # Just before exiting
 const exit_door_pos = [Vector2(435, 270), Vector2(240, 180), Vector2(42, 270), Vector2(230, 340)]
@@ -100,7 +96,7 @@ func _update_doors():
 		if status == DOOR_STATUS.NO_DOOR:
 			doors.append(null)
 		else:
-			var opened = GameState.entering_from_direction == door_index
+			var opened = GameState.entering_from_direction == door_index and self.get_parent().name != "final_room"
 			var locked = status == DOOR_STATUS.LOCKED_DOOR
 			doors.append(room.Door.new(locked, opened))
 			var area = door_areas.get_child(door_index)

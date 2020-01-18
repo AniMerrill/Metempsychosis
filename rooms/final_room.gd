@@ -32,7 +32,7 @@ func _on_object_clicked(node):
 
 func _on_animation_finished(value : String):
 	match value:
-		"Activated":
+		"Activate":
 			print("The machine is activated. Your fate will be sealed here today.")
 			
 			# TODO: Presumably here is where some dialogue prompt would appear. I have

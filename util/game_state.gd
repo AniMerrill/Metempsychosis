@@ -24,7 +24,7 @@ extends Node
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 #
-## NEXT_TAG: 22
+## NEXT_TAG: 28
 enum STATE {
 		CODE_CREATED_BY_PLAYER_A = 0,
 		
@@ -41,26 +41,32 @@ enum STATE {
 		KEY_A_1_POS_A = 4,
 		KEY_A_1_POS_B = 5,
 		KEY_A_1_POS_BOX = 6,
+		KEY_A_1_POS_DOOR = 22,
 		
 		KEY_A_2_POS_A = 7,
 		KEY_A_2_POS_B = 8,
 		KEY_A_2_POS_BOX = 9,
+		KEY_A_2_POS_DOOR = 23,
 		
 		KEY_A_3_POS_A = 10,
 		KEY_A_3_POS_B = 11,
 		KEY_A_3_POS_BOX = 12,
+		KEY_A_3_POS_DOOR = 24,
 		
 		KEY_B_1_POS_A = 13,
 		KEY_B_1_POS_B = 14,
 		KEY_B_1_POS_BOX = 15,
+		KEY_B_1_POS_DOOR = 25,
 		
 		KEY_B_2_POS_A = 16,
 		KEY_B_2_POS_B = 17,
 		KEY_B_2_POS_BOX = 18,
+		KEY_B_2_POS_DOOR = 26,
 		
 		KEY_B_3_POS_A = 19,
 		KEY_B_3_POS_B = 20,
 		KEY_B_3_POS_BOX = 21,
+		KEY_B_3_POS_DOOR = 27,
 		
 		## Colours of the wind.
 		
