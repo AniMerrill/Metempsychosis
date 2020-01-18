@@ -13,6 +13,11 @@ margin_bottom = 360.0
 mouse_filter = 2
 color = Color( 0.152941, 0.152941, 0.152941, 1 )
 
+[node name="WalkingClicks" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WalkingClicks"]
+polygon = PoolVector2Array( 0, 0, 480, 0, 480, 360, 0, 360 )
+
 [node name="Room" parent="." instance=ExtResource( 2 )]
 
 [node name="DoorAreas" type="Node2D" parent="."]

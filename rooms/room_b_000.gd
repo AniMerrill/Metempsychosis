@@ -11,6 +11,7 @@ func _ready():
 	if GameState.get_state(GameState.STATE.POD_ROOMS_UNLOCKED):
 		room.west_door = room.DOOR_STATUS.CLOSED_DOOR
 	room.connect("object_clicked", self, "_on_object_clicked")
+	popup.connect("closed", self, "_on_popup_closed")
 
 func _on_object_clicked(node):
 	match node.name:
@@ -18,8 +19,9 @@ func _on_object_clicked(node):
 			room.player_walk_to(table.position)
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
-			GameState.interaction_is_frozen = false
 			popup.visible = true
+			MusicModule.state_changed("puzzle")
+			GameState.interaction_is_frozen = false
 		"Pod":
 			room.player_walk_to(pod.position)
 			GameState.interaction_is_frozen = true
@@ -28,4 +30,6 @@ func _on_object_clicked(node):
 			GameState.set_last_output_code(code)
 			SceneTransition.change_scene('menus/AwaitTurn.tscn')
 
+func _on_popup_closed():
+	MusicModule.state_changed("explore")
 

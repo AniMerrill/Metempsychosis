@@ -100,9 +100,8 @@ func _update_doors():
 			var locked = status == DOOR_STATUS.LOCKED_DOOR
 			doors.append(room.Door.new(locked, opened))
 			var area = door_areas.get_child(door_index)
-			if not area.is_connected("mouse_entered", self, "_on_mouse_entered"):
-				area.connect("mouse_entered", self, "_on_mouse_entered", [area])
-				area.connect("mouse_exited", self, "_on_mouse_exited")
+			if not area.is_connected("input_event", self, "_on_input_event"):
+				area.connect("input_event", self, "_on_input_event", [area])
 
 	room.doors = doors
 	room.initialize_room()
@@ -116,9 +115,8 @@ func refresh_objects() -> void:
 		node.z_index = node.position.y
 		if node.has_node("Area2D"):
 			var area = node.get_node("Area2D")
-			if not area.is_connected("mouse_entered", self, "_on_mouse_entered"):
-				area.connect("mouse_entered", self, "_on_mouse_entered", [node])
-				area.connect("mouse_exited", self, "_on_mouse_exited")
+			if not area.is_connected("input_event", self, "_on_input_event"):
+				area.connect("input_event", self, "_on_input_event", [node])
 
 
 func _process(delta):
@@ -127,23 +125,23 @@ func _process(delta):
 		player.z_index = player.position.y
 
 
-var _current_hovered_node = null
-
-func _on_mouse_entered(node : Node2D) -> void:
-	_current_hovered_node = node
-
-func _on_mouse_exited() -> void:
-	_current_hovered_node = null
+var _is_object_click = false
+func _on_input_event(a, event, c, node):
+	if event is InputEventMouseButton and event.pressed:
+		_is_object_click = true
+		_handle_object_click(node)
 
 
-func _input(event):
+func _unhandled_input(event):
+	yield(get_tree(), "idle_frame")
+#	yield(get_tree().create_timer(0.01), "timeout")
+	if _is_object_click:
+		_is_object_click = false
+		return
 	if event.is_action_pressed("click"):
 		if GameState.interaction_is_frozen:
 			return
-		if _current_hovered_node == null:
-			player_walk_to(event.position)
-		else:
-			_handle_object_click(_current_hovered_node)
+		player_walk_to(event.position)
 
 
 func _handle_object_click(node):
