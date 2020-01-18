@@ -48,7 +48,6 @@ stream = ExtResource( 4 )
 volume_db = -26.518
 
 [node name="Click" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )

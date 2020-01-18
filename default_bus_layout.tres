@@ -28,9 +28,9 @@ wet = 0.15
 
 [sub_resource type="AudioEffectReverb" id=5]
 resource_name = "Reverb"
-room_size = 0.1
-damping = 0.67
-dry = 0.95
+room_size = 0.05
+damping = 0.85
+dry = 0.81
 wet = 0.15
 
 [resource]
