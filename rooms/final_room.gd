@@ -10,6 +10,8 @@ onready var terminals = $EffectsOverlay/Terminals.get_children()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$"/root/MusicModule".state_changed("final")
+	
 	room.connect("object_clicked", self, "_on_object_clicked")
 	$EffectsOverlay/AnimationPlayer.connect(
 			"animation_finished", 

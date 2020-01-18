@@ -73,7 +73,7 @@ func _node_color_updated(node):
 func _solved():
 	return (
 			north_element.color == Color.red and
-			south_element.color == Color.blue and
+			south_element.color == Color.purple and
 			west_element.color == Color.green and
-			east_element.color == Color.purple
+			east_element.color == Color.blue
 		)
