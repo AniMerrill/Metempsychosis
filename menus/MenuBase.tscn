@@ -90,4 +90,3 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Modulate = SubResource( 3 )
-[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

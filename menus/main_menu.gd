@@ -1,8 +1,18 @@
 extends Node2D
 
 
+func _ready():
+	if GameState.current_player() == GameState.PLAYER.INVALID_PLAYER:
+		$Continue.visible = false
+
 func _on_New_pressed():
-	SceneTransition.change_scene("menus/NewGame.tscn")
+	Prompt.prompt("This will overwrite your current game. Proceed?", "Proceed", "Cancel")
+	Prompt.connect("responded", self, "_on_new_game_responded")
+
+func _on_new_game_responded(response):
+	Prompt.disconnect("responded", self, "_on_new_game_responded")
+	if response:
+		SceneTransition.change_scene("menus/NewGame.tscn")
 
 
 func _on_Credits_pressed():

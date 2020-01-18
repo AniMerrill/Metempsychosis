@@ -24,7 +24,7 @@ extends Node
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 #
-## NEXT_TAG: 28
+## NEXT_TAG: 29
 enum STATE {
 		CODE_CREATED_BY_PLAYER_A = 0,
 		
@@ -70,7 +70,7 @@ enum STATE {
 		
 		## Colours of the wind.
 		
-		WIND_PUZZLE_SOLVED = 22,
+		WIND_PUZZLE_SOLVED = 28,
 	}
 
 
@@ -87,9 +87,10 @@ enum PLAYER {
 var state := []
 
 
+## Local state:
+
 # The player controlled in this game.
 var _my_player : int = PLAYER.INVALID_PLAYER
-
 
 # The most recent code to be communicated to the other player.
 var _my_last_output_code := '(no code)'
