@@ -202,8 +202,5 @@ func finale_cutscene():
 					else GameState.PLAYER.PLAYER_B
 				GameState.set_current_player(other_player)  ## Reset.
 				GameState.final_room_replay = false
-				
 			SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
 			MusicModule.state_changed("menu")
-			SoundModule.stop_sfx("FinalRoom")
-

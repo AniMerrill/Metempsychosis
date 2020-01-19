@@ -205,5 +205,13 @@ func finale_cutscene():
 				
 			SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
 			MusicModule.state_changed("menu")
+<<<<<<< HEAD
 			SoundModule.stop_sfx("FinalRoom")
 
+#light blink sfx
+func play_light_blink_sfx():
+	SoundModule.play_sfx("TerminalLights")
+	
+	
+=======
+>>>>>>> master
