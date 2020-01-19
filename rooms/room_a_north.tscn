@@ -53,6 +53,12 @@ tracks/2/keys = {
 [node name="room_a_north" type="Node2D"]
 
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
+east_door = 1
+east_target = ""
+north_door = 1
+north_target = ""
+west_door = 1
+west_target = ""
 south_door = 3
 south_target = "room_a_005"
 

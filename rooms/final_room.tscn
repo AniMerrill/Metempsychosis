@@ -323,6 +323,7 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="EffectsOverlay" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = 4000
 script = SubResource( 2 )
 

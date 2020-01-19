@@ -19,6 +19,8 @@ func _ready():
 		GameState.interaction_is_frozen = true
 		yield(get_tree().create_timer(3.0), "timeout")
 		RoomUtil.wake_up_dialog()
+	if GameState.get_state(GameState.STATE.GAME_OVER):
+		RoomUtil.game_over_dialog()
 
 
 func _on_object_clicked(node):

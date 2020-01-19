@@ -14,6 +14,11 @@ func _ready():
 	rig = $PlayerARig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerBRig
 	rig.visible = true
 
+func swap_rig():
+	rig.visible = false
+	rig = $PlayerBRig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerARig
+	rig.visible = true
+
 func set_path(value : PoolVector2Array) -> void:
 	path = value
 	set_process(true)

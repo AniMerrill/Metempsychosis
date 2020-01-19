@@ -53,8 +53,14 @@ tracks/2/keys = {
 [node name="room_a_south" type="Node2D"]
 
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
+east_door = 1
+east_target = ""
 north_door = 3
 north_target = "room_a_009"
+west_door = 1
+west_target = ""
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )
