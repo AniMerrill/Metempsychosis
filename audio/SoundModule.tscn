@@ -128,22 +128,24 @@ __meta__ = {
 
 [node name="DoorUpSound" type="AudioStreamPlayer" parent="DoorSlideUp"]
 stream = ExtResource( 13 )
+volume_db = 3.534
 pitch_scale = 0.8
 bus = "Doors"
 
 [node name="DoorUpSound2" type="AudioStreamPlayer" parent="DoorSlideUp"]
 stream = ExtResource( 13 )
+volume_db = 5.049
 pitch_scale = 0.9
 bus = "Doors"
 
 [node name="DoorUpSound3" type="AudioStreamPlayer" parent="DoorSlideUp"]
 stream = ExtResource( 13 )
-volume_db = 6.058
+volume_db = 2.02
 bus = "Doors"
 
 [node name="DoorUpSound4" type="AudioStreamPlayer" parent="DoorSlideUp"]
 stream = ExtResource( 13 )
-volume_db = 6.058
+volume_db = 2.524
 pitch_scale = 1.1
 bus = "Doors"
 
@@ -171,13 +173,13 @@ stream = ExtResource( 14 )
 volume_db = -8.582
 bus = "Doors"
 
-[node name="DoorUnlocksClose" type="Node" parent="."]
+[node name="DoorUnlocksNear" type="Node" parent="."]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoorUnlocksClose"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoorUnlocksNear"]
 stream = ExtResource( 15 )
 bus = "SFX"
 

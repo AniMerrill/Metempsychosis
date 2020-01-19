@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=9 format=2]
+[gd_resource type="AudioBusLayout" load_steps=10 format=2]
 
 [sub_resource type="AudioEffectLowPassFilter" id=1]
 resource_name = "LowPassFilter"
@@ -10,12 +10,17 @@ resource_name = "HighPassFilter"
 cutoff_hz = 1.0
 db = 1
 
+[sub_resource type="AudioEffectReverb" id=9]
+resource_name = "Reverb"
+room_size = 0.22
+wet = 0.32
+
 [sub_resource type="AudioEffectReverb" id=3]
 resource_name = "Reverb"
 room_size = 0.1
 damping = 0.67
 dry = 0.95
-wet = 0.15
+wet = 0.1
 
 [sub_resource type="AudioEffectEQ" id=4]
 resource_name = "EQ"
@@ -49,12 +54,14 @@ bus/1/name = "Music"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 9.2
+bus/1/volume_db = 1.2
 bus/1/send = "Master"
 bus/1/effect/0/effect = SubResource( 1 )
 bus/1/effect/0/enabled = true
 bus/1/effect/1/effect = SubResource( 2 )
 bus/1/effect/1/enabled = false
+bus/1/effect/2/effect = SubResource( 9 )
+bus/1/effect/2/enabled = true
 bus/2/name = "SFX"
 bus/2/solo = false
 bus/2/mute = false
@@ -67,7 +74,7 @@ bus/3/name = "Footsteps"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = 0.0
+bus/3/volume_db = 5.5
 bus/3/send = "SFX"
 bus/3/effect/0/effect = SubResource( 4 )
 bus/3/effect/0/enabled = true
@@ -77,7 +84,7 @@ bus/4/name = "Doors"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -1.6
+bus/4/volume_db = -5.7
 bus/4/send = "SFX"
 bus/4/effect/0/effect = SubResource( 6 )
 bus/4/effect/0/enabled = true

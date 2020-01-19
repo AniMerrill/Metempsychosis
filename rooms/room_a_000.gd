@@ -50,6 +50,7 @@ func _on_end_turn_responded(response):
 func _on_solved():
 	GameState.set_state(GameState.STATE.POD_ROOMS_UNLOCKED, true)
 	room.east_door = room.DOOR_STATUS.CLOSED_DOOR
+	SoundModule.play_sfx("DoorUnlocksNear")
 
 func _on_terminal_closed():
 	MusicModule.state_changed("explore")
