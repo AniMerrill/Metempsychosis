@@ -39,6 +39,8 @@ func _on_object_clicked(node):
 	match node.name:
 		"TheMachine":
 			room.player_walk_to(machine.position)
+			# NOTE: I never set it to unfreeze anywhere, and I'm not sure when
+			# is most optimal since both options take control away from the player.
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
 			# TODO: Signal to play machine sfx in animation player?
