@@ -179,6 +179,6 @@ func finale_cutscene():
 #light blink sfx
 func play_light_blink_sfx():
 	pass
-#	SoundModule.play_sfx("TerminalLights")
+	SoundModule.play_sfx("TerminalLights")
 	
 	
