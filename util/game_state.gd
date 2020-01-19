@@ -150,6 +150,7 @@ var final_room_replay := false
 
 var last_input_code : String = ".|.Nothing.here.|."
 
+var has_seen_ai_warning := false
 
 
 func reset_for_new_game():
