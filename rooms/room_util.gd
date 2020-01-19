@@ -63,7 +63,7 @@ func finale_dialog(part : String):
 		# Plays when first player initially uses machine
 		"intro":
 			messages = [
-"""Congratulations, you have shown your species is able to communicate effectively""",
+"""Congratulations, you have shown your species is able to communicate effectively.""",
 """Probability of survival based on demonstration deemed sufficient."""
 			]
 			
@@ -75,9 +75,11 @@ func finale_dialog(part : String):
 		"warning":
 			messages = [
 """[WARNING]: Representative {#2|#1} is not of the same species. Determined to be {Neptonian|Plutonian}.""",
-"""[WARNING]: Mismatch in representatives is not according to protocol. Implementation error detected.""",
+"""[WARNING]: Mismatch in representatives is not according to protocol.""",
+"""Implementation error detected.""",
 """{[WARNING OVERRIDE]|[WARNING OVERRIDE]}""",
-"""Representative {#1|#2} has still successfully shown ability to communicate regardless. Proceed with simulation.""",
+"""Representative {#1|#2} has still successfully shown ability to communicate regardless.""",
+"""Proceeding with simulation.""",
 """Reading emotional state of {Neptonian|Plutonian}. . .""",
 """Status: {Thankful for successful cooperation and the potential of peace between the species.|Thankful for successful cooperation and the potential of peace between the species.}""",
 """Continuing revival."""
@@ -106,7 +108,8 @@ func finale_dialog(part : String):
 """[PRo{CES|CES}iaaaaaaaaaa aa {a|a} aaa a ]a a """,
 """[REINITIALIZING STATE]""",
 """[EVALUATING]""",
-"""[WARNING]: Presence of a {Plutonian|Neptonian} poses risk to representative {#2|#1}. Exterminating all local {Plutonians|Neptonians} to ensure safety of specimen."""
+"""[WARNING]: Presence of a {Plutonian|Neptonian} poses risk to representative {#2|#1}.""",
+"""Exterminating all local {Plutonians|Neptonians} to ensure safety of specimen."""
 			]
 			
 		# If the first player refuses a prompt at any time, this sequence plays
