@@ -1,7 +1,6 @@
 extends Node2D
 
 func _ready():
-	
 	var messages = [
 """Incoming alert. The following species has been annihilated: {Plutonian|Neptonian}.""",
 """Activating Second Chance module for species: {Plutonians|Neptonians}.""",
@@ -13,8 +12,19 @@ func _ready():
 		]
 	MessageDisplay.display(convert_messages(messages))
 	yield(MessageDisplay, "messages_finished")
-	GameState.has_seen_introduction = true
-	RoomUtil.load_first_room()
+	if GameState.opening_dialogue_is_outro:
+		GameState.opening_dialogue_is_outro = false
+		if GameState.get_state(GameState.STATE.GAME_OVER):
+			## Game finished already. No need to share code to other player.
+			SceneTransition.change_scene('menus/MainMenu.tscn')
+			return
+		GameState.set_state(GameState.STATE.GAME_OVER, true)
+		var code = GameState.serialize()
+		GameState.set_last_output_code(code)
+		SceneTransition.change_scene('menus/AwaitTurn.tscn')
+	else:
+		GameState.has_seen_introduction = true
+		RoomUtil.load_first_room()
 
 func convert_messages(messages):
 	var result = []

@@ -285,12 +285,8 @@ script = ExtResource( 1 )
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
 east_target = "room_b_final_door"
-north_door = 1
-north_target = ""
 west_door = 4
 west_target = "room_a_final_door"
-south_door = 1
-south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -323,6 +319,7 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="EffectsOverlay" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = 4000
 script = SubResource( 2 )
 

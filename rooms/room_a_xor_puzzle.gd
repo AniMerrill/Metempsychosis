@@ -9,6 +9,8 @@ func _ready():
 		room.north_door = room.DOOR_STATUS.CLOSED_DOOR
 		room.south_door = room.DOOR_STATUS.LOCKED_DOOR
 	room.connect("object_clicked", self, "_on_object_clicked")
+	if GameState.get_state(GameState.STATE.GAME_OVER):
+		RoomUtil.game_over_dialog()
 
 func _on_object_clicked(node):
 	match node.name:

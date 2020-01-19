@@ -24,7 +24,7 @@ extends Node
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 #
-## NEXT_TAG: 29
+## NEXT_TAG: 31
 enum STATE {
 		CODE_CREATED_BY_PLAYER_A = 0,
 		
@@ -73,7 +73,8 @@ enum STATE {
 		WIND_PUZZLE_SOLVED = 28,
 		
 		## Finale States
-		FINALE_PLAYER_GIVEN_WARNING = 40
+		FINALE_PLAYER_GIVEN_WARNING = 29,
+		GAME_OVER = 30,
 	}
 
 
@@ -110,6 +111,9 @@ var entering_from_direction : int = -1
 
 var has_seen_introduction := false
 var has_seen_in_room_intro := false
+
+var opening_dialogue_is_outro := false
+var final_room_replay := false
 
 
 # Get the current player.

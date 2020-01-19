@@ -36,3 +36,4 @@ z_index = 1100
 
 [node name="KeyPanel" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 458.012, 300 )
+for_player_b = false

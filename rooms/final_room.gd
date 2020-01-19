@@ -34,11 +34,24 @@ func _ready():
 	
 	# warning-ignore:return_value_discarded
 	Prompt.connect("responded", self, "_on_responded")
+	
+	if GameState.final_room_replay:
+		player.swap_rig()
+		player.position = machine.position + Vector2(0, 30)
+		room.player_walk_to(machine.position)
+		GameState.interaction_is_frozen = true
+		var other_player = GameState.PLAYER.PLAYER_A \
+			if GameState.current_player() == GameState.PLAYER.PLAYER_B \
+			else GameState.PLAYER.PLAYER_B
+		GameState.set_current_player(other_player)  # Bit risky but easy option.
+		$EffectsOverlay/AnimationPlayer.play("Activate")
 
 func _on_object_clicked(node):
 	match node.name:
 		"TheMachine":
 			room.player_walk_to(machine.position)
+			# NOTE: I never set it to unfreeze anywhere, and I'm not sure when
+			# is most optimal since both options take control away from the player.
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
 			# TODO: Signal to play machine sfx in animation player?
@@ -102,11 +115,15 @@ func finale_cutscene():
 		FinaleState.INTRO:
 			RoomUtil.finale_dialog("intro")
 			yield(MessageDisplay, "messages_finished")
-			Prompt.prompt(
-					"Revive species: " + species + ". Confirm?", 
-					"Confirm", 
-					"Refuse"
-					)
+			yield(get_tree().create_timer(0.5), "timeout")
+			if GameState.final_room_replay:
+				_on_responded(true)
+			else:
+				Prompt.prompt(
+						"Revive species: " + species + ". Confirm?", 
+						"Confirm", 
+						"Refuse"
+						)
 		FinaleState.LIVE_FEED:
 			RoomUtil.finale_dialog("live_feed")
 			yield(MessageDisplay, "messages_finished")
@@ -118,20 +135,35 @@ func finale_cutscene():
 			GameState.set_state(GameState.STATE.FINALE_PLAYER_GIVEN_WARNING, false)
 			RoomUtil.finale_dialog("warning")
 			yield(MessageDisplay, "messages_finished")
-			Prompt.prompt(
-					"Revive species: " + species + ". Confirm?", 
-					"Confirm", 
-					"Refuse"
-					)
+			yield(get_tree().create_timer(0.5), "timeout")
+			if GameState.final_room_replay:
+				_on_responded(true)
+			else:
+				Prompt.prompt(
+						"Revive species: " + species + ". Confirm?", 
+						"Confirm", 
+						"Refuse"
+						)
 		FinaleState.THREAT:
 			RoomUtil.finale_dialog("threat")
 			yield(MessageDisplay, "messages_finished")
-			Prompt.prompt(
-					"Exterminate " + other_species + "?", 
-					"Confirm", 
-					"Refuse"
-					)
+			yield(get_tree().create_timer(0.5), "timeout")
+			if GameState.final_room_replay:
+				_on_responded(true)
+			else:
+				Prompt.prompt(
+						"Exterminate " + other_species + "?", 
+						"Confirm", 
+						"Refuse"
+						)
 		FinaleState.M_A_D:
 			RoomUtil.finale_dialog("mutually_assured_destruction")
 			yield(MessageDisplay, "messages_finished")
-			# TODO: Trigger cut to epilogue
+			GameState.opening_dialogue_is_outro = true
+			if GameState.final_room_replay:
+				var other_player = GameState.PLAYER.PLAYER_A \
+					if GameState.current_player() == GameState.PLAYER.PLAYER_B \
+					else GameState.PLAYER.PLAYER_B
+				GameState.set_current_player(other_player)  ## Reset.
+				GameState.final_room_replay = false
+			SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')

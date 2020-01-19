@@ -54,19 +54,6 @@ func _change_color(node : ColorRect):
 	_node_color_updated(node)
 
 func _node_color_updated(node):
-	if node.name == "north":
-		if node.color == Color.red:
-			print("North is the correct color")
-	if node.name == "south":
-		if node.color == Color.blue:
-			print("South is the correcct color")
-	if node.name == "west":
-		if node.color == Color.green:
-			print("West is the correct color")
-	if node.name == "east":
-		if node.color == Color.purple:
-			print("East color is correct")
-	
 	if _solved():
 		emit_signal("solved")
 

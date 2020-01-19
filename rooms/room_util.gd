@@ -15,6 +15,11 @@ func load_first_room():
 		_:
 			printerr("ERROR: No player active.")
 
+func display_message(messages, bottom := false):
+	MessageDisplay.display(convert_messages(messages), bottom)
+	yield(MessageDisplay, "messages_finished")
+	yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
+	GameState.interaction_is_frozen = false
 
 # Ugly hack. But short on time.
 func wake_up_dialog():
@@ -36,6 +41,18 @@ func wake_up_dialog():
 	GameState.has_seen_in_room_intro = true
 	yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
 	GameState.interaction_is_frozen = false
+
+
+# Ugly hack. But short on time.
+func game_over_dialog():
+	var messages = [
+"""Congratulations. Your fellow representative has reached the final room.""",
+"""Enjoy this video feed of them reviving your species.""",
+		]
+	MessageDisplay.display(convert_messages(messages))
+	yield(MessageDisplay, "messages_finished")
+	GameState.final_room_replay = true
+	SceneTransition.change_scene('rooms/final_room.tscn')
 
 func finale_dialog(part : String):
 	var messages := []
@@ -106,8 +123,6 @@ func finale_dialog(part : String):
 		MessageDisplay.display(convert_messages(messages), true)
 		yield(MessageDisplay, "messages_finished")
 		yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
-		#GameState.interaction_is_frozen = false
-
 
 func convert_messages(messages):
 	var result = []

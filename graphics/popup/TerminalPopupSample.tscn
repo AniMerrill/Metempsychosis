@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://graphics/popup/TerminalPopupBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://graphics/popup/terminal/screens/TerminalMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://graphics/popup/terminal/screens/LoremIpsum.tscn" type="PackedScene" id=3]
 [ext_resource path="res://graphics/popup/terminal/screens/NumpadScreen.tscn" type="PackedScene" id=4]
-[ext_resource path="res://graphics/popup/popup_x_button_hover.png" type="Texture" id=5]
+[ext_resource path="res://graphics/popup/terminal/screens/Minimap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/popup/popup_x_button_hover.png" type="Texture" id=6]
 
 [node name="TerminalPopupSample" index="0" instance=ExtResource( 1 )]
 
@@ -68,8 +69,11 @@ visible = false
 solution = "20200115"
 code_length = 8
 
+[node name="Minimap" parent="Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="4" instance=ExtResource( 5 )]
+visible = false
+
 [node name="XButton" parent="." index="2"]
-texture_hover = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
 
 [editable path="Content/TerminalBase"]
 
