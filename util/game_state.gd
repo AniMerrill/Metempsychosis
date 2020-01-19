@@ -115,6 +115,8 @@ enum PLAYER {
 var state := []
 
 
+export var is_ai_state = false
+
 ## Local state:
 
 # The player controlled in this game.
@@ -372,7 +374,10 @@ func pbd(txt, bytes):
 # Serializes the state to a hexadecimal string.
 func serialize() -> String:
 	randomize()
-	set_state(STATE.CODE_CREATED_BY_PLAYER_A, current_player() == PLAYER.PLAYER_A)
+	var by_a = current_player() == PLAYER.PLAYER_A
+	if is_ai_state:
+		by_a = not by_a
+	set_state(STATE.CODE_CREATED_BY_PLAYER_A, by_a)
 	var bytes = _state_as_bytes()	
 	bytes = _add_integrity_check(bytes)
 	bytes = _add_player_xor(bytes)
@@ -384,7 +389,7 @@ func serialize() -> String:
 enum ERROR_CODE {
 		OK = 0,
 		INVALID_ENCODING = 1,
-		PLAYER_A_CODE = 2,
+		OTHER_PLAYER_CODE = 2,
 	}
 
 
@@ -409,8 +414,8 @@ func deserialize(serialized_state : String) -> int:
 
 	var code_by_a = get_state(STATE.CODE_CREATED_BY_PLAYER_A)
 	var player_is_a = current_player() == PLAYER.PLAYER_A
-	if code_by_a == player_is_a:
-		return ERROR_CODE.PLAYER_A_CODE
+	if not is_ai_state and code_by_a == player_is_a:
+		return ERROR_CODE.OTHER_PLAYER_CODE
 
 	return ERROR_CODE.OK
 

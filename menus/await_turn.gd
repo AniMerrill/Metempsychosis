@@ -50,3 +50,6 @@ func _on_BackButton_pressed():
 
 func _on_Customise_pressed():
 	SceneTransition.change_scene("menus/CustomizePlayer.tscn")
+
+func _on_AIBot_pressed():
+	SceneTransition.change_scene("menus/AIBot.tscn")

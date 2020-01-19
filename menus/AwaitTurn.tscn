@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/await_turn.gd" type="Script" id=1]
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
-[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -113,7 +112,6 @@ margin_right = 387.0
 margin_bottom = 47.0
 custom_fonts/font = SubResource( 4 )
 align = 1
-max_length = 20
 placeholder_text = "code"
 placeholder_alpha = 0.3
 script = ExtResource( 4 )
@@ -190,25 +188,11 @@ margin_right = 430.0
 margin_bottom = 253.0
 text = "Continue"
 
-[node name="aibot" type="Sprite" parent="."]
-visible = false
-position = Vector2( 34.5, 304.25 )
-scale = Vector2( 0.796875, 0.757812 )
-texture = ExtResource( 5 )
-
-[node name="AIBot" type="Button" parent="."]
-visible = false
-margin_left = 9.0
-margin_top = 326.0
-margin_right = 61.0
-margin_bottom = 346.0
-text = "AI Bot"
-
 [node name="Debugging" type="Node2D" parent="."]
 editor/display_folded = true
 visible = false
 
-[node name="CurrentPlayer" parent="Debugging" instance=ExtResource( 6 )]
+[node name="CurrentPlayer" parent="Debugging" instance=ExtResource( 5 )]
 position = Vector2( 310, 10 )
 
 [node name="ChangePlayer" type="Button" parent="Debugging"]
@@ -227,6 +211,7 @@ text = "State Editor"
 [connection signal="pressed" from="MenuBase/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="text_entered" from="InputArea/InputCode" to="." method="_on_InputCode_text_entered"]
 [connection signal="pressed" from="CustomiseArea/Customise" to="." method="_on_Customise_pressed"]
+[connection signal="pressed" from="AIArea/AIBot" to="." method="_on_AIBot_pressed"]
 [connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Debugging/ChangePlayer" to="." method="_on_ChangePlayer_pressed"]
 [connection signal="pressed" from="Debugging/StateEdit" to="." method="_on_StateEdit_pressed"]
