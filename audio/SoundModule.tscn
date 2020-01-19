@@ -3,22 +3,22 @@
 [ext_resource path="res://audio/SoundModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/multi_sound.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/sound/snd_icon.png" type="Texture" id=3]
-[ext_resource path="res://addons/mixing-desk/sound/nonspatial/polysound.gd" type="Script" id=4]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/concat_cont.gd" type="Script" id=4]
 [ext_resource path="res://audio/audio_assets/final_room/TerminalEngine.wav" type="AudioStream" id=5]
-[ext_resource path="res://audio/audio_assets/final_room/TerminalEngine-002.wav" type="AudioStream" id=6]
-[ext_resource path="res://addons/mixing-desk/sound/nonspatial/scatter_cont.gd" type="Script" id=7]
-[ext_resource path="res://audio/audio_assets/final_room/static/static-001.wav" type="AudioStream" id=8]
-[ext_resource path="res://audio/audio_assets/final_room/static/static-002.wav" type="AudioStream" id=9]
-[ext_resource path="res://audio/audio_assets/final_room/static/static-003.wav" type="AudioStream" id=10]
-[ext_resource path="res://audio/audio_assets/final_room/static/static-004.wav" type="AudioStream" id=11]
-[ext_resource path="res://audio/audio_assets/final_room/static/static-005.wav" type="AudioStream" id=12]
-[ext_resource path="res://audio/audio_assets/final_room/static/static-006.wav" type="AudioStream" id=13]
-[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=14]
-[ext_resource path="res://audio/audio_assets/final_room/TerminalLights-001.wav" type="AudioStream" id=15]
-[ext_resource path="res://audio/audio_assets/final_room/TerminalLights-002.wav" type="AudioStream" id=16]
-[ext_resource path="res://audio/audio_assets/final_room/TerminalLights-003.wav" type="AudioStream" id=17]
-[ext_resource path="res://audio/audio_assets/final_room/TerminalScreen.wav" type="AudioStream" id=18]
-[ext_resource path="res://audio/audio_assets/ambience/scifi_glit_fx_007.wav" type="AudioStream" id=19]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/scatter_cont.gd" type="Script" id=6]
+[ext_resource path="res://audio/audio_assets/final_room/static/static-001.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/audio_assets/final_room/static/static-002.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/audio_assets/final_room/static/static-003.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/audio_assets/final_room/static/static-004.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/audio_assets/final_room/static/static-005.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/audio_assets/final_room/static/static-006.wav" type="AudioStream" id=12]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/ran_cont.gd" type="Script" id=13]
+[ext_resource path="res://audio/audio_assets/final_room/TerminalLights-001.wav" type="AudioStream" id=14]
+[ext_resource path="res://audio/audio_assets/final_room/TerminalLights-002.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/audio_assets/final_room/TerminalLights-003.wav" type="AudioStream" id=16]
+[ext_resource path="res://audio/audio_assets/final_room/TerminalScreen.wav" type="AudioStream" id=17]
+[ext_resource path="res://audio/audio_assets/ambience/scifi_glit_fx_007.wav" type="AudioStream" id=18]
+[ext_resource path="res://addons/mixing-desk/sound/nonspatial/polysound.gd" type="Script" id=19]
 [ext_resource path="res://audio/audio_assets/ui_click.wav" type="AudioStream" id=20]
 [ext_resource path="res://audio/audio_assets/objects/door_slide_up.wav" type="AudioStream" id=21]
 [ext_resource path="res://audio/audio_assets/objects/item_pick_up.wav" type="AudioStream" id=22]
@@ -55,118 +55,121 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
+autoplay = false
+sound_number = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FinalRoom/TerminalEngine"]
 stream = ExtResource( 5 )
 volume_db = 9.087
-bus = "SFX"
+bus = "Terminal"
 
-[node name="TerminalEngine2" type="Node" parent="FinalRoom"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FinalRoom/TerminalEngine2"]
-stream = ExtResource( 6 )
-volume_db = 9.592
-bus = "SFX"
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="FinalRoom/TerminalEngine"]
+stream = ExtResource( 5 )
+volume_db = 9.087
+bus = "Terminal"
 
 [node name="StaticScatterer" type="Node" parent="FinalRoom"]
-script = ExtResource( 7 )
+editor/display_folded = true
+script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 autostart = false
 volume_range = 2.0
+pitch_range = 1.3
 voices = 2
 max_time = 6.0
 timeout = 0.0
 
 [node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 8 )
-volume_db = 2.524
+stream = ExtResource( 7 )
+volume_db = -6.564
 pitch_scale = 2.71
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 9 )
+stream = ExtResource( 8 )
+volume_db = -7.068
 pitch_scale = 4.57
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 10 )
+stream = ExtResource( 9 )
+volume_db = -5.554
 pitch_scale = 2.0
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 11 )
-volume_db = 5.0
+stream = ExtResource( 10 )
+volume_db = 3.79
 pitch_scale = 2.0
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 12 )
-volume_db = 3.0
-bus = "SFX"
+stream = ExtResource( 11 )
+volume_db = -3.058
+bus = "Terminal"
 
 [node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 13 )
-volume_db = -7.558
+stream = ExtResource( 12 )
+volume_db = -11.597
 pitch_scale = 2.86
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="FinalRoom/StaticScatterer"]
-stream = ExtResource( 9 )
-volume_db = 7.0
-bus = "SFX"
+stream = ExtResource( 8 )
+volume_db = 6.48
+bus = "Terminal"
 
 [node name="TerminalLights" type="Node" parent="."]
 editor/display_folded = true
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TerminalLights"]
-stream = ExtResource( 15 )
+stream = ExtResource( 14 )
 volume_db = 12.0
+bus = "Terminal"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="TerminalLights"]
-stream = ExtResource( 16 )
+stream = ExtResource( 15 )
 volume_db = 12.0
+bus = "Terminal"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="TerminalLights"]
-stream = ExtResource( 17 )
+stream = ExtResource( 16 )
 volume_db = 12.0
+bus = "Terminal"
 
 [node name="TerminalScreenOn" type="Node" parent="."]
 editor/display_folded = true
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TerminalScreenOn"]
-stream = ExtResource( 18 )
+stream = ExtResource( 17 )
 volume_db = -18.942
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="TerminalScreenOn"]
-stream = ExtResource( 18 )
+stream = ExtResource( 17 )
 volume_db = -18.121
 pitch_scale = 0.9
-bus = "SFX"
+bus = "Terminal"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="TerminalScreenOn"]
-stream = ExtResource( 18 )
+stream = ExtResource( 17 )
 volume_db = -13.893
 pitch_scale = 1.1
-bus = "SFX"
+bus = "Terminal"
 
 [node name="Ambience" type="Node" parent="."]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -179,12 +182,12 @@ max_time = 8.22
 timeout = 12.91
 
 [node name="Glit" type="AudioStreamPlayer" parent="Ambience"]
-stream = ExtResource( 19 )
+stream = ExtResource( 18 )
 volume_db = -26.518
 bus = "SFX"
 
 [node name="Click" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -195,7 +198,7 @@ volume_db = -8.0
 pitch_scale = 0.7
 
 [node name="DoorSlideUp" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -224,7 +227,7 @@ pitch_scale = 1.1
 bus = "Doors"
 
 [node name="ItemPickedUp" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -242,7 +245,7 @@ pitch_scale = 1.2
 bus = "SFX"
 
 [node name="DoorSlideDown" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -262,7 +265,7 @@ stream = ExtResource( 23 )
 bus = "Doors"
 
 [node name="DoorUnlocksNear" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -272,7 +275,7 @@ stream = ExtResource( 24 )
 bus = "SFX"
 
 [node name="DoorUnlocksFar" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -283,7 +286,7 @@ volume_db = 5.534
 bus = "DoorFar"
 
 [node name="Footsteps" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -325,7 +328,7 @@ pitch_scale = 1.1
 bus = "Footsteps"
 
 [node name="DoorOpenWarning" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -350,7 +353,7 @@ bus = "SFX"
 [node name="SoundPuzzle" type="Node" parent="."]
 
 [node name="SoundPuzzle0" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -360,7 +363,7 @@ stream = ExtResource( 32 )
 bus = "SFX"
 
 [node name="SoundPuzzle1" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -368,10 +371,11 @@ autoplay = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle1"]
 stream = ExtResource( 33 )
-volume_db = 8.583
+volume_db = 4.0
+bus = "SFX"
 
 [node name="SoundPuzzle2" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -382,7 +386,7 @@ stream = ExtResource( 34 )
 bus = "SFX"
 
 [node name="SoundPuzzle3" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -392,7 +396,7 @@ stream = ExtResource( 35 )
 bus = "SFX"
 
 [node name="SoundPuzzle4" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -403,7 +407,7 @@ volume_db = 11.107
 bus = "SFX"
 
 [node name="SoundPuzzle5" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -413,7 +417,7 @@ stream = ExtResource( 37 )
 bus = "SFX"
 
 [node name="SoundPuzzle6" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -423,7 +427,7 @@ stream = ExtResource( 38 )
 bus = "SFX"
 
 [node name="SoundPuzzle7" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -433,7 +437,7 @@ stream = ExtResource( 39 )
 bus = "SFX"
 
 [node name="SoundPuzzle8" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
@@ -443,12 +447,12 @@ stream = ExtResource( 40 )
 bus = "SFX"
 
 [node name="SoundPuzzle9" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle9"]
-stream = ExtResource( 19 )
+stream = ExtResource( 18 )
 volume_db = -32.065
 bus = "SFX"
