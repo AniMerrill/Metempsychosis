@@ -16,6 +16,7 @@ func _on_object_clicked(node):
 			yield(player, "position_reached")
 			_switch_xor()
 			GameState.interaction_is_frozen = false
+			FlashText.flash("Somewhere in the distance you hear the sound of two doors. One locking, one unlocking.")
 
 func _switch_xor():
 	var status = not GameState.get_state(GameState.STATE.XOR_ROOM_SWITCHED)
