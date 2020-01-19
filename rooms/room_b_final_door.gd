@@ -34,7 +34,15 @@ func _add_keys():
 		GameState.set_state(GameState.STATE.KEY_B_3_POS_B, false)
 		GameState.set_state(GameState.STATE.KEY_B_3_POS_DOOR, true)
 		n_added_keys += 1
-	print("Added " + str(n_added_keys) + " keys.")
+	match n_added_keys:
+		0:
+			FlashText.flash("You do not have any matching keys to insert.")
+		1:
+			FlashText.flash("One key inserted.")
+		2:
+			FlashText.flash("Two keys inserted.")
+		3:
+			FlashText.flash("All keys inserted.")
 
 
 func _update_keys():
@@ -48,6 +56,9 @@ func _update_keys():
 	key_panel.set_n_keys(n_keys)
 	if n_keys == 3:
 		_unlock_door()
+	if n_keys == 3:
+		_unlock_door()
+		FlashText.flash("Door unlocked!")
 
 func _unlock_door():
 	room.west_door = room.DOOR_STATUS.CLOSED_DOOR

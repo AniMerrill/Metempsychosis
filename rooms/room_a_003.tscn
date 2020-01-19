@@ -11,6 +11,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
 [node name="room_a_003" type="Node2D"]
+editor/display_folded = true
 script = ExtResource( 1 )
 light_message = "The soft blue light emitted by the lamp makes you feel sad."
 
