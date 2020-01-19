@@ -5,6 +5,7 @@ extends Control
 
 export var solution : String = ""
 export var code_length : int = 6
+export var solved_message : String = "Correct."
 
 var code : String = ""
 var blink : bool = false
@@ -55,7 +56,7 @@ func number_pressed(value : int) -> void:
 
 func ok_pressed() -> void:
 	if solution == code:
-		$Message.text = "Congrats, you are a WinRAR."
+		$Message.text = solved_message
 		emit_signal("solved")
 	else:
 		# TODO: Insert error noise
