@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/new_game.gd" type="Script" id=1]
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 13
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 13
+font_data = ExtResource( 4 )
 
 [node name="NewGame" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,46 +25,84 @@ visible = true
 visible = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 60.0
+margin_left = 30.0
 margin_top = 80.0
-margin_right = 420.0
-margin_bottom = 295.0
+margin_right = 430.0
+margin_bottom = 130.0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "This is a [b]turn-based, two player[/b] game. While there is the option to play with an AI chatbot, it is recommended to play with another person.
-
-
-[b]Option 1:[/b] A friend has started the game and has or will send you a code that you can use to start the game.
-
-
-
-
-[b]Option 2:[/b] You start a new game and you will send a code later to a friend (or the AI chatbot). Tell your friend to choose option 1."
-text = "This is a turn-based, two player game. While there is the option to play with an AI chatbot, it is recommended to play with another person.
-
-
-Option 1: A friend has started the game and has or will send you a code that you can use to start the game.
-
-
-
-
-Option 2: You start a new game and you will send a code later to a friend (or the AI chatbot). Tell your friend to choose option 1."
+bbcode_text = "This is a [color=#00ff00][b]turn-based, two player[/b][/color] game. While there is the option to play with an AI chatbot, it is recommended to play with another person."
+text = "This is a turn-based, two player game. While there is the option to play with an AI chatbot, it is recommended to play with another person."
 override_selected_font_color = true
 
-[node name="PlayerB" type="Button" parent="."]
-margin_left = 300.0
-margin_top = 200.0
-margin_right = 416.0
-margin_bottom = 220.0
-text = "Wait for my turn"
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="PlayerA" type="Button" parent="."]
-margin_left = 300.0
-margin_top = 290.0
-margin_right = 416.0
-margin_bottom = 310.0
-text = "Start new game"
+[node name="RichTextLabel2" type="RichTextLabel" parent="Node2D"]
+margin_left = 30.0
+margin_top = 134.0
+margin_right = 320.0
+margin_bottom = 295.0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[color=#00ff00][b]Option 1:[/b][/color] A friend has started the game and has or will send you a code that you can use to start the game. Don't share your screen."
+text = "Option 1: A friend has started the game and has or will send you a code that you can use to start the game. Don't share your screen."
+override_selected_font_color = true
+
+[node name="PlayerB" type="Button" parent="Node2D"]
+margin_left = 330.0
+margin_top = 150.0
+margin_right = 415.0
+margin_bottom = 180.0
+text = "Option 1"
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2( 0, 70 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Node2D2"]
+margin_left = 130.0
+margin_top = 134.0
+margin_right = 420.0
+margin_bottom = 190.0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[color=#00ff00][b]Option 2:[/b][/color] You start a new game and you will send a code later to a friend (or the AI chatbot). Tell your friend to choose option 1. Don't share your screen."
+text = "Option 2: You start a new game and you will send a code later to a friend (or the AI chatbot). Tell your friend to choose option 1. Don't share your screen."
+override_selected_font_color = true
+
+[node name="PlayerA" type="Button" parent="Node2D2"]
+margin_left = 30.0
+margin_top = 150.0
+margin_right = 115.0
+margin_bottom = 180.0
+text = "Option 2"
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2( 0, 140 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Node2D3"]
+margin_left = 30.0
+margin_top = 134.0
+margin_right = 320.0
+margin_bottom = 190.0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[color=#00ff00][b]Option 3:[/b][/color] Local co-op mode. Since the game is about communication, [color=#00ff00][b]only one player at a time[/b][/color] should look at the screen."
+text = "Option 3: Local co-op mode. Since the game is about communication, only one player at a time should look at the screen."
+override_selected_font_color = true
+
+[node name="LocalCoop" type="Button" parent="Node2D3"]
+margin_left = 330.0
+margin_top = 150.0
+margin_right = 415.0
+margin_bottom = 180.0
+text = "Option 3"
 [connection signal="pressed" from="MenuBase/BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed" from="PlayerB" to="." method="_on_PlayerB_pressed"]
-[connection signal="pressed" from="PlayerA" to="." method="_on_PlayerA_pressed"]
+[connection signal="pressed" from="Node2D/PlayerB" to="." method="_on_PlayerB_pressed"]
+[connection signal="pressed" from="Node2D2/PlayerA" to="." method="_on_PlayerA_pressed"]
+[connection signal="pressed" from="Node2D3/LocalCoop" to="." method="_on_LocalCoop_pressed"]
 
 [editable path="MenuBase"]

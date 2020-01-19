@@ -1,7 +1,7 @@
 extends Node
 
 func load_first_room():
-	if not GameState.has_seen_introduction:
+	if not GameState.has_seen_introduction():
 		SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
 		return
 	match GameState.current_player():
@@ -38,7 +38,7 @@ func wake_up_dialog():
 		]
 	MessageDisplay.display(convert_messages(messages))
 	yield(MessageDisplay, "messages_finished")
-	GameState.has_seen_in_room_intro = true
+	GameState.set_has_seen_in_room_intro(true)
 	yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
 	GameState.interaction_is_frozen = false
 

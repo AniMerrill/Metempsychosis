@@ -23,7 +23,7 @@ func _ready():
 		GameState.set_last_output_code(code)
 		SceneTransition.change_scene('menus/AwaitTurn.tscn')
 	else:
-		GameState.has_seen_introduction = true
+		GameState.set_has_seen_introduction(true)
 		RoomUtil.load_first_room()
 
 func convert_messages(messages):

@@ -8,6 +8,9 @@ onready var output_area = $OutputArea
 onready var first_time_area = $FirstTimeArea
 
 func _ready():
+	if GameState.is_local_coop():
+		SceneTransition.change_scene_direct("menus/CoopSwitchPlayer.tscn")
+		return
 	error_layer.visible = false
 	output_code.text = GameState.last_output_code()
 	if output_code.text == "(no code)":

@@ -1,23 +1,30 @@
 extends Node2D
 
-# TODO(ereborn): Set up game states in each.
+func _ready():
+	GameState.reset_for_new_game()
 
 func _on_PlayerB_pressed():
-	GameState.clear_state()
 	GameState.set_current_player(GameState.PLAYER.PLAYER_B)
-	GameState.set_last_output_code('(no code)')
-	GameState.has_seen_in_room_intro = false
-	GameState.has_seen_introduction = false
 	SceneTransition.change_scene("menus/AwaitTurn.tscn")
 
 
 func _on_PlayerA_pressed():
-	GameState.clear_state()
 	GameState.set_current_player(GameState.PLAYER.PLAYER_A)
-	GameState.set_last_output_code('(no code)')
 	RoomUtil.load_first_room()
 
 
 func _on_BackButton_pressed():
 	SceneTransition.change_scene("menus/MainMenu.tscn")
 
+
+func _on_LocalCoop_pressed():
+	Prompt.prompt("Player 1 starts. Player 2, look away from the screen now.", "Proceed", "Cancel")
+	Prompt.connect("responded", self, "_on_coop_responded")
+
+
+func _on_coop_responded(response):
+	Prompt.disconnect("responded", self, "_on_coop_responded")
+	if response:
+		GameState.set_coop_mode(true)
+		GameState.set_current_player(GameState.PLAYER.PLAYER_A)
+		RoomUtil.load_first_room()

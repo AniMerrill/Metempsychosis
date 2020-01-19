@@ -99,6 +99,11 @@ var _my_player : int = PLAYER.INVALID_PLAYER
 # The most recent code to be communicated to the other player.
 var _my_last_output_code := '(no code)'
 
+var _is_local_coop : bool = false
+var _has_seen_introduction_a := false
+var _has_seen_in_room_intro_a := false
+var _has_seen_introduction_b := false
+var _has_seen_in_room_intro_b := false
 
 ## Volatile states:
 
@@ -109,12 +114,25 @@ var interaction_is_frozen := false
 # Negative number leaves the player alone.
 var entering_from_direction : int = -1
 
-var has_seen_introduction := false
-var has_seen_in_room_intro := false
 
 var opening_dialogue_is_outro := false
 var final_room_replay := false
 
+
+func reset_for_new_game():
+	interaction_is_frozen = false
+	entering_from_direction = -1
+	_has_seen_in_room_intro_a = false
+	_has_seen_introduction_a = false
+	_has_seen_in_room_intro_b = false
+	_has_seen_introduction_b = false
+	opening_dialogue_is_outro = false
+	final_room_replay = false
+	_my_last_output_code = '(no code)'
+	_my_player = PLAYER.INVALID_PLAYER
+	_is_local_coop = false
+	_save_local_data()
+	clear_state()
 
 # Get the current player.
 func current_player() -> int:
@@ -129,6 +147,16 @@ func set_current_player(player : int) -> void:
 	_save_local_data()
 
 
+func is_local_coop() -> bool:
+	_load_local_data()
+	return _is_local_coop
+
+
+func set_coop_mode(mode : bool) -> void:
+	_is_local_coop = mode
+	_save_local_data()
+
+
 # Get the most recent code that has to be communicated to the other player.
 func last_output_code() -> String:
 	_load_local_data()
@@ -140,6 +168,35 @@ func set_last_output_code(code : String) -> void:
 	_my_last_output_code = code
 	_save_local_data()
 
+func has_seen_in_room_intro():
+	_load_local_data()
+	if _my_player == PLAYER.PLAYER_A:
+		return _has_seen_in_room_intro_a
+	else:
+		return _has_seen_in_room_intro_b
+
+func set_has_seen_in_room_intro(value : bool) -> void:
+	if _my_player == PLAYER.PLAYER_A:
+		_has_seen_in_room_intro_a = value
+	else:
+		_has_seen_in_room_intro_b = value
+	_save_local_data()
+	
+func has_seen_introduction():
+	_load_local_data()
+	if _my_player == PLAYER.PLAYER_A:
+		return _has_seen_introduction_a
+	else:
+		return _has_seen_introduction_b
+	
+	
+func set_has_seen_introduction(value : bool) -> void:
+	if _my_player == PLAYER.PLAYER_A:
+		_has_seen_introduction_a = value
+	else:
+		_has_seen_introduction_b = value
+	_save_local_data()
+
 
 const save_file = 'user://save_game_state.save'
 
@@ -148,6 +205,11 @@ func _save_local_data():
 	var save_dict = {
 		"my_player" : _my_player,
 		"my_last_output_code": _my_last_output_code,
+		"is_local_coop": _is_local_coop,
+		"has_seen_introduction_a": _has_seen_introduction_a,
+		"has_seen_introduction_b": _has_seen_introduction_b,
+		"has_seen_in_room_intro_a": _has_seen_in_room_intro_a,
+		"has_seen_in_room_intro_b": _has_seen_in_room_intro_b,
 	}
 	var save_game = File.new()
 	save_game.open(save_file, File.WRITE)
@@ -164,6 +226,13 @@ func _load_local_data():
 	var saved_data = parse_json(save_game.get_line())
 	_my_player = saved_data["my_player"]
 	_my_last_output_code = saved_data["my_last_output_code"]
+	if saved_data.has("is_local_coop"):
+		_is_local_coop = saved_data["is_local_coop"]
+	if saved_data.has("has_seen_introduction_a"):
+		_has_seen_introduction_a = saved_data["has_seen_introduction_a"]
+		_has_seen_introduction_b = saved_data["has_seen_introduction_b"]
+		_has_seen_in_room_intro_a = saved_data["has_seen_in_room_intro_a"]
+		_has_seen_in_room_intro_b = saved_data["has_seen_in_room_intro_b"]
 	save_game.close()
 
 

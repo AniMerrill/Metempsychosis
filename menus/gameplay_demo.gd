@@ -4,9 +4,7 @@ onready var state_container = $Frame/ScrollContainer/VBoxContainer
 onready var start_button = $Frame/StartButton
 
 func _ready():
-	GameState.set_current_player(GameState.PLAYER.INVALID_PLAYER)
-	GameState.has_seen_in_room_intro = true
-	GameState.has_seen_introduction = true
+	GameState.reset_for_new_game()
 	for key in GameState.STATE.keys():
 		var c = CheckBox.new()
 		c.pressed = GameState.get_state(GameState.STATE.get(key))
