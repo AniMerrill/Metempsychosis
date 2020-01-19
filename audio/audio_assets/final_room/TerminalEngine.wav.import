@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TerminalEngine.wav-36b31727b224dcfcab32a8f9278755ab.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/final_room/TerminalEngine.wav"
+dest_files=[ "res://.import/TerminalEngine.wav-36b31727b224dcfcab32a8f9278755ab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
