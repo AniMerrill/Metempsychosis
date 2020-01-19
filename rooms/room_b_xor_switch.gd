@@ -17,6 +17,7 @@ func _on_object_clicked(node):
 			_switch_xor()
 			GameState.interaction_is_frozen = false
 			FlashText.flash("Somewhere in the distance you hear the sound of two doors. One locking, one unlocking.")
+			SoundModule.play_sfx("DoorUnlocksFar")
 
 func _switch_xor():
 	var status = not GameState.get_state(GameState.STATE.XOR_ROOM_SWITCHED)
