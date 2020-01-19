@@ -34,6 +34,26 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	Prompt.connect("responded", self, "_on_responded")
 	
+	# Set Live Feed Sprites
+	if GameState.current_player() == GameState.PLAYER.PLAYER_A:
+		# Neptonian
+		pass
+	else:
+		if GameState.set_state(GameState.STATE.PLAYER_A_TOOL_HAMMER, true):
+			$GenericRoom/Objects/TheMachine/Screen/Tool.visible = true
+			$GenericRoom/Objects/TheMachine/Screen/Tool.frame = 48
+		if GameState.set_state(GameState.STATE.PLAYER_A_TOOL_SCREWDRIVER, true):
+			$GenericRoom/Objects/TheMachine/Screen/Tool.visible = true
+			$GenericRoom/Objects/TheMachine/Screen/Tool.frame = 49
+		if GameState.set_state(GameState.STATE.PLAYER_A_TOOL_PISTOL, true):
+			$GenericRoom/Objects/TheMachine/Screen/Tool.visible = true
+			$GenericRoom/Objects/TheMachine/Screen/Tool.frame = 50
+		if GameState.set_state(GameState.STATE.PLAYER_A_TOOL_PAINTBRUSH, true):
+			$GenericRoom/Objects/TheMachine/Screen/Tool.visible = true
+			$GenericRoom/Objects/TheMachine/Screen/Tool.frame = 51
+		
+		
+	
 	if GameState.final_room_replay:
 		player.swap_rig()
 		player.position = machine.position + Vector2(0, 30)
@@ -115,6 +135,13 @@ func effects_anim_blink():
 				light.visible = true
 				
 
+#light blink sfx
+func play_light_blink_sfx():
+	SoundModule.play_sfx("TerminalLights")
+
+func warning_glitch():
+	$GenericRoom/Objects/TheMachine/Screen/Display.frame = randi() % 6 + 57
+
 func finale_cutscene():
 	var species := "Plutonians" if GameState._my_player == GameState.PLAYER.PLAYER_A else "Neptonians"
 	var other_species := "Neptonians" if GameState._my_player == GameState.PLAYER.PLAYER_A \
@@ -177,9 +204,3 @@ func finale_cutscene():
 				GameState.final_room_replay = false
 			SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
 			MusicModule.state_changed("menu")
-
-#light blink sfx
-func play_light_blink_sfx():
-	SoundModule.play_sfx("TerminalLights")
-	
-	
