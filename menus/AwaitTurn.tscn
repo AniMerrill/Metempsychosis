@@ -6,11 +6,11 @@
 [ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=4]
 [ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=5]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 18
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 12
 font_data = ExtResource( 3 )
 
@@ -18,7 +18,7 @@ font_data = ExtResource( 3 )
 size = 24
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 24
 font_data = ExtResource( 3 )
 
@@ -40,7 +40,7 @@ margin_left = 80.0
 margin_top = 66.0
 margin_right = 399.0
 margin_bottom = 89.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Awaiting Turn"
 align = 1
 autowrap = true
@@ -57,7 +57,7 @@ margin_left = 13.0
 margin_top = 11.0
 margin_right = 150.0
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "Communicate this code to the other player:"
 autowrap = true
 
@@ -85,7 +85,7 @@ margin_left = 13.0
 margin_top = 11.0
 margin_right = 387.0
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "At the end of their turn, your fellow player will receive a code that you need to paste below in order to start the game!"
 autowrap = true
 
@@ -101,7 +101,7 @@ margin_left = 13.0
 margin_top = 11.0
 margin_right = 150.0
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "Enter the code received from the other player:"
 autowrap = true
 
@@ -110,7 +110,7 @@ margin_left = 168.0
 margin_top = 7.0
 margin_right = 387.0
 margin_bottom = 47.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 align = 1
 placeholder_text = "code"
 placeholder_alpha = 0.3
@@ -128,7 +128,7 @@ color = Color( 0.137255, 0.172549, 0.192157, 1 )
 margin_top = 11.0
 margin_right = 150.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "While you wait:"
 align = 1
 autowrap = true
@@ -152,7 +152,7 @@ color = Color( 0.137255, 0.172549, 0.192157, 1 )
 margin_top = 11.0
 margin_right = 150.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "No human player?"
 align = 1
 autowrap = true
@@ -175,7 +175,7 @@ color = Color( 0.545098, 0.027451, 0.231373, 1 )
 [node name="Label" type="Label" parent="ErrorTextBG"]
 margin_right = 280.0
 margin_bottom = 31.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "ERROR:"
 align = 1
 valign = 1

@@ -6,11 +6,14 @@ onready var error_layer = $ErrorTextBG
 onready var error_label = $ErrorTextBG/Label
 onready var output_area = $OutputArea
 onready var first_time_area = $FirstTimeArea
+onready var ai_area = $AIArea
 
 func _ready():
 	if GameState.is_local_coop():
 		SceneTransition.change_scene_direct("menus/CoopSwitchPlayer.tscn")
 		return
+	if GameState.current_player() != GameState.PLAYER.PLAYER_A:
+		ai_area.visible = false
 	error_layer.visible = false
 	output_code.text = GameState.last_output_code()
 	if output_code.text == "(no code)":
