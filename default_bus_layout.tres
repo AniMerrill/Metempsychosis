@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=7 format=2]
+[gd_resource type="AudioBusLayout" load_steps=9 format=2]
 
 [sub_resource type="AudioEffectLowPassFilter" id=1]
 resource_name = "LowPassFilter"
@@ -36,6 +36,14 @@ damping = 0.85
 dry = 0.81
 wet = 0.15
 
+[sub_resource type="AudioEffectLowPassFilter" id=7]
+resource_name = "LowPassFilter"
+cutoff_hz = 1500.0
+
+[sub_resource type="AudioEffectReverb" id=8]
+resource_name = "Reverb"
+room_size = 0.7
+
 [resource]
 bus/1/name = "Music"
 bus/1/solo = false
@@ -69,7 +77,17 @@ bus/4/name = "Doors"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -0.1
-bus/4/send = "Master"
+bus/4/volume_db = -1.6
+bus/4/send = "SFX"
 bus/4/effect/0/effect = SubResource( 6 )
 bus/4/effect/0/enabled = true
+bus/5/name = "DoorFar"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = "Master"
+bus/5/effect/0/effect = SubResource( 7 )
+bus/5/effect/0/enabled = true
+bus/5/effect/1/effect = SubResource( 8 )
+bus/5/effect/1/enabled = true
