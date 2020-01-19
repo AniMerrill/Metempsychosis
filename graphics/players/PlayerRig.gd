@@ -71,6 +71,15 @@ func _ready() -> void:
 func _process(delta : float) -> void:
 	set_eye_position()
 
+
+func load_from_game_state(player : int):
+	set_tool(GameState.custom_tool(player))
+	set_mouth(GameState.custom_mouth(player))
+	set_hair(GameState.custom_hair(player))
+	set_hat(GameState.custom_hat(player))
+	set_face(GameState.custom_face(player))
+
+
 func set_facing_front(value : bool) -> void:
 	facing_front = value
 	

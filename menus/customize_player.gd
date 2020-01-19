@@ -32,6 +32,7 @@ func _ready():
 	rig.visible = true
 	
 	rig.look_position = Vector2(200,200)
+	rig.load_from_game_state(GameState.current_player())
 	
 	var ignore
 	
@@ -120,18 +121,23 @@ func _process(delta):
 
 func set_tool(new_tool : int) -> void:
 	rig.current_tool = new_tool
+	GameState.set_custom_tool(GameState.current_player(), new_tool)
 
 func set_mouth(mouth : int) -> void:
 	rig.current_mouth = mouth
+	GameState.set_custom_mouth(GameState.current_player(), mouth)
 
 func set_hair(hair : int) -> void:
 	rig.current_hair = hair
+	GameState.set_custom_hair(GameState.current_player(), hair)
 
 func set_hat(hat : int) -> void:
 	rig.current_hat = hat
+	GameState.set_custom_hat(GameState.current_player(), hat)
 
 func set_face(face : int) -> void:
 	rig.current_face = face
+	GameState.set_custom_face(GameState.current_player(), face)
 
 func _on_BackButton_pressed():
 	SceneTransition.change_scene("menus/AwaitTurn.tscn")

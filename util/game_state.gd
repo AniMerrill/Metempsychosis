@@ -18,13 +18,15 @@ is playing as player A or B (also when the game is closed in-between).
 """
 extends Node
 
+const PlayerRig = preload("res://graphics/players/PlayerRig.gd")
+
 
 # Human-readable names for the state booleans.
 #
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 #
-## NEXT_TAG: 32
+## NEXT_TAG: 56
 enum STATE {
 		CODE_CREATED_BY_PLAYER_A = 0,
 		
@@ -77,8 +79,28 @@ enum STATE {
 		## Finale States
 		FINALE_PLAYER_GIVEN_WARNING = 29,
 		GAME_OVER = 30,
+		
+		## Customisation
+		PLAYER_A_TOOL_HAMMER = 32,
+		PLAYER_A_TOOL_SCREWDRIVER = 33,
+		PLAYER_A_TOOL_PISTOL = 34,
+		PLAYER_A_TOOL_PAINTBRUSH = 35,
+		
+		PLAYER_A_MOUTH_SMILE = 36,
+		PLAYER_A_MOUTH_OPEN = 37,
+		
+		PLAYER_A_HAIR_PONYTAIL = 38,
+		
+		PLAYER_A_HAT_BOWLER = 39,
+		PLAYER_A_HAT_FEZ = 40,
+		PLAYER_A_HAT_HELMET = 41,
+		
+		PLAYER_A_FACE_BEARD = 42,
+		PLAYER_A_FACE_MOUSTACHE = 43,
+		
+		## NOTE: Auto-reserved 44 through 55 (inclusive) for PLAYER_B customs.
+		# So any next state should be 56.
 	}
-
 
 # Representing the two players.
 enum PLAYER {
@@ -121,6 +143,7 @@ var opening_dialogue_is_outro := false
 var final_room_replay := false
 
 
+
 func reset_for_new_game():
 	interaction_is_frozen = false
 	entering_from_direction = -1
@@ -135,6 +158,78 @@ func reset_for_new_game():
 	_is_local_coop = false
 	_save_local_data()
 	clear_state()
+
+func custom_tool(player : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	if get_state(STATE.PLAYER_A_TOOL_HAMMER + offset):
+		return PlayerRig.TOOL.HAMMER
+	if get_state(STATE.PLAYER_A_TOOL_SCREWDRIVER + offset):
+		return PlayerRig.TOOL.SCREWDRIVER
+	if get_state(STATE.PLAYER_A_TOOL_PISTOL + offset):
+		return PlayerRig.TOOL.PISTOL
+	if get_state(STATE.PLAYER_A_TOOL_PAINTBRUSH + offset):
+		return PlayerRig.TOOL.PAINTBRUSH
+	return PlayerRig.TOOL.NONE
+
+func set_custom_tool(player : int, value : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	set_state(STATE.PLAYER_A_TOOL_HAMMER + offset, value == PlayerRig.TOOL.HAMMER)
+	set_state(STATE.PLAYER_A_TOOL_SCREWDRIVER + offset, value == PlayerRig.TOOL.SCREWDRIVER)
+	set_state(STATE.PLAYER_A_TOOL_PISTOL + offset, value == PlayerRig.TOOL.PISTOL)
+	set_state(STATE.PLAYER_A_TOOL_PAINTBRUSH + offset, value == PlayerRig.TOOL.PAINTBRUSH)
+
+
+func custom_mouth(player : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	if get_state(STATE.PLAYER_A_MOUTH_SMILE + offset):
+		return PlayerRig.MOUTH.SMILE
+	if get_state(STATE.PLAYER_A_MOUTH_OPEN + offset):
+		return PlayerRig.MOUTH.OPEN
+	return PlayerRig.MOUTH.FROWN
+
+func set_custom_mouth(player : int, value : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	set_state(STATE.PLAYER_A_MOUTH_SMILE + offset, value == PlayerRig.MOUTH.SMILE)
+	set_state(STATE.PLAYER_A_MOUTH_OPEN + offset, value == PlayerRig.MOUTH.OPEN)
+
+func custom_hair(player : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	if get_state(STATE.PLAYER_A_HAIR_PONYTAIL + offset):
+		return PlayerRig.HAIR.PONYTAIL
+	return PlayerRig.HAIR.DOWN
+
+func set_custom_hair(player : int, value : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	set_state(STATE.PLAYER_A_HAIR_PONYTAIL + offset, value == PlayerRig.HAIR.PONYTAIL)
+
+func custom_hat(player : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	if get_state(STATE.PLAYER_A_HAT_BOWLER + offset):
+		return PlayerRig.HAT.BOWLER
+	if get_state(STATE.PLAYER_A_HAT_FEZ + offset):
+		return PlayerRig.HAT.FEZ
+	if get_state(STATE.PLAYER_A_HAT_HELMET + offset):
+		return PlayerRig.HAT.HELMET
+	return PlayerRig.HAT.NONE
+
+func set_custom_hat(player : int, value : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	set_state(STATE.PLAYER_A_HAT_BOWLER + offset, value == PlayerRig.HAT.BOWLER)
+	set_state(STATE.PLAYER_A_HAT_FEZ + offset, value == PlayerRig.HAT.FEZ)
+	set_state(STATE.PLAYER_A_HAT_HELMET + offset, value == PlayerRig.HAT.HELMET)
+
+func custom_face(player : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	if get_state(STATE.PLAYER_A_FACE_BEARD + offset):
+		return PlayerRig.FACE.BEARD
+	if get_state(STATE.PLAYER_A_FACE_MOUSTACHE + offset):
+		return PlayerRig.FACE.MOUSTACHE
+	return PlayerRig.FACE.NONE
+
+func set_custom_face(player : int, value : int):
+	var offset = 12 if player == PLAYER.PLAYER_B else 0
+	set_state(STATE.PLAYER_A_FACE_BEARD + offset, value == PlayerRig.FACE.BEARD)
+	set_state(STATE.PLAYER_A_FACE_MOUSTACHE + offset, value == PlayerRig.FACE.MOUSTACHE)
 
 # Get the current player.
 func current_player() -> int:
@@ -254,7 +349,13 @@ func set_state(state_enum : int, value : bool) -> void:
 
 # Updates all enums to false.
 func clear_state():
-	state = []
+	# Keep your character's customisation.
+	var new_state = []
+	var offset = 12 if current_player() == PLAYER.PLAYER_B else 0
+	for i in range(STATE.PLAYER_A_TOOL_HAMMER + offset, STATE.PLAYER_A_TOOL_HAMMER + offset + 12):
+		if state.has(i):
+			new_state.append(i)
+	state = new_state
 
 
 # Auxiliary function for serialization.
@@ -283,7 +384,7 @@ func serialize() -> String:
 enum ERROR_CODE {
 		OK = 0,
 		INVALID_ENCODING = 1,
-		OTHER_PLAYER_CODE = 2,
+		PLAYER_A_CODE = 2,
 	}
 
 
@@ -309,7 +410,7 @@ func deserialize(serialized_state : String) -> int:
 	var code_by_a = get_state(STATE.CODE_CREATED_BY_PLAYER_A)
 	var player_is_a = current_player() == PLAYER.PLAYER_A
 	if code_by_a == player_is_a:
-		return ERROR_CODE.OTHER_PLAYER_CODE
+		return ERROR_CODE.PLAYER_A_CODE
 
 	return ERROR_CODE.OK
 
