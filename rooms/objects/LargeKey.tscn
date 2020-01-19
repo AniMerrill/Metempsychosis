@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://rooms/objects/key.gd" type="Script" id=1]
+[ext_resource path="res://graphics/puzzles/dropbox/dropbox_red_key.png" type="Texture" id=2]
+[ext_resource path="res://graphics/puzzles/dropbox/dropbox_blue_key.png" type="Texture" id=3]
+
+[node name="Key" type="Node2D"]
+z_index = 280
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -20, -10, -15, 0, -5, 5, 10, 20, 20, 10, 10, 0, 5, -15, -5, -20 )
+
+[node name="red_key" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.404152, 0.156258 )
+texture = ExtResource( 2 )
+
+[node name="blue_key" type="Sprite" parent="."]
+position = Vector2( 0.404156, 0.156258 )
+texture = ExtResource( 3 )

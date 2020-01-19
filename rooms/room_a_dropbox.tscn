@@ -7,9 +7,9 @@
 [ext_resource path="res://entities/ExchangePopup.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
+vertices = PoolVector2Array( 435, 360, 45, 360, 95, 195, 391, 285, 385, 195, 396, 230, 381, 240, 413.36, 288.588 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 2 ), PoolIntArray( 2, 6, 3 ), PoolIntArray( 0, 3, 7 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 396, 230, 381, 240, 391, 285, 413.36, 288.588, 435, 360 ) ]
 
 [node name="room_a_dropbox" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,12 +25,12 @@ z_index = 274
 [node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
+position = Vector2( -1, 0 )
 navpoly = SubResource( 1 )
 
 [node name="Objects" type="Node2D" parent="GenericRoom"]
 
 [node name="Dropbox" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-position = Vector2( 445, 185 )
+position = Vector2( 445, 270 )
 
 [node name="ExchangePopup" parent="." instance=ExtResource( 5 )]
-visible = false
