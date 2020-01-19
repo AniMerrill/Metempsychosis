@@ -63,4 +63,13 @@ func _on_Customise_pressed():
 	SceneTransition.change_scene("menus/CustomizePlayer.tscn")
 
 func _on_AIBot_pressed():
-	SceneTransition.change_scene("menus/AIBot.tscn")
+	if not GameState.has_seen_ai_warning:
+		Prompt.prompt("Are you sure? The game is much more fun with a real partner!", "Proceed", "Cancel")
+		Prompt.connect("responded", self, "_on_AI_responded")
+	else:
+		SceneTransition.change_scene("menus/AIBot.tscn")
+
+func _on_AI_responded(value):
+	if value:
+		GameState.has_seen_ai_warning = true
+		SceneTransition.change_scene("menus/AIBot.tscn")
