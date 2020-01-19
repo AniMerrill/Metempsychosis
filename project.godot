@@ -25,7 +25,7 @@ Test_Directory="res://tests"
 [application]
 
 config/name="Metempsychosis"
-run/main_scene="res://menus/GameplayDemo.tscn"
+run/main_scene="res://menus/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
