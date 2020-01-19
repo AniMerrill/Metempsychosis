@@ -11,15 +11,18 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
 [node name="room_a_003" type="Node2D"]
-editor/display_folded = true
 script = ExtResource( 1 )
 light_message = "The soft blue light emitted by the lamp makes you feel sad."
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 3
 east_target = "room_a_002"
+north_door = 1
+north_target = ""
 west_door = 3
 west_target = "room_a_center"
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -35,6 +38,9 @@ navpoly = SubResource( 1 )
 [node name="ColorLight" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 
 [node name="Color" parent="GenericRoom/Objects/ColorLight/CanvasLayer" index="0"]
-color = Color( 0, 0, 1, 0.109804 )
+color = Color( 0, 0.0980392, 1, 0.392157 )
+
+[node name="Fade" parent="GenericRoom/Objects/ColorLight/CanvasLayer" index="1"]
+color = Color( 0, 0, 0, 0.231373 )
 
 [editable path="GenericRoom/Objects/ColorLight"]
