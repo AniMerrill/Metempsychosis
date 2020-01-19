@@ -13,6 +13,9 @@ script = ExtResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PreTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Visual" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Visual"]
@@ -36,3 +39,4 @@ Force sleep and surrender turn to other representative."
 align = 1
 valign = 1
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="PreTimer" to="." method="_on_PreTimer_timeout"]
