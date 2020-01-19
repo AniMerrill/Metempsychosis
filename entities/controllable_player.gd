@@ -40,3 +40,7 @@ func _process(delta):
 	rig.walking = true
 	rig.facing_right = velocity.x > 0
 	rig.facing_front = velocity.y > 0
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		rig.look_position = event.position
