@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/static-005.wav-aac3a8b78a73c88d3544a799f3f6cd84.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/final_room/static/static-005.wav"
+dest_files=[ "res://.import/static-005.wav-aac3a8b78a73c88d3544a799f3f6cd84.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
