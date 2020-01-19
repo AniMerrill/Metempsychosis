@@ -10,19 +10,19 @@ resource_name = "HighPassFilter"
 cutoff_hz = 1.0
 db = 1
 
-[sub_resource type="AudioEffectReverb" id=9]
+[sub_resource type="AudioEffectReverb" id=3]
 resource_name = "Reverb"
 room_size = 0.22
 wet = 0.32
 
-[sub_resource type="AudioEffectReverb" id=3]
+[sub_resource type="AudioEffectReverb" id=4]
 resource_name = "Reverb"
-room_size = 0.1
+room_size = 0.13
 damping = 0.67
 dry = 0.95
 wet = 0.1
 
-[sub_resource type="AudioEffectEQ" id=4]
+[sub_resource type="AudioEffectEQ" id=5]
 resource_name = "EQ"
 band_db/32_hz = -7.2
 band_db/100_hz = -8.7
@@ -31,21 +31,21 @@ band_db/1000_hz = -11.1
 band_db/3200_hz = -39.0
 band_db/10000_hz = -54.3
 
-[sub_resource type="AudioEffectLowPassFilter" id=5]
+[sub_resource type="AudioEffectLowPassFilter" id=6]
 resource_name = "LowPassFilter"
 
-[sub_resource type="AudioEffectReverb" id=6]
+[sub_resource type="AudioEffectReverb" id=7]
 resource_name = "Reverb"
 room_size = 0.05
 damping = 0.85
 dry = 0.81
 wet = 0.15
 
-[sub_resource type="AudioEffectLowPassFilter" id=7]
+[sub_resource type="AudioEffectLowPassFilter" id=8]
 resource_name = "LowPassFilter"
 cutoff_hz = 1500.0
 
-[sub_resource type="AudioEffectReverb" id=8]
+[sub_resource type="AudioEffectReverb" id=9]
 resource_name = "Reverb"
 room_size = 0.7
 dry = 0.52
@@ -62,7 +62,7 @@ bus/1/effect/0/effect = SubResource( 1 )
 bus/1/effect/0/enabled = true
 bus/1/effect/1/effect = SubResource( 2 )
 bus/1/effect/1/enabled = false
-bus/1/effect/2/effect = SubResource( 9 )
+bus/1/effect/2/effect = SubResource( 3 )
 bus/1/effect/2/enabled = true
 bus/2/name = "SFX"
 bus/2/solo = false
@@ -70,7 +70,7 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = "Master"
-bus/2/effect/0/effect = SubResource( 3 )
+bus/2/effect/0/effect = SubResource( 4 )
 bus/2/effect/0/enabled = true
 bus/3/name = "Footsteps"
 bus/3/solo = false
@@ -78,9 +78,9 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 5.5
 bus/3/send = "SFX"
-bus/3/effect/0/effect = SubResource( 4 )
+bus/3/effect/0/effect = SubResource( 5 )
 bus/3/effect/0/enabled = true
-bus/3/effect/1/effect = SubResource( 5 )
+bus/3/effect/1/effect = SubResource( 6 )
 bus/3/effect/1/enabled = true
 bus/4/name = "Doors"
 bus/4/solo = false
@@ -88,7 +88,7 @@ bus/4/mute = false
 bus/4/bypass_fx = false
 bus/4/volume_db = -5.7
 bus/4/send = "SFX"
-bus/4/effect/0/effect = SubResource( 6 )
+bus/4/effect/0/effect = SubResource( 7 )
 bus/4/effect/0/enabled = true
 bus/5/name = "DoorFar"
 bus/5/solo = false
@@ -96,7 +96,7 @@ bus/5/mute = false
 bus/5/bypass_fx = false
 bus/5/volume_db = -7.6
 bus/5/send = "Master"
-bus/5/effect/0/effect = SubResource( 7 )
+bus/5/effect/0/effect = SubResource( 8 )
 bus/5/effect/0/enabled = true
-bus/5/effect/1/effect = SubResource( 8 )
+bus/5/effect/1/effect = SubResource( 9 )
 bus/5/effect/1/enabled = true
