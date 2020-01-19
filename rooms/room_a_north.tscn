@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://rooms/color_room.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
@@ -9,6 +9,10 @@
 vertices = PoolVector2Array( 435, 360, 45, 360, 95, 195, 198.131, 241.137, 279.888, 240.553, 385, 195, 241.054, 255.736, 238.718, 220.697 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 0 ), PoolIntArray( 6, 4, 0 ), PoolIntArray( 5, 4, 7 ), PoolIntArray( 2, 5, 7 ), PoolIntArray( 2, 7, 3 ), PoolIntArray( 0, 3, 6 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ), PoolVector2Array( 238.718, 220.697, 198.131, 241.137, 241.054, 255.736, 279.888, 240.553 ) ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 20.1748
+height = 9.02094
 
 [sub_resource type="Animation" id=2]
 resource_name = "fade"
@@ -56,12 +60,6 @@ script = ExtResource( 1 )
 light_message = "The aggressive glow of this red light makes you feel unnerved."
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
-east_door = 1
-east_target = ""
-north_door = 1
-north_target = ""
-west_door = 1
-west_target = ""
 south_door = 3
 south_target = "room_a_005"
 
@@ -79,7 +77,7 @@ navpoly = SubResource( 1 )
 [node name="ColorLight" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 
 [node name="CollisionShape2D" parent="GenericRoom/Objects/ColorLight/Area2D" index="0"]
-shape = null
+shape = SubResource( 3 )
 
 [node name="Base" parent="GenericRoom/Objects/ColorLight" index="1"]
 modulate = Color( 0.391751, 0.0789664, 0.0789664, 1 )

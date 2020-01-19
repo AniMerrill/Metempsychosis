@@ -12,5 +12,4 @@ func _ready():
 func _on_object_clicked(node):
 	match node.name:
 		"ColorLight":
-			RoomUtil.display_message([light_message])
-			yield(MessageDisplay, "messages_finished")
+			FlashText.flash(light_message)
