@@ -19,11 +19,19 @@ func _ready():
 	if output_code.text == "(no code)":
 		first_time_area.visible = true
 		output_area.visible = false
+	else:
+		# Can't be used again.
+		GameState.add_input_code(GameState.last_input_code)
 
 func _on_InputCode_text_entered(code : String):
 	var result = GameState.deserialize(code)
 
 	if result == GameState.ERROR_CODE.OK:
+		GameState.last_input_code = code
+		if GameState.my_input_codes.has(code):
+			error_label.text = "Error: Trying to use an old code."
+			error_layer.visible = true
+			return
 		RoomUtil.load_first_room()
 		return
 

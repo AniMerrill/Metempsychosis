@@ -131,6 +131,10 @@ var _has_seen_in_room_intro_a := false
 var _has_seen_introduction_b := false
 var _has_seen_in_room_intro_b := false
 
+# Codes I  used and am not allowed to enter or output again.
+var my_input_codes = []
+var my_output_codes = []
+
 ## Volatile states:
 
 # Whether the player can start a new interaction or not.
@@ -143,6 +147,8 @@ var entering_from_direction : int = -1
 
 var opening_dialogue_is_outro := false
 var final_room_replay := false
+
+var last_input_code : String = ".|.Nothing.here.|."
 
 
 
@@ -158,6 +164,8 @@ func reset_for_new_game():
 	_my_last_output_code = '(no code)'
 	_my_player = PLAYER.INVALID_PLAYER
 	_is_local_coop = false
+	my_input_codes = []
+	my_output_codes = []
 	_save_local_data()
 	clear_state()
 
@@ -256,6 +264,15 @@ func set_coop_mode(mode : bool) -> void:
 	_save_local_data()
 
 
+func add_input_code(code : String):
+	my_input_codes.append(code)
+	_save_local_data()
+
+
+func add_output_code(code : String):
+	my_output_codes.append(code)
+	_save_local_data()
+
 # Get the most recent code that has to be communicated to the other player.
 func last_output_code() -> String:
 	_load_local_data()
@@ -309,6 +326,8 @@ func _save_local_data():
 		"has_seen_introduction_b": _has_seen_introduction_b,
 		"has_seen_in_room_intro_a": _has_seen_in_room_intro_a,
 		"has_seen_in_room_intro_b": _has_seen_in_room_intro_b,
+		"my_input_codes" : my_input_codes,
+		"my_output_codes" : my_output_codes,
 	}
 	var save_game = File.new()
 	save_game.open(save_file, File.WRITE)
@@ -332,6 +351,9 @@ func _load_local_data():
 		_has_seen_introduction_b = saved_data["has_seen_introduction_b"]
 		_has_seen_in_room_intro_a = saved_data["has_seen_in_room_intro_a"]
 		_has_seen_in_room_intro_b = saved_data["has_seen_in_room_intro_b"]
+	if saved_data.has("my_input_codes"):
+		my_input_codes = saved_data["my_input_codes"]
+		my_output_codes = saved_data["my_output_codes"]
 	save_game.close()
 
 
@@ -374,16 +396,21 @@ func pbd(txt, bytes):
 # Serializes the state to a hexadecimal string.
 func serialize() -> String:
 	randomize()
-	var by_a = current_player() == PLAYER.PLAYER_A
-	if is_ai_state:
-		by_a = not by_a
-	set_state(STATE.CODE_CREATED_BY_PLAYER_A, by_a)
-	var bytes = _state_as_bytes()	
-	bytes = _add_integrity_check(bytes)
-	bytes = _add_player_xor(bytes)
-	bytes = _add_rot_noise(bytes)
-	bytes = _add_shift_noise(bytes)
-	return _bytes_to_string(bytes)
+	while true:
+		var by_a = current_player() == PLAYER.PLAYER_A
+		if is_ai_state:
+			by_a = not by_a
+		set_state(STATE.CODE_CREATED_BY_PLAYER_A, by_a)
+		var bytes = _state_as_bytes()	
+		bytes = _add_integrity_check(bytes)
+		bytes = _add_player_xor(bytes)
+		bytes = _add_rot_noise(bytes)
+		bytes = _add_shift_noise(bytes)
+		var code = _bytes_to_string(bytes)
+		if not my_output_codes.has(code):
+			add_output_code(code)
+			return code
+	return "error."
 
 
 enum ERROR_CODE {
