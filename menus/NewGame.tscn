@@ -26,17 +26,18 @@ visible = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 30.0
-margin_top = 80.0
-margin_right = 430.0
-margin_bottom = 130.0
+margin_top = 70.0
+margin_right = 425.0
+margin_bottom = 150.0
 custom_fonts/bold_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "This is a [color=#00ff00][b]turn-based, two player[/b][/color] game. While there is the option to play with an AI chatbot, it is recommended to play with another person."
-text = "This is a turn-based, two player game. While there is the option to play with an AI chatbot, it is recommended to play with another person."
+bbcode_text = "This is a [color=#00ff00][b]turn-based, two player[/b][/color] game. While there is the option to play with an AI chatbot, it is recommended to play with another person. If playing with someone online, [color=#00ff00][b]you will want to keep a chat program open.[/b][/color]"
+text = "This is a turn-based, two player game. While there is the option to play with an AI chatbot, it is recommended to play with another person. If playing with someone online, you will want to keep a chat program open."
 override_selected_font_color = true
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, 20 )
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Node2D"]
 margin_left = 30.0
@@ -58,7 +59,7 @@ margin_bottom = 180.0
 text = "Option 1"
 
 [node name="Node2D2" type="Node2D" parent="."]
-position = Vector2( 0, 70 )
+position = Vector2( 0, 90 )
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Node2D2"]
 margin_left = 130.0
@@ -80,7 +81,7 @@ margin_bottom = 180.0
 text = "Option 2"
 
 [node name="Node2D3" type="Node2D" parent="."]
-position = Vector2( 0, 140 )
+position = Vector2( 0, 160 )
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Node2D3"]
 margin_left = 30.0
