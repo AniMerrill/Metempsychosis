@@ -21,3 +21,4 @@ func _on_object_clicked(node):
 			GameState.set_state(GameState.STATE.KEY_A_1_POS_B, true)
 			GameState.interaction_is_frozen = false
 			FlashText.flash("You pick up a blue key.")
+			SoundModule.play_sfx("ItemPickedUp")

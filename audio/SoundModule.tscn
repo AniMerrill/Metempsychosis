@@ -85,7 +85,6 @@ stream = ExtResource( 11 )
 volume_db = -26.518
 
 [node name="Click" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -93,7 +92,8 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Click"]
 stream = ExtResource( 12 )
-volume_db = -2.525
+volume_db = -8.0
+pitch_scale = 0.7
 
 [node name="DoorSlideUp" type="Node" parent="."]
 editor/display_folded = true
