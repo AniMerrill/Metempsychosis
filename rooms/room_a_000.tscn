@@ -22,6 +22,12 @@ script = ExtResource( 1 )
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
 east_target = "room_a_001"
+north_door = 1
+north_target = ""
+west_door = 1
+west_target = ""
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 287.791, 295 )
@@ -53,6 +59,7 @@ visible = false
 title = "Cryrochamber"
 
 [node name="Numpad" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="0" instance=ExtResource( 9 )]
+solution = "11690"
 solved_message = "Correct. All pod room doors unlocked."
 
 [node name="Map" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="1" instance=ExtResource( 10 )]
