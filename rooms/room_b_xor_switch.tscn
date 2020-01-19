@@ -6,9 +6,9 @@
 [ext_resource path="res://rooms/objects/Switch.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
+vertices = PoolVector2Array( 290, 305, 435, 360, 45, 360, 205, 305, 385, 195, 285, 275, 95, 195, 205, 275 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 0, 5 ), PoolIntArray( 6, 4, 5, 7 ), PoolIntArray( 3, 2, 6, 7 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ), PoolVector2Array( 205, 275, 205, 305, 290, 305, 285, 275 ) ]
 
 [node name="room_b_xor_switch" type="Node2D"]
 script = ExtResource( 1 )
@@ -35,4 +35,4 @@ navpoly = SubResource( 1 )
 [node name="Objects" type="Node2D" parent="GenericRoom"]
 
 [node name="Switch" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-position = Vector2( 245, 305 )
+position = Vector2( 240, 265 )

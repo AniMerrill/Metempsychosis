@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://rooms/objects/switch.gd" type="Script" id=1]
+[ext_resource path="res://graphics/room/objects/xor_switch0000.png" type="Texture" id=2]
+[ext_resource path="res://graphics/room/objects/xor_switch0001.png" type="Texture" id=3]
 
 [node name="Switch" type="Node2D"]
 z_index = 280
@@ -9,12 +11,12 @@ script = ExtResource( 1 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -10, -10, -10, 20, 10, 20, 10, -10 )
+polygon = PoolVector2Array( -26.2962, -12.5013, -21.2, 35.2177, 24.6659, 33.8279, 20.0329, -18.0608 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 20.0
-mouse_filter = 2
-color = Color( 0.654902, 0.113725, 0.290196, 1 )
+[node name="xor_switch0000" type="Sprite" parent="."]
+position = Vector2( 30, 10 )
+texture = ExtResource( 2 )
+
+[node name="xor_switch0001" type="Sprite" parent="."]
+position = Vector2( 30, 10 )
+texture = ExtResource( 3 )
