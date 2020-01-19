@@ -5,7 +5,7 @@ onready var popup = $Popup/Popup
 onready var pod = $GenericRoom/Objects/Pod
 onready var player = $GenericRoom/ControllablePlayer
 onready var terminal = $GenericRoom/Objects/Terminal
-onready var numpad = $Popup/Popup/Content/TerminalBase/Screen/ScreenContents/NumpadScreen
+onready var numpad = $Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options/Numpad
 
 func _ready():
 	popup.visible = false

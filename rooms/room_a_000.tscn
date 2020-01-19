@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://rooms/room_a_000.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://rooms/objects/Terminal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/Popup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://graphics/popup/terminal/TerminalBase.tscn" type="PackedScene" id=7]
-[ext_resource path="res://graphics/popup/terminal/screens/NumpadScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://graphics/popup/terminal/screens/TerminalMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://graphics/popup/terminal/screens/NumpadScreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://graphics/popup/terminal/screens/Minimap.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 165, 235, 80, 235, 95, 195, 300, 195, 315, 210, 435, 360, 45, 360, 60, 305, 160, 315, 385, 195, 365, 205 )
@@ -53,8 +55,16 @@ visible = false
 
 [node name="TerminalBase" parent="Popup/Popup/Content" index="0" instance=ExtResource( 7 )]
 
-[node name="NumpadScreen" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 8 )]
+[node name="TerminalMenu" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 8 )]
+title = "Cryrochamber"
+
+[node name="Numpad" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="0" instance=ExtResource( 9 )]
+
+[node name="Map" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="1" instance=ExtResource( 10 )]
+current_room = Vector2( 5, 4 )
 
 [editable path="Popup"]
 
 [editable path="Popup/Popup/Content/TerminalBase"]
+
+[editable path="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu"]

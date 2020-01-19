@@ -75,10 +75,13 @@ navpoly = SubResource( 1 )
 
 [node name="ColorLight" parent="GenericRoom/Objects" instance=ExtResource( 3 )]
 
-[node name="Base" parent="GenericRoom/Objects/ColorLight" index="0"]
+[node name="CollisionShape2D" parent="GenericRoom/Objects/ColorLight/Area2D" index="0"]
+shape = null
+
+[node name="Base" parent="GenericRoom/Objects/ColorLight" index="1"]
 modulate = Color( 1, 1, 1, 1 )
 
-[node name="Filament" parent="GenericRoom/Objects/ColorLight" index="1"]
+[node name="Filament" parent="GenericRoom/Objects/ColorLight" index="2"]
 modulate = Color( 1, 1, 1, 1 )
 
 [node name="Color" parent="GenericRoom/Objects/ColorLight/CanvasLayer" index="0"]
@@ -87,7 +90,7 @@ color = Color( 0, 1, 0.109804, 0.109804 )
 [node name="Fade" parent="GenericRoom/Objects/ColorLight/CanvasLayer" index="1"]
 color = Color( 0, 0, 0, 0 )
 
-[node name="AnimationPlayer" parent="GenericRoom/Objects/ColorLight" index="3"]
+[node name="AnimationPlayer" parent="GenericRoom/Objects/ColorLight" index="4"]
 anims/fade = SubResource( 2 )
 
 [editable path="GenericRoom/Objects/ColorLight"]

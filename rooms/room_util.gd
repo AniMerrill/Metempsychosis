@@ -15,6 +15,11 @@ func load_first_room():
 		_:
 			printerr("ERROR: No player active.")
 
+func display_message(messages, bottom := false):
+	MessageDisplay.display(convert_messages(messages), bottom)
+	yield(MessageDisplay, "messages_finished")
+	yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
+	GameState.interaction_is_frozen = false
 
 # Ugly hack. But short on time.
 func wake_up_dialog():
@@ -118,8 +123,6 @@ func finale_dialog(part : String):
 		MessageDisplay.display(convert_messages(messages), true)
 		yield(MessageDisplay, "messages_finished")
 		yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
-		#GameState.interaction_is_frozen = false
-
 
 func convert_messages(messages):
 	var result = []
