@@ -7,7 +7,7 @@ onready var numpad = $Popup/Popup/Content/TerminalBase/Screen/ScreenContents/Num
 onready var terminal = $GenericRoom/Objects/Terminal
 
 func _ready():
-	if GameState.get_state(GameState.STATE.WIND_PUZZLE_SOLVED):
+	if GameState.get_state(GameState.STATE.BIOME_PUZZLE_SOLVED):
 		_unlock_door()
 	room.connect("object_clicked", self, "_on_object_clicked")
 	popup.connect("closed", self, "_on_popup_closed")
@@ -28,7 +28,7 @@ func _on_popup_closed():
 	MusicModule.state_changed("explore")
 
 func _on_puzzle_solved():
-	GameState.set_state(GameState.STATE.WIND_PUZZLE_SOLVED, true)
+	GameState.set_state(GameState.STATE.BIOME_PUZZLE_SOLVED, true)
 	_unlock_door()
 	MusicModule.state_changed("explore")
 

@@ -24,7 +24,7 @@ extends Node
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
 #
-## NEXT_TAG: 31
+## NEXT_TAG: 32
 enum STATE {
 		CODE_CREATED_BY_PLAYER_A = 0,
 		
@@ -69,8 +69,10 @@ enum STATE {
 		KEY_B_3_POS_DOOR = 27,
 		
 		## Colours of the wind.
-		
 		WIND_PUZZLE_SOLVED = 28,
+		
+		## Biome puzzle.
+		BIOME_PUZZLE_SOLVED = 31,
 		
 		## Finale States
 		FINALE_PLAYER_GIVEN_WARNING = 29,
