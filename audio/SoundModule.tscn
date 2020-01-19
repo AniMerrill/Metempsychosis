@@ -403,7 +403,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundPuzzle4"]
 stream = ExtResource( 36 )
-volume_db = 11.107
+volume_db = 4.0
 bus = "SFX"
 
 [node name="SoundPuzzle5" type="Node" parent="."]
