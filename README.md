@@ -31,5 +31,6 @@ This is our entry for the Godot Wild Jam #17! More to come soon!
 * [Godot 3.1.2 (MIT)](https://downloads.tuxfamily.org/godotengine/3.1.2/) [(Github)](https://github.com/godotengine/godot/tree/3.1)
 * [Godot Mixing Desk (MIT)](https://github.com/kyzfrintin/Godot-Mixing-Desk)
 
-## Sound Effects Used
+## Sound Attribution
 Whale sound by Tritus https://freesound.org/people/Tritus/sounds/186899/
+Monkey sound by soundbytez https://freesound.org/people/soundbytez/sounds/100250/
