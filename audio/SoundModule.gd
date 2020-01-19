@@ -3,6 +3,8 @@ extends Node
 DONT FORGET
 SoundPuzzle0 and SoundPuzzle 8 still need their sound"""
 
+"""KNOWN ISSUE: When calling stop_sfx() there is a click"""
+
 #sound module
 #call $SFX.play(sfxname:String) to play the sound. String name is the node name.
 
@@ -20,5 +22,11 @@ func _process(delta):
 func play_sfx(sfxname:String):
 	if has_node(sfxname):
 		get_node(sfxname).play()
+	else:
+		print("sound effect doesn't exist")
+		
+func stop_sfx(sfxname:String):
+	if has_node(sfxname):
+		get_node(sfxname).stop()
 	else:
 		print("sound effect doesn't exist")

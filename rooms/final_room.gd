@@ -1,5 +1,4 @@
 extends Node2D
-
 enum FinaleState {
 	INTRO,
 	LIVE_FEED,
@@ -56,6 +55,9 @@ func _on_object_clicked(node):
 			yield(player, "position_reached")
 			# TODO: Signal to play machine sfx in animation player?
 			$EffectsOverlay/AnimationPlayer.play("Activate")
+			
+			#start terminal sound effect
+			SoundModule.play_sfx("FinalRoom") 
 
 func _on_animation_finished(value : String):
 	match value:
@@ -65,6 +67,9 @@ func _on_animation_finished(value : String):
 			var code = GameState.serialize()
 			GameState.set_last_output_code(code)
 			SceneTransition.change_scene('menus/AwaitTurn.tscn')
+			
+			#stops terminal sound
+			SoundModule.stop_sfx("FinalRoom")
 
 func _on_responded(response):
 	if response:
@@ -172,4 +177,7 @@ func finale_cutscene():
 
 #light blink sfx
 func play_light_blink_sfx():
-	SoundModule.play_sfx("TerminalLights")
+	pass
+#	SoundModule.play_sfx("TerminalLights")
+	
+	
