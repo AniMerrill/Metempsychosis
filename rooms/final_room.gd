@@ -103,8 +103,10 @@ func effects_anim_blink():
 		if light.name != "AnimationPlayer":
 			if randi() % 2 == 0:
 				light.visible = false
+				
 			else:
 				light.visible = true
+				
 
 func finale_cutscene():
 	var species := "Plutonians" if GameState._my_player == GameState.PLAYER.PLAYER_A else "Neptonians"
@@ -167,3 +169,7 @@ func finale_cutscene():
 				GameState.set_current_player(other_player)  ## Reset.
 				GameState.final_room_replay = false
 			SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
+
+#light blink sfx
+func play_light_blink_sfx():
+	SoundModule.play_sfx("TerminalLights")
