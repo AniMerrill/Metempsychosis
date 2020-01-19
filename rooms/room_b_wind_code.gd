@@ -41,6 +41,7 @@ func _on_puzzle_solved():
 	GameState.set_state(GameState.STATE.WIND_PUZZLE_SOLVED, true)
 	_unlock_door()
 	MusicModule.state_changed("explore")
+	SoundModule.play_sfx("DoorUnlocksFar")
 
 func _unlock_door():
 	room.north_door = room.DOOR_STATUS.CLOSED_DOOR

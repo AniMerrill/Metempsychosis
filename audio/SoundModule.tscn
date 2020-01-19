@@ -191,7 +191,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoorUnlocksFar"]
 stream = ExtResource( 15 )
-volume_db = -2.444
+volume_db = 5.534
 bus = "DoorFar"
 
 [node name="Footsteps" type="Node" parent="."]

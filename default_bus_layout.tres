@@ -48,6 +48,8 @@ cutoff_hz = 1500.0
 [sub_resource type="AudioEffectReverb" id=8]
 resource_name = "Reverb"
 room_size = 0.7
+dry = 0.52
+wet = 1.0
 
 [resource]
 bus/1/name = "Music"
@@ -92,7 +94,7 @@ bus/5/name = "DoorFar"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
-bus/5/volume_db = 0.0
+bus/5/volume_db = -7.6
 bus/5/send = "Master"
 bus/5/effect/0/effect = SubResource( 7 )
 bus/5/effect/0/enabled = true
