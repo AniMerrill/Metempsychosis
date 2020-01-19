@@ -48,6 +48,7 @@ func _ready():
 func _on_object_clicked(node):
 	match node.name:
 		"TheMachine":
+			Timeout.stop_timer()
 			room.player_walk_to(machine.position)
 			# NOTE: I never set it to unfreeze anywhere, and I'm not sure when
 			# is most optimal since both options take control away from the player.
@@ -139,7 +140,7 @@ func finale_cutscene():
 			finale_state = FinaleState.WARNING
 			finale_cutscene()
 		FinaleState.WARNING:
-			GameState.set_state(GameState.STATE.FINALE_PLAYER_GIVEN_WARNING, false)
+			GameState.set_state(GameState.STATE.FINALE_PLAYER_GIVEN_WARNING, true)
 			RoomUtil.finale_dialog("warning")
 			yield(MessageDisplay, "messages_finished")
 			yield(get_tree().create_timer(0.5), "timeout")
