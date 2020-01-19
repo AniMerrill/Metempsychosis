@@ -47,6 +47,7 @@ func wake_up_dialog():
 
 # Ugly hack. But short on time.
 func game_over_dialog():
+	GameState.interaction_is_frozen = true
 	var messages = [
 """Congratulations. Your fellow representative has reached the final room.""",
 """Enjoy this video feed of them reviving your species.""",
