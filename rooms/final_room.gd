@@ -95,6 +95,7 @@ func _on_responded(response):
 func activate_terminal():
 	for terminal in terminals:
 		if terminal.visible == false:
+			SoundModule.play_sfx("TerminalScreenOn")
 			terminal.visible = true
 			terminal.get_node("AnimationPlayer").play("data")
 			return
@@ -175,10 +176,10 @@ func finale_cutscene():
 				GameState.set_current_player(other_player)  ## Reset.
 				GameState.final_room_replay = false
 			SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
+			MusicModule.state_changed("menu")
 
 #light blink sfx
 func play_light_blink_sfx():
-	pass
 	SoundModule.play_sfx("TerminalLights")
 	
 	
