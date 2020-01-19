@@ -42,7 +42,7 @@ func state_changed(state:String):
 	elif state == "puzzle":
 		_interpolate_filter_cutoff(null, 800, 1.5)
 		current_state = "puzzle"
-		print("Music state: " + current_state)
+#		print("Music state: " + current_state)
 		
 	elif state == "guard":
 		#fades in the guard layer
@@ -50,7 +50,7 @@ func state_changed(state:String):
 		mdm.fade_out("LevelTheme", 0)
 		_interpolate_filter_cutoff(null, 20000, 1.5)
 		current_state = "guard"
-		print("Music state: " + current_state)
+		
 		
 	elif state == "explore":
 		#fades in explore layer
@@ -58,7 +58,7 @@ func state_changed(state:String):
 		mdm.fade_out("LevelTheme", 2)
 		_interpolate_filter_cutoff(null, 20000, 1.5)
 		current_state = "explore"
-		print("Music state: " + current_state)
+		
 	elif state == "final":
 		#few options
 		#fade in guard layers for bass drum effect
