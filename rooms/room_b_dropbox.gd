@@ -17,3 +17,11 @@ func _on_object_clicked(node):
 			exchange_popup.show()
 			yield(exchange_popup, "done")
 			GameState.interaction_is_frozen = false
+			if GameState.get_state(
+					GameState.STATE.KEY_A_1_POS_B or
+					GameState.STATE.KEY_A_2_POS_B or
+					GameState.STATE.KEY_A_3_POS_B or
+					GameState.STATE.KEY_B_1_POS_B or
+					GameState.STATE.KEY_B_2_POS_B or
+					GameState.STATE.KEY_B_3_POS_B):
+				FlashText.flash("You take the keys that are on the table with you.")
