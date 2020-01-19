@@ -272,6 +272,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoorUnlocksNear"]
 stream = ExtResource( 24 )
+volume_db = -8.505
 bus = "SFX"
 
 [node name="DoorUnlocksFar" type="Node" parent="."]
