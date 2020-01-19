@@ -1,15 +1,16 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://rooms/final_room.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://graphics/room/finale_room/finale_room.png" type="Texture" id=4]
-[ext_resource path="res://graphics/room/finale_room/gradient0003.png" type="Texture" id=5]
-[ext_resource path="res://graphics/room/finale_room/gradient0002.png" type="Texture" id=6]
-[ext_resource path="res://graphics/room/finale_room/gradient0001.png" type="Texture" id=7]
-[ext_resource path="res://graphics/room/finale_room/data0000.png" type="Texture" id=8]
-[ext_resource path="res://graphics/room/finale_room/data0001.png" type="Texture" id=9]
-[ext_resource path="res://graphics/room/finale_room/machine_light.png" type="Texture" id=10]
+[ext_resource path="res://graphics/room/finale_room/finale_screen.png" type="Texture" id=5]
+[ext_resource path="res://graphics/room/finale_room/gradient0003.png" type="Texture" id=6]
+[ext_resource path="res://graphics/room/finale_room/gradient0002.png" type="Texture" id=7]
+[ext_resource path="res://graphics/room/finale_room/gradient0001.png" type="Texture" id=8]
+[ext_resource path="res://graphics/room/finale_room/data0000.png" type="Texture" id=9]
+[ext_resource path="res://graphics/room/finale_room/data0001.png" type="Texture" id=10]
+[ext_resource path="res://graphics/room/finale_room/machine_light.png" type="Texture" id=11]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 400.789, 249.036, 435, 360, 45, 360, 355.619, 248.319, 214.129, 225.835, 261.127, 225.835, 128.021, 247.217, 77.7984, 252.473 )
@@ -37,7 +38,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ) ]
+"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -53,7 +54,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -70,7 +71,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -86,7 +87,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -102,7 +103,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -119,7 +120,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -135,7 +136,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -332,9 +333,6 @@ __meta__ = {
 
 [node name="TheMachine" type="Node2D" parent="GenericRoom/Objects"]
 position = Vector2( 234.32, 219.98 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Area2D" type="Area2D" parent="GenericRoom/Objects/TheMachine"]
 
@@ -345,6 +343,52 @@ polygon = PoolVector2Array( -157.532, 26.5726, -155.478, -249.093, 165.874, -249
 position = Vector2( -236.55, -241.3 )
 texture = ExtResource( 4 )
 centered = false
+
+[node name="Screen" type="Node2D" parent="GenericRoom/Objects/TheMachine"]
+
+[node name="Display" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
+position = Vector2( 4.52252, -118.582 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
+frame = 16
+
+[node name="Mouth" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
+position = Vector2( 4.52252, -118.582 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
+
+[node name="Face" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
+position = Vector2( 4.52252, -118.582 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
+
+[node name="Hat" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
+position = Vector2( 4.52252, -118.582 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
+
+[node name="Tool" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
+position = Vector2( 4.52252, -118.582 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
+
+[node name="ColorRect" type="ColorRect" parent="GenericRoom/Objects/TheMachine/Screen"]
+margin_left = -41.0
+margin_top = -94.0
+margin_right = 48.0
+margin_bottom = -83.0
+color = Color( 0.72549, 1, 0.211765, 1 )
+
+[node name="Block" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
+position = Vector2( 4.52252, -118.582 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
 
 [node name="EffectsOverlay" type="Node2D" parent="."]
 z_index = 4000
@@ -359,7 +403,7 @@ mouse_filter = 2
 [node name="Gradient" type="Sprite" parent="EffectsOverlay"]
 editor/display_folded = true
 visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Gradient"]
@@ -373,7 +417,7 @@ editor/display_folded = true
 editor/display_folded = true
 visible = false
 position = Vector2( 148.179, 55.6479 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal"]
 anims/data = SubResource( 4 )
@@ -383,7 +427,7 @@ editor/display_folded = true
 visible = false
 position = Vector2( 331.299, 130.381 )
 rotation = 0.0388358
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal6"]
 anims/data = SubResource( 5 )
@@ -393,7 +437,7 @@ editor/display_folded = true
 visible = false
 position = Vector2( 332.478, 50.2598 )
 rotation = -0.0571928
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal4"]
 anims/data = SubResource( 6 )
@@ -403,7 +447,7 @@ editor/display_folded = true
 visible = false
 position = Vector2( 116.472, 88.9719 )
 rotation = -0.044212
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal2"]
 anims/data = SubResource( 7 )
@@ -413,7 +457,7 @@ editor/display_folded = true
 visible = false
 position = Vector2( 141.384, 120.355 )
 rotation = -0.275366
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal3"]
 anims/data = SubResource( 8 )
@@ -423,88 +467,89 @@ editor/display_folded = true
 visible = false
 position = Vector2( 355.564, 96.4131 )
 rotation = 0.0951845
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal5"]
 anims/data = SubResource( 9 )
 
 [node name="Lights" type="Node2D" parent="EffectsOverlay"]
+editor/display_folded = true
 visible = false
 position = Vector2( -73.951, 31.2937 )
 
 [node name="machine_light" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.113725, 0.858824, 0.0313726, 1 )
 position = Vector2( 278.564, 149.327 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light2" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.823529, 0.956863, 0.0431373, 1 )
 position = Vector2( 278.856, 155.394 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light3" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.882353, 0.0509804, 0.0509804, 1 )
 position = Vector2( 278.783, 160.438 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light4" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.988235, 0.423529, 0.423529, 1 )
 position = Vector2( 337.773, 139.458 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light5" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.117647, 0.784314, 0.964706, 1 )
 position = Vector2( 345.375, 138.947 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light6" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.988235, 0.431373, 0.835294, 1 )
 position = Vector2( 351.808, 138.728 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light7" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.709804, 1, 0.45098, 1 )
 position = Vector2( 338.431, 146.549 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light8" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 1, 0.584314, 0, 1 )
 position = Vector2( 345.521, 146.549 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light9" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.203922, 0.913725, 0.513726, 1 )
 position = Vector2( 352.466, 146.257 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light10" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.0627451, 0.603922, 1, 1 )
 position = Vector2( 338.943, 154.37 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light15" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.537255, 0.207843, 0.937255, 1 )
 position = Vector2( 339.33, 161.15 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light11" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 1, 0.054902, 0.65098, 1 )
 position = Vector2( 345.668, 154.224 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light13" type="Sprite" parent="EffectsOverlay/Lights"]
 position = Vector2( 346.055, 161.004 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light12" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.152941, 1, 0.164706, 1 )
 position = Vector2( 352.246, 154.151 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="machine_light14" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.972549, 0.25098, 0.176471, 1 )
 position = Vector2( 352.634, 160.931 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Lights"]
 anims/BlinkLights = SubResource( 10 )

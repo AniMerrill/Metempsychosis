@@ -94,7 +94,6 @@ func finale_dialog(part : String):
 """[THREAT]: {Neptonians|Plutonians} previously annihilated all {Plutonians|Neptonians}!""",
 """The extermination of your species is inevitable while in proximity of {Neptonians|Plutonians}.""",
 """[RESOLUTION]: Exterminate all local {Neptonians|Plutonians}.""",
-#"""Confirm?"""
 			]
 			
 		# Plays if first player confirms the annihilation request
