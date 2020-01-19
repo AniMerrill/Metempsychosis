@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://audio/SoundModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/sound/nonspatial/multi_sound.gd" type="Script" id=2]
@@ -30,6 +30,8 @@
 [ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle6.wav" type="AudioStream" id=28]
 [ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle7.wav" type="AudioStream" id=29]
 [ext_resource path="res://audio/audio_assets/sound_puzzle/Puzzle8.wav" type="AudioStream" id=30]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
 
 [node name="SFX" type="Node"]
 script = ExtResource( 1 )
@@ -65,6 +67,23 @@ stream = ExtResource( 8 )
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="TerminalLights"]
 stream = ExtResource( 9 )
+
+[node name="TerminalScreenOn" type="Node" parent="."]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TerminalScreenOn"]
+stream = SubResource( 1 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="TerminalScreenOn"]
+stream = SubResource( 1 )
+pitch_scale = 0.9
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="TerminalScreenOn"]
+stream = SubResource( 1 )
+pitch_scale = 1.1
 
 [node name="Ambience" type="Node" parent="."]
 editor/display_folded = true
