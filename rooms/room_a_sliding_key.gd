@@ -20,3 +20,4 @@ func _on_object_clicked(node):
 			key.visible = false
 			GameState.set_state(GameState.STATE.KEY_B_3_POS_A, true)
 			GameState.interaction_is_frozen = false
+			FlashText.flash("You pick up a red key.")
