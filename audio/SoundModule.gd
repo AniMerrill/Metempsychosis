@@ -23,10 +23,10 @@ func play_sfx(sfxname:String):
 	if has_node(sfxname):
 		get_node(sfxname).play()
 	else:
-		print("sound effect doesn't exist")
+		print("Sound effect ", sfxname, " doesn't exist")
 		
 func stop_sfx(sfxname:String):
 	if has_node(sfxname):
 		get_node(sfxname).stop()
 	else:
-		print("sound effect doesn't exist")
+		print("Sound effect ", sfxname, " doesn't exist")
