@@ -5,6 +5,7 @@ func load_first_room():
 		SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance, Inc. - Spaceship #X02 - C.003')
 		return
 	Timeout.set_timeout(5 * 60.0)
+	GameState.entering_from_direction = -1
 	match GameState.current_player():
 		GameState.PLAYER.PLAYER_A:
 			if GameState.get_state(GameState.STATE.PLAYER_A_IN_XOR_POD):
