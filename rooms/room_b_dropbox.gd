@@ -6,7 +6,6 @@ onready var player = $GenericRoom/ControllablePlayer
 onready var exchange_popup = $ExchangePopup
 
 func _ready():
-	exchange_popup.visible = false
 	room.connect("object_clicked", self, "_on_object_clicked")
 
 func _on_object_clicked(node):
@@ -15,7 +14,6 @@ func _on_object_clicked(node):
 			room.player_walk_to(dropbox.position)
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
-			exchange_popup.visible = true
+			exchange_popup.show()
 			yield(exchange_popup, "done")
-			exchange_popup.visible = false
 			GameState.interaction_is_frozen = false
