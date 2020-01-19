@@ -8,6 +8,7 @@
 [node name="CustomizePlayer" type="Node2D"]
 
 [node name="MenuBase" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 
 [node name="BackButton" parent="MenuBase" index="6"]
 visible = true

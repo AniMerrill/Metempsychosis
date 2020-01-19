@@ -13,6 +13,7 @@ func _ready():
 	set_process(false)
 	rig = $PlayerARig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerBRig
 	rig.visible = true
+	rig.load_from_game_state(GameState.current_player())
 
 func swap_rig():
 	rig.visible = false
