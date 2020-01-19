@@ -6,8 +6,11 @@ func _ready():
 		$Continue.visible = false
 
 func _on_New_pressed():
-	Prompt.prompt("This will overwrite your current game. Proceed?", "Proceed", "Cancel")
-	Prompt.connect("responded", self, "_on_new_game_responded")
+	if $Continue.visible:
+		Prompt.prompt("This will overwrite your current game. Proceed?", "Proceed", "Cancel")
+		Prompt.connect("responded", self, "_on_new_game_responded")
+	else:
+		SceneTransition.change_scene("menus/NewGame.tscn")
 
 func _on_new_game_responded(response):
 	Prompt.disconnect("responded", self, "_on_new_game_responded")
