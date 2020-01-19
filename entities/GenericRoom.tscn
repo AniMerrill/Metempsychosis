@@ -48,10 +48,12 @@ visible = false
 polygon = PoolVector2Array( 198.398, 360.046, 197.699, 279.737, 271.723, 281.134, 273.12, 359.348 )
 
 [node name="CurrentPlayer" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 171.791, 4.88837 )
 z_index = 1000
 
 [node name="CurrentRoom" type="Node2D" parent="."]
+visible = false
 z_index = 1000
 
 [node name="Label" type="Label" parent="CurrentRoom"]
