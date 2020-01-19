@@ -2,7 +2,7 @@ extends Node
 
 func load_first_room():
 	if not GameState.has_seen_introduction():
-		SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance Inc. - Spaceship #X02 - C.003')
+		SceneTransition.change_scene('menus/OpeningDialogue.tscn', 'Second Chance, Inc. - Spaceship #X02 - C.003')
 		return
 	Timeout.set_timeout(5 * 60.0)
 	match GameState.current_player():
@@ -25,7 +25,7 @@ func display_message(messages, bottom := false):
 # Ugly hack. But short on time.
 func wake_up_dialog():
 	var messages = [
-"""Welcome, {Plutonian|Neptonian} representative, to one of the finest Second Chance Inc. space stations.""",
+"""Welcome, {Plutonian|Neptonian} representative, to one of the finest Second Chance, Inc. space stations.""",
 """Unfortunately, your species has been wiped out due to aggressive relations with the {Neptonians|Plutonians}.""",
 """Like many other species, the {Plutonians|Neptonians} have set up an insurance with us.""",
 """In this space ship, you will find the Machine Room that enables you to revive your species.""",
