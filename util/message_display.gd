@@ -19,6 +19,8 @@ onready var avatar_sprite = $Container/Overlay/AvatarBG/Sprite
 onready var avatar_label = $Container/Overlay/AvatarLabel
 onready var message_label = $Container/Overlay/MessageContainer/MessageLabel
 
+onready var current_y_position : float = $Container/Overlay.rect_position.y 
+
 signal messages_finished
 
 func _ready():
@@ -27,7 +29,12 @@ func _ready():
 var current_index = 0
 var current_messages = []
 
-func display(messages) -> void:
+func display(messages, bottom := false) -> void:
+	if bottom:
+		$Container/Overlay.rect_position.y = 200
+	else:
+		$Container/Overlay.rect_position.y = current_y_position
+	
 	current_messages = messages
 	current_index = 0
 	_next_message()

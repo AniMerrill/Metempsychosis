@@ -1,27 +1,39 @@
 extends Node2D
 
+enum FinaleState {
+	INTRO,
+	LIVE_FEED,
+	WARNING,
+	THREAT,
+	M_A_D
+	}
+
 onready var room = $GenericRoom
-onready var popup = $Popup
-onready var pod = $GenericRoom/Objects/Pod
 onready var player = $GenericRoom/ControllablePlayer
 
 onready var machine = $GenericRoom/Objects/TheMachine
 onready var terminals = $EffectsOverlay/Terminals.get_children()
 
+var finale_state : int = FinaleState.INTRO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if GameState.get_state(GameState.STATE.FINALE_PLAYER_GIVEN_WARNING):
+		finale_state = FinaleState.THREAT
+	
 	$"/root/MusicModule".state_changed("final")
 	
 	room.connect("object_clicked", self, "_on_object_clicked")
+	
+	# warning-ignore:return_value_discarded
 	$EffectsOverlay/AnimationPlayer.connect(
 			"animation_finished", 
 			self, 
 			"_on_animation_finished"
 			)
-
-func _input(event):
-	if event.is_action_released("ui_accept"):
-		deactivate_machine()
+	
+	# warning-ignore:return_value_discarded
+	Prompt.connect("responded", self, "_on_responded")
 
 func _on_object_clicked(node):
 	match node.name:
@@ -29,27 +41,37 @@ func _on_object_clicked(node):
 			room.player_walk_to(machine.position)
 			GameState.interaction_is_frozen = true
 			yield(player, "position_reached")
-			# TODO: Signal to play machine start noise?
+			# TODO: Signal to play machine sfx in animation player?
 			$EffectsOverlay/AnimationPlayer.play("Activate")
 
 func _on_animation_finished(value : String):
 	match value:
 		"Activate":
-			print("The machine is activated. Your fate will be sealed here today.")
-			
-			# TODO: Presumably here is where some dialogue prompt would appear. I have
-			# an idea for, instead of a popup, this time you just see somebody talking
-			# to you on the screen (probably a very basic sprite) with a normal
-			# dialogue box.
-			
-			# I'm not sure how we want to handle the ending yet, whether the player
-			# has any choice where they could walk away and give control back to the
-			# other player (I do actually have a "good ending" idea we could expand upon
-			# in the post jam update). Just to be safe I added a deactivate_machine
-			# function that will restore the room to the state you enter and unfreeze the
-			# game just like any other object.
-		"Deactivated":
-			pass
+			finale_cutscene()
+		"Deactivate":
+			var code = GameState.serialize()
+			GameState.set_last_output_code(code)
+			SceneTransition.change_scene('menus/AwaitTurn.tscn')
+
+func _on_responded(response):
+	if response:
+		match finale_state:
+			FinaleState.INTRO:
+				finale_state = FinaleState.LIVE_FEED
+			FinaleState.LIVE_FEED:
+				finale_state = FinaleState.WARNING
+			FinaleState.WARNING:
+				finale_state = FinaleState.THREAT
+			FinaleState.THREAT:
+				finale_state = FinaleState.M_A_D
+			FinaleState.M_A_D:
+				pass
+		
+		finale_cutscene()
+	else:
+		RoomUtil.finale_dialog("refuse")
+		yield(MessageDisplay, "messages_finished")
+		$EffectsOverlay/AnimationPlayer.play("Deactivate")
 
 func activate_terminal():
 	for terminal in terminals:
@@ -71,6 +93,45 @@ func effects_anim_blink():
 			else:
 				light.visible = true
 
-func deactivate_machine():
-	# TODO: Signal to play machine stop noise?
-	print("The machine is deactivated.")
+func finale_cutscene():
+	var species := "Plutonians" if GameState._my_player == GameState.PLAYER.PLAYER_A else "Neptonians"
+	var other_species := "Neptonians" if GameState._my_player == GameState.PLAYER.PLAYER_A \
+			else "Plutonians"
+	
+	match finale_state:
+		FinaleState.INTRO:
+			RoomUtil.finale_dialog("intro")
+			yield(MessageDisplay, "messages_finished")
+			Prompt.prompt(
+					"Revive species: " + species + ". Confirm?", 
+					"Confirm", 
+					"Refuse"
+					)
+		FinaleState.LIVE_FEED:
+			RoomUtil.finale_dialog("live_feed")
+			yield(MessageDisplay, "messages_finished")
+			# TODO: Insert animation  trigger for live feed
+			# Change state there when finished
+			finale_state = FinaleState.WARNING
+			finale_cutscene()
+		FinaleState.WARNING:
+			GameState.set_state(GameState.STATE.FINALE_PLAYER_GIVEN_WARNING, false)
+			RoomUtil.finale_dialog("warning")
+			yield(MessageDisplay, "messages_finished")
+			Prompt.prompt(
+					"Revive species: " + species + ". Confirm?", 
+					"Confirm", 
+					"Refuse"
+					)
+		FinaleState.THREAT:
+			RoomUtil.finale_dialog("threat")
+			yield(MessageDisplay, "messages_finished")
+			Prompt.prompt(
+					"Exterminate " + other_species + "?", 
+					"Confirm", 
+					"Refuse"
+					)
+		FinaleState.M_A_D:
+			RoomUtil.finale_dialog("mutually_assured_destruction")
+			yield(MessageDisplay, "messages_finished")
+			# TODO: Trigger cut to epilogue

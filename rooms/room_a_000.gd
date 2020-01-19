@@ -17,7 +17,7 @@ func _ready():
 	popup.connect("closed", self, "_on_terminal_closed")
 	if not GameState.has_seen_in_room_intro:
 		GameState.interaction_is_frozen = true
-		yield(get_tree().create_timer(4.0), "timeout")
+		yield(get_tree().create_timer(3.0), "timeout")
 		RoomUtil.wake_up_dialog()
 
 

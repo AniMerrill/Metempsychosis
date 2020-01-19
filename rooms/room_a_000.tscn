@@ -20,6 +20,12 @@ script = ExtResource( 1 )
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
 east_target = "room_a_001"
+north_door = 1
+north_target = ""
+west_door = 1
+west_target = ""
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 287.791, 295 )
@@ -35,7 +41,6 @@ navpoly = SubResource( 1 )
 
 [node name="Pod" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 120, 300 )
-for_player_b = false
 
 [node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
 position = Vector2( 334, 195 )

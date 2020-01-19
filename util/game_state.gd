@@ -71,6 +71,9 @@ enum STATE {
 		## Colours of the wind.
 		
 		WIND_PUZZLE_SOLVED = 28,
+		
+		## Finale States
+		FINALE_PLAYER_GIVEN_WARNING = 40
 	}
 
 

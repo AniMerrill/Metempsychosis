@@ -37,6 +37,78 @@ func wake_up_dialog():
 	yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
 	GameState.interaction_is_frozen = false
 
+func finale_dialog(part : String):
+	var messages := []
+	
+	match part:
+		# Plays when first player initially uses machine
+		"intro":
+			messages = [
+"""Congratulations, you have shown your species is able to communicate effectively""",
+"""Probability of survival based on demonstration deemed sufficient."""
+			]
+			
+		# Plays after first confirmation
+		"live_feed":
+			messages = [
+"""Bringing up live-feed with the other representative of your species to share in this victorious moment."""
+			]
+		"warning":
+			messages = [
+"""[WARNING]: Representative {#2|#1} is not of the same species. Determined to be {Neptonian|Plutonian}.""",
+"""[WARNING]: Mismatch in representatives is not according to protocol. Implementation error detected.""",
+"""{[WARNING OVERRIDE]|[WARNING OVERRIDE]}""",
+"""Representative {#1|#2} has still successfully shown ability to communicate regardless. Proceed with simulation.""",
+"""Reading emotional state of {Neptonian|Plutonian}. . .""",
+"""Status: {Thankful for successful cooperation and the potential of peace between the species.|Thankful for successful cooperation and the potential of peace between the species.}""",
+"""Continuing revival."""
+			]
+			
+		# Plays when player confirms revival anyway
+		"threat":
+			messages = [
+"""Determining species survival chances. . .""",
+"""{[THREAT DETECTED!!!]|[THREAT DETECTED!!!]}""",
+"""[THREAT]: {Neptonians|Plutonians} previously annihilated all {Plutonians|Neptonians}!""",
+"""The extermination of your species is inevitable while in proximity of {Neptonians|Plutonians}.""",
+"""[RESOLUTION]: Exterminate all local {Neptonians|Plutonians}.""",
+#"""Confirm?"""
+			]
+			
+		# Plays if first player confirms the annihilation request
+		"mutually_assured_destruction":
+			messages = [
+"""Affirmative, proceeding to exterminate all {Nepto|Pluto}-""",
+"""[CRITICAL ERROR!!!]""",
+"""[PROCESSING]""",
+"""[PROCESSING.]""",
+"""[PROCESSING. .]""",
+"""[PROCESSING. . .]""",
+"""[PRo{CES|CES}iaaaaaaaaaa aa {a|a} aaa a ]a a """,
+"""[REINITIALIZING STATE]""",
+"""[EVALUATING]""",
+"""[WARNING]: Presence of a {Plutonian|Neptonian} poses risk to representative {#2|#1}. Exterminating all local {Plutonians|Neptonians} to ensure safety of specimen."""
+			]
+			
+		# If the first player refuses a prompt at any time, this sequence plays
+		# and forces player asleep to hand off the choice to the other player
+		"refuse":
+			messages = [
+"""[UNEXPECTED INPUT]""",
+"""[PROCESSING]""",
+"""Understandable, you probably want to meditate on such a monumental decision.""",
+"""Please take as long as you need to think in your cryrostasis chamber."""
+			]
+			
+			
+	
+	if messages != []:
+		MessageDisplay.display(convert_messages(messages), true)
+		yield(MessageDisplay, "messages_finished")
+		yield(get_tree().create_timer(0.1), "timeout")  ## Avoid sharing last dialog click.
+		#GameState.interaction_is_frozen = false
+
+
 func convert_messages(messages):
 	var result = []
 	for message in messages:
