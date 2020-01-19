@@ -63,7 +63,7 @@ func state_changed(state:String):
 		#fade in guard layers for bass drum effect
 		#just the base layer
 		mdm.fade_in("LevelTheme", 2)
-		_interpolate_filter_cutoff(null, 140, 6)
+		_interpolate_filter_cutoff(null, 120, 6)
 
 #custom functions
 #fade functions. Requires song name (node name), min, and max. Range is inclusive

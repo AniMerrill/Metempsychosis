@@ -156,6 +156,20 @@ tracks/0/keys = {
 "method": "effects_anim_blink"
 } ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_light_blink_sfx"
+} ]
+}
 
 [sub_resource type="Animation" id=11]
 length = 5.6
@@ -285,8 +299,12 @@ script = ExtResource( 1 )
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
 east_target = "room_b_final_door"
+north_door = 1
+north_target = ""
 west_door = 4
 west_target = "room_a_final_door"
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -319,7 +337,6 @@ texture = ExtResource( 4 )
 centered = false
 
 [node name="EffectsOverlay" type="Node2D" parent="."]
-editor/display_folded = true
 z_index = 4000
 script = SubResource( 2 )
 
@@ -402,7 +419,6 @@ texture = ExtResource( 8 )
 anims/data = SubResource( 9 )
 
 [node name="Lights" type="Node2D" parent="EffectsOverlay"]
-editor/display_folded = true
 visible = false
 position = Vector2( -73.951, 31.2937 )
 

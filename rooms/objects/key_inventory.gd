@@ -16,6 +16,7 @@ func _on_input_event(a, event, c, node):
 	if event is InputEventMouseButton and event.pressed and actionable:
 		emit_signal("key_removed", keys.find(node))
 		node.visible = false
+		SoundModule.play_sfx("Click")
 
 func add_key(index):
 	keys[index].visible = true

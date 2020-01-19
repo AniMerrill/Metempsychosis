@@ -102,7 +102,7 @@ func _on_closeddrawer_input_event(viewport, event, shape_idx):
 		dropbox.visible = true
 		closed.visible = false
 		table.actionable = true
-
+		SoundModule.play_sfx("Click")
 
 func _on_openeddrawer_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
@@ -110,3 +110,4 @@ func _on_openeddrawer_input_event(viewport, event, shape_idx):
 		dropbox.visible = false
 		closed.visible = true
 		table.actionable = false
+		SoundModule.play_sfx("Click")

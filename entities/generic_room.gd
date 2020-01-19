@@ -132,6 +132,7 @@ func _on_input_event(a, event, c, node):
 	if event is InputEventMouseButton and event.pressed and not GameState.interaction_is_frozen:
 		_is_object_click = true
 		_handle_object_click(node)
+		SoundModule.play_sfx("Click")
 
 
 func _unhandled_input(event):

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TerminalLights-002.wav-84e55b2ed7211743afbf11d44b090d21.sample"
+
+[deps]
+
+source_file="res://audio/audio_assets/final_room/TerminalLights-002.wav"
+dest_files=[ "res://.import/TerminalLights-002.wav-84e55b2ed7211743afbf11d44b090d21.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44800.0
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
