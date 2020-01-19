@@ -12,7 +12,7 @@ func _ready():
 	if GameState.get_state(GameState.STATE.POD_ROOMS_UNLOCKED):
 		room.east_door = room.DOOR_STATUS.CLOSED_DOOR
 	room.connect("object_clicked", self, "_on_object_clicked")
-	numpad.solution = "123456"
+	numpad.solution = "11690"
 	numpad.connect("solved", self, "_on_solved")
 	popup.connect("closed", self, "_on_terminal_closed")
 	if not GameState.has_seen_in_room_intro():
