@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-This is our entry for the Godot Wild Jam #17! More to come soon!
+This is our entry for the Godot Wild Jam #17! [Play it here.](https://animerrill.itch.io/metempsychosis)
 
 ## Collaborators
 
