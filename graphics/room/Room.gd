@@ -20,19 +20,25 @@ class Door:
 	
 	var locked := false setget set_locked
 	var opened := false setget set_opened
+	var visible := true
 	
 	var processing := false
 	
 	signal action_finished
 	
-	func _init(_locked : bool, _opened : bool = false) -> void:
+	func _init(_locked : bool, _opened := false, _visible := true) -> void:
 		locked = _locked
 		opened = _opened
+		visible = _visible
 	
 	func initialize_nodes(_door_anim, _light_anim, _sprite) -> void:
 		door_anim = _door_anim
 		light_anim = _light_anim
 		sprite = _sprite
+		
+		if not visible:
+			sprite.visible = false
+		
 		if opened:
 			door_anim.play("DoorOpened")
 		

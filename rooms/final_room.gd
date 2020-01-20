@@ -202,6 +202,9 @@ func finale_cutscene():
 			
 			$GenericRoom/Objects/TheMachine/Screen/Block/AnimationPlayer.play("Activate")
 			$GenericRoom/Objects/TheMachine/Screen/Display/AnimationPlayer.play("Death")
+			SoundModule.play_sfx("TerminalScreenOn")
+			
+			yield(get_tree().create_timer(2.0), "timeout")
 			
 			GameState.opening_dialogue_is_outro = true
 			if GameState.final_room_replay:
@@ -273,9 +276,7 @@ func set_live_feed(turn_on : bool):
 			$GenericRoom/Objects/TheMachine/Screen/Display/AnimationPlayer.play("Neptonian_Wave")
 			
 		else:
-			$GenericRoom/Objects/TheMachine/Screen/Hair.frame = 0
-			
-			match GameState.custom_mouth(GameState.PLAYER.PLAYER_B):
+			match GameState.custom_mouth(GameState.PLAYER.PLAYER_A):
 				GameState.PlayerRig.MOUTH.FROWN:
 					$GenericRoom/Objects/TheMachine/Screen/Mouth.frame = 40
 				GameState.PlayerRig.MOUTH.SMILE:
@@ -283,13 +284,13 @@ func set_live_feed(turn_on : bool):
 				GameState.PlayerRig.MOUTH.OPEN:
 					$GenericRoom/Objects/TheMachine/Screen/Mouth.frame = 42
 			
-			match GameState.custom_hair(GameState.PLAYER.PLAYER_B):
+			match GameState.custom_hair(GameState.PLAYER.PLAYER_A):
 				GameState.PlayerRig.HAIR.DOWN:
 					$GenericRoom/Objects/TheMachine/Screen/Hair.frame = 32
 				GameState.PlayerRig.HAIR.PONYTAIL:
 					$GenericRoom/Objects/TheMachine/Screen/Hair.frame = 33
 			
-			match GameState.custom_face(GameState.PLAYER.PLAYER_B):
+			match GameState.custom_face(GameState.PLAYER.PLAYER_A):
 				GameState.PlayerRig.FACE.NONE:
 					$GenericRoom/Objects/TheMachine/Screen/Face.frame = 0
 				GameState.PlayerRig.FACE.BEARD:
@@ -297,7 +298,7 @@ func set_live_feed(turn_on : bool):
 				GameState.PlayerRig.FACE.MOUSTACHE:
 					$GenericRoom/Objects/TheMachine/Screen/Face.frame = 38
 			
-			match GameState.custom_hat(GameState.PLAYER.PLAYER_B):
+			match GameState.custom_hat(GameState.PLAYER.PLAYER_A):
 				GameState.PlayerRig.HAT.NONE:
 					$GenericRoom/Objects/TheMachine/Screen/Hat.frame = 0
 				GameState.PlayerRig.HAT.BOWLER:
@@ -307,7 +308,7 @@ func set_live_feed(turn_on : bool):
 				GameState.PlayerRig.HAT.HELMET:
 					$GenericRoom/Objects/TheMachine/Screen/Hat.frame = 36
 			
-			match GameState.custom_tool(GameState.PLAYER.PLAYER_B):
+			match GameState.custom_tool(GameState.PLAYER.PLAYER_A):
 				GameState.PlayerRig.TOOL.NONE:
 					$GenericRoom/Objects/TheMachine/Screen/Tool.frame = 0
 				GameState.PlayerRig.TOOL.HAMMER:

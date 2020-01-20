@@ -100,7 +100,7 @@ func _update_doors():
 		else:
 			var opened = GameState.entering_from_direction == door_index and self.get_parent().name != "final_room"
 			var locked = status == DOOR_STATUS.LOCKED_DOOR
-			doors.append(room.Door.new(locked, opened))
+			doors.append(room.Door.new(locked, opened, not opened))
 			var area = door_areas.get_child(door_index)
 			if not area.is_connected("input_event", self, "_on_input_event"):
 				area.connect("input_event", self, "_on_input_event", [area])

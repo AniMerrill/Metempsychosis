@@ -12,9 +12,9 @@
 [ext_resource path="res://graphics/popup/terminal/screens/Minimap.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 165, 235, 80, 235, 95, 195, 300, 195, 315, 210, 435, 360, 45, 360, 60, 305, 160, 315, 385, 195, 365, 205 )
+vertices = PoolVector2Array( 218.975, 235, 80, 235, 95, 195, 300, 195, 315, 210, 435, 360, 45, 360, 60, 305, 193.578, 305.951, 385, 195, 365, 205 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 5, 8, 10 ), PoolIntArray( 4, 10, 8, 0 ) ]
-outlines = [ PoolVector2Array( 45, 360, 60, 305, 160, 315, 165, 235, 80, 235, 95, 195, 300, 195, 315, 210, 365, 205, 385, 195, 435, 360 ) ]
+outlines = [ PoolVector2Array( 45, 360, 60, 305, 193.578, 305.951, 218.975, 235, 80, 235, 95, 195, 300, 195, 315, 210, 365, 205, 385, 195, 435, 360 ) ]
 
 [node name="room_a_000" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,6 +22,12 @@ script = ExtResource( 1 )
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
 east_target = "room_a_001"
+north_door = 1
+north_target = ""
+west_door = 1
+west_target = ""
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 287.791, 295 )

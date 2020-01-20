@@ -30,13 +30,13 @@ var map := {
 			"name" : "", 
 			"doors" : [UP, DOWN, RIGHT]
 			},
-	str(Vector2(4,2)) : {
+	str(Vector2(4,1)) : {
 			"name" : "Sliding Chamber Control", 
-			"doors" : [LEFT]
+			"doors" : [LEFT,RIGHT]
 			},
 	str(Vector2(5,1)) : {
 			"name" : "[KEY]", 
-			"doors" : [DOWN]
+			"doors" : [LEFT]
 			},
 	str(Vector2(11,1)) : {
 			"name" : "Colors of the Wind", 
@@ -52,11 +52,11 @@ var map := {
 			},
 	str(Vector2(5,2)) : {
 			"name" : "Noise Terminal", 
-			"doors" : [UP, DOWN]
+			"doors" : [DOWN]
 			},
 	str(Vector2(10,2)) : {
 			"name" : "Art Gallery", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [RIGHT]
 			},
 	str(Vector2(11,2)) : {
 			"name" : "", 
@@ -64,7 +64,7 @@ var map := {
 			},
 	str(Vector2(0,3)) : {
 			"name" : "West Room", 
-			"doors" : [LEFT]
+			"doors" : [RIGHT]
 			},
 	str(Vector2(1,3)) : {
 			"name" : "", 
@@ -83,8 +83,8 @@ var map := {
 			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(5,3)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"name" : "East Room", 
+			"doors" : [UP,  LEFT, RIGHT]
 			},
 	str(Vector2(6,3)) : {
 			"name" : "Blue Triple Lock", 
@@ -96,7 +96,7 @@ var map := {
 			},
 	str(Vector2(10,3)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(11,3)) : {
 			"name" : "", 
@@ -136,7 +136,7 @@ var map := {
 			},
 	str(Vector2(9,4)) : {
 			"name" : "[KEY]", 
-			"doors" : [RIGHT]
+			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(10,4)) : {
 			"name" : "Representative #2 Cryrostasis", 
@@ -152,15 +152,15 @@ var map := {
 			},
 	str(Vector2(3,5)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [UP, DOWN, LEFT]
 			},
 	str(Vector2(9,5)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN]
+			"doors" : [DOWN]
 			},
 	str(Vector2(10,5)) : {
 			"name" : "", 
-			"doors" : [ DOWN, LEFT, RIGHT]
+			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(11,5)) : {
 			"name" : "", 

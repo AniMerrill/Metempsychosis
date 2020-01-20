@@ -56,16 +56,18 @@ var current_hair : int = HAIR.PONYTAIL setget set_hair
 var current_hat : int = HAT.NONE setget set_hat
 var current_face : int = FACE.NONE setget set_face
 
-var ready_finished : bool = false
+var ready_finished : bool = true
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded
 	$Timer.connect("timeout", self, "blink_timer")
 	anim_tree.active = true
 	
+	anim_tree.advance(1.0)
+	
 	set_anim_states()
 	
-	ready_finished = true
+	#ready_finished = true
 
 # warning-ignore:unused_argument
 func _process(delta : float) -> void:

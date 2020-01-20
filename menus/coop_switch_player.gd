@@ -16,6 +16,7 @@ func _on_Button_pressed():
 	Prompt.connect("responded", self, "_on_continue_responded")
 
 func _on_continue_responded(response):
+	$Button.disabled = true
 	Prompt.disconnect("responded", self, "_on_coop_responded")
 	if response:
 		if me == 1:

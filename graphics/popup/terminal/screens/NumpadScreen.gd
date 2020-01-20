@@ -45,7 +45,7 @@ func _ready():
 func number_pressed(value : int) -> void:
 	emit_signal("number_pressed", value)
 	if code.length() < code_length:
-		code = str(value) + code
+		code += str(value)
 		blink = false
 		$Timer.start()
 		set_code_text()

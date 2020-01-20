@@ -1,16 +1,18 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://rooms/final_room.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/room/finale_room/finale_room.png" type="Texture" id=4]
-[ext_resource path="res://graphics/room/finale_room/finale_screen.png" type="Texture" id=5]
-[ext_resource path="res://graphics/room/finale_room/gradient0003.png" type="Texture" id=6]
-[ext_resource path="res://graphics/room/finale_room/gradient0002.png" type="Texture" id=7]
-[ext_resource path="res://graphics/room/finale_room/gradient0001.png" type="Texture" id=8]
-[ext_resource path="res://graphics/room/finale_room/data0000.png" type="Texture" id=9]
-[ext_resource path="res://graphics/room/finale_room/data0001.png" type="Texture" id=10]
-[ext_resource path="res://graphics/room/finale_room/machine_light.png" type="Texture" id=11]
+[ext_resource path="res://graphics/room/blue_side_door.png" type="Texture" id=3]
+[ext_resource path="res://graphics/room/red_side_door.png" type="Texture" id=4]
+[ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/room/finale_room/finale_room.png" type="Texture" id=6]
+[ext_resource path="res://graphics/room/finale_room/finale_screen.png" type="Texture" id=7]
+[ext_resource path="res://graphics/room/finale_room/gradient0003.png" type="Texture" id=8]
+[ext_resource path="res://graphics/room/finale_room/gradient0002.png" type="Texture" id=9]
+[ext_resource path="res://graphics/room/finale_room/gradient0001.png" type="Texture" id=10]
+[ext_resource path="res://graphics/room/finale_room/data0000.png" type="Texture" id=11]
+[ext_resource path="res://graphics/room/finale_room/data0001.png" type="Texture" id=12]
+[ext_resource path="res://graphics/room/finale_room/machine_light.png" type="Texture" id=13]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 400.789, 249.036, 435, 360, 45, 360, 355.619, 248.319, 214.129, 225.835, 261.127, 225.835, 128.021, 247.217, 77.7984, 252.473 )
@@ -164,7 +166,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=10]
 resource_name = "_off"
 length = 0.5
 tracks/0/type = "value"
@@ -180,7 +182,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=11]
 resource_name = "Loading"
 length = 2.0
 tracks/0/type = "value"
@@ -196,8 +198,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 11 ), Vector2( 89, 11 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Activate"
+[sub_resource type="Animation" id=12]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -213,8 +214,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "_off"
+[sub_resource type="Animation" id=13]
 length = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -229,7 +229,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=14]
 script/source = "extends Node2D
 
 func _ready():
@@ -237,7 +237,7 @@ func _ready():
 
 "
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=15]
 length = 0.5
 loop = true
 step = 0.05
@@ -251,39 +251,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ) ]
-}
-
-[sub_resource type="Animation" id=14]
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 0.840896 ),
-"update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
-}
-
-[sub_resource type="Animation" id=15]
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 0.840896 ),
-"update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -299,7 +267,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 12 ) ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -315,7 +283,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 12 ) ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -331,7 +299,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 12 ) ]
 }
 
 [sub_resource type="Animation" id=19]
@@ -347,10 +315,42 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 0.840896 ),
 "update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 12 ) ]
 }
 
 [sub_resource type="Animation" id=20]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 0.840896 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 0.840896 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=22]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -382,7 +382,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=23]
 length = 5.6
 step = 0.05
 tracks/0/type = "method"
@@ -482,7 +482,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=24]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Block:visible")
 tracks/0/interp = 1
@@ -490,7 +490,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -502,7 +502,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -514,7 +514,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -526,28 +526,57 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_terminals"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("../GenericRoom/Objects/TheMachine/Screen/Block/AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Activate", -1 ],
+"method": "play_backwards"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../GenericRoom/Objects/TheMachine/Screen:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="final_room" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
 east_door = 4
 east_target = "room_b_final_door"
-north_door = 1
-north_target = ""
 west_door = 4
 west_target = "room_a_final_door"
-south_door = 1
-south_target = ""
 
-[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
+[node name="WestDoor" parent="GenericRoom/Room" index="8"]
+texture = ExtResource( 3 )
+
+[node name="EastDoor" parent="GenericRoom/Room" index="9"]
+texture = ExtResource( 4 )
+
+[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 5 )]
 position = Vector2( 130.589, 274.447 )
 z_index = 274
 
@@ -557,6 +586,7 @@ z_index = 274
 navpoly = SubResource( 1 )
 
 [node name="Objects" type="Node2D" parent="GenericRoom"]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -571,7 +601,7 @@ polygon = PoolVector2Array( -157.532, 26.5726, -155.478, -249.093, 165.874, -249
 
 [node name="Main" type="Sprite" parent="GenericRoom/Objects/TheMachine"]
 position = Vector2( -236.55, -241.3 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="Screen" type="Node2D" parent="GenericRoom/Objects/TheMachine"]
@@ -579,7 +609,7 @@ modulate = Color( 1, 1, 1, 0.994244 )
 
 [node name="Display" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
@@ -592,40 +622,35 @@ anims/Plutonian = SubResource( 6 )
 anims/Plutonian_Wave = SubResource( 7 )
 anims/Warning = SubResource( 8 )
 anims/Warning_Glitch = SubResource( 9 )
-anims/_off = SubResource( 23 )
+anims/_off = SubResource( 10 )
 
 [node name="Mouth" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
-visible = false
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
 [node name="Hair" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
-visible = false
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
 [node name="Face" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
-visible = false
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
 [node name="Hat" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
-visible = false
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
 [node name="Tool" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
-visible = false
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
@@ -639,22 +664,22 @@ margin_bottom = -83.0
 color = Color( 0.72549, 1, 0.211765, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GenericRoom/Objects/TheMachine/Screen/ColorRect"]
-anims/Loading = SubResource( 24 )
+anims/Loading = SubResource( 11 )
 
 [node name="Block" type="Sprite" parent="GenericRoom/Objects/TheMachine/Screen"]
 position = Vector2( 4.52252, -118.582 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 vframes = 8
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GenericRoom/Objects/TheMachine/Screen/Block"]
 autoplay = "_off"
-anims/Activate = SubResource( 10 )
-anims/_off = SubResource( 11 )
+anims/Activate = SubResource( 12 )
+anims/_off = SubResource( 13 )
 
 [node name="EffectsOverlay" type="Node2D" parent="."]
 z_index = 4000
-script = SubResource( 12 )
+script = SubResource( 14 )
 
 [node name="Block" type="ColorRect" parent="EffectsOverlay"]
 modulate = Color( 0, 0, 0, 0.784314 )
@@ -665,12 +690,12 @@ mouse_filter = 2
 [node name="Gradient" type="Sprite" parent="EffectsOverlay"]
 editor/display_folded = true
 visible = false
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Gradient"]
 autoplay = "flicker"
-anims/flicker = SubResource( 13 )
+anims/flicker = SubResource( 15 )
 
 [node name="Terminals" type="Node2D" parent="EffectsOverlay"]
 editor/display_folded = true
@@ -679,60 +704,60 @@ editor/display_folded = true
 editor/display_folded = true
 visible = false
 position = Vector2( 148.179, 55.6479 )
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal"]
-anims/data = SubResource( 14 )
+anims/data = SubResource( 16 )
 
 [node name="Terminal6" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
 visible = false
 position = Vector2( 331.299, 130.381 )
 rotation = 0.0388358
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal6"]
-anims/data = SubResource( 15 )
+anims/data = SubResource( 17 )
 
 [node name="Terminal4" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
 visible = false
 position = Vector2( 332.478, 50.2598 )
 rotation = -0.0571928
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal4"]
-anims/data = SubResource( 16 )
+anims/data = SubResource( 18 )
 
 [node name="Terminal2" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
 visible = false
 position = Vector2( 116.472, 88.9719 )
 rotation = -0.044212
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal2"]
-anims/data = SubResource( 17 )
+anims/data = SubResource( 19 )
 
 [node name="Terminal3" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
 visible = false
 position = Vector2( 141.384, 120.355 )
 rotation = -0.275366
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal3"]
-anims/data = SubResource( 18 )
+anims/data = SubResource( 20 )
 
 [node name="Terminal5" type="Sprite" parent="EffectsOverlay/Terminals"]
 editor/display_folded = true
 visible = false
 position = Vector2( 355.564, 96.4131 )
 rotation = 0.0951845
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Terminals/Terminal5"]
-anims/data = SubResource( 19 )
+anims/data = SubResource( 21 )
 
 [node name="Lights" type="Node2D" parent="EffectsOverlay"]
 editor/display_folded = true
@@ -742,80 +767,84 @@ position = Vector2( -73.951, 31.2937 )
 [node name="machine_light" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.113725, 0.858824, 0.0313726, 1 )
 position = Vector2( 278.564, 149.327 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light2" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.823529, 0.956863, 0.0431373, 1 )
 position = Vector2( 278.856, 155.394 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light3" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.882353, 0.0509804, 0.0509804, 1 )
 position = Vector2( 278.783, 160.438 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light4" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.988235, 0.423529, 0.423529, 1 )
 position = Vector2( 337.773, 139.458 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light5" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.117647, 0.784314, 0.964706, 1 )
 position = Vector2( 345.375, 138.947 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light6" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.988235, 0.431373, 0.835294, 1 )
 position = Vector2( 351.808, 138.728 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light7" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.709804, 1, 0.45098, 1 )
 position = Vector2( 338.431, 146.549 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light8" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 1, 0.584314, 0, 1 )
 position = Vector2( 345.521, 146.549 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light9" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.203922, 0.913725, 0.513726, 1 )
 position = Vector2( 352.466, 146.257 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light10" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.0627451, 0.603922, 1, 1 )
 position = Vector2( 338.943, 154.37 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light15" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.537255, 0.207843, 0.937255, 1 )
 position = Vector2( 339.33, 161.15 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light11" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 1, 0.054902, 0.65098, 1 )
 position = Vector2( 345.668, 154.224 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light13" type="Sprite" parent="EffectsOverlay/Lights"]
 position = Vector2( 346.055, 161.004 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light12" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.152941, 1, 0.164706, 1 )
 position = Vector2( 352.246, 154.151 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="machine_light14" type="Sprite" parent="EffectsOverlay/Lights"]
 modulate = Color( 0.972549, 0.25098, 0.176471, 1 )
 position = Vector2( 352.634, 160.931 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay/Lights"]
-anims/BlinkLights = SubResource( 20 )
+anims/BlinkLights = SubResource( 22 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EffectsOverlay"]
-anims/Activate = SubResource( 21 )
-anims/Deactivate = SubResource( 22 )
+anims/Activate = SubResource( 23 )
+anims/Deactivate = SubResource( 24 )
+
+[editable path="GenericRoom"]
+
+[editable path="GenericRoom/Room"]

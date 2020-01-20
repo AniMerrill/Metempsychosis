@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 margin_right = -240.0
 margin_bottom = -200.0
 script = ExtResource( 1 )
+current_room = Vector2( 3, 3 )
 
 [node name="X" type="TextureButton" parent="."]
 margin_left = 200.0
