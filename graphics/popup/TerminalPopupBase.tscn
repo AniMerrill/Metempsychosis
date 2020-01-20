@@ -9,7 +9,7 @@ data = {
 "size": Vector2( 78, 78 )
 }
 
-[node name="TerminalPopupBase" index="0" instance=ExtResource( 1 )]
+[node name="TerminalPopupBase" instance=ExtResource( 1 )]
 
 [node name="TextureRect" parent="Content" index="0"]
 visible = false

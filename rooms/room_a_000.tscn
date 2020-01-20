@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://rooms/room_a_000.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://graphics/popup/terminal/TerminalBase.tscn" type="PackedScene" id=7]
 [ext_resource path="res://graphics/popup/terminal/screens/TerminalMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://graphics/popup/terminal/screens/NumpadScreen.tscn" type="PackedScene" id=9]
-[ext_resource path="res://graphics/popup/terminal/screens/Minimap.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 218.975, 235, 80, 235, 95, 195, 300, 195, 315, 210, 435, 360, 45, 360, 60, 305, 193.578, 305.951, 385, 195, 365, 205 )
@@ -22,12 +21,6 @@ script = ExtResource( 1 )
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
 east_target = "room_a_001"
-north_door = 1
-north_target = ""
-west_door = 1
-west_target = ""
-south_door = 1
-south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 287.791, 295 )
@@ -50,21 +43,16 @@ position = Vector2( 334, 195 )
 
 [node name="Popup" parent="." instance=ExtResource( 6 )]
 
-[node name="Popup" parent="Popup" index="0"]
-visible = false
-
 [node name="TerminalBase" parent="Popup/Popup/Content" index="0" instance=ExtResource( 7 )]
 
 [node name="TerminalMenu" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 8 )]
-title = "Cryrochamber"
+title = "[CRYROCHAMBER]"
 
 [node name="Numpad" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="0" instance=ExtResource( 9 )]
+visible = false
 solution = "11690"
 code_length = 5
 solved_message = "Correct. All pod room doors unlocked."
-
-[node name="Map" parent="Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="1" instance=ExtResource( 10 )]
-current_room = Vector2( 5, 4 )
 
 [editable path="Popup"]
 

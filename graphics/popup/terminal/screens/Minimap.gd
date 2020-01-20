@@ -32,11 +32,11 @@ var map := {
 			},
 	str(Vector2(4,1)) : {
 			"name" : "Sliding Chamber Control", 
-			"doors" : [LEFT,RIGHT]
+			"doors" : [LEFT]
 			},
 	str(Vector2(5,1)) : {
 			"name" : "[KEY]", 
-			"doors" : [LEFT]
+			"doors" : [DOWN]
 			},
 	str(Vector2(11,1)) : {
 			"name" : "Colors of the Wind", 
@@ -79,11 +79,11 @@ var map := {
 			"doors" : [UP, DOWN, LEFT, RIGHT]
 			},
 	str(Vector2(4,3)) : {
-			"name" : "", 
+			"name" : "East Room", 
 			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(5,3)) : {
-			"name" : "East Room", 
+			"name" : "", 
 			"doors" : [UP,  LEFT, RIGHT]
 			},
 	str(Vector2(6,3)) : {
@@ -205,8 +205,11 @@ func _ready():
 	
 	connect("draw", self, "_draw")
 	
+	connect("visibility_changed", self, "visibility_changed")
+	
 	if map.has(str(current_room)):
 		$RoomName.text = map[str(current_room)]["name"]
+	
 
 func _draw():
 	var spacing := Vector2(1.5, 1.5)
@@ -363,3 +366,37 @@ func toggle_blink():
 	blink = not blink
 	
 	update()
+
+func visibility_changed():
+	if (GameState.get_state(GameState.STATE.KEY_B_1_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_B_1_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_B_1_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_B_1_POS_DOOR)):
+		map[str(Vector2(5,1))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_B_2_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_B_2_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_B_2_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_B_2_POS_DOOR)):
+		map[str(Vector2(1,0))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_B_3_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_B_3_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_B_3_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_B_3_POS_DOOR)):
+		map[str(Vector2(2,6))]["name"] = ""
+	
+	
+	if (GameState.get_state(GameState.STATE.KEY_A_1_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_A_1_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_A_1_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_A_1_POS_DOOR)):
+			map[str(Vector2(9,4))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_A_2_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_A_2_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_A_2_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_A_2_POS_DOOR)):
+		map[str(Vector2(11,0))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_A_3_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_A_3_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_A_3_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_A_3_POS_DOOR)):
+		map[str(Vector2(14,3))]["name"] = ""

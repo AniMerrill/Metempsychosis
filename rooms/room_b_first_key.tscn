@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://rooms/room_b_first_key.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/Key.tscn" type="PackedScene" id=4]
+[ext_resource path="res://rooms/objects/Terminal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/popup/TerminalPopupBase.tscn" type="PackedScene" id=6]
+[ext_resource path="res://graphics/popup/terminal/screens/TerminalMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://graphics/popup/terminal/screens/Minimap.tscn" type="PackedScene" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
+vertices = PoolVector2Array( 181.045, 195, 385, 195, 435, 360, 45, 360, 140.542, 210.319, 86.0713, 214.509 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5 ) ]
+outlines = [ PoolVector2Array( 45, 360, 86.0713, 214.509, 140.542, 210.319, 181.045, 195, 385, 195, 435, 360 ) ]
 
 [node name="room_b_first_key" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,8 +24,6 @@ north_door = 3
 north_target = "room_b_final_door"
 west_door = 3
 west_target = "room_b_dropbox"
-south_door = 1
-south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -37,3 +39,22 @@ navpoly = SubResource( 1 )
 [node name="Key" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 289.5, 315 )
 for_player_b = false
+
+[node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
+position = Vector2( 100.038, 199.844 )
+
+[node name="Popup" type="CanvasLayer" parent="."]
+
+[node name="TerminalPopupBase" parent="Popup" instance=ExtResource( 6 )]
+visible = false
+
+[node name="TerminalMenu" parent="Popup/TerminalPopupBase/Content/TerminalBase/Screen/ScreenContents" index="0" instance=ExtResource( 7 )]
+
+[node name="Minimap" parent="Popup/TerminalPopupBase/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options" index="0" instance=ExtResource( 8 )]
+current_room = Vector2( 9, 4 )
+
+[editable path="Popup/TerminalPopupBase"]
+
+[editable path="Popup/TerminalPopupBase/Content/TerminalBase"]
+
+[editable path="Popup/TerminalPopupBase/Content/TerminalBase/Screen/ScreenContents/TerminalMenu"]
