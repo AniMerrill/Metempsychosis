@@ -265,6 +265,7 @@ stream = ExtResource( 23 )
 bus = "Doors"
 
 [node name="DoorUnlocksNear" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -276,6 +277,7 @@ volume_db = -8.505
 bus = "SFX"
 
 [node name="DoorUnlocksFar" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -287,6 +289,7 @@ volume_db = 5.534
 bus = "DoorFar"
 
 [node name="Footsteps" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )

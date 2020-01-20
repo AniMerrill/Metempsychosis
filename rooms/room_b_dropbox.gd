@@ -26,3 +26,4 @@ func _on_object_clicked(node):
 					GameState.get_state(GameState.STATE.KEY_B_3_POS_B)
 				):
 				FlashText.flash("You take the keys that are on the table with you.")
+				SoundModule.play_sfx("ItemPickedUp") 
