@@ -27,8 +27,12 @@ margin_left = 145.0
 margin_top = 285.0
 margin_right = 340.0
 margin_bottom = 316.0
-text = "You notice the glaring absense
+text = "You notice the glaring absence
 of a puzzle in this room."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )
