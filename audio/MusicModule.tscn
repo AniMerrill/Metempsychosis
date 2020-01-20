@@ -15,6 +15,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 play_mode = 1
+autoplay = NodePath(".")
 
 [node name="LevelTheme" parent="MixingDeskMusic" instance=ExtResource( 4 )]
 bars = 46
@@ -65,9 +66,13 @@ text = "Final Room"
 [node name="FilterTween" type="Tween" parent="."]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 14.0
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Buttons/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Buttons/Button3" to="." method="_on_Button3_pressed"]
