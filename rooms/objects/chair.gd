@@ -16,3 +16,11 @@ func _update_chair():
 	$chair_open.visible = open
 	$chair_closed.visible = not open
 
+
+
+func _on_chair_button_pressed():
+	if open:
+		set_open(false)
+	elif not open:
+		set_open(true)
+	SoundModule.play_sfx("Click")

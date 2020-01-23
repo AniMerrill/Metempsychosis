@@ -186,7 +186,6 @@ margin_bottom = 253.0
 text = "Continue"
 
 [node name="Debugging" type="Node2D" parent="."]
-editor/display_folded = true
 visible = false
 
 [node name="CurrentPlayer" parent="Debugging" instance=ExtResource( 5 )]
@@ -208,6 +207,17 @@ text = "State Editor"
 
 [node name="Chair" parent="." instance=ExtResource( 6 )]
 position = Vector2( 455, 332 )
+
+[node name="Button" type="Button" parent="Chair"]
+self_modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = -22.25
+margin_top = -62.25
+margin_right = 21.75
+margin_bottom = 1.75
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MenuBase/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="text_entered" from="InputArea/InputCode" to="." method="_on_InputCode_text_entered"]
 [connection signal="pressed" from="CustomiseArea/Customise" to="." method="_on_Customise_pressed"]
@@ -215,5 +225,6 @@ position = Vector2( 455, 332 )
 [connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Debugging/ChangePlayer" to="." method="_on_ChangePlayer_pressed"]
 [connection signal="pressed" from="Debugging/StateEdit" to="." method="_on_StateEdit_pressed"]
+[connection signal="pressed" from="Chair/Button" to="Chair" method="_on_chair_button_pressed"]
 
 [editable path="MenuBase"]
