@@ -20,4 +20,4 @@ func _ready():
 	$XButton.texture_click_mask = bitmap
 
 func x_button_pressed() -> void:
-	queue_free()
+	visible = false

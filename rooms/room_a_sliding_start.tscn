@@ -13,6 +13,10 @@ outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
 east_door = 3
 east_target = "room_a_009"
+north_door = 1
+north_target = ""
+west_door = 1
+west_target = ""
 south_door = 3
 south_target = "room_a_sliding_key"
 
@@ -23,8 +27,12 @@ margin_left = 152.238
 margin_top = 67.7389
 margin_right = 347.238
 margin_bottom = 98.7389
-text = "You notice the glaring absense
+text = "You notice the glaring absence
 of a puzzle in this room."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )

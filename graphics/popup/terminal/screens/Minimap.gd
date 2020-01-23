@@ -30,7 +30,7 @@ var map := {
 			"name" : "", 
 			"doors" : [UP, DOWN, RIGHT]
 			},
-	str(Vector2(4,2)) : {
+	str(Vector2(4,1)) : {
 			"name" : "Sliding Chamber Control", 
 			"doors" : [LEFT]
 			},
@@ -52,11 +52,11 @@ var map := {
 			},
 	str(Vector2(5,2)) : {
 			"name" : "Noise Terminal", 
-			"doors" : [UP, DOWN]
+			"doors" : [DOWN]
 			},
 	str(Vector2(10,2)) : {
 			"name" : "Art Gallery", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [RIGHT]
 			},
 	str(Vector2(11,2)) : {
 			"name" : "", 
@@ -64,7 +64,7 @@ var map := {
 			},
 	str(Vector2(0,3)) : {
 			"name" : "West Room", 
-			"doors" : [LEFT]
+			"doors" : [RIGHT]
 			},
 	str(Vector2(1,3)) : {
 			"name" : "", 
@@ -79,12 +79,12 @@ var map := {
 			"doors" : [UP, DOWN, LEFT, RIGHT]
 			},
 	str(Vector2(4,3)) : {
-			"name" : "", 
+			"name" : "East Room", 
 			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(5,3)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [UP,  LEFT, RIGHT]
 			},
 	str(Vector2(6,3)) : {
 			"name" : "Blue Triple Lock", 
@@ -96,7 +96,7 @@ var map := {
 			},
 	str(Vector2(10,3)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(11,3)) : {
 			"name" : "", 
@@ -136,7 +136,7 @@ var map := {
 			},
 	str(Vector2(9,4)) : {
 			"name" : "[KEY]", 
-			"doors" : [RIGHT]
+			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(10,4)) : {
 			"name" : "Representative #2 Cryrostasis", 
@@ -152,15 +152,15 @@ var map := {
 			},
 	str(Vector2(3,5)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
+			"doors" : [UP, DOWN, LEFT]
 			},
 	str(Vector2(9,5)) : {
 			"name" : "", 
-			"doors" : [UP, DOWN]
+			"doors" : [DOWN]
 			},
 	str(Vector2(10,5)) : {
 			"name" : "", 
-			"doors" : [ DOWN, LEFT, RIGHT]
+			"doors" : [LEFT, RIGHT]
 			},
 	str(Vector2(11,5)) : {
 			"name" : "", 
@@ -205,8 +205,11 @@ func _ready():
 	
 	connect("draw", self, "_draw")
 	
+	connect("visibility_changed", self, "visibility_changed")
+	
 	if map.has(str(current_room)):
 		$RoomName.text = map[str(current_room)]["name"]
+	
 
 func _draw():
 	var spacing := Vector2(1.5, 1.5)
@@ -363,3 +366,37 @@ func toggle_blink():
 	blink = not blink
 	
 	update()
+
+func visibility_changed():
+	if (GameState.get_state(GameState.STATE.KEY_B_1_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_B_1_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_B_1_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_B_1_POS_DOOR)):
+		map[str(Vector2(5,1))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_B_2_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_B_2_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_B_2_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_B_2_POS_DOOR)):
+		map[str(Vector2(1,0))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_B_3_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_B_3_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_B_3_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_B_3_POS_DOOR)):
+		map[str(Vector2(2,6))]["name"] = ""
+	
+	
+	if (GameState.get_state(GameState.STATE.KEY_A_1_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_A_1_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_A_1_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_A_1_POS_DOOR)):
+			map[str(Vector2(9,4))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_A_2_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_A_2_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_A_2_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_A_2_POS_DOOR)):
+		map[str(Vector2(11,0))]["name"] = ""
+	if (GameState.get_state(GameState.STATE.KEY_A_3_POS_A) or
+		GameState.get_state(GameState.STATE.KEY_A_3_POS_B) or
+		GameState.get_state(GameState.STATE.KEY_A_3_POS_BOX) or
+		GameState.get_state(GameState.STATE.KEY_A_3_POS_DOOR)):
+		map[str(Vector2(14,3))]["name"] = ""

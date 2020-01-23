@@ -50,6 +50,7 @@ text = "Terminal"
 position = Vector2( 20, -70 )
 texture = ExtResource( 2 )
 hframes = 5
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Modulate = SubResource( 1 )

@@ -9,9 +9,9 @@
 [ext_resource path="res://graphics/puzzles/code_table0001.png" type="Texture" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 385, 195, 395, 240, 300, 245, 275, 235, 270, 225, 420.273, 311.402, 435, 360, 45, 360, 315, 310, 210, 270, 150, 250, 95, 195, 150, 230, 170, 220, 215, 205 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 3, 2, 8, 7, 9 ), PoolIntArray( 10, 9, 7 ), PoolIntArray( 10, 7, 11, 12 ), PoolIntArray( 13, 12, 11 ), PoolIntArray( 14, 13, 11 ), PoolIntArray( 14, 11, 0 ), PoolIntArray( 14, 0, 4 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 395, 240, 300, 245, 315, 310, 420.273, 311.402, 435, 360 ), PoolVector2Array( 150, 230, 150, 250, 210, 270, 275, 235, 270, 225, 215, 205, 170, 220 ) ]
+vertices = PoolVector2Array( 395, 240, 277.868, 245, 270, 225, 385, 195, 269.946, 252.966, 277.868, 310, 420.273, 311.402, 435, 360, 45, 360, 210, 270, 150, 250, 95, 195, 150, 230, 170, 220, 215, 205 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 2, 1, 5 ), PoolIntArray( 6, 7, 8, 5 ), PoolIntArray( 9, 4, 5, 8 ), PoolIntArray( 10, 9, 8 ), PoolIntArray( 10, 8, 11, 12 ), PoolIntArray( 13, 12, 11 ), PoolIntArray( 14, 13, 11 ), PoolIntArray( 14, 11, 3 ), PoolIntArray( 14, 3, 2 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 395, 240, 277.868, 245, 277.868, 310, 420.273, 311.402, 435, 360 ), PoolVector2Array( 150, 230, 150, 250, 210, 270, 269.946, 252.966, 270, 225, 215, 205, 170, 220 ) ]
 
 [node name="room_b_000" type="Node2D"]
 script = ExtResource( 1 )
@@ -45,6 +45,9 @@ position = Vector2( 395, 300 )
 for_player_b = true
 
 [node name="Popup" parent="." instance=ExtResource( 6 )]
+
+[node name="Popup" parent="Popup" index="0"]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Popup/Popup/Content" index="0"]
 margin_right = 40.0
