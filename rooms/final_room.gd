@@ -15,8 +15,8 @@ onready var terminals = $EffectsOverlay/Terminals.get_children()
 
 var finale_state : int = FinaleState.INTRO
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	Timeout.stop_timer()  # Don't timeout in the final room.
 	if GameState.get_state(GameState.STATE.FINALE_PLAYER_GIVEN_WARNING):
 		finale_state = FinaleState.THREAT
 	
