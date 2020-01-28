@@ -15,6 +15,7 @@ func set_timeout(seconds : float):
 
 func stop_timer():
 	timer.stop()
+	pretimer.stop()
 
 func _on_Timer_timeout():
 	GameState.interaction_is_frozen = true

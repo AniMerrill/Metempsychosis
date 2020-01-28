@@ -9,6 +9,7 @@ onready var first_time_area = $FirstTimeArea
 onready var ai_area = $AIArea
 
 func _ready():
+	Timeout.stop_timer()
 	if GameState.is_local_coop():
 		SceneTransition.change_scene_direct("menus/CoopSwitchPlayer.tscn")
 		return
