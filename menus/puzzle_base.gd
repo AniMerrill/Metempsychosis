@@ -1,66 +1,73 @@
 extends Control
 
-"""
-WARNING: The way the code below is written might disappoint you
 
-
-The scene this script is attached too is not currently affecting
-anything, but it works
-"""
-
-onready var north_element = get_node("north")
-onready var south_element = get_node("south")
-onready var west_element = get_node("west")
-onready var east_element = get_node("east")
+enum {WHITE, RED, BLUE, GREEN, PURPLE}
+enum {NORTH, EAST, WEST, SOUTH}
 
 signal solved()
 
+var colors := [
+		Color.white,
+		Color.red,
+		Color.blue,
+		Color.green,
+		Color.purple
+		]
+var directions := [WHITE, WHITE, WHITE, WHITE]
+var solution := [RED, BLUE, GREEN, PURPLE]
+
+
 func _ready():
-	north_element.connect("mouse_entered", self, "_on_mouse_entered", [north_element])
-	south_element.connect("mouse_entered", self, "_on_mouse_entered", [south_element])
-	west_element.connect("mouse_entered", self, "_on_mouse_entered", [west_element])
-	east_element.connect("mouse_entered", self, "_on_mouse_entered", [east_element])
+	$north.connect("pressed", self, "_on_pressed", [NORTH])
+	$east.connect("pressed", self, "_on_pressed", [EAST])
+	$west.connect("pressed", self, "_on_pressed", [WEST])
+	$south.connect("pressed", self, "_on_pressed", [SOUTH])
+
+
+func _on_pressed(direction : int) -> void:
+	# TODO: I eventually want to make sprites instead of just switching
+	# through a color array
 	
-	north_element.connect("mouse_exited", self, "_on_mouse_exited")
-	south_element.connect("mouse_exited", self, "_on_mouse_exited")
-	west_element.connect("mouse_exited", self, "_on_mouse_exited")
-	east_element.connect("mouse_exited", self, "_on_mouse_exited")
-
-var _current_hovered_node = null
-
-func _on_mouse_entered(node) -> void:
-	_current_hovered_node = node
-
-func _on_mouse_exited() -> void:
-	_current_hovered_node = null
-
-func _input(event):
-	if event.is_action_pressed("click") and _current_hovered_node != null:
-		_change_color(_current_hovered_node)
-		get_tree().set_input_as_handled()
-
-func _change_color(node : ColorRect):
-	if node.color == Color.red:
-		node.color = Color.blue
-	elif node.color == Color.blue:
-		node.color = Color.green
-	elif node.color == Color.green:
-		node.color = Color.purple
-	elif node.color == Color.purple:
-		node.color = Color.red
-	else:
-		node.color = Color.red
+	match direction:
+		NORTH:
+			directions[NORTH] = change_color(directions[NORTH])
+			$north_rect.color = colors[directions[NORTH]]
+		EAST:
+			directions[EAST] = change_color(directions[EAST])
+			$east_rect.color = colors[directions[EAST]]
+		WEST:
+			directions[WEST] = change_color(directions[WEST])
+			$west_rect.color = colors[directions[WEST]]
+		SOUTH:
+			directions[SOUTH] = change_color(directions[SOUTH])
+			$south_rect.color = colors[directions[SOUTH]]
 	
-	_node_color_updated(node)
+	node_color_updated()
 
-func _node_color_updated(node):
-	if _solved():
+
+func change_color(color : int) -> int:
+	match color:
+		WHITE:
+			return RED
+		RED:
+			return BLUE
+		BLUE:
+			return GREEN
+		GREEN:
+			return PURPLE
+		_:
+			return WHITE
+
+
+func node_color_updated() -> void:
+	if puzzle_solved():
 		emit_signal("solved")
 
-func _solved():
+
+func puzzle_solved():
 	return (
-			north_element.color == Color.red and
-			south_element.color == Color.purple and
-			west_element.color == Color.green and
-			east_element.color == Color.blue
-		)
+			directions[NORTH] == solution[NORTH] and
+			directions[EAST] == solution[EAST] and
+			directions[WEST] == solution[WEST] and
+			directions[SOUTH] == solution[SOUTH] 
+			)

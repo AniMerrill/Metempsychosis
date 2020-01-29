@@ -27,6 +27,9 @@ font_data = ExtResource( 2 )
 margin_right = 246.0
 margin_bottom = 164.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 solution = "123456"
 
 [node name="Message" type="Label" parent="."]
