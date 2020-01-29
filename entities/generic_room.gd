@@ -179,9 +179,17 @@ func _handle_door_click(direction):
 func player_walk_to(target_position):
 	if GameState.interaction_is_frozen:
 		return
+	
 	var path = room_map.get_simple_path(player.position, target_position)
-	if path.size() > 0:
-		player.path = path
+	
+	if path.size() > 1:
+		# If distance between first two path points is less than a footstep,
+		# ignore and remain in place
+		if path[0].distance_to(path[1]) > player.move_epsilon * 2.0:
+			player.path = path
+		else:
+			# This allows the "position_reached" signal to emit w/o moving
+			player.path = [path[0]]
 
 
 func set_final_door_east():
