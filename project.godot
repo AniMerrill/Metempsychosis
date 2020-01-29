@@ -30,11 +30,11 @@ SceneTransition="*res://util/SceneTransition.tscn"
 MessageDisplay="*res://util/MessageDisplay.tscn"
 MusicModule="*res://audio/MusicModule.tscn"
 SoundModule="*res://audio/SoundModule.tscn"
-JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 RoomUtil="*res://rooms/room_util.gd"
 Prompt="*res://menus/Prompt.tscn"
 FlashText="*res://menus/FlashText.tscn"
 Timeout="*res://menus/Timeout.tscn"
+JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 
 [display]
 

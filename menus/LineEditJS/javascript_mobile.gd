@@ -42,10 +42,3 @@ func _ready():
 				""",
 				true
 				)
-		
-		# Alert for mobile users playing jam version
-		
-		JavaScript.eval(
-				"window.alert('Unfortunately we were not able to complete mobile compatibility within the duration of the jam. We may add it later once voting is done, so follow us if you want to see updates.');",
-				true
-				)
