@@ -25,8 +25,6 @@ const PlayerRig = preload("res://graphics/players/PlayerRig.gd")
 #
 # Values should be given explicitly to ensure consisted encoding.
 # Negative values should not be used.
-#
-## NEXT_TAG: 56
 enum STATE {
 		CODE_CREATED_BY_PLAYER_A = 0,
 		
@@ -81,6 +79,10 @@ enum STATE {
 		GAME_OVER = 30,
 		
 		## Customisation
+		## NOTE: (ugly) Code uses the fact that player A and B customisations
+		## are stored in exactly the same manner. Make sure to check the state
+		## editing functions (cusomt_hair, set_custom_face, etc.) below before
+		## making any changes.
 		PLAYER_A_TOOL_HAMMER = 32,
 		PLAYER_A_TOOL_SCREWDRIVER = 33,
 		PLAYER_A_TOOL_PISTOL = 34,
@@ -98,8 +100,25 @@ enum STATE {
 		PLAYER_A_FACE_BEARD = 42,
 		PLAYER_A_FACE_MOUSTACHE = 43,
 		
-		## NOTE: Auto-reserved 44 through 55 (inclusive) for PLAYER_B customs.
-		# So any next state should be 56.
+		
+		PLAYER_B_TOOL_HAMMER = 44,
+		PLAYER_B_TOOL_SCREWDRIVER = 45,
+		PLAYER_B_TOOL_PISTOL = 46,
+		PLAYER_B_TOOL_PAINTBRUSH = 47,
+		
+		PLAYER_B_MOUTH_SMILE = 48,
+		PLAYER_B_MOUTH_OPEN = 49,
+		
+		PLAYER_B_HAIR_PONYTAIL = 50,
+		
+		PLAYER_B_HAT_BOWLER = 51,
+		PLAYER_B_HAT_FEZ = 52,
+		PLAYER_B_HAT_HELMET = 53,
+		
+		PLAYER_B_FACE_BEARD = 54,
+		PLAYER_B_FACE_MOUSTACHE = 55,
+		
+		# NEXT TAG: 56.
 	}
 
 # Representing the two players.
@@ -395,12 +414,15 @@ func pbd(txt, bytes):
 
 
 # Serializes the state to a hexadecimal string.
-func serialize() -> String:
+func serialize(for_player = null) -> String:
 	randomize()
 	while true:
 		var by_a = current_player() == PLAYER.PLAYER_A
-		if is_ai_state:
-			by_a = not by_a
+		if for_player == null:
+			if is_ai_state:
+				by_a = not by_a
+		else:
+			by_a = for_player == PLAYER.PLAYER_B
 		set_state(STATE.CODE_CREATED_BY_PLAYER_A, by_a)
 		var bytes = _state_as_bytes()	
 		bytes = _add_integrity_check(bytes)
@@ -409,7 +431,8 @@ func serialize() -> String:
 		bytes = _add_shift_noise(bytes)
 		var code = _bytes_to_string(bytes)
 		if not my_output_codes.has(code):
-			add_output_code(code)
+			if for_player == null:  # don't save "temp" codes.
+				add_output_code(code)
 			return code
 	return "error."
 

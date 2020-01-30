@@ -28,6 +28,8 @@ func change_scene_direct(path):
 func _deferred_change_scene(path, text = null, txt_duration = 4.0):
 	$AnimationPlayer.play("fade", -1, fade_speed)
 	yield(animation_player, "animation_finished")
+	var root = get_tree().get_root()
+	current_scene = root.get_child(root.get_child_count() - 1)
 	current_scene.free()
 	if text != null:
 		transition_text.text = text
