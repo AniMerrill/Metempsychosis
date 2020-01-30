@@ -36,6 +36,7 @@ FlashText="*res://menus/FlashText.tscn"
 Timeout="*res://menus/Timeout.tscn"
 JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 StateEditor="*res://menus/StateEditor.tscn"
+WorldMap="*res://rooms/world_map.gd"
 
 [display]
 

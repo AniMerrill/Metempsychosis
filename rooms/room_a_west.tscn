@@ -10,12 +10,11 @@ vertices = PoolVector2Array( 435, 360, 45, 360, 95, 195, 198.39, 239.559, 283.00
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 0 ), PoolIntArray( 6, 4, 0 ), PoolIntArray( 5, 4, 7 ), PoolIntArray( 2, 5, 7 ), PoolIntArray( 2, 7, 3 ), PoolIntArray( 0, 3, 6 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ), PoolVector2Array( 198.39, 239.559, 238.194, 222.285, 283.006, 238.557, 240.698, 256.332 ) ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 20.1748
 height = 9.02094
 
-[sub_resource type="Animation" id=2]
-resource_name = "fade"
+[sub_resource type="Animation" id=3]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -62,6 +61,12 @@ light_message = "The intense glow of this green light makes you feel sick."
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 3
 east_target = "room_a_007"
+north_door = 1
+north_target = ""
+west_door = 1
+west_target = ""
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -77,7 +82,7 @@ navpoly = SubResource( 1 )
 [node name="ColorLight" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 
 [node name="CollisionShape2D" parent="GenericRoom/Objects/ColorLight/Area2D" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Base" parent="GenericRoom/Objects/ColorLight" index="1"]
 modulate = Color( 1, 1, 1, 1 )
@@ -92,6 +97,6 @@ color = Color( 0, 1, 0.109804, 0.109804 )
 color = Color( 0, 0, 0, 0 )
 
 [node name="AnimationPlayer" parent="GenericRoom/Objects/ColorLight" index="4"]
-anims/fade = SubResource( 2 )
+anims/fade = SubResource( 3 )
 
 [editable path="GenericRoom/Objects/ColorLight"]

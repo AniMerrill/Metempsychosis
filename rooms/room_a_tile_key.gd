@@ -5,10 +5,7 @@ onready var key := $GenericRoom/Objects/Key
 onready var player = $GenericRoom/ControllablePlayer
 
 func _ready():
-	if (GameState.get_state(GameState.STATE.KEY_B_3_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_B_3_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_B_3_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_B_3_POS_DOOR)):
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_3_POS_A):
 		key.visible = false
 	room.connect("object_clicked", self, "_on_object_clicked")
 

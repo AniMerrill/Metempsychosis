@@ -40,6 +40,7 @@ func show():
 	table.visible = true
 	dropbox.visible = false
 	table.actionable = false
+	_update_display()
 
 func _ready():
 	

@@ -23,6 +23,8 @@ north_door = 3
 north_target = "room_a_final_door"
 west_door = 3
 west_target = "room_a_000"
+south_door = 1
+south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )

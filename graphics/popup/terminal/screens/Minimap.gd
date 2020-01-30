@@ -1,203 +1,50 @@
 extends Control
 
-enum {UP, DOWN, LEFT, RIGHT}
-
 var parent_menu = null
 
 export var current_room := Vector2()
 
 var blink := false
 
-# Machine 7,3 and 8,3
-var map := {
-	str(Vector2(1,0)) : {
-			"name" : "[KEY]", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(3,0)) : {
-			"name" : "North Room", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(11,0)) : {
-			"name" : "[KEY]", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(1,1)) : {
-			"name" : "Exclusive Suite", 
-			"doors" : [UP, DOWN]
-			},
-	str(Vector2(3,1)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, RIGHT]
-			},
-	str(Vector2(4,1)) : {
-			"name" : "Sliding Chamber Control", 
-			"doors" : [LEFT]
-			},
-	str(Vector2(5,1)) : {
-			"name" : "[KEY]", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(11,1)) : {
-			"name" : "Colors of the Wind", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(1,2)) : {
-			"name" : "", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(3,2)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN]
-			},
-	str(Vector2(5,2)) : {
-			"name" : "Noise Terminal", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(10,2)) : {
-			"name" : "Art Gallery", 
-			"doors" : [RIGHT]
-			},
-	str(Vector2(11,2)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, LEFT]
-			},
-	str(Vector2(0,3)) : {
-			"name" : "West Room", 
-			"doors" : [RIGHT]
-			},
-	str(Vector2(1,3)) : {
-			"name" : "", 
-			"doors" : [UP, LEFT, RIGHT]
-			},
-	str(Vector2(2,3)) : {
-			"name" : "", 
-			"doors" : [LEFT, RIGHT]
-			},
-	str(Vector2(3,3)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
-			},
-	str(Vector2(4,3)) : {
-			"name" : "East Room", 
-			"doors" : [LEFT, RIGHT]
-			},
-	str(Vector2(5,3)) : {
-			"name" : "", 
-			"doors" : [UP,  LEFT, RIGHT]
-			},
-	str(Vector2(6,3)) : {
-			"name" : "Blue Triple Lock", 
-			"doors" : [ DOWN, LEFT]
-			},
-	str(Vector2(9,3)) : {
-			"name" : "Red Triple Lock", 
-			"doors" : [DOWN, RIGHT]
-			},
-	str(Vector2(10,3)) : {
-			"name" : "", 
-			"doors" : [LEFT, RIGHT]
-			},
-	str(Vector2(11,3)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, LEFT, RIGHT]
-			},
-	str(Vector2(12,3)) : {
-			"name" : "", 
-			"doors" : [LEFT, RIGHT]
-			},
-	str(Vector2(13,3)) : {
-			"name" : "Grid Room", 
-			"doors" : [ LEFT, RIGHT]
-			},
-	str(Vector2(14,3)) : {
-			"name" : "[KEY]", 
-			"doors" : [LEFT]
-			},
-	str(Vector2(3,4)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN,]
-			},
-	str(Vector2(5,4)) : {
-			"name" : "Representative #1 Cryrostasis", 
-			"doors" : [RIGHT]
-			},
-	str(Vector2(6,4)) : {
-			"name" : "", 
-			"doors" : [UP, LEFT, RIGHT]
-			},
-	str(Vector2(7,4)) : {
-			"name" : "[DROPBOX]", 
-			"doors" : [LEFT]
-			},
-	str(Vector2(8,4)) : {
-			"name" : "[DROPBOX]", 
-			"doors" : [RIGHT]
-			},
-	str(Vector2(9,4)) : {
-			"name" : "[KEY]", 
-			"doors" : [LEFT, RIGHT]
-			},
-	str(Vector2(10,4)) : {
-			"name" : "Representative #2 Cryrostasis", 
-			"doors" : [LEFT]
-			},
-	str(Vector2(11,4)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN]
-			},
-	str(Vector2(2,5)) : {
-			"name" : "Sliding", 
-			"doors" : [RIGHT]
-			},
-	str(Vector2(3,5)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, LEFT]
-			},
-	str(Vector2(9,5)) : {
-			"name" : "", 
-			"doors" : [DOWN]
-			},
-	str(Vector2(10,5)) : {
-			"name" : "", 
-			"doors" : [LEFT, RIGHT]
-			},
-	str(Vector2(11,5)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN, LEFT]
-			},
-	str(Vector2(2,6)) : {
-			"name" : "[KEY]", 
-			"doors" : [UP]
-			},
-	str(Vector2(3,6)) : {
-			"name" : "South Room", 
-			"doors" : [UP]
-			},
-	str(Vector2(9,6)) : {
-			"name" : "", 
-			"doors" : [UP, DOWN]
-			},
-	str(Vector2(11, 6)) : {
-			"name" : "Switch Room", 
-			"doors" : [UP]
-			},
-	str(Vector2(9,7)) : {
-			"name" : "Sliding Puzzle", 
-			"doors" : [UP]
-			}
+const room_names := {
+		"a_000_____": "Representative #1 Cryrostasis",
+		"a_dropbox_": "[DROPBOX]",
+		"a_biome_ke": "[KEY]",
+		"a_xor_key_": "[KEY]",
+		"a_tile_key": "[KEY]",
+		"a_north___": "North Room",
+		"a_west____": "West Room",
+		"a_003_____": "East Room",
+		"a_south___": "South Room",
+		"a_xor_puzz": "Exclusive Suite",
+		"a_biome_pa": "Noise Terminal",
+		"a_final_do": "Blue Triple Lock",
+		"a_tile_sta": "Sliding",
+		
+		"b_000_____": "Representative #2 Cryrostasis",
+		"b_dropbox_": "[DROPBOX]",
+		"b_wind_key": "[KEY]",
+		"b_grid_key": "[KEY]",
+		"b_tile_puz": "Sliding Chamber Control",
+		"b_wind_cod": "Colors of the Wind",
+		"b_biome_pi": "Art Gallery",
+		"b_final_do": "Red Triple Lock",
+		"b_grid____": "Grid Room",
+		"b_xor_swit": "Switch Room",
+		
+		"final_room": "[MACHINE]"
 	}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# warning-ignore:return_value_discarded
-	$Up.connect("pressed", self, "direction_pressed", [UP])
+	$Up.connect("pressed", self, "direction_pressed", [Vector2(0, -1)])
 	# warning-ignore:return_value_discarded
-	$Down.connect("pressed", self, "direction_pressed", [DOWN])
+	$Down.connect("pressed", self, "direction_pressed", [Vector2(0, 1)])
 	# warning-ignore:return_value_discarded
-	$Left.connect("pressed", self, "direction_pressed", [LEFT])
+	$Left.connect("pressed", self, "direction_pressed", [Vector2(-1, 0)])
 	# warning-ignore:return_value_discarded
-	$Right.connect("pressed", self, "direction_pressed", [RIGHT])
+	$Right.connect("pressed", self, "direction_pressed", [Vector2(1, 0)])
 	# warning-ignore:return_value_discarded
 	$X.connect("pressed", self, "x_pressed")
 	
@@ -207,9 +54,8 @@ func _ready():
 	
 	connect("visibility_changed", self, "visibility_changed")
 	
-	if map.has(str(current_room)):
-		$RoomName.text = map[str(current_room)]["name"]
-	
+	$RoomName.text = room_names.get(WorldMap.at(current_room), "")
+
 
 func _draw():
 	var spacing := Vector2(1.5, 1.5)
@@ -217,186 +63,68 @@ func _draw():
 	
 	for y in 8:
 		for x in 15:
+			var x_pos = x * 10 * spacing.x + offset.x
+			var y_pos = y * 10 * spacing.y + offset.y
 			
-			if x * 10 * spacing.x + offset.x < 0:
+			if x_pos < 0 or y_pos < 0:
 				continue
 			
-			if y * 10 * spacing.y + offset.y < 0:
-				continue
-			
-			if map.has(str(Vector2(x, y))):
-				for door in map[str(Vector2(x, y))]["doors"]:
-					match door:
-						UP:
-							draw_rect(
-									Rect2(
-											x * 10 * spacing.x + offset.x + 2.5, 
-											y * 10 * spacing.y + offset.y - 5, 
-											5, 
-											5
-											), 
-									Color("#576f2a"), 
-									false
-									)
-						DOWN:
-							draw_rect(
-									Rect2(
-											x * 10 * spacing.x + offset.x + 2.5, 
-											y * 10 * spacing.y + offset.y + 10, 
-											5, 
-											5
-											), 
-									Color("#576f2a"), 
-									false
-									)
-						LEFT:
-							draw_rect(
-									Rect2(
-											x * 10 * spacing.x + offset.x - 5, 
-											y * 10 * spacing.y + offset.y + 2.5, 
-											5, 
-											5
-											), 
-									Color("#576f2a"), 
-									false
-									)
-						RIGHT:
-							draw_rect(
-									Rect2(
-											x * 10 * spacing.x + offset.x + 10, 
-											y * 10 * spacing.y + offset.y + 2.5, 
-											5, 
-											5
-											), 
-									Color("#576f2a"), 
-									false
-									)
-				
-				
-				draw_rect(
-						Rect2(
-								x * 10 * spacing.x + offset.x, 
-								y * 10 * spacing.y + offset.y, 
-								10, 
-								10
-								), 
-						Color("#576f2a"), 
-						false
-						)
+			_draw_door(Vector2(x, y), x_pos, y_pos)
 	
 	if blink:
-		draw_rect(
-			Rect2(
-					current_room.x * 10 * spacing.x + offset.x, 
-					current_room.y * 10 * spacing.y + offset.y, 
-					10, 
-					10
-					), 
-			Color("#b9ff36"), 
-			true
-			)
+		var x_pos = current_room.x * 10 * spacing.x + offset.x
+		var y_pos = current_room.y * 10 * spacing.y + offset.y
+		draw_rect(Rect2(x_pos, y_pos, 10, 10), Color("#b9ff36"), true)
+
+func _draw_door(loc, x_pos, y_pos):
+	if WorldMap.empty(loc):
+		return
+	# Doors.
+	if WorldMap.has_door(loc, loc + Vector2(0, -1)):  # North.
+		draw_rect(Rect2(x_pos + 2.5, y_pos - 5, 5, 5), Color("#576f2a"), false)
+	if WorldMap.has_door(loc, loc + Vector2(0, 1)):  # South.
+		draw_rect(Rect2(x_pos + 2.5, y_pos + 10, 5, 5), Color("#576f2a"), false)
+	if WorldMap.has_door(loc, loc + Vector2(-1, 0)):  # West.
+		draw_rect(Rect2(x_pos - 5, y_pos + 2.5, 5, 5), Color("#576f2a"), false)
+	if WorldMap.has_door(loc, loc + Vector2(1, 0)):  # East.
+		draw_rect(Rect2(x_pos + 10, y_pos + 2.5, 5, 5), Color("#576f2a"), false)
+	# Room.
+	draw_rect(Rect2(x_pos, y_pos, 10, 10), Color("#576f2a"), false)
 	
-	# Draw machine room
-	draw_rect(Rect2(105 + 8 + offset.x, 45 + offset.y,10,10),Color("#576f2a"), false)
-	draw_rect(
-			Rect2(
-					6 * 10 * spacing.x + offset.x + 10, 
-					3 * 10 * spacing.y + offset.y + 2.5, 
-					13, 
-					5
-					), 
-			Color("#576f2a"), 
-			false
-			)
-	draw_rect(
-			Rect2(
-					8 * 10 * spacing.x + offset.x + 3, 
-					3 * 10 * spacing.y + offset.y + 2.5, 
-					12, 
-					5
-					), 
-			Color("#576f2a"), 
-			false
-			)
+
 
 func x_pressed() -> void:
 	if parent_menu != null:
 		visible = false
 		parent_menu.set_visibility(true)
 
-func direction_pressed(direction) -> void:
-	var search_direction := Vector2()
-	var new_room := Vector2()
-	
-	match direction:
-		UP:
-			search_direction = Vector2(0, -1)
-		DOWN:
-			search_direction = Vector2(0, 1)
-		LEFT:
-			search_direction = Vector2(-1, 0)
-		RIGHT:
-			search_direction = Vector2(1, 0)
-	
-	new_room = current_room + search_direction
-	
-	while !map.has(str(new_room)):
-		
-		if new_room.x < 0:
-			new_room.x = 15
-		elif new_room.x > 15:
-			new_room.x = 0
-		
-		if new_room.y < 0:
-			new_room.y = 8
-		elif new_room.y > 8:
-			new_room.y = 0
-		
-		new_room += search_direction
-	
+func direction_pressed(direction : Vector2) -> void:
+	var new_room = current_room + direction
+	while WorldMap.empty(new_room):
+		new_room += direction
+		new_room.x = int(new_room.x + 16) % 16
+		new_room.y = int(new_room.y + 9) % 9
 	current_room = new_room
 	
 	blink = false
 	toggle_blink()
-	$Timer.start()
 	
-	$RoomName.text = map[str(current_room)]["name"]
+	$RoomName.text = room_names.get(WorldMap.at(current_room), "")
 
 func toggle_blink():
 	blink = not blink
-	
 	update()
 
 func visibility_changed():
-	if (GameState.get_state(GameState.STATE.KEY_B_1_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_B_1_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_B_1_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_B_1_POS_DOOR)):
-		map[str(Vector2(5,1))]["name"] = ""
-	if (GameState.get_state(GameState.STATE.KEY_B_2_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_B_2_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_B_2_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_B_2_POS_DOOR)):
-		map[str(Vector2(1,0))]["name"] = ""
-	if (GameState.get_state(GameState.STATE.KEY_B_3_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_B_3_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_B_3_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_B_3_POS_DOOR)):
-		map[str(Vector2(2,6))]["name"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_1_POS_A):
+		room_names["a_biome_ke"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_2_POS_A):
+		room_names["a_xor_key_"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_3_POS_A):
+		room_names["a_tile_key"] = ""
 	
-	
-	if (GameState.get_state(GameState.STATE.KEY_A_1_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_A_1_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_A_1_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_A_1_POS_DOOR)):
-			map[str(Vector2(9,4))]["name"] = ""
-	if (GameState.get_state(GameState.STATE.KEY_A_2_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_A_2_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_A_2_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_A_2_POS_DOOR)):
-		map[str(Vector2(11,0))]["name"] = ""
-	if (GameState.get_state(GameState.STATE.KEY_A_3_POS_A) or
-		GameState.get_state(GameState.STATE.KEY_A_3_POS_B) or
-		GameState.get_state(GameState.STATE.KEY_A_3_POS_BOX) or
-		GameState.get_state(GameState.STATE.KEY_A_3_POS_DOOR)):
-		map[str(Vector2(14,3))]["name"] = ""
+	# Key A_1 is in the dropbox room.
+	if not GameState.key_on_floor(GameState.STATE.KEY_A_2_POS_A):
+		room_names["b_wind_key"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_A_3_POS_A):
+		room_names["b_grid_key"] = ""

@@ -83,14 +83,18 @@ func _verify_door(scene_name, room, direction):
 
 func _verify_doors(scene_name):
 	var scene = load("res://rooms/" + scene_name).instance()
+	if scene_name != scene.name + ".tscn":
+		print("ERROR: " + scene_name + " has incorrect name: " + scene.name)
+	
 	if not scene.has_node("GenericRoom"):
 		print("Warning: No GenericRoom node in " + scene_name)
 		return
 	var room = scene.get_node("GenericRoom")
-	_verify_door(scene_name, room, 'east')
-	_verify_door(scene_name, room, 'north')
-	_verify_door(scene_name, room, 'west')
-	_verify_door(scene_name, room, 'south')
+	
+#	_verify_door(scene_name, room, 'east')
+#	_verify_door(scene_name, room, 'north')
+#	_verify_door(scene_name, room, 'west')
+#	_verify_door(scene_name, room, 'south')
 
 func _run():
 	all_rooms = _get_rooms()

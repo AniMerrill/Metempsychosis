@@ -10,11 +10,17 @@ onready var state_code_a = $StateEditor/Frame/StateCodeA
 onready var state_code_b = $StateEditor/Frame/StateCodeB
 onready var player_a = $StateEditor/Frame/PlayerA
 onready var player_b = $StateEditor/Frame/PlayerB
+onready var room_select = $StateEditor/Frame/RoomSelect
 
 var new_state
 
 func _ready():
 	editor.visible = false
+	room_select.add_item("(In Menu)")
+	var index = 1
+	for item in WorldMap.prefix_map.keys():
+		room_select.add_item(item)
+		index += 1
 
 func _input(event):
 	if Input.is_action_just_pressed("cheat"):
@@ -28,6 +34,14 @@ func reload():
 	_clear_node(key_states)
 	_clear_node(custom_a_states)
 	_clear_node(custom_b_states)
+	
+	var index = 1
+	var selected_index = 0
+	for item in WorldMap.prefix_map.keys():
+		if item == WorldMap._current_room:
+			selected_index = index
+		index += 1
+	room_select.select(selected_index)
 	
 	var player_is_a = GameState.current_player() == GameState.PLAYER.PLAYER_A
 	player_a.pressed = player_is_a
@@ -90,8 +104,14 @@ func _on_SaveButton_pressed():
 	
 	GameState.set_last_output_code(code)
 	GameState.deserialize(code)
-	get_tree().reload_current_scene()
-	editor.visible = false
+	
+	var selected_room = room_select.get_item_text(room_select.selected)
+	if room_select.selected > 0 and selected_room != WorldMap._current_room:
+		WorldMap.move_to_room(selected_room)
+		editor.visible = false
+	else:
+		get_tree().reload_current_scene()
+		editor.visible = false
 
 
 func _on_PlayerA_pressed():

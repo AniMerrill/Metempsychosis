@@ -9,11 +9,11 @@ func load_first_room():
 	match GameState.current_player():
 		GameState.PLAYER.PLAYER_A:
 			if GameState.get_state(GameState.STATE.PLAYER_A_IN_XOR_POD):
-				SceneTransition.change_scene('rooms/room_a_xor_puzzle.tscn')
+				WorldMap.move_to_room("a_xor_puzz")
 			else:
-				SceneTransition.change_scene('rooms/room_a_000.tscn')
+				WorldMap.move_to_room("a_000_____")
 		GameState.PLAYER.PLAYER_B:
-			SceneTransition.change_scene('rooms/room_b_000.tscn')
+				WorldMap.move_to_room("b_000_____")
 		_:
 			printerr("ERROR: No player active.")
 
@@ -55,7 +55,7 @@ func game_over_dialog():
 	MessageDisplay.display(convert_messages(messages))
 	yield(MessageDisplay, "messages_finished")
 	GameState.final_room_replay = true
-	SceneTransition.change_scene('rooms/final_room.tscn')
+	WorldMap.move_to_room("final_room")
 
 func finale_dialog(part : String):
 	var messages := []

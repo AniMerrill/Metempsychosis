@@ -38,6 +38,7 @@ enum STATE {
 		## Key locations. If none are true, they are in their starting place.
 		## Each group should be mutually exclusive.
 		## We are using 3 bits where we only need 2 per key. Oh well.
+		## NOTE: Function "key_on_floor" relies on the exact values!
 		KEY_A_1_POS_A = 4,
 		KEY_A_1_POS_B = 5,
 		KEY_A_1_POS_BOX = 6,
@@ -414,6 +415,11 @@ func set_state(state_enum : int, value : bool) -> void:
 	if not value and state.has(state_enum):
 		state.erase(state_enum)
 
+
+# Helper to see if key is on the floor.
+func key_on_floor(key_a_pos_enum : int) -> bool:
+	return not (get_state(key_a_pos_enum) or get_state(key_a_pos_enum + 1) or
+		get_state(key_a_pos_enum + 2) or get_state(key_a_pos_enum + 18))
 
 # Updates the state to represent the current room order. The order is an array
 # of 9 integers representing the room state (e.g. [4, 6, 2, 3, 8, 7, 0, 1, 5]).

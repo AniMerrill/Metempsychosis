@@ -17,17 +17,9 @@ enum DOOR_STATUS {
 	}
 
 export (DOOR_STATUS) var east_door : int = DOOR_STATUS.NO_DOOR setget _set_east_door
-export (String) var east_target : String = "" setget _set_east_door_target
-
 export (DOOR_STATUS) var north_door : int = DOOR_STATUS.NO_DOOR setget _set_north_door
-export (String) var north_target : String = "" setget _set_north_door_target
-
 export (DOOR_STATUS) var west_door : int = DOOR_STATUS.NO_DOOR setget _set_west_door
-export (String) var west_target : String = "" setget _set_west_door_target
-
 export (DOOR_STATUS) var south_door : int = DOOR_STATUS.NO_DOOR setget _set_south_door
-export (String) var south_target : String = "" setget _set_south_door_target
-
 
 func _set_east_door(value : int) -> void:
 	east_door = value
@@ -44,25 +36,6 @@ func _set_west_door(value : int) -> void:
 func _set_south_door(value : int) -> void:
 	south_door = value
 	_update_doors()
-
-
-var door_targets = ['', '', '', '']
-
-func _set_east_door_target(value : String) -> void:
-	east_target = value
-	door_targets[0] = value
-
-func _set_north_door_target(value : String) -> void:
-	north_target = value
-	door_targets[1] = value
-
-func _set_west_door_target(value : String) -> void:
-	west_target = value
-	door_targets[2] = value
-
-func _set_south_door_target(value : String) -> void:
-	south_target = value
-	door_targets[3] = value
 
 
 # Just before exiting
@@ -82,6 +55,9 @@ func _ready():
 	_update_doors()
 	refresh_objects()
 	current_name_label.text = self.get_parent().name if self.get_parent() else "----"
+	# Hacky code to allow loading from a particular room during dev.
+	if WorldMap._current_room == null:
+		WorldMap._current_room = WorldMap._get_prefix(current_name_label.text)
 	if GameState.entering_from_direction >= 0:
 		player.position = exit_door_pos[GameState.entering_from_direction]
 		player.path = [exit_door_pos[GameState.entering_from_direction], enter_door_pos[GameState.entering_from_direction]]
@@ -170,9 +146,7 @@ func _handle_door_click(direction):
 		if door.processing:
 			yield(door, "action_finished")
 		player.path = [exit_door_pos[direction], exit_room_pos[direction]]
-		var target_scene = 'rooms/' + door_targets[direction] + '.tscn'
-		GameState.entering_from_direction = (direction + 2) % 4  # Yay.
-		SceneTransition.change_scene_fast(target_scene)
+		WorldMap.move_to_direction(direction)
 	else:
 		door.opened = true
 

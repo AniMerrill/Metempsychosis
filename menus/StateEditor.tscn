@@ -26,9 +26,9 @@ __meta__ = {
 }
 
 [node name="OtherState" type="ScrollContainer" parent="StateEditor/Frame"]
-margin_top = 35.5987
+margin_top = 66.0322
 margin_right = 248.0
-margin_bottom = 155.599
+margin_bottom = 186.032
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,9 +38,9 @@ custom_constants/separation = -8
 
 [node name="KeyState" type="ScrollContainer" parent="StateEditor/Frame"]
 margin_left = 252.397
-margin_top = 35.5987
+margin_top = 66.0322
 margin_right = 471.397
-margin_bottom = 155.599
+margin_bottom = 186.032
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,9 +49,9 @@ __meta__ = {
 custom_constants/separation = -8
 
 [node name="CustomAState" type="ScrollContainer" parent="StateEditor/Frame"]
-margin_top = 178.288
+margin_top = 191.0
 margin_right = 240.0
-margin_bottom = 312.288
+margin_bottom = 312.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,9 +61,9 @@ custom_constants/separation = -8
 
 [node name="CustomBState" type="ScrollContainer" parent="StateEditor/Frame"]
 margin_left = 240.0
-margin_top = 178.288
+margin_top = 191.0
 margin_right = 474.0
-margin_bottom = 312.288
+margin_bottom = 312.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -102,27 +102,37 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="StateEditor/Frame"]
-margin_left = 190.098
-margin_top = 332.653
-margin_right = 284.098
-margin_bottom = 346.653
+margin_left = 252.397
+margin_top = 11.401
+margin_right = 346.397
+margin_bottom = 25.401
 text = "Current player:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label4" type="Label" parent="StateEditor/Frame"]
+margin_left = 252.397
+margin_top = 43.5944
+margin_right = 346.397
+margin_bottom = 57.5944
+text = "Current room:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PlayerA" type="CheckBox" parent="StateEditor/Frame"]
-margin_left = 291.806
-margin_top = 328.252
-margin_right = 371.806
-margin_bottom = 352.252
+margin_left = 354.105
+margin_top = 7.0
+margin_right = 434.105
+margin_bottom = 31.0
 text = "A"
 
 [node name="PlayerB" type="CheckBox" parent="StateEditor/Frame"]
-margin_left = 325.778
-margin_top = 328.252
-margin_right = 405.778
-margin_bottom = 352.252
+margin_left = 388.077
+margin_top = 7.0
+margin_right = 468.077
+margin_bottom = 31.0
 text = "B"
 
 [node name="Label2" type="Label" parent="StateEditor/Frame"]
@@ -136,10 +146,10 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="StateEditor/Frame"]
-margin_left = 252.397
-margin_top = 12.7121
-margin_right = 322.397
-margin_bottom = 26.7121
+margin_left = 10.0
+margin_top = 43.5944
+margin_right = 80.0
+margin_bottom = 57.5944
 text = "Code for B:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -158,13 +168,23 @@ __meta__ = {
 }
 
 [node name="StateCodeB" type="LineEdit" parent="StateEditor/Frame"]
-margin_left = 325.778
-margin_top = 7.0
-margin_right = 475.778
-margin_bottom = 31.0
+margin_left = 83.381
+margin_top = 37.8823
+margin_right = 233.381
+margin_bottom = 61.8823
 align = 1
 editable = false
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomSelect" type="OptionButton" parent="StateEditor/Frame"]
+margin_left = 353.442
+margin_top = 40.536
+margin_right = 468.442
+margin_bottom = 60.536
+text = "(Game Menu)"
 __meta__ = {
 "_edit_use_anchors_": false
 }

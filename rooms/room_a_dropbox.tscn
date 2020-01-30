@@ -32,5 +32,6 @@ navpoly = SubResource( 1 )
 
 [node name="Dropbox" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 445, 270 )
+for_player_b = false
 
 [node name="ExchangePopup" parent="." instance=ExtResource( 5 )]
