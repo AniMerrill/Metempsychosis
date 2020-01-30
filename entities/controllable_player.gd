@@ -38,8 +38,11 @@ func _process(delta):
 	var velocity = (next_position - position).normalized() * move_speed
 	position += velocity * delta
 	rig.walking = true
-	rig.facing_right = velocity.x > 0
-	rig.facing_front = velocity.y > 0
+	
+	if velocity.x != 0:
+		rig.facing_right = velocity.x > 0
+	if velocity.y != 0:
+		rig.facing_front = velocity.y > 0
 
 func _input(event):
 	if event is InputEventMouseMotion:

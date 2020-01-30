@@ -27,7 +27,7 @@ func _on_Button_pressed():
 
 func _on_continue_responded(response):
 	$Button.disabled = true
-	Prompt.disconnect("responded", self, "_on_coop_responded")
+	Prompt.disconnect("responded", self, "_on_continue_responded")
 	if response:
 		GameState.deserialize(GameState.last_output_code())
 		RoomUtil.load_first_room()

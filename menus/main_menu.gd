@@ -2,6 +2,7 @@ extends Node2D
 
 
 func _ready():
+	Timeout.stop_timer()
 	if GameState.current_player() == GameState.PLAYER.INVALID_PLAYER:
 		$Continue.visible = false
 

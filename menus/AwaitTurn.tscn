@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menus/await_turn.gd" type="Script" id=1]
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=4]
 [ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rooms/objects/Chair.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -26,10 +27,6 @@ font_data = ExtResource( 3 )
 script = ExtResource( 1 )
 
 [node name="MenuBase" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
-
-[node name="chair0000" parent="MenuBase" index="4"]
-visible = true
 
 [node name="BackButton" parent="MenuBase" index="6"]
 visible = true
@@ -189,7 +186,6 @@ margin_bottom = 253.0
 text = "Continue"
 
 [node name="Debugging" type="Node2D" parent="."]
-editor/display_folded = true
 visible = false
 
 [node name="CurrentPlayer" parent="Debugging" instance=ExtResource( 5 )]
@@ -208,6 +204,20 @@ margin_top = 337.5
 margin_right = 410.0
 margin_bottom = 357.5
 text = "State Editor"
+
+[node name="Chair" parent="." instance=ExtResource( 6 )]
+position = Vector2( 455, 332 )
+
+[node name="Button" type="Button" parent="Chair"]
+self_modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = -22.25
+margin_top = -62.25
+margin_right = 21.75
+margin_bottom = 1.75
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MenuBase/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="text_entered" from="InputArea/InputCode" to="." method="_on_InputCode_text_entered"]
 [connection signal="pressed" from="CustomiseArea/Customise" to="." method="_on_Customise_pressed"]
@@ -215,5 +225,6 @@ text = "State Editor"
 [connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Debugging/ChangePlayer" to="." method="_on_ChangePlayer_pressed"]
 [connection signal="pressed" from="Debugging/StateEdit" to="." method="_on_StateEdit_pressed"]
+[connection signal="pressed" from="Chair/Button" to="Chair" method="_on_chair_button_pressed"]
 
 [editable path="MenuBase"]

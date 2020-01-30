@@ -78,12 +78,12 @@ func set_blink() -> void:
 	set_code_text()
 
 func set_code_text() -> void:
-	var code_text : String = ""
+	var code_text := code
 	var extra_characters : int = code_length - code.length()
 	
 	if extra_characters > 1:
 		for i in range(extra_characters):
-			if i == extra_characters - 1 && blink:
+			if i == 0 && blink:
 				code_text += " "
 			else:
 				code_text += "_"
@@ -91,7 +91,5 @@ func set_code_text() -> void:
 		code_text += " "
 	elif extra_characters == 1:
 		code_text += "_"
-	
-	code_text += code
 	
 	$Code.bbcode_text = "[center]" + code_text + "[/center]"

@@ -6,27 +6,71 @@
 margin_right = 246.0
 margin_bottom = 164.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="north" type="ColorRect" parent="."]
+[node name="north_rect" type="ColorRect" parent="."]
 margin_left = 115.599
 margin_top = 31.1975
 margin_right = 135.599
 margin_bottom = 71.1975
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="east" type="ColorRect" parent="."]
+[node name="north" type="TextureButton" parent="."]
+margin_left = 116.0
+margin_top = 31.0
+margin_right = 136.0
+margin_bottom = 71.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="east_rect" type="ColorRect" parent="."]
 margin_left = 135.599
 margin_top = 71.1975
 margin_right = 175.599
 margin_bottom = 91.1975
 
-[node name="west" type="ColorRect" parent="."]
+[node name="east" type="TextureButton" parent="."]
+margin_left = 176.083
+margin_top = 71.055
+margin_right = 196.083
+margin_bottom = 111.055
+rect_rotation = 89.9999
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="west_rect" type="ColorRect" parent="."]
 margin_left = 75.5987
 margin_top = 71.1975
 margin_right = 115.599
 margin_bottom = 91.1975
 
-[node name="south" type="ColorRect" parent="."]
+[node name="west" type="TextureButton" parent="."]
+margin_left = 116.0
+margin_top = 71.055
+margin_right = 136.0
+margin_bottom = 111.055
+rect_rotation = 89.9999
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="south_rect" type="ColorRect" parent="."]
 margin_left = 115.599
 margin_top = 91.1975
 margin_right = 135.599
 margin_bottom = 131.197
+
+[node name="south" type="TextureButton" parent="."]
+margin_left = 116.0
+margin_top = 90.8322
+margin_right = 136.0
+margin_bottom = 130.832
+__meta__ = {
+"_edit_use_anchors_": false
+}

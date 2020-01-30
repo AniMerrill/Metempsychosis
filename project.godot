@@ -8,14 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "WATTest",
-"language": "GDScript",
-"path": "res://addons/WAT/Runner/test.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"WATTest": ""
+
 }
 
 [WAT]
@@ -35,11 +30,11 @@ SceneTransition="*res://util/SceneTransition.tscn"
 MessageDisplay="*res://util/MessageDisplay.tscn"
 MusicModule="*res://audio/MusicModule.tscn"
 SoundModule="*res://audio/SoundModule.tscn"
-JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 RoomUtil="*res://rooms/room_util.gd"
 Prompt="*res://menus/Prompt.tscn"
 FlashText="*res://menus/FlashText.tscn"
 Timeout="*res://menus/Timeout.tscn"
+JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 
 [display]
 
@@ -50,7 +45,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "WAT", "mixing-desk" )
+enabled=PoolStringArray( "mixing-desk" )
 
 [importer_defaults]
 
@@ -67,9 +62,61 @@ wav={
 
 [input]
 
+ui_accept={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_select={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_cancel={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_next={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_page_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_page_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_home={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_end={
+"deadzone": 0.5,
+"events": [  ]
+}
 click={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

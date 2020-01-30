@@ -18,8 +18,12 @@ outlines = [ PoolVector2Array( 45, 360, 90, 210, 145, 210, 150, 200, 325, 195, 3
 script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
+east_door = 1
+east_target = ""
 north_door = 4
 north_target = "room_b_wind_key"
+west_door = 1
+west_target = ""
 south_door = 3
 south_target = "room_b_003"
 
