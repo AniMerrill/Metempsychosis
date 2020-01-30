@@ -118,7 +118,31 @@ enum STATE {
 		PLAYER_B_FACE_BEARD = 54,
 		PLAYER_B_FACE_MOUSTACHE = 55,
 		
-		# NEXT TAG: 56.
+		## State of the sliding tile puzle.
+		## NOTE: These bits are just to reserve this part of the state, the
+		## state is manipulated directly. Check the "set_slide_puzzle_state"
+		## function before changing these values.
+		SLIDING_TILE_BIT_0 = 56,
+		SLIDING_TILE_BIT_1 = 57,
+		SLIDING_TILE_BIT_2 = 58,
+		SLIDING_TILE_BIT_3 = 59,
+		SLIDING_TILE_BIT_4 = 60,
+		SLIDING_TILE_BIT_5 = 61,
+		SLIDING_TILE_BIT_6 = 62,
+		SLIDING_TILE_BIT_7 = 63,
+		SLIDING_TILE_BIT_8 = 64,
+		SLIDING_TILE_BIT_9 = 65,
+		SLIDING_TILE_BIT_10 = 66,
+		SLIDING_TILE_BIT_11 = 67,
+		SLIDING_TILE_BIT_12 = 68,
+		SLIDING_TILE_BIT_13 = 69,
+		SLIDING_TILE_BIT_14 = 70,
+		SLIDING_TILE_BIT_15 = 71,
+		SLIDING_TILE_BIT_16 = 72,
+		SLIDING_TILE_BIT_17 = 73,
+		SLIDING_TILE_BIT_18 = 74,
+		
+		# NEXT TAG: 75.
 	}
 
 # Representing the two players.
@@ -391,6 +415,118 @@ func set_state(state_enum : int, value : bool) -> void:
 		state.erase(state_enum)
 
 
+# Updates the state to represent the current room order. The order is an array
+# of 9 integers representing the room state (e.g. [4, 6, 2, 3, 8, 7, 0, 1, 5]).
+func set_slide_puzzle_state(room_order : Array):
+	assert(_is_valid_room_order(room_order))
+	var enc_order = _slide_normal_to_encoding(room_order)
+	var enc_number = _slide_encoding_to_int(enc_order)
+	_slide_set_state(enc_number)
+
+
+## Returns the slide puzzle state as described in the "set_slide_puzzle_state"
+## functions.
+func get_slide_puzzle_state():
+	var enc_number = _slide_get_state()
+	var enc_order = _slide_int_to_encoding(enc_number)
+	var room_order = _slide_encoding_to_normal(enc_order)
+	assert(_is_valid_room_order(room_order))
+	return room_order
+
+
+func _is_valid_room_order(room_order : Array) -> bool:
+	if room_order.size() != 9:
+		return false
+	return room_order.has(0) and room_order.has(1) and room_order.has(2) \
+		and room_order.has(3) and room_order.has(4) and room_order.has(5) \
+		and room_order.has(6) and room_order.has(7) and room_order.has(8)
+
+## Encodes the room order in a more efficient format. The first value in the
+## array falls in the range [0, n_rooms - 1] and represents which room is in the
+## first location (as in the input encoding). The second value falls in the
+## range [0, n_rooms - 2] and represents which of the remaining rooms is in the
+## second location, and so on. In this way, the number of possible values is
+## reduced at each step, leaving only "n_rooms!" possible states. Note that the
+## last value in the encoding must always be 0, as there is only one option
+## left.
+## 
+## Example: [0,1,2,3,4,5,6,7,8] ==> [0,0,0,0,0,0,0,0,0]
+## Example: [1,0,2,3,4,5,8,6,7] ==> [1,0,0,0,0,0,2,0,0]
+func _slide_normal_to_encoding(room_order : Array) -> Array:
+	var options = range(room_order.size())
+	var encoding = []
+	while options.size() > 0:
+		var value = room_order[encoding.size()]
+		var index = options.find(value)
+		assert(index >= 0)
+		encoding.append(index)
+		options.remove(index)
+	return encoding
+
+
+## Reverses the encoding as described in function "_slide_normal_to_encoding".
+func _slide_encoding_to_normal(enc_order : Array) -> Array:
+	var options = range(enc_order.size())
+	var room_order = []
+	for index in enc_order:
+		room_order.append(options[index])
+		options.remove(index)
+	assert(options.size() == 0)
+	return room_order
+
+
+# Returns the factorial of "n", i.e. "n!".
+func _fact(n : int) -> int:
+	var f = 1
+	for i in range(1, n + 1):
+		f = f * i
+	return f
+
+
+## Converts the efficient encoding into an integer. Since for a list of length
+## "n" there are "n!" possible states, each index encoding must be offset by
+## "n!". The resulting number is a value in the range [0, enc_order.size()!].
+func _slide_encoding_to_int(enc_order : Array) -> int:
+	# For simplicity of coding, it makes more sense to reverse the order of
+	# elements.
+	enc_order.invert()
+	var result = 0
+	for index in range(enc_order.size()):
+		result += enc_order[index] * _fact(index)
+	enc_order.invert()  # Just in case.
+	return result
+
+
+## Inverts the operation described in function "_slide_encoding_to_int".
+func _slide_int_to_encoding(enc_number : int, n_rooms : int = 9) -> Array:
+	var enc_order = []
+	for index in range(n_rooms):
+		# Note: assuming integer division!
+		enc_order.append((enc_number / _fact(index)) % (index + 1))
+	enc_order.invert()
+	return enc_order
+
+
+## Sets the state booleans SLIDING_TILE_BIT_[0, n_bits] to encode the provided
+## value.
+func _slide_set_state(enc_number : int, n_bits : int = 19) -> void:
+	var offset = STATE.SLIDING_TILE_BIT_0
+	for b in range(n_bits):
+		var bit_mask = 1 << b
+		set_state(offset + b, enc_number & bit_mask)
+
+
+## Reads the integers encoded in SLIDING_TILE_BIT_[0, n_bits].
+func _slide_get_state(n_bits : int = 19) -> int:
+	var offset = STATE.SLIDING_TILE_BIT_0
+	var result = 0
+	for b in range(n_bits):
+		var bit_mask = 1 << b
+		if get_state(offset + b):
+			result += bit_mask
+	return result
+
+
 # Updates all enums to false.
 func clear_state():
 	# Keep your character's customisation.
@@ -407,10 +543,6 @@ func _get_highest_enum():
 	var enum_values = STATE.values()
 	enum_values.sort()
 	return enum_values[-1]
-
-func pbd(txt, bytes):
-	print(txt + ' ', bytes.size(), ' ', _bytes_to_string(bytes))
-	
 
 
 # Serializes the state to a hexadecimal string.
