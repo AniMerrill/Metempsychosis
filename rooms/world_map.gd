@@ -1,5 +1,33 @@
 extends Node
 
+""" World Map representation.
+
+The 'world_map' variable below holds the current locations of rooms in the game.
+It is used within the game as a ground truth, i.e., changes to this variable
+will result in rooms being in different locations in the game.
+
+Throughout the game, rooms are references by the 10-character prefix of their
+scene name, dropping any leading 'room_' prefix and adding '_' as a suffix to
+get a 10-character long prefix. Examples:
+	room_a_xor_key    ==> a_xor_key_
+	room_a_xor_puzzle ==> a_xor_puzz
+	final_room        ==> final_room
+	room_a_002        ==> a_002_____
+Note that this means that all room scene names must be unique within this prefix
+space to work in the world map. So we can't add a 'room_a_xor_puzzle2' scene.
+
+The world map assumes that all rooms connecting in the 'world_map' variable also
+have connecting doors. If this is not the case, add a room-pair to the
+'not_connected' variable. One direction is enough; the code checks for both
+directions.
+
+NOTE: Rooms still need to set their doors corresponding to the connection on the
+map (but don't need to specify what the doors connect to).
+
+This module also holds a variable '_current_room' which tracks the current
+location of the player.
+"""
+
 # Ugly, should be kept in sync with Room.gd
 enum { EAST, NORTH, WEST, SOUTH }
 
