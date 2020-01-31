@@ -7,7 +7,7 @@ The state is simply a collection of booleans. These are used to represent:
 The state is stored for both players A and B, even though only one of the
 players will be actually playing the game in a current run.
 
-The state can be serialized to a hexadecimal string which can be shared between
+The state can be serialized to a Base64 string which can be shared between
 the players by whichever communication method they like.
 
 This module is auto-loaded as GameState. All state querying and manipulation
@@ -454,7 +454,8 @@ func _is_valid_room_order(room_order : Array) -> bool:
 ## second location, and so on. In this way, the number of possible values is
 ## reduced at each step, leaving only "n_rooms!" possible states. Note that the
 ## last value in the encoding must always be 0, as there is only one option
-## left.
+## left. In short, this makes more explicit that we do not have "9^9" different
+## states, but only "9!" (assuming 9 rooms).
 ## 
 ## Example: [0,1,2,3,4,5,6,7,8] ==> [0,0,0,0,0,0,0,0,0]
 ## Example: [1,0,2,3,4,5,8,6,7] ==> [1,0,0,0,0,0,2,0,0]
