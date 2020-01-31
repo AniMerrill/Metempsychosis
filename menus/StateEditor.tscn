@@ -188,8 +188,159 @@ text = "(Game Menu)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TilesButton" type="Button" parent="StateEditor/Frame"]
+margin_left = 431.223
+margin_top = 9.95131
+margin_right = 471.223
+margin_bottom = 29.9513
+text = "tiles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesPopup" type="Node2D" parent="StateEditor/Frame"]
+
+[node name="ColorRect" type="ColorRect" parent="StateEditor/Frame/TilesPopup"]
+margin_right = 480.0
+margin_bottom = 360.0
+color = Color( 0, 0, 0, 0.427451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 110.0
+margin_top = 40.0
+margin_right = 370.0
+margin_bottom = 340.0
+color = Color( 0.509804, 0.439216, 0.219608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Node2D" parent="StateEditor/Frame/TilesPopup"]
+position = Vector2( 170, 100 )
+
+[node name="Option0" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_right = 37.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option1" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_left = 50.0
+margin_right = 87.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option2" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_left = 100.0
+margin_right = 137.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option3" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_top = 30.0
+margin_right = 37.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option4" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_left = 50.0
+margin_top = 30.0
+margin_right = 87.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option5" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_left = 100.0
+margin_top = 30.0
+margin_right = 137.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option6" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_top = 60.0
+margin_right = 37.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option7" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_left = 50.0
+margin_top = 60.0
+margin_right = 87.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option8" type="OptionButton" parent="StateEditor/Frame/TilesPopup/Options"]
+margin_left = 100.0
+margin_top = 60.0
+margin_right = 137.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 260.0
+margin_top = 80.0
+margin_right = 315.0
+margin_bottom = 94.0
+text = "Entrance"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 315.0
+margin_top = 165.0
+margin_right = 338.0
+margin_bottom = 179.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesDoneButton" type="Button" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 290.0
+margin_top = 280.0
+margin_right = 345.0
+margin_bottom = 306.0
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesResetButton" type="Button" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 140.0
+margin_top = 280.0
+margin_right = 195.0
+margin_bottom = 306.0
+text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="StateEditor/Frame/SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="StateEditor/Frame/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="StateEditor/Frame/ResetButton" to="." method="reload"]
 [connection signal="pressed" from="StateEditor/Frame/PlayerA" to="." method="_on_PlayerA_pressed"]
 [connection signal="pressed" from="StateEditor/Frame/PlayerB" to="." method="_on_PlayerB_pressed"]
+[connection signal="pressed" from="StateEditor/Frame/TilesButton" to="." method="_on_TilesButton_pressed"]
+[connection signal="pressed" from="StateEditor/Frame/TilesPopup/TilesDoneButton" to="." method="_on_TilesDoneButton_pressed"]
+[connection signal="pressed" from="StateEditor/Frame/TilesPopup/TilesResetButton" to="." method="_on_TilesResetButton_pressed"]
