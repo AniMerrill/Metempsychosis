@@ -21,6 +21,17 @@ const room_names := {
 		"a_final_do": "Blue Triple Lock",
 		"a_tile_sta": "Sliding",
 		
+		# Debugging only?
+		"a_tile_0__": "T_00",
+		"a_tile_1__": "T_01",
+		"a_tile_2__": "T_02",
+		"a_tile_3__": "T_03",
+		"a_tile_4__": "T_04",
+		"a_tile_5__": "T_05",
+		"a_tile_6__": "T_06",
+		"a_tile_7__": "T_07",
+		"a_tile_8__": "T_08",
+		
 		"b_000_____": "Representative #2 Cryrostasis",
 		"b_dropbox_": "[DROPBOX]",
 		"b_wind_key": "[KEY]",
@@ -61,7 +72,7 @@ func _draw():
 	var spacing := Vector2(1.5, 1.5)
 	var offset := Vector2(75, 55) - current_room * 10 * spacing
 	
-	for y in 8:
+	for y in 9:
 		for x in 15:
 			var x_pos = x * 10 * spacing.x + offset.x
 			var y_pos = y * 10 * spacing.y + offset.y
