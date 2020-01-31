@@ -428,11 +428,13 @@ func set_slide_puzzle_state(room_order : Array):
 	var enc_order = _slide_normal_to_encoding(room_order)
 	var enc_number = _slide_encoding_to_int(enc_order)
 	_slide_set_state(enc_number)
+	# Also update the tiling puzzle world state.
+	WorldMap.set_tile_rooms(get_slide_puzzle_state())
 
 
 ## Returns the slide puzzle state as described in the "set_slide_puzzle_state"
 ## functions.
-func get_slide_puzzle_state():
+func get_slide_puzzle_state() -> Array:
 	var enc_number = _slide_get_state()
 	var enc_order = _slide_int_to_encoding(enc_number)
 	var room_order = _slide_encoding_to_normal(enc_order)
@@ -606,6 +608,9 @@ func deserialize(serialized_state : String) -> int:
 	var player_is_a = current_player() == PLAYER.PLAYER_A
 	if not is_ai_state and code_by_a == player_is_a:
 		return ERROR_CODE.OTHER_PLAYER_CODE
+	
+	# Update the tiling puzzle world.
+	WorldMap.set_tile_rooms(get_slide_puzzle_state())
 
 	return ERROR_CODE.OK
 
