@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "PlayerRig",
+"language": "GDScript",
+"path": "res://graphics/players/PlayerRig.gd"
+} ]
 _global_script_class_icons={
-
+"PlayerRig": ""
 }
 
 [WAT]

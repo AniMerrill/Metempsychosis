@@ -1,12 +1,7 @@
 extends Control
 
-var parent_menu = null
 
-export var current_room := Vector2()
-
-var blink := false
-
-const room_names := {
+const ROOM_NAMES := {
 		"a_000_____": "Representative #1 Cryrostasis",
 		"a_dropbox_": "[DROPBOX]",
 		"a_biome_ke": "[KEY]",
@@ -46,6 +41,12 @@ const room_names := {
 		"final_room": "[MACHINE]"
 	}
 
+export var current_room := Vector2()
+
+var parent_menu = null
+var blink := false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# warning-ignore:return_value_discarded
@@ -59,13 +60,16 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	$X.connect("pressed", self, "x_pressed")
 	
+	# warning-ignore:return_value_discarded
 	$Timer.connect("timeout", self, "toggle_blink")
 	
+	# warning-ignore:return_value_discarded
 	connect("draw", self, "_draw")
 	
-	connect("visibility_changed", self, "visibility_changed")
+	# warning-ignore:return_value_discarded
+	connect("visibility_changed", self, "_on_visibility_changed")
 	
-	$RoomName.text = room_names.get(WorldMap.at(current_room), "")
+	$RoomName.text = ROOM_NAMES.get(WorldMap.at(current_room), "")
 
 
 func _draw():
@@ -87,6 +91,7 @@ func _draw():
 		var y_pos = current_room.y * 10 * spacing.y + offset.y
 		draw_rect(Rect2(x_pos, y_pos, 10, 10), Color("#b9ff36"), true)
 
+
 func _draw_door(loc, x_pos, y_pos):
 	if WorldMap.empty(loc):
 		return
@@ -101,13 +106,28 @@ func _draw_door(loc, x_pos, y_pos):
 		draw_rect(Rect2(x_pos + 10, y_pos + 2.5, 5, 5), Color("#576f2a"), false)
 	# Room.
 	draw_rect(Rect2(x_pos, y_pos, 10, 10), Color("#576f2a"), false)
+
+
+func _on_visibility_changed():
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_1_POS_A):
+		ROOM_NAMES["a_biome_ke"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_2_POS_A):
+		ROOM_NAMES["a_xor_key_"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_B_3_POS_A):
+		ROOM_NAMES["a_tile_key"] = ""
 	
+	# Key A_1 is in the dropbox room.
+	if not GameState.key_on_floor(GameState.STATE.KEY_A_2_POS_A):
+		ROOM_NAMES["b_wind_key"] = ""
+	if not GameState.key_on_floor(GameState.STATE.KEY_A_3_POS_A):
+		ROOM_NAMES["b_grid_key"] = ""
 
 
 func x_pressed() -> void:
 	if parent_menu != null:
 		visible = false
 		parent_menu.set_visibility(true)
+
 
 func direction_pressed(direction : Vector2) -> void:
 	var new_room = current_room + direction
@@ -120,22 +140,10 @@ func direction_pressed(direction : Vector2) -> void:
 	blink = false
 	toggle_blink()
 	
-	$RoomName.text = room_names.get(WorldMap.at(current_room), "")
+	$RoomName.text = ROOM_NAMES.get(WorldMap.at(current_room), "")
+
 
 func toggle_blink():
 	blink = not blink
 	update()
 
-func visibility_changed():
-	if not GameState.key_on_floor(GameState.STATE.KEY_B_1_POS_A):
-		room_names["a_biome_ke"] = ""
-	if not GameState.key_on_floor(GameState.STATE.KEY_B_2_POS_A):
-		room_names["a_xor_key_"] = ""
-	if not GameState.key_on_floor(GameState.STATE.KEY_B_3_POS_A):
-		room_names["a_tile_key"] = ""
-	
-	# Key A_1 is in the dropbox room.
-	if not GameState.key_on_floor(GameState.STATE.KEY_A_2_POS_A):
-		room_names["b_wind_key"] = ""
-	if not GameState.key_on_floor(GameState.STATE.KEY_A_3_POS_A):
-		room_names["b_grid_key"] = ""

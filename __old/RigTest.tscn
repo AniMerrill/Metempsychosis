@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://graphics/tests/PlayerTest.gd" type="Script" id=1]
+[ext_resource path="res://__old/PlayerTest.gd" type="Script" id=1]
+
 
 [node name="RigTest" type="Node2D"]
 

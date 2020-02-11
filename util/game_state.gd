@@ -1,3 +1,4 @@
+extends Node
 """ Manages the state of the game.
 
 The state is simply a collection of booleans. These are used to represent:
@@ -16,10 +17,12 @@ must be done through this module.
 Additionally, this module ensures that the game preserves whether the player
 is playing as player A or B (also when the game is closed in-between).
 """
-extends Node
+
+# TODO: This code probably needs some major restyling but I'm too scared to
+# touch it lmao - AniMerrill
+
 
 const PlayerRig = preload("res://graphics/players/PlayerRig.gd")
-
 
 # Human-readable names for the state booleans.
 #
@@ -153,16 +156,13 @@ enum PLAYER {
 		PLAYER_B = 2,
 	}
 
+export var is_ai_state = false
 
 # The current state of the game.
 # Enums listed here are "true", all others are "false".
 var state := []
 
-
-export var is_ai_state = false
-
 ## Local state:
-
 # The player controlled in this game.
 var _my_player : int = PLAYER.INVALID_PLAYER
 
@@ -214,6 +214,7 @@ func reset_for_new_game():
 	_save_local_data()
 	clear_state()
 
+
 func custom_tool(player : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
 	if get_state(STATE.PLAYER_A_TOOL_HAMMER + offset):
@@ -225,6 +226,7 @@ func custom_tool(player : int):
 	if get_state(STATE.PLAYER_A_TOOL_PAINTBRUSH + offset):
 		return PlayerRig.TOOL.PAINTBRUSH
 	return PlayerRig.TOOL.NONE
+
 
 func set_custom_tool(player : int, value : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
@@ -242,10 +244,12 @@ func custom_mouth(player : int):
 		return PlayerRig.MOUTH.OPEN
 	return PlayerRig.MOUTH.FROWN
 
+
 func set_custom_mouth(player : int, value : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
 	set_state(STATE.PLAYER_A_MOUTH_SMILE + offset, value == PlayerRig.MOUTH.SMILE)
 	set_state(STATE.PLAYER_A_MOUTH_OPEN + offset, value == PlayerRig.MOUTH.OPEN)
+
 
 func custom_hair(player : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
@@ -253,9 +257,11 @@ func custom_hair(player : int):
 		return PlayerRig.HAIR.PONYTAIL
 	return PlayerRig.HAIR.DOWN
 
+
 func set_custom_hair(player : int, value : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
 	set_state(STATE.PLAYER_A_HAIR_PONYTAIL + offset, value == PlayerRig.HAIR.PONYTAIL)
+
 
 func custom_hat(player : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
@@ -267,11 +273,13 @@ func custom_hat(player : int):
 		return PlayerRig.HAT.HELMET
 	return PlayerRig.HAT.NONE
 
+
 func set_custom_hat(player : int, value : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
 	set_state(STATE.PLAYER_A_HAT_BOWLER + offset, value == PlayerRig.HAT.BOWLER)
 	set_state(STATE.PLAYER_A_HAT_FEZ + offset, value == PlayerRig.HAT.FEZ)
 	set_state(STATE.PLAYER_A_HAT_HELMET + offset, value == PlayerRig.HAT.HELMET)
+
 
 func custom_face(player : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
@@ -281,10 +289,12 @@ func custom_face(player : int):
 		return PlayerRig.FACE.MOUSTACHE
 	return PlayerRig.FACE.NONE
 
+
 func set_custom_face(player : int, value : int):
 	var offset = 12 if player == PLAYER.PLAYER_B else 0
 	set_state(STATE.PLAYER_A_FACE_BEARD + offset, value == PlayerRig.FACE.BEARD)
 	set_state(STATE.PLAYER_A_FACE_MOUSTACHE + offset, value == PlayerRig.FACE.MOUSTACHE)
+
 
 # Get the current player.
 func current_player() -> int:
@@ -329,6 +339,7 @@ func set_last_output_code(code : String) -> void:
 	_my_last_output_code = code
 	_save_local_data()
 
+
 func has_seen_in_room_intro():
 	_load_local_data()
 	if _my_player == PLAYER.PLAYER_A:
@@ -336,21 +347,23 @@ func has_seen_in_room_intro():
 	else:
 		return _has_seen_in_room_intro_b
 
+
 func set_has_seen_in_room_intro(value : bool) -> void:
 	if _my_player == PLAYER.PLAYER_A:
 		_has_seen_in_room_intro_a = value
 	else:
 		_has_seen_in_room_intro_b = value
 	_save_local_data()
-	
+
+
 func has_seen_introduction():
 	_load_local_data()
 	if _my_player == PLAYER.PLAYER_A:
 		return _has_seen_introduction_a
 	else:
 		return _has_seen_introduction_b
-	
-	
+
+
 func set_has_seen_introduction(value : bool) -> void:
 	if _my_player == PLAYER.PLAYER_A:
 		_has_seen_introduction_a = value
@@ -421,6 +434,7 @@ func key_on_floor(key_a_pos_enum : int) -> bool:
 	return not (get_state(key_a_pos_enum) or get_state(key_a_pos_enum + 1) or
 		get_state(key_a_pos_enum + 2) or get_state(key_a_pos_enum + 18))
 
+
 # Updates the state to represent the current room order. The order is an array
 # of 9 integers representing the room state (e.g. [4, 6, 2, 3, 8, 7, 0, 1, 5]).
 func set_slide_puzzle_state(room_order : Array):
@@ -448,6 +462,7 @@ func _is_valid_room_order(room_order : Array) -> bool:
 	return room_order.has(0) and room_order.has(1) and room_order.has(2) \
 		and room_order.has(3) and room_order.has(4) and room_order.has(5) \
 		and room_order.has(6) and room_order.has(7) and room_order.has(8)
+
 
 ## Encodes the room order in a more efficient format. The first value in the
 ## array falls in the range [0, n_rooms - 1] and represents which room is in the
@@ -511,6 +526,7 @@ func _slide_int_to_encoding(enc_number : int, n_rooms : int = 9) -> Array:
 	var enc_order = []
 	for index in range(n_rooms):
 		# Note: assuming integer division!
+		# warning-ignore:integer_division
 		enc_order.append((enc_number / _fact(index)) % (index + 1))
 	enc_order.invert()
 	return enc_order

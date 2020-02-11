@@ -69,7 +69,6 @@ volume_db = 9.087
 bus = "Terminal"
 
 [node name="StaticScatterer" type="Node" parent="FinalRoom"]
-editor/display_folded = true
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -122,7 +121,6 @@ volume_db = 6.48
 bus = "Terminal"
 
 [node name="TerminalLights" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -144,7 +142,6 @@ volume_db = 12.0
 bus = "Terminal"
 
 [node name="TerminalScreenOn" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -168,7 +165,6 @@ pitch_scale = 1.1
 bus = "Terminal"
 
 [node name="Ambience" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -265,7 +261,6 @@ stream = ExtResource( 23 )
 bus = "Doors"
 
 [node name="DoorUnlocksNear" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -277,7 +272,6 @@ volume_db = -8.505
 bus = "SFX"
 
 [node name="DoorUnlocksFar" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
@@ -289,7 +283,6 @@ volume_db = 5.534
 bus = "DoorFar"
 
 [node name="Footsteps" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 13 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )

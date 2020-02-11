@@ -105,7 +105,7 @@ func _get_prefix(roomname):
 	
 
 func _build_prefix_map():
-	var prefix_map = {}
+	var new_prefix_map = {}
 	var dir = Directory.new()
 	dir.open(_room_dir)
 	dir.list_dir_begin()
@@ -116,10 +116,10 @@ func _build_prefix_map():
 			break
 		if not file.ends_with('.tscn'):
 			continue
-		prefix_map[_get_prefix(file)] = file
+		new_prefix_map[_get_prefix(file)] = file
 	
 	dir.list_dir_end()
-	return prefix_map
+	return new_prefix_map
 
 
 func at(pos : Vector2) -> String:

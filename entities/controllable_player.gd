@@ -1,28 +1,22 @@
 extends Node2D
 
-var rig
+
+signal position_reached
+
+const MOVE_EPSILON = 10.0
 
 var path : PoolVector2Array setget set_path
 var move_speed := 200
 
-const move_epsilon = 10.0
+var Rig : PlayerRig
 
-signal position_reached
 
 func _ready():
 	set_process(false)
-	rig = $PlayerARig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerBRig
-	rig.visible = true
-	rig.load_from_game_state(GameState.current_player())
+	Rig = $PlayerARig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerBRig
+	Rig.visible = true
+	Rig.load_from_game_state(GameState.current_player())
 
-func swap_rig():
-	rig.visible = false
-	rig = $PlayerBRig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerARig
-	rig.visible = true
-
-func set_path(value : PoolVector2Array) -> void:
-	path = value
-	set_process(true)
 
 func _process(delta):
 	if path.size() == 0:
@@ -30,20 +24,33 @@ func _process(delta):
 		emit_signal("position_reached")
 		return
 	var next_position = path[0]
-	if position.distance_to(next_position) <= move_epsilon:
+	if position.distance_to(next_position) <= MOVE_EPSILON:
 		position = next_position
 		path.remove(0)
-		rig.walking = false
+		Rig.walking = false
 		return
 	var velocity = (next_position - position).normalized() * move_speed
 	position += velocity * delta
-	rig.walking = true
+	Rig.walking = true
 	
 	if velocity.x != 0:
-		rig.facing_right = velocity.x > 0
+		Rig.facing_right = velocity.x > 0
 	if velocity.y != 0:
-		rig.facing_front = velocity.y > 0
+		Rig.facing_front = velocity.y > 0
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		rig.look_position = event.position
+		Rig.look_position = event.position
+
+
+func swap_rig():
+	Rig.visible = false
+	Rig = $PlayerBRig if GameState.current_player() == GameState.PLAYER.PLAYER_A else $PlayerARig
+	Rig.visible = true
+
+
+func set_path(value : PoolVector2Array) -> void:
+	path = value
+	set_process(true)
+

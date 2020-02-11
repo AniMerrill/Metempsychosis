@@ -1,10 +1,12 @@
 extends Node2D
 
-onready var keys = []
 
 signal key_removed(key)
 
 export var actionable = true
+
+onready var keys = []
+
 
 func _ready():
 	keys = [$KeyA1, $KeyA2, $KeyA3, $KeyB1, $KeyB2, $KeyB3]
@@ -12,7 +14,7 @@ func _ready():
 		key.get_node("Area2D").connect("input_event", self, "_on_input_event", [key])
 		key.visible = false
 
-func _on_input_event(a, event, c, node):
+func _on_input_event(_a, event, _c, node):
 	if event is InputEventMouseButton and event.pressed and actionable:
 		emit_signal("key_removed", keys.find(node))
 		node.visible = false

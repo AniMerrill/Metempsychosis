@@ -1,5 +1,6 @@
 extends Node2D
 
+
 onready var output_code = $OutputArea/OutputCode
 onready var input_code = $InputArea/InputCode
 onready var error_layer = $ErrorTextBG
@@ -7,6 +8,7 @@ onready var error_label = $ErrorTextBG/Label
 onready var output_area = $OutputArea
 onready var first_time_area = $FirstTimeArea
 onready var ai_area = $AIArea
+
 
 func _ready():
 	Timeout.stop_timer()
@@ -23,6 +25,7 @@ func _ready():
 	else:
 		# Can't be used again.
 		GameState.add_input_code(GameState.last_input_code)
+
 
 func _on_InputCode_text_entered(code : String):
 	var result = GameState.deserialize(code)
@@ -43,8 +46,10 @@ func _on_InputCode_text_entered(code : String):
 			error_label.text = "Error: Code is for other player."
 	error_layer.visible = true
 
+
 func _on_Continue_pressed():
 	_on_InputCode_text_entered(input_code.text)
+
 
 func _on_ChangePlayer_pressed():
 	if GameState.current_player() == GameState.PLAYER.PLAYER_A:
@@ -57,18 +62,23 @@ func _on_ChangePlayer_pressed():
 func _on_StateEdit_pressed():
 	SceneTransition.change_scene_direct('menus/GameplayDemo.tscn')
 
+
 func _on_BackButton_pressed():
 	SceneTransition.change_scene("menus/MainMenu.tscn")
+
 
 func _on_Customise_pressed():
 	SceneTransition.change_scene("menus/CustomizePlayer.tscn")
 
+
 func _on_AIBot_pressed():
 	if not GameState.has_seen_ai_warning:
 		Prompt.prompt("Are you sure? The game is much more fun with a real partner!", "Proceed", "Cancel")
+		# warning-ignore:return_value_discarded
 		Prompt.connect("responded", self, "_on_AI_responded")
 	else:
 		SceneTransition.change_scene("menus/AIBot.tscn")
+
 
 func _on_AI_responded(value):
 	if value:

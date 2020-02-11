@@ -19,6 +19,7 @@ func _on_BackButton_pressed():
 
 func _on_LocalCoop_pressed():
 	Prompt.prompt("Player 1 starts. Player 2, look away from the screen now.", "Proceed", "Cancel")
+	# warning-ignore:return_value_discarded
 	Prompt.connect("responded", self, "_on_coop_responded")
 
 

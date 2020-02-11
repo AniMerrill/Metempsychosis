@@ -1,11 +1,13 @@
 extends Node2D
 
+
 onready var room = $GenericRoom
 onready var popup = $Popup/Popup
 onready var pod = $GenericRoom/Objects/Pod
 onready var player = $GenericRoom/ControllablePlayer
 onready var terminal = $GenericRoom/Objects/Terminal
 onready var numpad = $Popup/Popup/Content/TerminalBase/Screen/ScreenContents/TerminalMenu/Options/Numpad
+
 
 func _ready():
 	popup.visible = false
@@ -34,7 +36,9 @@ func _on_object_clicked(node):
 			MusicModule.state_changed("puzzle")
 		"Pod":
 			Prompt.prompt("Go to sleep and end turn?", "Yes", "No")
+			# warning-ignore:return_value_discarded
 			Prompt.connect("responded", self, "_on_end_turn_responded")
+
 
 func _on_end_turn_responded(response):
 	Prompt.disconnect("responded", self, "_on_end_turn_responded")
@@ -47,10 +51,13 @@ func _on_end_turn_responded(response):
 		GameState.set_last_output_code(code)
 		SceneTransition.change_scene('menus/AwaitTurn.tscn')
 
+
 func _on_solved():
 	GameState.set_state(GameState.STATE.POD_ROOMS_UNLOCKED, true)
 	room.east_door = room.DOOR_STATUS.CLOSED_DOOR
 	SoundModule.play_sfx("DoorUnlocksNear")
 
+
 func _on_terminal_closed():
 	MusicModule.state_changed("explore")
+

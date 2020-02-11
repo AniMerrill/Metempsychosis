@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://audio/MusicModule.gd" type="Script" id=1]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/music/mdm_icon.png" type="Texture" id=3]
 [ext_resource path="res://audio/LevelTheme.tscn" type="PackedScene" id=4]
-[ext_resource path="res://audio/Label.gd" type="Script" id=5]
 
 [node name="MusicModule" type="Node"]
 script = ExtResource( 1 )
@@ -69,7 +68,6 @@ text = "Final Room"
 visible = false
 margin_right = 40.0
 margin_bottom = 14.0
-script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
