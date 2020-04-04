@@ -1,5 +1,5 @@
 tool
-extends Node2D
+extends GameObject
 
 export (String) var biome = "jungle" setget _set_biome
 

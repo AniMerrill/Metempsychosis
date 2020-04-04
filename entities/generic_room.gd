@@ -2,8 +2,6 @@ tool
 extends Node2D
 
 
-signal object_clicked(node)
-
 enum DOOR_STATUS {
 		NO_DOOR = 1,
 		CLOSED_DOOR = 3,
@@ -35,14 +33,13 @@ onready var current_name_label = $CurrentRoom/Label
 
 
 func _ready():
-	if not room:
+	if Engine.is_editor_hint():
 		return
-	if GameState:
-		GameState.interaction_is_frozen = false
-	if MusicModule:
-		MusicModule.state_changed("explore")
+	GameState.interaction_is_frozen = false
+	MusicModule.state_changed("explore")
 	_update_doors()
 	refresh_objects()
+	update_final_door()
 	current_name_label.text = self.get_parent().name if self.get_parent() else "----"
 	# Hacky code to allow loading from a particular room during dev.
 	if WorldMap._current_room == null:
@@ -112,7 +109,7 @@ func _on_input_event(_a, event, _c, node):
 	if event is InputEventMouseButton and event.pressed and not GameState.interaction_is_frozen:
 		_is_object_click = true
 		_handle_object_click(node)
-		SoundModule.play_sfx("Click")
+		SoundModule.play_sfx("Click")  # Remove?
 
 
 func _handle_object_click(node):
@@ -126,7 +123,8 @@ func _handle_object_click(node):
 		"South":
 			_handle_door_click(room.SOUTH)
 		_:
-			emit_signal("object_clicked", node)
+			if node.has_method("_on_click"):
+				node._on_click()
 
 
 func _handle_door_click(direction):
@@ -155,8 +153,8 @@ func refresh_objects() -> void:
 				area.connect("input_event", self, "_on_input_event", [node])
 
 
-func player_walk_to(target_position):
-	if GameState.interaction_is_frozen:
+func player_walk_to(target_position, forced=false):
+	if GameState.interaction_is_frozen and not forced:
 		return
 	
 	var path = room_map.get_simple_path(player.position, target_position)
@@ -171,10 +169,17 @@ func player_walk_to(target_position):
 			player.path = [path[0]]
 
 
+var final_door_east = false
+var final_door_west = false
+
 func set_final_door_east():
-	room.set_final_door_east()
-
-
+	final_door_east = true
+	
 func set_final_door_west():
-	room.set_final_door_west()
+	final_door_west = true
 
+func update_final_door():
+	if final_door_east:
+		room.set_final_door_east()
+	if final_door_west:
+		room.set_final_door_west()

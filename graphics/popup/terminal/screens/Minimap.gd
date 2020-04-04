@@ -41,7 +41,7 @@ const ROOM_NAMES := {
 		"final_room": "[MACHINE]"
 	}
 
-export var current_room := Vector2()
+var current_room := Vector2()
 
 var parent_menu = null
 var blink := false
@@ -69,6 +69,10 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	connect("visibility_changed", self, "_on_visibility_changed")
 	
+	if not WorldMap._current_room:
+		WorldMap._current_room = WorldMap._get_prefix(
+			find_parent("GenericRoom").get_parent().name)
+	current_room = WorldMap.loc(WorldMap._current_room)
 	$RoomName.text = ROOM_NAMES.get(WorldMap.at(current_room), "")
 
 

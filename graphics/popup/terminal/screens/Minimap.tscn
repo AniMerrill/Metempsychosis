@@ -26,7 +26,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-current_room = Vector2( 8, 4 )
 
 [node name="X" type="TextureButton" parent="."]
 margin_left = 200.0
@@ -78,6 +77,9 @@ text = "Room Name"
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

@@ -12,13 +12,7 @@ outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
 east_door = 3
-east_target = "room_b_grid_key"
-north_door = 1
-north_target = ""
 west_door = 3
-west_target = "room_b_004"
-south_door = 1
-south_target = ""
 
 [node name="Floor" type="Node2D" parent="GenericRoom"]
 

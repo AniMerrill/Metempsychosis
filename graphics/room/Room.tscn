@@ -415,7 +415,6 @@ __meta__ = {
 }
 
 [node name="NorthDoor" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 236, 106 )
 texture = ExtResource( 3 )
@@ -446,7 +445,6 @@ __meta__ = {
 }
 
 [node name="NorthDoorLight" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 295, 23 )
 z_index = 1000
@@ -472,7 +470,6 @@ __meta__ = {
 }
 
 [node name="WestDoorLight" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 66, 88 )
 texture = ExtResource( 6 )
@@ -498,7 +495,6 @@ __meta__ = {
 }
 
 [node name="WestDoor" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 44, 205 )
 texture = ExtResource( 8 )
@@ -512,7 +508,6 @@ anims/DoorOpened = SubResource( 11 )
 anims/Open = SubResource( 12 )
 
 [node name="EastDoor" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 436, 205 )
 texture = ExtResource( 8 )
@@ -547,7 +542,6 @@ __meta__ = {
 }
 
 [node name="EastDoorLight" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 463, 166 )
 z_index = 1001
@@ -580,7 +574,6 @@ __meta__ = {
 }
 
 [node name="SouthDoorLight" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 174, 275 )
@@ -598,7 +591,6 @@ anims/Opened = SubResource( 21 )
 anims/Opened_Warning = SubResource( 22 )
 
 [node name="SouthDoor" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 236, 361 )

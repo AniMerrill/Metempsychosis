@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://rooms/room_a_final_door.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/KeyPanel.tscn" type="PackedScene" id=4]
@@ -11,15 +10,11 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
 [node name="room_a_final_door" type="Node2D"]
-script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 4
-east_target = "final_room"
 west_door = 3
-west_target = "room_a_002"
 south_door = 3
-south_target = "room_a_001"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -36,4 +31,3 @@ z_index = 1100
 
 [node name="KeyPanel" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 458.012, 300 )
-for_player_b = false

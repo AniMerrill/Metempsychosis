@@ -122,6 +122,14 @@ func _build_prefix_map():
 	return new_prefix_map
 
 
+func loc(room_name : String) -> Vector2:
+	var prefix = _get_prefix(room_name)
+	for y in range(world_map.size()):
+		for x in range(world_map[y].size()):
+			if world_map[y][x] == prefix:
+				return Vector2(x, y)
+	return Vector2(0, 0)
+
 func at(pos : Vector2) -> String:
 	return world_map[pos.y][pos.x]
 
@@ -156,11 +164,7 @@ func move_to_room(prefix : String) -> void:
 
 func move_to_direction(direction : int) -> void:
 	assert(_current_room != null)
-	var loc = Vector2()
-	for y in range(world_map.size()):
-		for x in range(world_map[y].size()):
-			if world_map[y][x] == _current_room:
-				loc = Vector2(x, y)
+	var loc = loc(_current_room)
 	match direction:
 		NORTH:
 			loc += Vector2(0, -1)

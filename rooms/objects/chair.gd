@@ -1,5 +1,5 @@
 tool
-extends Node2D
+extends GameObject
 
 export (bool) var open := false setget set_open
 
@@ -16,7 +16,13 @@ func _update_chair():
 	$chair_open.visible = open
 	$chair_closed.visible = not open
 
-
+func _on_click():
+	self._walk_player_to_here()
+	yield(self, "position_reached")
+	open = not open
+	_update_chair()
+	SoundModule.play_sfx("Click")
+	GameState.interaction_is_frozen = false
 
 func _on_chair_button_pressed():
 	if open:

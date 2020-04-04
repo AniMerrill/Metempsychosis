@@ -12,11 +12,9 @@ outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
 east_door = 3
-east_target = "room_a_final_door"
 north_door = 3
-north_target = "room_a_biome_panel"
 west_door = 3
-west_target = "room_a_003"
+south_door = 1
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )

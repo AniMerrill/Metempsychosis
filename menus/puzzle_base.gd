@@ -27,6 +27,8 @@ func _ready():
 func _on_pressed(direction : int) -> void:
 	# TODO: I eventually want to make sprites instead of just switching
 	# through a color array
+	if puzzle_solved():
+		return  # Freeze solution.
 	
 	match direction:
 		NORTH:

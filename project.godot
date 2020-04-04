@@ -42,6 +42,7 @@ Timeout="*res://menus/Timeout.tscn"
 JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
 StateEditor="*res://menus/StateEditor.tscn"
 WorldMap="*res://rooms/world_map.gd"
+GameObject="*res://rooms/objects/game_object.gd"
 
 [display]
 

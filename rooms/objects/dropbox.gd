@@ -1,5 +1,5 @@
 tool
-extends Node2D
+extends GameObject
 
 export (bool) var for_player_b setget _for_player_b
 

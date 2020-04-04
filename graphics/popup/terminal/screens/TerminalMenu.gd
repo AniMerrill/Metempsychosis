@@ -4,11 +4,13 @@ extends Control
 
 # HOW TO USE TERMINALS
 
-## Create new scene with res://graphics/popup/TerminalBase as the root node
-## Instance whatever screen you want under the ScreenContents node
-## If you want to use a menu for the "root" of the terminal, instance this scene
-## 		and make sure "Editable Children" is enabled from the scene viewer
-## Add whatever option screens you want under the Options node. The name for
+## Create an instance of res://graphics/popup/TerminalBase.
+## Instance whatever screen you want as a child to that node.
+## Do not worry about incorrect Z-indices/layering, this will be fixed on
+## runtime.
+
+## For menus, instance this scene under TerminalBase.
+## Add whatever option screens you want as children of this scene. The name for
 ## 		each option is now literally the name of the node.
 ## You can now add a title by setting the title variable. Leave it blank if you
 ## 		just want all options and no title.
@@ -42,8 +44,14 @@ onready var title_label = $MainDisplay/Title
 var page := 0
 var pages_enabled := false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func get_inner_content_node():
+	return $Options
+
+func get_own_top_level_nodes():
+	return [$Down,$Up,$X,$MainDisplay,$Options]
+
+# Called when all options have been set.
+func _on_children_moved_inside():
 	# warning-ignore:unused_variable
 	var ignore = $Down.connect("pressed", self, "down_pressed")
 	ignore = $Up.connect("pressed", self, "up_pressed")
@@ -72,6 +80,8 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _process(delta):
+	if $Options.get_child_count() == 0:
+		return
 	var current_index = page * buttons.get_child_count()
 	
 	for button in buttons.get_children():

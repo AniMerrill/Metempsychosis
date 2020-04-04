@@ -1,4 +1,4 @@
-extends Node2D
+extends GameObject
 
 func _ready():
 	$AnimationPlayer.play("Modulate")

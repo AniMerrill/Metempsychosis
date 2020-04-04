@@ -61,8 +61,8 @@ func ok_pressed() -> void:
 	else:
 		# TODO: Insert error noise
 		$Message.text = "Incorrect Passcode! Please try again:"
-		code = ""
-		set_code_text()
+	code = ""
+	set_code_text()
 
 func x_pressed() -> void:
 	if parent_menu != null:

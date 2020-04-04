@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://rooms/room_a_biome_key.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/Key.tscn" type="PackedScene" id=4]
@@ -11,11 +10,12 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
 
 [node name="room_a_biome_key" type="Node2D"]
-script = ExtResource( 1 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
+east_door = 1
+north_door = 1
+west_door = 1
 south_door = 3
-south_target = "room_a_biome_panel"
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -30,4 +30,4 @@ navpoly = SubResource( 1 )
 
 [node name="Key" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
 position = Vector2( 95, 310 )
-for_player_b = true
+key = 3

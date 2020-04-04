@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://rooms/color_room.gd" type="Script" id=1]
 [ext_resource path="res://entities/GenericRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/ControllablePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/objects/ColorLight.tscn" type="PackedScene" id=4]
@@ -10,63 +9,10 @@ vertices = PoolVector2Array( 435, 360, 45, 360, 95, 195, 198.39, 239.559, 283.00
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 0 ), PoolIntArray( 6, 4, 0 ), PoolIntArray( 5, 4, 7 ), PoolIntArray( 2, 5, 7 ), PoolIntArray( 2, 7, 3 ), PoolIntArray( 0, 3, 6 ) ]
 outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ), PoolVector2Array( 198.39, 239.559, 238.194, 222.285, 283.006, 238.557, 240.698, 256.332 ) ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 20.1748
-height = 9.02094
-
-[sub_resource type="Animation" id=3]
-length = 4.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/Fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.580392 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Filament:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.780392, 1, 0.709804, 1 ), Color( 0.109804, 0.109804, 0.109804, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Base:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.113725, 0.682353, 0.192157, 1 ), Color( 0.0705882, 0.0705882, 0.0705882, 1 ) ]
-}
-
 [node name="room_a_west" type="Node2D"]
-script = ExtResource( 1 )
-light_message = "The intense glow of this green light makes you feel sick."
 
 [node name="GenericRoom" parent="." instance=ExtResource( 2 )]
 east_door = 3
-east_target = "room_a_007"
-north_door = 1
-north_target = ""
-west_door = 1
-west_target = ""
-south_door = 1
-south_target = ""
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )
@@ -80,23 +26,4 @@ navpoly = SubResource( 1 )
 [node name="Objects" type="Node2D" parent="GenericRoom"]
 
 [node name="ColorLight" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
-
-[node name="CollisionShape2D" parent="GenericRoom/Objects/ColorLight/Area2D" index="0"]
-shape = SubResource( 2 )
-
-[node name="Base" parent="GenericRoom/Objects/ColorLight" index="1"]
-modulate = Color( 1, 1, 1, 1 )
-
-[node name="Filament" parent="GenericRoom/Objects/ColorLight" index="2"]
-modulate = Color( 1, 1, 1, 1 )
-
-[node name="Color" parent="GenericRoom/Objects/ColorLight/CanvasLayer" index="0"]
-color = Color( 0, 1, 0.109804, 0.109804 )
-
-[node name="Fade" parent="GenericRoom/Objects/ColorLight/CanvasLayer" index="1"]
-color = Color( 0, 0, 0, 0 )
-
-[node name="AnimationPlayer" parent="GenericRoom/Objects/ColorLight" index="4"]
-anims/fade = SubResource( 3 )
-
-[editable path="GenericRoom/Objects/ColorLight"]
+color = 3

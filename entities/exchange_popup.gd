@@ -1,8 +1,5 @@
 extends Node2D
 
-
-signal done
-
 const BOX_KEYS = [
 		GameState.STATE.KEY_A_1_POS_BOX,
 		GameState.STATE.KEY_A_2_POS_BOX,
@@ -19,14 +16,13 @@ var closed
 
 var my_keys
 
-onready var table := $Popup/Popup/Content/Table
-onready var dropbox := $Popup/Popup/Content/Dropbox
-onready var popup := $Popup/Popup
-onready var closed_a := $Popup/Popup/Content/closed_a
-onready var opened_a = $Popup/Popup/Content/opened_a
-onready var closed_b := $Popup/Popup/Content/closed_b
-onready var opened_b = $Popup/Popup/Content/opened_b
-
+onready var table = $Popup/Table
+onready var dropbox = $Popup/Dropbox
+onready var popup = $Popup
+onready var closed_a = $Popup/closed_a
+onready var opened_a = $Popup/opened_a
+onready var closed_b = $Popup/closed_b
+onready var opened_b = $Popup/opened_b
 
 func _ready():
 	update_sprites()
@@ -37,6 +33,8 @@ func _ready():
 	dropbox.connect("key_removed", self, "_on_dropbox_key_removed")
 	# warning-ignore:return_value_discarded
 	popup.connect("closed", self, "_on_popup_closed")
+	# warning-ignore:return_value_discarded
+	popup.connect("opened", self, "_on_popup_opened")
 	
 	if for_player_b:
 		my_keys = [
@@ -56,6 +54,16 @@ func _ready():
 				GameState.STATE.KEY_B_2_POS_A,
 				GameState.STATE.KEY_B_3_POS_A,
 			]
+	closed_a.visible = false
+	closed_b.visible = false
+	opened_a.visible = false
+	opened_b.visible = false
+	
+	closed_a.get_node("Area2D").connect("input_event", self, "_on_closeddrawer_input_event")
+	opened_a.get_node("Area2D").connect("input_event", self, "_on_openeddrawer_input_event")
+	closed_b.get_node("Area2D").connect("input_event", self, "_on_closeddrawer_input_event")
+	opened_b.get_node("Area2D").connect("input_event", self, "_on_openeddrawer_input_event")
+	
 	if for_player_b:
 		var tmp = table.position
 		table.position = dropbox.position
@@ -86,7 +94,28 @@ func _on_dropbox_key_removed(key):
 
 
 func _on_popup_closed():
-	emit_signal("done")
+	var has_keys = false
+	if for_player_b:
+		has_keys = (
+				GameState.get_state(GameState.STATE.KEY_A_1_POS_B) or
+				GameState.get_state(GameState.STATE.KEY_A_2_POS_B) or
+				GameState.get_state(GameState.STATE.KEY_A_3_POS_B) or
+				GameState.get_state(GameState.STATE.KEY_B_1_POS_B) or
+				GameState.get_state(GameState.STATE.KEY_B_2_POS_B) or
+				GameState.get_state(GameState.STATE.KEY_B_3_POS_B)
+			)
+	else:
+		has_keys = (
+				GameState.get_state(GameState.STATE.KEY_A_1_POS_A) or
+				GameState.get_state(GameState.STATE.KEY_A_2_POS_A) or
+				GameState.get_state(GameState.STATE.KEY_A_3_POS_A) or
+				GameState.get_state(GameState.STATE.KEY_B_1_POS_A) or
+				GameState.get_state(GameState.STATE.KEY_B_2_POS_A) or
+				GameState.get_state(GameState.STATE.KEY_B_3_POS_A)
+			)
+	if has_keys:
+		FlashText.flash("You take the keys that are on the table with you.")
+		SoundModule.play_sfx("ItemPickedUp") 
 
 
 func _on_closeddrawer_input_event(_viewport, event, _shape_idx):
@@ -117,8 +146,7 @@ func update_sprites():
 	closed = closed_a if not for_player_b else closed_b
 
 
-func show():
-	popup.visible = true
+func _on_popup_opened():
 	opened.visible = false
 	closed.visible = true
 	table.visible = true
