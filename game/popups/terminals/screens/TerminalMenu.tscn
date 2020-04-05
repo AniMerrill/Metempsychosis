@@ -1,0 +1,333 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://graphics/popup/terminal/buttons/down_button.png" type="Texture" id=2]
+[ext_resource path="res://graphics/popup/terminal/buttons/down_button_hover.png" type="Texture" id=3]
+[ext_resource path="res://graphics/popup/terminal/buttons/up_button.png" type="Texture" id=4]
+[ext_resource path="res://graphics/popup/terminal/buttons/up_button_hover.png" type="Texture" id=5]
+[ext_resource path="res://graphics/popup/terminal/buttons/x_button.png" type="Texture" id=6]
+[ext_resource path="res://graphics/popup/terminal/buttons/x_button_hover.png" type="Texture" id=7]
+[ext_resource path="res://fonts/RobotoMono-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Control
+
+###############################################################################
+
+# HOW TO USE TERMINALS
+
+## Create an instance of res://graphics/popup/TerminalBase.
+## Instance whatever screen you want as a child to that node.
+## Do not worry about incorrect Z-indices/layering, this will be fixed on
+## runtime.
+
+## For menus, instance this scene under TerminalBase.
+## Add whatever option screens you want as children of this scene. The name for
+## 		each option is now literally the name of the node.
+## You can now add a title by setting the title variable. Leave it blank if you
+## 		just want all options and no title.
+
+## If you want your terminal to have a submenu underneath the main menu (i.e
+## 		the \"Email\" option leads to a menu with all the emails) then simply
+## 		instance another TerminalMenu under the Options node and toggle the
+## 		`submenu` variable to make sure it has an X button to return to the main
+## 		menu.
+
+# NOTE FOR MAKING SCREENS
+
+# Please include the following variable and function to make them compatible
+# with this menu setup. Also, preferably, add some kind of an X button that
+# connects to `x_pressed()` as well
+var parent_menu = null
+
+func x_pressed() -> void:
+	if parent_menu != null:
+		visible = false
+		parent_menu.set_visibility(true)
+
+###############################################################################
+
+export var title : String = \"\"
+export var submenu : bool = false
+
+onready var buttons = $MainDisplay/Buttons
+onready var title_label = $MainDisplay/Title
+
+var page := 0
+var pages_enabled := false
+
+func get_inner_content_node():
+	return $Options
+
+func get_own_top_level_nodes():
+	return [$Down,$Up,$X,$MainDisplay,$Options]
+
+# Called when all options have been set.
+func _on_children_moved_inside():
+	# warning-ignore:unused_variable
+	var ignore = $Down.connect(\"pressed\", self, \"down_pressed\")
+	ignore = $Up.connect(\"pressed\", self, \"up_pressed\")
+	ignore = $X.connect(\"pressed\", self, \"x_pressed\")
+	
+	ignore = buttons.get_node(\"Button0\").connect(\"pressed\", self, \"option_pressed\", [0])
+	ignore = buttons.get_node(\"Button1\").connect(\"pressed\", self, \"option_pressed\", [1])
+	ignore = buttons.get_node(\"Button2\").connect(\"pressed\", self, \"option_pressed\", [2])
+	ignore = buttons.get_node(\"Button3\").connect(\"pressed\", self, \"option_pressed\", [3])
+	
+	if title == \"\":
+		ignore = buttons.get_node(\"Button4\").connect(\"pressed\", self, \"option_pressed\", [4])
+		title_label.visible = false
+	else:
+		title_label.visible = true
+		title_label.text = title
+		buttons.get_node(\"Button4\").queue_free()
+	
+	for child in $Options.get_children():
+		child.visible = false
+	
+	if $Options.get_child_count() > buttons.get_child_count():
+		pages_enabled = true
+	
+	set_buttons()
+
+# warning-ignore:unused_argument
+func _process(delta):
+	if $Options.get_child_count() == 0:
+		return
+	var current_index = page * buttons.get_child_count()
+	
+	for button in buttons.get_children():
+		if button.visible && button.is_hovered():
+			button.text = \"> \" + $Options.get_child(current_index).name
+		else:
+			button.text = \"  \" + $Options.get_child(current_index).name
+		
+		current_index += 1
+		
+		if current_index > $Options.get_child_count() - 1:
+			break
+
+func down_pressed() -> void:
+	if pages_enabled:
+		if (page + 1) * buttons.get_child_count() > $Options.get_child_count():
+			return 
+		
+		page += 1
+	
+	set_buttons()
+
+func up_pressed() -> void:
+	if pages_enabled:
+		if (page - 1) * buttons.get_child_count() < 0:
+			return 
+		
+		page -= 1
+	
+	set_buttons()
+
+func option_pressed(value : int) -> void:
+	var program = $Options.get_child((page * buttons.get_child_count()) + value)
+	
+	set_visibility(false)
+	
+	program.visible = true
+	program.parent_menu = self
+
+func set_buttons() -> void:
+	var current_index = page * buttons.get_child_count()
+	
+	for button in buttons.get_children():
+		button.visible = false
+	
+	for i in range(buttons.get_child_count()):
+		if i + current_index < $Options.get_child_count():
+			buttons.get_node(\"Button\" + str(i)).text = \"  \" + $Options.get_child(i + current_index).name
+			buttons.get_node(\"Button\" + str(i)).visible = true
+	
+	if pages_enabled:
+		if (page - 1) * buttons.get_child_count() < 0:
+			$Up.visible = false
+		else:
+			$Up.visible = true
+		
+		if (page + 1) * buttons.get_child_count() >= $Options.get_child_count():
+			$Down.visible = false
+		else:
+			$Down.visible = true
+	else:
+		$Up.visible = false
+		$Down.visible = false
+	
+	if submenu:
+		$X.visible = true
+	else:
+		$X.visible = false
+
+func set_visibility(value : bool) -> void:
+	$Down.visible = value
+	$Up.visible = value
+	$X.visible = value
+	$MainDisplay.visible = value
+	
+	set_process(value)
+	
+	if value:
+		set_buttons()
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+font_data = ExtResource( 8 )
+
+[node name="TerminalMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -234.0
+margin_bottom = -196.0
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="TextureButton" parent="."]
+margin_left = 203.0
+margin_top = 122.0
+margin_right = 244.0
+margin_bottom = 163.0
+mouse_filter = 1
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+
+[node name="Up" type="TextureButton" parent="."]
+margin_left = 203.0
+margin_right = 244.0
+margin_bottom = 41.0
+mouse_filter = 1
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+
+[node name="X" type="TextureButton" parent="."]
+margin_left = 203.0
+margin_top = 60.0
+margin_right = 244.0
+margin_bottom = 101.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+
+[node name="MainDisplay" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="MainDisplay"]
+margin_right = 40.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+align = 1
+valign = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MainDisplay"]
+margin_top = 32.0
+margin_right = 40.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button0" type="Button" parent="MainDisplay/Buttons"]
+margin_right = 40.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
+flat = true
+align = 0
+
+[node name="Button1" type="Button" parent="MainDisplay/Buttons"]
+margin_top = 32.0
+margin_right = 40.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
+flat = true
+align = 0
+
+[node name="Button2" type="Button" parent="MainDisplay/Buttons"]
+margin_top = 64.0
+margin_right = 40.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
+flat = true
+align = 0
+
+[node name="Button3" type="Button" parent="MainDisplay/Buttons"]
+margin_top = 96.0
+margin_right = 40.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
+flat = true
+align = 0
+
+[node name="Button4" type="Button" parent="MainDisplay/Buttons"]
+margin_top = 128.0
+margin_right = 40.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 0, 28 )
+size_flags_horizontal = 3
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.72549, 1, 0.211765, 1 )
+flat = true
+align = 0
+
+[node name="Options" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

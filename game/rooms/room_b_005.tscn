@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://game/rooms/GenericRoom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/players/ControllablePlayer.tscn" type="PackedScene" id=2]
+
+
+
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
+
+[node name="room_b_005" type="Node2D"]
+
+[node name="GenericRoom" parent="." instance=ExtResource( 1 )]
+north_door = 3
+north_target = "room_b_center"
+south_door = 3
+south_target = "room_b_006"
+
+[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
+position = Vector2( 130.589, 274.447 )
+z_index = 274
+
+[node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Objects" type="Node2D" parent="GenericRoom"]

@@ -1,0 +1,442 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://fonts/RobotoMono-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://graphics/popup/terminal/buttons/blank_button.png" type="Texture" id=3]
+[ext_resource path="res://graphics/popup/terminal/buttons/blank_button_hover.png" type="Texture" id=4]
+[ext_resource path="res://graphics/popup/terminal/buttons/check_button.png" type="Texture" id=5]
+[ext_resource path="res://graphics/popup/terminal/buttons/check_button_hover.png" type="Texture" id=6]
+[ext_resource path="res://graphics/popup/terminal/buttons/x_button.png" type="Texture" id=7]
+[ext_resource path="res://graphics/popup/terminal/buttons/x_button_hover.png" type="Texture" id=8]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Control
+
+# NOTE: Screens can pretty comfortably fit inside a 240x160 area, although some
+# minor bleed over the edges probably just helps the effect.
+
+export var solution : String = \"\"
+export var code_length : int = 6
+export var solved_message : String = \"Correct.\"
+
+var code : String = \"\"
+var blink : bool = false
+
+var parent_menu = null
+
+signal solved()
+signal number_pressed(value)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	# warning-ignore:unused_variable
+	var ignore = $Button0.connect(\"pressed\", self, \"number_pressed\", [0])
+	ignore = $Button1.connect(\"pressed\", self, \"number_pressed\", [1])
+	ignore = $Button2.connect(\"pressed\", self, \"number_pressed\", [2])
+	ignore = $Button3.connect(\"pressed\", self, \"number_pressed\", [3])
+	ignore = $Button4.connect(\"pressed\", self, \"number_pressed\", [4])
+	ignore = $Button5.connect(\"pressed\", self, \"number_pressed\", [5])
+	ignore = $Button6.connect(\"pressed\", self, \"number_pressed\", [6])
+	ignore = $Button7.connect(\"pressed\", self, \"number_pressed\", [7])
+	ignore = $Button8.connect(\"pressed\", self, \"number_pressed\", [8])
+	ignore = $Button9.connect(\"pressed\", self, \"number_pressed\", [9])
+	
+	ignore = $OK.connect(\"pressed\", self, \"ok_pressed\")
+	ignore = $X.connect(\"pressed\", self, \"x_pressed\")
+	
+	ignore = $Timer.connect(\"timeout\", self, \"set_blink\")
+	
+	$Code.bbcode_text = \"[center]\"
+	
+	# warning-ignore:unused_variable
+	for i in range(code_length):
+		$Code.bbcode_text += \"_\"
+	
+	$Code.bbcode_text += \"[/center]\"
+
+func number_pressed(value : int) -> void:
+	emit_signal(\"number_pressed\", value)
+	if code.length() < code_length:
+		code += str(value)
+		blink = false
+		$Timer.start()
+		set_code_text()
+	else:
+		# TODO: Add error noise?
+		print(\"NumpadScreen.gd : You have reached the maximum code limit!\")
+		pass
+
+func ok_pressed() -> void:
+	if solution == code:
+		$Message.text = solved_message
+		emit_signal(\"solved\")
+	else:
+		# TODO: Insert error noise
+		$Message.text = \"Incorrect Passcode! Please try again:\"
+	code = \"\"
+	set_code_text()
+
+func x_pressed() -> void:
+	if parent_menu != null:
+		visible = false
+		parent_menu.set_visibility(true)
+	else:
+		code = \"\"
+		set_code_text()
+
+func set_blink() -> void:
+	blink = !blink
+	
+	set_code_text()
+
+func set_code_text() -> void:
+	var code_text := code
+	var extra_characters : int = code_length - code.length()
+	
+	if extra_characters > 1:
+		for i in range(extra_characters):
+			if i == 0 && blink:
+				code_text += \" \"
+			else:
+				code_text += \"_\"
+	elif extra_characters == 1 && blink:
+		code_text += \" \"
+	elif extra_characters == 1:
+		code_text += \"_\"
+	
+	$Code.bbcode_text = \"[center]\" + code_text + \"[/center]\"
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[node name="NumpadScreen" type="Control"]
+margin_right = 246.0
+margin_bottom = 164.0
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+solution = "123456"
+
+[node name="Message" type="Label" parent="."]
+margin_left = 14.0
+margin_top = 12.0
+margin_right = 234.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+text = "Please Enter Passcode:"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Code" type="RichTextLabel" parent="."]
+margin_left = 14.0
+margin_top = 40.0
+margin_right = 234.0
+margin_bottom = 60.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.72549, 1, 0.211765, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]______[/center]"
+meta_underlined = false
+text = "______"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button1" type="TextureButton" parent="."]
+margin_top = 83.4676
+margin_right = 41.0
+margin_bottom = 124.468
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button1"]
+margin_right = 41.0
+margin_bottom = 41.0
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "1"
+flat = true
+
+[node name="Button2" type="TextureButton" parent="."]
+margin_left = 41.0
+margin_top = 83.0
+margin_right = 82.0
+margin_bottom = 124.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button2"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "2"
+flat = true
+
+[node name="Button3" type="TextureButton" parent="."]
+margin_left = 82.0
+margin_top = 83.0
+margin_right = 123.0
+margin_bottom = 124.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button3"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "3"
+flat = true
+
+[node name="Button4" type="TextureButton" parent="."]
+margin_left = 123.0
+margin_top = 83.0
+margin_right = 164.0
+margin_bottom = 124.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button4"]
+margin_right = 41.0
+margin_bottom = 41.0
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "4"
+flat = true
+
+[node name="Button5" type="TextureButton" parent="."]
+margin_left = 164.0
+margin_top = 83.0
+margin_right = 205.0
+margin_bottom = 124.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button5"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "5"
+flat = true
+
+[node name="Button6" type="TextureButton" parent="."]
+margin_top = 123.0
+margin_right = 41.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button6"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "6"
+flat = true
+
+[node name="Button7" type="TextureButton" parent="."]
+margin_left = 41.0
+margin_top = 123.0
+margin_right = 82.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button7"]
+margin_right = 41.0
+margin_bottom = 41.0
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "7"
+flat = true
+
+[node name="Button8" type="TextureButton" parent="."]
+margin_left = 82.0
+margin_top = 123.0
+margin_right = 123.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button8"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "8"
+flat = true
+
+[node name="Button9" type="TextureButton" parent="."]
+margin_left = 123.0
+margin_top = 123.0
+margin_right = 164.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button9"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "9"
+flat = true
+
+[node name="Button0" type="TextureButton" parent="."]
+margin_left = 164.0
+margin_top = 123.0
+margin_right = 205.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="Button0"]
+margin_top = 0.467621
+margin_right = 41.0
+margin_bottom = 41.4676
+mouse_filter = 1
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_hover = Color( 0.72549, 1, 0.211765, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.0941176, 0.0156863, 1 )
+text = "0"
+flat = true
+
+[node name="OK" type="TextureButton" parent="."]
+margin_left = 205.0
+margin_top = 83.9352
+margin_right = 246.0
+margin_bottom = 124.935
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="X" type="TextureButton" parent="."]
+margin_left = 205.0
+margin_top = 123.468
+margin_right = 246.0
+margin_bottom = 164.468
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true

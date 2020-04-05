@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PlayerRig",
 "language": "GDScript",
-"path": "res://graphics/players/PlayerRig.gd"
+"path": "res://game/players/PlayerRig.gd"
 } ]
 _global_script_class_icons={
 "PlayerRig": ""
@@ -30,19 +30,19 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameState="*res://util/game_state.gd"
-SceneTransition="*res://util/SceneTransition.tscn"
-MessageDisplay="*res://util/MessageDisplay.tscn"
 MusicModule="*res://audio/MusicModule.tscn"
 SoundModule="*res://audio/SoundModule.tscn"
-RoomUtil="*res://rooms/room_util.gd"
-Prompt="*res://menus/Prompt.tscn"
-FlashText="*res://menus/FlashText.tscn"
-Timeout="*res://menus/Timeout.tscn"
-JavaScriptMobile="*res://menus/LineEditJS/javascript_mobile.gd"
-StateEditor="*res://menus/StateEditor.tscn"
-WorldMap="*res://rooms/world_map.gd"
-GameObject="*res://rooms/objects/game_object.gd"
+JavaScriptMobile="*res://addons/LineEditJS/javascript_mobile.gd"
+GameState="*res://game/autoload/game_state.gd"
+SceneTransition="*res://game/autoload/SceneTransition.tscn"
+MessageDisplay="*res://game/autoload/MessageDisplay.tscn"
+RoomUtil="*res://game/autoload/room_util.gd"
+Prompt="*res://game/autoload/Prompt.tscn"
+FlashText="*res://game/autoload/FlashText.tscn"
+Timeout="*res://game/autoload/Timeout.tscn"
+StateEditor="*res://game/autoload/StateEditor.tscn"
+WorldMap="*res://game/autoload/world_map.gd"
+GameObject="*res://game/autoload/game_object.gd"
 
 [display]
 

@@ -1,11 +1,21 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/menu_base.gd" type="Script" id=1]
-[ext_resource path="res://graphics/room/objects/cryrochamber.png" type="Texture" id=2]
-[ext_resource path="res://rooms/objects/Terminal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/room/objects/chair0000.png" type="Texture" id=4]
+[ext_resource path="res://graphics/objects/pod/cryrochamber.png" type="Texture" id=2]
+[ext_resource path="res://game/objects/terminal/Terminal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/objects/chairs/chair0000.png" type="Texture" id=4]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=6]
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 38

@@ -15,7 +15,7 @@ func _on_BackButton_pressed():
 func _on_Button_pressed():
 	response_message.visible = true
 	input_code.visible = false
-	var ai_game_state = load('res://util/game_state.gd').new()
+	var ai_game_state = load('res://game/autoload/game_state.gd').new()
 	ai_game_state.is_ai_state = true
 	var error_code = ai_game_state.deserialize(input_code.text)
 	if error_code != 0:

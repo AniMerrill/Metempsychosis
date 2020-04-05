@@ -1,15 +1,20 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://menus/customise_menu.gd" type="Script" id=1]
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://__old/RigTest.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/RigTest.tscn" type="PackedScene" id=3]
 
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+func _on_BackButton_pressed():
+	SceneTransition.change_scene(\"menus/AwaitTurn.tscn\")
+"
 
 [node name="CustomiseMenu" type="Node2D"]
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
 [node name="MenuBase" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
 
 [node name="BackButton" parent="MenuBase" index="6"]
 visible = true

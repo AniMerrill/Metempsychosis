@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/rooms/room_a_xor_start.gd" type="Script" id=1]
+[ext_resource path="res://game/rooms/GenericRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/players/ControllablePlayer.tscn" type="PackedScene" id=3]
+
+
+
+
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 435, 360, 45, 360, 55.7749, 324.443, 385, 195, 95, 195, 75, 255 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ) ]
+outlines = [ PoolVector2Array( 45, 360, 55.7749, 324.443, 75, 255, 95, 195, 385, 195, 435, 360 ) ]
+
+[node name="room_a_xor_start" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="GenericRoom" parent="." instance=ExtResource( 2 )]
+east_door = 1
+north_door = 3
+west_door = 1
+south_door = 3
+
+[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
+position = Vector2( 130.589, 274.447 )
+z_index = 274
+
+[node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Objects" type="Node2D" parent="GenericRoom"]

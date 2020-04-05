@@ -1,0 +1,621 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://game/rooms/Room.gd" type="Script" id=1]
+[ext_resource path="res://graphics/room/base/floor.png" type="Texture" id=2]
+[ext_resource path="res://graphics/room/base/back_door.png" type="Texture" id=3]
+[ext_resource path="res://graphics/room/base/back_wall_no_door.png" type="Texture" id=4]
+[ext_resource path="res://graphics/room/base/back_wall_door_top.png" type="Texture" id=5]
+[ext_resource path="res://graphics/room/base/door_light.png" type="Texture" id=6]
+[ext_resource path="res://graphics/room/base/side_wall_door_b.png" type="Texture" id=7]
+[ext_resource path="res://graphics/room/base/side_door.png" type="Texture" id=8]
+[ext_resource path="res://graphics/room/base/side_wall_door_a.png" type="Texture" id=9]
+[ext_resource path="res://graphics/room/base/side_wall_no_door.png" type="Texture" id=10]
+[ext_resource path="res://graphics/room/base/front_door_frame.png" type="Texture" id=11]
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "DoorOpened"
+length = 0.05
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.4
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "DoorOpened"
+length = 0.1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.4
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "DoorOpened"
+length = 0.1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.4
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.6, 0.65, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 5, 6, 0, 4, 5, 6, 0, 4, 5, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "DoorOpened"
+length = 0.1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.4
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[node name="Room" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Floor" type="Sprite" parent="."]
+position = Vector2( 239, 275 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NorthDoor" type="Sprite" parent="."]
+visible = false
+position = Vector2( 236, 106 )
+texture = ExtResource( 3 )
+flip_h = true
+hframes = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NorthDoor"]
+anims/DoorOpened = SubResource( 1 )
+anims/Open = SubResource( 2 )
+
+[node name="NorthWall" type="Sprite" parent="."]
+position = Vector2( 240, 95 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NorthWallTop" type="Sprite" parent="."]
+visible = false
+position = Vector2( 240, 95 )
+z_index = 1000
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NorthDoorLight" type="Sprite" parent="."]
+visible = false
+position = Vector2( 295, 23 )
+z_index = 1000
+texture = ExtResource( 6 )
+hframes = 7
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NorthDoorLight"]
+anims/Locked = SubResource( 3 )
+anims/Locked_Warning = SubResource( 4 )
+anims/Opened = SubResource( 5 )
+anims/Opened_Warning = SubResource( 6 )
+
+[node name="WestWallDoorB" type="Sprite" parent="."]
+visible = false
+position = Vector2( 44, 0 )
+texture = ExtResource( 7 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WestDoorLight" type="Sprite" parent="."]
+visible = false
+position = Vector2( 66, 88 )
+texture = ExtResource( 6 )
+hframes = 7
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WestDoorLight"]
+anims/Locked = SubResource( 7 )
+anims/Locked_Warning = SubResource( 8 )
+anims/Opened = SubResource( 9 )
+anims/Opened_Warning = SubResource( 10 )
+
+[node name="EastWallDoorB" type="Sprite" parent="."]
+visible = false
+position = Vector2( 400, 0 )
+texture = ExtResource( 7 )
+centered = false
+flip_h = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WestDoor" type="Sprite" parent="."]
+visible = false
+position = Vector2( 44, 205 )
+texture = ExtResource( 8 )
+hframes = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WestDoor"]
+anims/DoorOpened = SubResource( 11 )
+anims/Open = SubResource( 12 )
+
+[node name="EastDoor" type="Sprite" parent="."]
+visible = false
+position = Vector2( 436, 205 )
+texture = ExtResource( 8 )
+flip_h = true
+hframes = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EastDoor"]
+anims/DoorOpened = SubResource( 13 )
+anims/Open = SubResource( 14 )
+
+[node name="WestWallDoorA" type="Sprite" parent="."]
+visible = false
+z_index = 1000
+texture = ExtResource( 9 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EastWallDoorA" type="Sprite" parent="."]
+visible = false
+position = Vector2( 436, 0 )
+z_index = 1000
+texture = ExtResource( 9 )
+centered = false
+flip_h = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EastDoorLight" type="Sprite" parent="."]
+visible = false
+position = Vector2( 463, 166 )
+z_index = 1001
+texture = ExtResource( 6 )
+hframes = 7
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EastDoorLight"]
+anims/Locked = SubResource( 15 )
+anims/Locked_Warning = SubResource( 16 )
+anims/Opened = SubResource( 17 )
+anims/Opened_Warning = SubResource( 18 )
+
+[node name="WestWallNoDoor" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EastWallNoDoor" type="Sprite" parent="."]
+position = Vector2( 400, 0 )
+texture = ExtResource( 10 )
+centered = false
+flip_h = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SouthDoorLight" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 174, 275 )
+z_index = 1000
+texture = ExtResource( 6 )
+hframes = 7
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SouthDoorLight"]
+anims/Locked = SubResource( 19 )
+anims/Locked_Warning = SubResource( 20 )
+anims/Opened = SubResource( 21 )
+anims/Opened_Warning = SubResource( 22 )
+
+[node name="SouthDoor" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 236, 361 )
+z_index = 1000
+texture = ExtResource( 3 )
+flip_h = true
+hframes = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SouthDoor"]
+anims/DoorOpened = SubResource( 23 )
+anims/Open = SubResource( 24 )
+
+[node name="SouthDoorFrame" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 235, 322 )
+z_index = 1000
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}

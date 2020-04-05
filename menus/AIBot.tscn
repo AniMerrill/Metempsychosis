@@ -2,9 +2,12 @@
 
 [ext_resource path="res://menus/AIBot.gd" type="Script" id=1]
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://chatbot_icon.png" type="Texture" id=3]
+[ext_resource path="res://graphics/avatars/chatbot_icon.png" type="Texture" id=3]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=5]
+[ext_resource path="res://addons/LineEditJS/LineEditJS.gd" type="Script" id=5]
+
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 18

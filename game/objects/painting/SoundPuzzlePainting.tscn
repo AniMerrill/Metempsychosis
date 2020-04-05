@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/objects/painting/sound_puzzle_painting.gd" type="Script" id=1]
+[ext_resource path="res://graphics/objects/paintings/sound_puzzle_painting_jungle.png" type="Texture" id=2]
+[ext_resource path="res://graphics/objects/paintings/sound_puzzle_painting_sea.png" type="Texture" id=3]
+[ext_resource path="res://graphics/objects/paintings/sound_puzzle_painting_sky.png" type="Texture" id=4]
+
+
+
+
+
+
+[node name="SoundPuzzlePainting" type="Node2D"]
+z_index = 280
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -55, -40, -55, 35, 50, 35, 50, -40 )
+
+[node name="jungle" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="sea" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="sky" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 4 )

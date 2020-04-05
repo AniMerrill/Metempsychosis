@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/autoload/flash_text.gd" type="Script" id=1]
+
+
+[node name="FlashText" type="Node2D"]
+z_index = 2000
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 15.0
+margin_top = 305.0
+margin_right = 465.0
+margin_bottom = 345.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+self_modulate = Color( 0.701961, 0.654902, 0.654902, 1 )
+margin_right = 450.0
+margin_bottom = 40.0
+text = "The red light"
+align = 1
+valign = 1
+autowrap = true

@@ -1,26 +1,169 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://menus/customize_player.gd" type="Script" id=2]
-[ext_resource path="res://graphics/players/player_a/PlayerARig.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/players/player_b/PlayerBRig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/players/PlayerARig.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/players/PlayerBRig.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+# The main variables of the character rig to make it animate:
+## walking
+## facing_front
+## facing_right
+## look_position
+
+# And then these for costume pieces
+## current_tool
+## current_mouth
+## current_hair
+## current_hat
+## current_face
+#onready var rig := $PlayerRig
+
+var rig
+
+var velocity := Vector2.ZERO
+var speed := 100
+
+var look_position := Vector2.ZERO
+
+func _ready():
+	$PlayerARig.visible = false
+	$PlayerBRig.visible = false
+	
+	if GameState.current_player() == GameState.PLAYER.PLAYER_A:
+		rig = $PlayerARig
+	else:
+		rig = $PlayerBRig
+	rig.visible = true
+	
+	rig.look_position = Vector2(200,200)
+	rig.load_from_game_state(GameState.current_player())
+	
+	var ignore
+	
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer/Button.connect(
+			\"pressed\", self, \"set_tool\", [rig.TOOL.NONE])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer/Button2.connect(
+			\"pressed\", self, \"set_tool\", [rig.TOOL.HAMMER])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer/Button3.connect(
+			\"pressed\", self, \"set_tool\", [rig.TOOL.SCREWDRIVER])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer/Button4.connect(
+			\"pressed\", self, \"set_tool\", [rig.TOOL.PISTOL])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer/Button5.connect(
+			\"pressed\", self, \"set_tool\", [rig.TOOL.PAINTBRUSH])
+	
+	
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer2/Button.connect(
+			\"pressed\", self, \"set_mouth\", [rig.MOUTH.FROWN])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer2/Button2.connect(
+			\"pressed\", self, \"set_mouth\", [rig.MOUTH.SMILE])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer2/Button3.connect(
+			\"pressed\", self, \"set_mouth\", [rig.MOUTH.OPEN])
+	
+	
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer3/Button.connect(
+			\"pressed\", self, \"set_hair\", [rig.HAIR.DOWN])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer3/Button2.connect(
+			\"pressed\", self, \"set_hair\", [rig.HAIR.PONYTAIL])
+	
+	
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer4/Button.connect(
+			\"pressed\", self, \"set_hat\", [rig.HAT.NONE])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer4/Button2.connect(
+			\"pressed\", self, \"set_hat\", [rig.HAT.BOWLER])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer4/Button3.connect(
+			\"pressed\", self, \"set_hat\", [rig.HAT.FEZ])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer4/Button4.connect(
+			\"pressed\", self, \"set_hat\", [rig.HAT.HELMET])
+	
+	
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer5/Button.connect(
+			\"pressed\", self, \"set_face\", [rig.FACE.NONE])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer5/Button2.connect(
+			\"pressed\", self, \"set_face\", [rig.FACE.BEARD])
+	ignore = $CanvasLayer/VBoxContainer/HBoxContainer5/Button3.connect(
+			\"pressed\", self, \"set_face\", [rig.FACE.MOUSTACHE])
+	
+	ignore = ignore
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		look_position = event.position
+
+func _process(delta):
+	if Input.is_action_pressed(\"ui_down\"):
+		velocity.y = speed
+	elif Input.is_action_pressed(\"ui_up\"):
+		velocity.y = -speed
+	else:
+		velocity.y = 0
+	
+	if Input.is_action_pressed(\"ui_right\"):
+		velocity.x = speed
+	elif Input.is_action_pressed(\"ui_left\"):
+		velocity.x = -speed
+	else:
+		velocity.x = 0
+	
+	if velocity == Vector2.ZERO:
+		rig.walking = false
+	else:
+		rig.walking = true
+		
+		if velocity.x > 0:
+			rig.facing_right = true
+		elif velocity.x < 0:
+			rig.facing_right = false
+		
+		if velocity.y > 0:
+			rig.facing_front = true
+		elif velocity.y < 0:
+			rig.facing_front = false
+	
+	position += velocity * delta
+	
+	rig.look_position = look_position
+
+func set_tool(new_tool : int) -> void:
+	rig.current_tool = new_tool
+	GameState.set_custom_tool(GameState.current_player(), new_tool)
+
+func set_mouth(mouth : int) -> void:
+	rig.current_mouth = mouth
+	GameState.set_custom_mouth(GameState.current_player(), mouth)
+
+func set_hair(hair : int) -> void:
+	rig.current_hair = hair
+	GameState.set_custom_hair(GameState.current_player(), hair)
+
+func set_hat(hat : int) -> void:
+	rig.current_hat = hat
+	GameState.set_custom_hat(GameState.current_player(), hat)
+
+func set_face(face : int) -> void:
+	rig.current_face = face
+	GameState.set_custom_face(GameState.current_player(), face)
+
+func _on_BackButton_pressed():
+	SceneTransition.change_scene(\"menus/AwaitTurn.tscn\")
+"
 
 [node name="CustomizePlayer" type="Node2D"]
 
 [node name="MenuBase" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 
 [node name="BackButton" parent="MenuBase" index="6"]
 visible = true
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2( 259.923, 197.638 )
-script = ExtResource( 2 )
+script = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Player/CanvasLayer"]
-editor/display_folded = true
 margin_left = 22.5834
 margin_top = 149.581
 margin_right = 392.583

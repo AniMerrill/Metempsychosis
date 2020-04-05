@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/objects/pod/sleeping_pod.gd" type="Script" id=1]
+[ext_resource path="res://graphics/objects/pod/cryrochamber.png" type="Texture" id=2]
+
+
+
+
+
+
+
+[node name="Pod" type="Node2D"]
+z_index = 270
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 5, -28.5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -50, -30, -65, -40, -40, -90, -90, -130, -85, -175, -40, -170, -30, -160, -5, -185, 70, -125, 55, -85, 65, -75, 60, -40, 20, -30, 20, -15, 30, -5, 20, 15, -5, 10, -10, 30, -50, 20 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( -15, -148.5 )
+texture = ExtResource( 2 )

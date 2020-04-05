@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://game/players/ControllablePlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/objects/pod/SleepingPod.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/popups/terminals/UnlockPodDoorsPopup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/rooms/GenericRoom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/objects/terminal/Terminal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/rooms/room_a_000.gd" type="Script" id=6]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 218.975, 235, 80, 235, 95, 195, 300, 195, 315, 210, 435, 360, 45, 360, 60, 305, 193.578, 305.951, 365, 205, 389.877, 204.998 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 4, 9, 10, 5, 8, 0 ) ]
+outlines = [ PoolVector2Array( 45, 360, 60, 305, 193.578, 305.951, 218.975, 235, 80, 235, 95, 195, 300, 195, 315, 210, 365, 205, 389.877, 204.998, 435, 360 ) ]
+
+[node name="room_a_000" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="GenericRoom" parent="." instance=ExtResource( 4 )]
+east_door = 4
+north_door = 1
+west_door = 1
+south_door = 1
+
+[node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 1 )]
+position = Vector2( 287.791, 295 )
+z_index = 295
+
+[node name="Navigation2D" type="Navigation2D" parent="GenericRoom"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="GenericRoom/Navigation2D"]
+position = Vector2( 5, 0 )
+navpoly = SubResource( 1 )
+
+[node name="Objects" type="Node2D" parent="GenericRoom"]
+
+[node name="Pod" parent="GenericRoom/Objects" instance=ExtResource( 2 )]
+position = Vector2( 120, 300 )
+for_player_b = false
+is_a_xor_pod = false
+
+[node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 5 )]
+position = Vector2( 334, 195 )
+
+[node name="UnlockPodDoorsPopup" parent="GenericRoom/Objects/Terminal" instance=ExtResource( 3 )]
+[connection signal="solved" from="GenericRoom/Objects/Terminal/UnlockPodDoorsPopup" to="." method="_on_UnlockPodDoorsPopup_solved"]

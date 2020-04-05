@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/await_turn.gd" type="Script" id=1]
 [ext_resource path="res://menus/MenuBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://menus/LineEditJS/LineEditJS.gd" type="Script" id=4]
-[ext_resource path="res://util/CurrentPlayer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://rooms/objects/Chair.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/LineEditJS/LineEditJS.gd" type="Script" id=4]
+[ext_resource path="res://game/objects/chair_foldable/Chair.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -92,6 +91,9 @@ margin_top = 160.0
 margin_right = 430.0
 margin_bottom = 212.0
 color = Color( 0.137255, 0.172549, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="InputArea"]
 margin_left = 13.0
@@ -112,6 +114,9 @@ align = 1
 placeholder_text = "code"
 placeholder_alpha = 0.3
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 instruction = "Please enter your continuation code:"
 
 [node name="CustomiseArea" type="ColorRect" parent="."]
@@ -185,28 +190,9 @@ margin_right = 430.0
 margin_bottom = 253.0
 text = "Continue"
 
-[node name="Debugging" type="Node2D" parent="."]
-visible = false
-
-[node name="CurrentPlayer" parent="Debugging" instance=ExtResource( 5 )]
-position = Vector2( 310, 10 )
-
-[node name="ChangePlayer" type="Button" parent="Debugging"]
-margin_left = 310.0
-margin_top = 318.0
-margin_right = 411.0
-margin_bottom = 338.0
-text = "Change Player"
-
-[node name="StateEdit" type="Button" parent="Debugging"]
-margin_left = 320.0
-margin_top = 337.5
-margin_right = 410.0
-margin_bottom = 357.5
-text = "State Editor"
-
 [node name="Chair" parent="." instance=ExtResource( 6 )]
 position = Vector2( 455, 332 )
+open = false
 
 [node name="Button" type="Button" parent="Chair"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -223,8 +209,6 @@ __meta__ = {
 [connection signal="pressed" from="CustomiseArea/Customise" to="." method="_on_Customise_pressed"]
 [connection signal="pressed" from="AIArea/AIBot" to="." method="_on_AIBot_pressed"]
 [connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="Debugging/ChangePlayer" to="." method="_on_ChangePlayer_pressed"]
-[connection signal="pressed" from="Debugging/StateEdit" to="." method="_on_StateEdit_pressed"]
 [connection signal="pressed" from="Chair/Button" to="Chair" method="_on_chair_button_pressed"]
 
 [editable path="MenuBase"]
