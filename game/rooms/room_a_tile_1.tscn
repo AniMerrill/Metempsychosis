@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/rooms/GenericRoom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/players/ControllablePlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/rooms/room_a_tile.gd" type="Script" id=3]
+[ext_resource path="res://graphics/objects/tile_room_nr/TileRoomNumber.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
@@ -24,3 +25,7 @@ z_index = 274
 navpoly = SubResource( 1 )
 
 [node name="Objects" type="Node2D" parent="GenericRoom"]
+
+[node name="TileRoomNumber" parent="GenericRoom/Objects" instance=ExtResource( 4 )]
+number = 1
+color = Color( 0.0431373, 0.160784, 0.564706, 1 )

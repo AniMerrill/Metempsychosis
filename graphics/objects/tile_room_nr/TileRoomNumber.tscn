@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/Roboto-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://graphics/objects/tile_room_nr/tile_room_number.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+outline_size = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "modulate"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Outline:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 1.7, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.768627 ), Color( 1, 1, 1, 0.0509804 ) ]
+}
+
+[node name="TileRoomNumber" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Outline" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.411765 )
+self_modulate = Color( 0, 250, 100, 1 )
+margin_left = 265.0
+margin_right = 427.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 2 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color( 0.862745, 0.862745, 0.862745, 1 )
+margin_left = 265.0
+margin_right = 427.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/modulate = SubResource( 3 )

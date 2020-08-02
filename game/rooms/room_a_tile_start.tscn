@@ -20,18 +20,6 @@ south_door = 3
 
 [node name="Floor" type="Node2D" parent="GenericRoom"]
 
-[node name="Label" type="Label" parent="GenericRoom/Floor"]
-margin_left = 152.238
-margin_top = 67.7389
-margin_right = 347.238
-margin_bottom = 98.7389
-text = "You notice the glaring absence
-of a puzzle in this room."
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 2 )]
 position = Vector2( 130.589, 274.447 )
 z_index = 274
