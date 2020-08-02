@@ -1,22 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/rooms/GenericRoom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/players/ControllablePlayer.tscn" type="PackedScene" id=2]
-
-
-
+[ext_resource path="res://game/objects/terminal/Terminal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/popups/terminals/MapTerminalPopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/rooms/room_a_tile_start.gd" type="Script" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 45, 360, 95, 195, 385, 195, 435, 360 ) ]
+vertices = PoolVector2Array( 190, 198, 385, 195, 435, 360, 45, 360, 162, 222, 85.942, 224.892 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5 ) ]
+outlines = [ PoolVector2Array( 45, 360, 85.942, 224.892, 162, 222, 190, 198, 385, 195, 435, 360 ) ]
 
 [node name="room_a_tile_start" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="GenericRoom" parent="." instance=ExtResource( 1 )]
 east_door = 3
-north_door = 1
-west_door = 1
 south_door = 3
 
 [node name="Floor" type="Node2D" parent="GenericRoom"]
@@ -43,3 +42,9 @@ z_index = 274
 navpoly = SubResource( 1 )
 
 [node name="Objects" type="Node2D" parent="GenericRoom"]
+
+[node name="Terminal" parent="GenericRoom/Objects" instance=ExtResource( 3 )]
+position = Vector2( 112, 206 )
+
+[node name="MapTerminalPopup" parent="GenericRoom/Objects/Terminal" instance=ExtResource( 4 )]
+visible = false

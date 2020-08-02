@@ -5,16 +5,6 @@
 [ext_resource path="res://game/objects/terminal/Terminal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/popups/terminals/MapTerminalPopup.tscn" type="PackedScene" id=5]
 
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 435, 360, 45, 360, 95, 195, 289.024, 194.499, 314.544, 211.42, 389.994, 209.478 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 0, 4, 5 ) ]
@@ -26,6 +16,7 @@ outlines = [ PoolVector2Array( 45, 360, 95, 195, 289.024, 194.499, 314.544, 211.
 east_door = 3
 north_door = 3
 west_door = 3
+south_door = 1
 
 [node name="ControllablePlayer" parent="GenericRoom" instance=ExtResource( 3 )]
 position = Vector2( 130.589, 274.447 )

@@ -31,7 +31,7 @@ SLIDING TILES PUZZLE:
 This module contains specific functions for the sliding tile puzzle. Note that
 it makes the assumption that the 'entry' room for the puzzle is located to the
 top-left of the puzzle, and the 'key' room to the bottom-right. If this is
-changed, please update the function '_tile_has_door' accordingly.
+changed, please update the function '_tile_has_open_door' accordingly.
 """
 
 # Ugly, should be kept in sync with Room.gd
@@ -80,9 +80,9 @@ const not_connected := [
 # The doors in the tile rooms:
 # TODO(AniMerrill): Update with the true values.
 const tile_room_doors := [
-		[EAST, NORTH],   # Room 0.
+		[EAST, SOUTH],   # Room 0.
 		[WEST, NORTH],   # Room 1.
-		[EAST, SOUTH],   # Room 2.
+		[EAST, NORTH],   # Room 2.
 		[SOUTH, NORTH],  # Room 3.
 		[],              # Room 4.
 		[EAST, SOUTH],   # Room 5.
@@ -152,9 +152,29 @@ func has_door(from : Vector2, to : Vector2) -> bool:
 			not_connected.has(at(to) + ":" + at(from)):
 		return false
 	if at(from).begins_with("a_tile_") and at(to).begins_with("a_tile_"):
-		return _tile_has_door(from, to)
+		return _tile_has_open_door(from, to)
 	return true
 
+func set_tile_room_doors(room) -> void:
+	var loc = loc(_current_room)
+	
+	for dir in _tile_doors(loc):
+		if dir == NORTH:
+			room.north_door = room.DOOR_STATUS.LOCKED_DOOR
+			if WorldMap.has_door(loc, loc + Vector2(0, -1)):
+				room.north_door = room.DOOR_STATUS.CLOSED_DOOR
+		if dir == SOUTH:
+			room.south_door = room.DOOR_STATUS.LOCKED_DOOR
+			if WorldMap.has_door(loc, loc + Vector2(0, 1)):
+				room.south_door = room.DOOR_STATUS.CLOSED_DOOR
+		if dir == WEST:
+			room.west_door = room.DOOR_STATUS.LOCKED_DOOR
+			if WorldMap.has_door(loc, loc + Vector2(-1, 0)):
+				room.west_door = room.DOOR_STATUS.CLOSED_DOOR
+		if dir == EAST:
+			room.east_door = room.DOOR_STATUS.LOCKED_DOOR
+			if WorldMap.has_door(loc, loc + Vector2(1, 0)):
+				room.east_door = room.DOOR_STATUS.CLOSED_DOOR
 
 var _current_room = null
 
@@ -196,8 +216,8 @@ func set_tile_rooms(room_order : Array) -> void:
 			world_map[tile_offset_y + y][tile_offset_x + x] = prefix
 
 
-#  Special logic for the moving tiles.
-func _tile_has_door(from : Vector2, to : Vector2) -> bool:
+#  Special logic for displaying the moving tiles.
+func _tile_has_open_door(from : Vector2, to : Vector2) -> bool:
 	var from_index = (from.y - tile_offset_y) * 3 + (from.x - tile_offset_x)
 	var to_index = (to.y - tile_offset_y) * 3 + (to.x - tile_offset_x)
 	var from_doors : Array
@@ -231,6 +251,20 @@ func _tile_has_door(from : Vector2, to : Vector2) -> bool:
 	
 	return from_doors.has(direction) and to_doors.has(other_direction)
 
+
+func _tile_doors(loc : Vector2) -> Array:
+	var from_index = (loc.y - tile_offset_y) * 3 + (loc.x - tile_offset_x)
+	var from_doors : Array
+	if from_index >= 0 and from_index <= 8:
+		from_doors = tile_room_doors[_current_tiles[from_index]]
+	return from_doors
+
+
+func is_start_tile_door_open() -> bool:
+	return NORTH in tile_room_doors[_current_tiles[2]]
+
+func is_key_tile_door_open() -> bool:
+	return EAST in tile_room_doors[_current_tiles[8]]
 
 func _is_valid_room_order(room_order : Array) -> bool:
 	if room_order.size() != 9:

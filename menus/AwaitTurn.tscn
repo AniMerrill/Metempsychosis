@@ -15,11 +15,11 @@ size = 12
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 24
+size = 17
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 24
+size = 17
 font_data = ExtResource( 3 )
 
 [node name="AwaitTurn" type="Node2D"]
@@ -67,6 +67,9 @@ text = "ABCD"
 align = 1
 editable = false
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FirstTimeArea" type="ColorRect" parent="."]
 visible = false

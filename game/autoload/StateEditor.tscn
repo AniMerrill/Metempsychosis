@@ -3,8 +3,6 @@
 [ext_resource path="res://game/autoload/state_editor.gd" type="Script" id=1]
 [ext_resource path="res://addons/LineEditJS/LineEditJS.gd" type="Script" id=3]
 
-
-
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 50
 script = ExtResource( 1 )
@@ -335,6 +333,33 @@ margin_top = 280.0
 margin_right = 195.0
 margin_bottom = 306.0
 text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 126.337
+margin_top = 191.0
+margin_right = 249.337
+margin_bottom = 341.0
+text = "0: [EAST, SOUTH]
+1: [WEST, NORTH]
+2: [EAST, NORTH]
+3: [SOUTH, NORTH]
+4: []"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="StateEditor/Frame/TilesPopup"]
+margin_left = 260.0
+margin_top = 191.0
+margin_right = 383.0
+margin_bottom = 341.0
+text = "5: [EAST, SOUTH]
+6: [EAST, WEST]
+7: [EAST]
+8: [EAST, NORTH]"
 __meta__ = {
 "_edit_use_anchors_": false
 }

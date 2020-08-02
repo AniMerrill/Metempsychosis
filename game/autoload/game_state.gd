@@ -570,7 +570,7 @@ func _get_highest_enum():
 	return enum_values[-1]
 
 
-# Serializes the state to a hexadecimal string.
+# Serializes the state to a Base64 string.
 func serialize(for_player = null) -> String:
 	randomize()
 	while true:
