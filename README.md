@@ -40,10 +40,10 @@ We recommend using headphones while playing this game for the best experience.
 
 * https://benjaminking-91.itch.io
 
-### Thijs Engel
+### Maya Engel
 
-* http://www.thijsengel.com/
-* https://thijsengel.itch.io
+* http://mayacomposer.github.io/
+* https://mayacomposer.itch.io
 
 ### Ereborn
 
